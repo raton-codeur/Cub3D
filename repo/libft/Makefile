@@ -69,20 +69,20 @@ SRCS = $(addprefix src/, \
 	skip_zeros.c \
 )
 
-$(NAME) : $(OBJS)
-	@ ar rc $@ $^ && printf "\n$@ created\n"
-
 tmp/%.o : src/%.c
 	@ mkdir -p tmp
-	@ cc $(FLAGS) -c $< -o $@ && printf "\rcompilation for $(NAME) : %d / %d" $$(ls tmp | wc -w) $(words $(SRCS))
+	@ cc $(FLAGS) -c $< -o $@ && printf "\rcompilation for $(NAME) : %d / %d" $$(find tmp -type f | wc -l) $(words $(SRCS))
+
+$(NAME) : $(OBJS)
+	@ ar rc $@ $^ && printf "\n$(NAME) created\n"
 
 all : $(NAME)
 
 clean :
-	@ rm -rf tmp && printf "$(NAME) cleaned\n"
+	@ rm -rf tmp
 
 fclean : clean
-	@ rm -f $(NAME) && printf "$(NAME) deleted\n"
+	@ rm -f $(NAME)
 
 re : fclean all
 

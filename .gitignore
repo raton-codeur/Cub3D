@@ -2,3 +2,4 @@ repo/MLX42/build/
 **/*.o
 **/*.a
 **/cub3D
+**/.vscode/
