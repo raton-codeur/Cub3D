@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/16 17:55:18 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/19 13:53:47 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@
 typedef struct s_data
 {
 	mlx_t		*mlx;
-	mlx_image_t	*bg;
+	mlx_image_t	*background;
+	mlx_image_t *cat;
 }	t_data;
 
 /* utils.c */
 void	mlx_print_error(void);
+void	mlx_error_exit(t_data *data);
 
 /* init.c */
 void	init(t_data *data);
