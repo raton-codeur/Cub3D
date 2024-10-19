@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 13:12:50 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/19 16:53:15 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	main(void)
 	init(&data);
 	mlx_key_hook(data.mlx, ft_key_hook, &data);
 	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
+	free_all(&data);
 	return (0);
 }

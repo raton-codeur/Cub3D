@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_quote.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 13:34:01 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/06/04 18:44:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/19 15:24:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	**ft_split_quote(const char *s, char c)
 		{
 			result[i] = ft_get_word(s, c);
 			if (result[i] == NULL)
-				return (deep_free((void **)result, i), NULL);
+				return (deep_free((void **)result), NULL);
 			i++;
 		}
 		s += ft_word_full_size(s, c);

@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   deep_free.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:15:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/06/04 18:59:56 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/19 15:27:20 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	deep_free(void **p, size_t i)
+void	deep_free(void **p)
 {
-	size_t	j;
+	size_t	i;
 
-	j = 0;
-	while (j < i)
-		free(p[j++]);
+	if (p == NULL)
+		return ;
+	i = 0;
+	while (p[i])
+		free(p[i++]);
 	free(p);
 }

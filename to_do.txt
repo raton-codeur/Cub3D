@@ -1,0 +1,4 @@
+
+ameliorer la detection d'erreur lors de la lecture de la map avec get next line
+il peut y avoir une erreur de read ou de malloc dans get next line
+

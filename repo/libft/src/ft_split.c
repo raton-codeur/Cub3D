@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 18:46:46 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/07/07 15:45:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/19 15:24:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**ft_split(const char *s, const char *delimiter)
 	{
 		result[i] = ft_calloc(ft_length(s, delimiter) + 1, sizeof(char));
 		if (result[i] == NULL)
-			return (deep_free((void **)result, i), NULL);
+			return (deep_free((void **)result), NULL);
 		ft_strlcpy(result[i++], s, ft_length(s, delimiter) + 1);
 		s += ft_length(s, delimiter);
 		s += ft_length(s, delimiter);

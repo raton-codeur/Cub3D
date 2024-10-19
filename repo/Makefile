@@ -36,6 +36,6 @@ fclean : clean
 re : fclean all
 
 test : all
-	@ ./$(NAME)
+	@ ./$(NAME) maps/simple.cub
 
 .PHONY : all clean fclean re bonus test
