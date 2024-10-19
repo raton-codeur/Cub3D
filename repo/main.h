@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 16:51:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/19 18:09:51 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
+# define SIZE_BOX 30 // la taille d'une case de la minimap
 
 typedef struct s_data
 {
 	char		**map;
 	mlx_t		*mlx;
 	mlx_image_t	*background;
+	mlx_image_t	*map_img;
 }	t_data;
 
 /* free.c */
@@ -43,6 +45,6 @@ mlx_image_t	*get_img_from_png(t_data *data, const char *file);
 void	load_map(t_data *data);
 
 /* hooks.c */
-void		ft_key_hook(mlx_key_data_t keydata, void *param);
+void		ft_key_hook(void *param);
 
 #endif

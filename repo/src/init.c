@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 16:59:39 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/19 17:59:43 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,10 @@ void	init_mlx(t_data *data)
 	if (data->mlx == NULL)
 		return (mlx_perror_exit(data), exit(1));
 	data->background = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	if (data->background == NULL
-		|| mlx_image_to_window(data->mlx, data->background, 0, 0) == -1)
+	if (data->background == NULL)
 		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->background, 0, 0) == -1)
+		return (mlx_delete_image(data->mlx, data->background), mlx_perror_exit(data));
 	fill_bg(data);
 }
 
