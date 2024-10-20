@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   esc_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:16 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 16:54:58 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 17:31:38 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void	key_hook(mlx_key_data_t keydata, void *param)
+void	esc_hook(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
 
