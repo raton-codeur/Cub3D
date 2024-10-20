@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:19:36 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 17:43:53 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 18:47:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ static void	print_box(t_data *data, int x_start, int y_start, int color)
 		x = 0;
 		while (x < SIZE_BOX)
 		{
-			mlx_put_pixel(data->map_img, x_start + x, y_start + y, color);
+            if (y == SIZE_BOX - 1 || x == SIZE_BOX - 1)
+                mlx_put_pixel(data->map_img, x_start + x, y_start + y, 0x000000FF);
+            else
+			    mlx_put_pixel(data->map_img, x_start + x, y_start + y, color);
 			x++;
 		}
 		y++;
