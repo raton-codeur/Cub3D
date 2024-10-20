@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 18:09:51 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 16:20:30 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define WIDTH 1280
-# define HEIGHT 720
+# define WIDTH 1920 // la largeur de la fenêtre
+# define HEIGHT 1080 // hauteur de la fenêtre
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
-# define SIZE_BOX 30 // la taille d'une case de la minimap
+# define SIZE_BOX 50 // la taille d'une case de la minimap
 
 typedef struct s_data
 {
@@ -46,5 +46,8 @@ void	load_map(t_data *data);
 
 /* hooks.c */
 void		ft_key_hook(void *param);
+
+/* print_map.c */
+void		print_map(t_data *data);
 
 #endif

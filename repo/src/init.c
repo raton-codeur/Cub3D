@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 17:59:43 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 15:53:43 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ static void	fill_bg(t_data *data)
 
 void	init_mlx(t_data *data)
 {
+	int	monitor_width;
+	int	monitor_height;
+
 	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
 	if (data->mlx == NULL)
 		return (mlx_perror_exit(data), exit(1));
@@ -57,6 +60,8 @@ void	init_mlx(t_data *data)
 	if (mlx_image_to_window(data->mlx, data->background, 0, 0) == -1)
 		return (mlx_delete_image(data->mlx, data->background), mlx_perror_exit(data));
 	fill_bg(data);
+	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
+	mlx_set_window_pos(data->mlx, (monitor_width - WIDTH) / 2, (monitor_height - HEIGHT) / 2);
 }
 
 void	init(t_data *data)
