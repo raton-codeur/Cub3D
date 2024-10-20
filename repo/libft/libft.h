@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 12:28:50 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 15:24:07 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 16:30:52 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(const char *s, const char *delimiter);
 char	**ft_split_quote(const char *s, char c);
 int		ft_size_inside_quotes(const char *s);
-size_t	array_size(char **s);
+size_t	array_size(void **a);
 int		ft_strisspace(char *s);
 int		ft_strisword(char *s);
 int		ft_strisdigit(char *s);

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 16:20:30 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 17:00:02 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data
 	mlx_t		*mlx;
 	mlx_image_t	*background;
 	mlx_image_t	*map_img;
+	mlx_image_t	*player;
 }	t_data;
 
 /* free.c */
@@ -39,15 +40,19 @@ void		mlx_perror_exit(t_data *data);
 
 /* init.c */
 void		init(t_data *data);
-mlx_image_t	*get_img_from_png(t_data *data, const char *file);
 
 /* load_map.c */
 void	load_map(t_data *data);
 
-/* hooks.c */
-void		ft_key_hook(void *param);
+/* init_map.c */
+void		init_map(t_data *data);
+int			get_row_size(char *row);
+
+/* key_hook.c */
+void		key_hook(mlx_key_data_t keydata, void *param);
 
 /* print_map.c */
-void		print_map(t_data *data);
+void		print_map(void *param);
+
 
 #endif
