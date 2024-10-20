@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 17:40:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 17:44:03 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			get_row_size(char *row);
 void		esc_hook(mlx_key_data_t keydata, void *param);
 
 /* print_map.c */
-void		print_map(void *param);
+void		print_map(t_data *data);
 
 /* player_hook.c */
 void		player_hook(void *param);

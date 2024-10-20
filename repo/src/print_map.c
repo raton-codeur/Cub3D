@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:19:36 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 17:32:24 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/20 17:43:53 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ static void	print_box(t_data *data, int x_start, int y_start, int color)
 	}
 }
 
-void	print_map(void *param)
+void	print_map(t_data *data)
 {
-    t_data	*data;
 	int x;
 	int y;
 	int	color;
 
-    data = param;
 	y = 0;
 	while (data->map[y])
 	{
