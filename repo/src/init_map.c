@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:48:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/21 17:21:15 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:25:48 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ static void	fill_player(t_data *data)
 	}
 }
 
+/* on a la position et l'angle */
+// void draw_line(t_data *data)
+// {
 
+// }
 
 void	init_map(t_data *data)
 {
@@ -108,5 +112,13 @@ void	init_map(t_data *data)
     	{return (mlx_delete_image(data->mlx, data->player), mlx_perror_exit(data));}
 	data->position.x = data->player->instances[0].x + SIZE_PLAYER_HALF;
 	data->position.y = data->player->instances[0].y + SIZE_PLAYER_HALF;
+	if (O_START == 'N')
+		data->angle = M_PI / 2;
+	else if (O_START == 'E')
+		data->angle = 0;
+	else if (O_START == 'S')
+		data->angle = - M_PI / 2;
+	else if (O_START == 'W')
+		data->angle = M_PI;
 	// draw_line(data);
 }
