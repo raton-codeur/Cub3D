@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 16:50:01 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/21 15:56:31 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	free_all(t_data *data)
 {
-	deep_free((void **)data->map);
-	if (data->mlx)
-		mlx_terminate(data->mlx);
+	deep_free((void **)data->cub_file);
+	free(data->path_map);
+	// if (data->mlx)
+	// 	mlx_terminate(data->mlx);
 }
 
 void	perror_exit(char *s, t_data *data)

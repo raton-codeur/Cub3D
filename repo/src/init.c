@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 17:14:09 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/21 15:54:53 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,15 @@ void	init_mlx(t_data *data)
 	fill_bg(data);
 }
 
-void	init(t_data *data)
+void	init(t_data *data, int argc, char **argv)
 {
 	ft_memset(data, 0, sizeof(t_data));
-	load_map(data);
-	init_mlx(data);
-	init_map(data);
+	if (argc != 2)
+		return (ft_putendl_fd("Error\nUsage: ./cub3D <map.cub>", 2), exit(1));
+	data->path_map = ft_strdup(argv[1]);
+	if (data->path_map == NULL)
+		return (ft_putendl_fd("Malloc Error", 2), exit(1));
+	load_cub_file(data);
+	// init_mlx(data);
+	// init_map(data);
 }

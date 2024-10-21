@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 17:44:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/21 15:54:06 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 typedef struct s_data
 {
+	char		*path_map;
+	char		**cub_file;
 	char		**map;
 	mlx_t		*mlx;
 	mlx_image_t	*background;
@@ -39,10 +41,10 @@ void		perror_exit(char *s, t_data *data);
 void		mlx_perror_exit(t_data *data);
 
 /* init.c */
-void		init(t_data *data);
+void		init(t_data *data, int argc, char **argv);
 
 /* load_map.c */
-void	load_map(t_data *data);
+void		load_map(t_data *data);
 
 /* init_map.c */
 void		init_map(t_data *data);
@@ -56,5 +58,11 @@ void		print_map(t_data *data);
 
 /* player_hook.c */
 void		player_hook(void *param);
+
+/* parsing.c */
+bool		parser(t_data *data);
+
+/* load_cub_file.c */
+void		load_cub_file(t_data *data);
 
 #endif
