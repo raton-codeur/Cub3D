@@ -1,0 +1,17 @@
+
+
+int	is_wall(t_data *data, int x, int y)
+{
+	int	row;
+	int	column;
+
+	row = y / SIZE_BOX;
+	column = x / SIZE_BOX;
+	int a = data->map[row][column] == '1';
+	int row_2 = (y - 1) / SIZE_BOX;
+	int column_2 = (x - 1) / SIZE_BOX;
+	int b = data->map[row_2][column_2] == '1';
+	if (a == 1 && b == 0)
+		return (0);
+	return (a);
+}

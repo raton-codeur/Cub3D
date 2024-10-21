@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 17:44:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/21 17:19:00 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,19 @@
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
-# define SIZE_BOX 50 // la taille d'une case de la minimap
+# define SIZE_BOX ((double)50) // la taille d'une case de la minimap
+# define SIZE_PLAYER ((double)25) // la taille du joueur
+# define SIZE_PLAYER_HALF (SIZE_PLAYER / 2)
+# define STEP ((double)3) // le nombre de pixels qu'on parcourt sur la minimap à chaque coup
+# define R_START 2 // la ligne de départ du joueur
+# define C_START 2 // la colonne de départ du joueur
+# define O_START 'N' // l'orientation de départ du joueur
+
+typedef struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
 
 typedef struct s_data
 {
@@ -31,6 +43,8 @@ typedef struct s_data
 	mlx_image_t	*background;
 	mlx_image_t	*map_img;
 	mlx_image_t	*player;
+	t_point		position;
+	double		angle;
 }	t_data;
 
 /* free.c */
