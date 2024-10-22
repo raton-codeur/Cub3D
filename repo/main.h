@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/22 14:08:06 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/22 15:15:59 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,12 @@ bool		load_cub_file(t_data *data);
 
 /* find_textures.c */
 bool		find_textures(t_data *data, int i, int j);
+bool		copy_texture(t_data *data, char **dest, int i, int j);
+
+/* find_colors.c */
 bool		find_colors(t_data *data, int i, int j);
+
+/* parsing_utils.c */
+int			skip_spaces(char *str, int i, int len);
+
 #endif
