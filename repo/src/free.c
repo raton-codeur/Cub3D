@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/21 15:56:31 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/22 14:10:11 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,12 @@ void	free_all(t_data *data)
 {
 	deep_free((void **)data->cub_file);
 	free(data->path_map);
+	free(data->north_texture);
+	free(data->south_texture);
+	free(data->west_texture);
+	free(data->east_texture);
+	free(data->floor_color);
+	free(data->ceil_color);
 	// if (data->mlx)
 	// 	mlx_terminate(data->mlx);
 }

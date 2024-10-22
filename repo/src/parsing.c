@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/21 16:08:51 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/22 14:04:47 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ bool	parser(t_data *data)
 {
 	if (!extension_checker(data->path_map))
 		return (false);
-	load_cub_file(data); // gestion erreur a voir
-	
+	if (!load_cub_file(data))
+		return (false);
+	if (!find_textures(data, -1, 0))
+		return (false);
+	if (!find_colors(data, -1, 0))
+		return (false);
 	return (true);
 }

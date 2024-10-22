@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/21 15:54:06 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/22 14:08:06 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,25 @@
 # define PATH_MAP "maps/simple.cub"
 # define SIZE_BOX 50 // la taille d'une case de la minimap
 
+typedef struct s_color
+{
+	int		r;
+	int		g;
+	int		b;
+}	t_color;
+
 typedef struct s_data
 {
 	char		*path_map;
 	char		**cub_file;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	char		*floor_color;
+	t_color		*floor_rgb;
+	char		*ceil_color;
+	t_color		*ceil_rgb;
 	char		**map;
 	mlx_t		*mlx;
 	mlx_image_t	*background;
@@ -59,10 +74,15 @@ void		print_map(t_data *data);
 /* player_hook.c */
 void		player_hook(void *param);
 
+/////////////////PARSING////////////////////
+
 /* parsing.c */
 bool		parser(t_data *data);
 
 /* load_cub_file.c */
-void		load_cub_file(t_data *data);
+bool		load_cub_file(t_data *data);
 
+/* find_textures.c */
+bool		find_textures(t_data *data, int i, int j);
+bool		find_colors(t_data *data, int i, int j);
 #endif

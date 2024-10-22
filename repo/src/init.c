@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/21 15:54:53 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/22 11:21:43 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	init(t_data *data, int argc, char **argv)
 	data->path_map = ft_strdup(argv[1]);
 	if (data->path_map == NULL)
 		return (ft_putendl_fd("Malloc Error", 2), exit(1));
-	load_cub_file(data);
 	// init_mlx(data);
 	// init_map(data);
 }
