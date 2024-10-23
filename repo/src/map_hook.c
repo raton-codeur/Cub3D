@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:34:27 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:35:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_wall(t_data *data, double x, double y)
 	return (data->map[(int)(y / SIZE_BOX)][(int)(x / SIZE_BOX)] == '1');
 }
 
-void	erase_ray(t_data *data)
+void	erase_rays(t_data *data)
 {
 	int	i;
 	int	next_x;
