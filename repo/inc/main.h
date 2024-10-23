@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:47:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:09:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define COL_START 2 // l'indice de la colonne de départ du joueur
 # define ANGLE_START 0 // l'orientation de départ du joueur en radians
 # define ANGLE_VIEW 1.04719755 // l'angle de vue en radians
+# define NB_RAYS 1000 // le nombre de rayons lancés
 
 typedef struct s_point
 {
