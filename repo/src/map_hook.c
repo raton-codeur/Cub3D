@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:40:31 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:42:15 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,33 @@ int	is_wall(t_data *data, double x, double y)
 	return (data->map[(int)(y / SIZE_BOX)][(int)(x / SIZE_BOX)] == '1');
 }
 
-void	cast_rays(t_data *data)
+void	cast_ray(t_data *data, double angle)
 {
 	int	i;
 	int	next_x;
 	int	next_y;
 
 	i = 0;
-	next_x = data->position.x + i * cos(data->angle);
-	next_y = data->position.y + i * sin(data->angle);
+	next_x = data->position.x + i * cos(angle);
+	next_y = data->position.y + i * sin(angle);
 	while (!is_wall(data, next_x, next_y))
 	{
 		mlx_put_pixel(data->rays, next_x, next_y, 0x00FF00FF);
-		next_x = data->position.x + i * cos(data->angle);
-		next_y = data->position.y + i * sin(data->angle);
+		next_x = data->position.x + i * cos(angle);
+		next_y = data->position.y + i * sin(angle);
 		i++;
+	}
+}
+
+void	cast_rays(t_data *data)
+{
+	double angle;
+
+	angle = data->angle - ANGLE_VIEW / 2;
+	while (angle < data->angle + ANGLE_VIEW / 2)
+	{
+		cast_ray(data, angle);
+		angle += 0.01;
 	}
 }
 
