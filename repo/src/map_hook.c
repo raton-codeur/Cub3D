@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 17:20:54 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:05:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,18 @@ void	cast_rays(t_data *data)
 }
 
 
+int convert_length(int length_in_map)
+{
+	return (W_HEIGHT - 20 - ((length_in_map * W_HEIGHT)/(W_WIDTH / 2)));
+}
 
 void	cast_ray_draw_wall(t_data *data, double angle)
 {
-	int length = cast_ray(data, angle);
+	int length_in_map = cast_ray(data, angle);
 	int x = data->walls->width / 2;
-	int y_start = (data->walls->height - length) / 2;
+	int y_start = (W_HEIGHT - convert_length(length_in_map)) / 2;
 	int y = 0;
-	while (y < length)
+	while (y < convert_length(length_in_map))
 	{
 		mlx_put_pixel(data->walls, x, y_start + y, 0x00FF00FF);
 		y++;
