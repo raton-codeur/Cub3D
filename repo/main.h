@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/21 17:19:00 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 14:12:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define STEP ((double)3) // le nombre de pixels qu'on parcourt sur la minimap à chaque coup
 # define R_START 2 // la ligne de départ du joueur
 # define C_START 2 // la colonne de départ du joueur
-# define O_START 'N' // l'orientation de départ du joueur
+// # define O_START 'N' // l'orientation de départ du joueur
 
 typedef struct s_point
 {
@@ -45,6 +45,7 @@ typedef struct s_data
 	mlx_image_t	*player;
 	t_point		position;
 	double		angle;
+	mlx_image_t *rays;
 }	t_data;
 
 /* free.c */
@@ -68,7 +69,7 @@ void		esc_hook(mlx_key_data_t keydata, void *param);
 /* print_map.c */
 void		print_map(t_data *data);
 
-/* player_hook.c */
-void		player_hook(void *param);
+/* map_hook.c */
+void		map_hook(void *param);
 
 #endif
