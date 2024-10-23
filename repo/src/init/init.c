@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:12:42 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/10/23 15:27:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 
-int	main(void)
+void	init(t_data *data)
 {
-	t_data	data;
-
-	init(&data);
-	mlx_key_hook(data.mlx, esc_hook, &data);
-	mlx_loop_hook(data.mlx, map_hook, &data);
-	mlx_loop(data.mlx);
-	free_all(&data);
-	return (0);
+	ft_memset(data, 0, sizeof(t_data));
+	load_map(data);
+	init_window(data);
+	init_background(data);
+	init_map(data);
+	init_rays(data);
+	init_player(data);
 }

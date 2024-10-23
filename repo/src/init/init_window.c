@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:12:42 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/23 15:15:52 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/10/23 15:40:41 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "main.h"
 
-int	main(void)
+void	init_window(t_data *data)
 {
-	t_data	data;
+	int	monitor_width;
+	int	monitor_height;
 
-	init(&data);
-	mlx_key_hook(data.mlx, esc_hook, &data);
-	mlx_loop_hook(data.mlx, map_hook, &data);
-	mlx_loop(data.mlx);
-	free_all(&data);
-	return (0);
+	mlx_set_setting(MLX_STRETCH_IMAGE, 1);
+	data->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", true);
+	if (data->mlx == NULL)
+		return (mlx_perror_exit(data));
+	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
+	mlx_set_window_pos(data->mlx, (monitor_width - WIDTH) / 2, (monitor_height - HEIGHT) / 2);
 }

@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/20 16:48:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 14:14:07 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/10/23 16:12:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "init.h"
 
-int	get_row_size(char *row)
+static unsigned int	get_row_size(char *row)
 {
 	int	i;
 
@@ -24,10 +24,10 @@ int	get_row_size(char *row)
 	return (i);
 }
 
-static int	get_nb_columns(char **map)
+static unsigned int	get_nb_columns(char **map)
 {
-	int	i;
-	int	max;
+	unsigned int	i;
+	unsigned int	max;
 
 	if (!map)
 		return (0);
@@ -42,31 +42,56 @@ static int	get_nb_columns(char **map)
 	return (max);
 }
 
-static void	fill_player(t_data *data)
+static void	print_box(t_data *data, int x_start, int y_start, int color)
 {
-	unsigned int	x;
-	unsigned int	y;
+	int	x;
+	int	y;
 
-	x = 0;
-	while (x < SIZE_PLAYER)
+	y = 0;
+	while (y < SIZE_BOX)
 	{
-		y = 0;
-		while (y < SIZE_PLAYER)
+		x = 0;
+		while (x < SIZE_BOX)
 		{
-			mlx_put_pixel(data->player, x, y, 0xFF0000FF);
-			y++;
+            if (y == SIZE_BOX - 1 || x == SIZE_BOX - 1)
+                mlx_put_pixel(data->map_img, x_start + x, y_start + y, 0x000000FF);
+            else
+			    mlx_put_pixel(data->map_img, x_start + x, y_start + y, color);
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
-void	init_map(t_data *data)
+void	print_map(t_data *data)
+{
+	unsigned int	x;
+	unsigned int	y;
+	unsigned int	color;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (x < get_row_size(data->map[y]))
+		{
+			if (data->map[y][x] == '1')
+				color = 0x000000FF;
+			else
+				color = 0xFFFFFFFF;
+			print_box(data, x * SIZE_BOX, y * SIZE_BOX, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void init_map(t_data *data)
 {
 	int	nb_rows;
 	int	nb_columns;
 
-    // map
-	nb_rows = array_size((void **)data->map); // attention aux lignes vides à la fin ?
+	nb_rows = array_size((void **)data->map);
 	nb_columns = get_nb_columns(data->map);
 	data->map_img = mlx_new_image(data->mlx, nb_columns * SIZE_BOX, nb_rows * SIZE_BOX);
 	if (data->map_img == NULL)
@@ -74,21 +99,4 @@ void	init_map(t_data *data)
 	if (mlx_image_to_window(data->mlx, data->map_img, 0, 0) == -1)
 		return (mlx_delete_image(data->mlx, data->map_img), mlx_perror_exit(data));
 	print_map(data);
-
-    // player
-	data->player = mlx_new_image(data->mlx, SIZE_PLAYER, SIZE_PLAYER);
-	if (data->player == NULL)
-		{return (mlx_perror_exit(data));}
-	fill_player(data);
-	if (mlx_image_to_window(data->mlx, data->player, C_START * SIZE_BOX, R_START * SIZE_BOX) == -1)
-		{return (mlx_delete_image(data->mlx, data->player), mlx_perror_exit(data));}
-	data->position.x = data->player->instances[0].x + SIZE_PLAYER_HALF;
-	data->position.y = data->player->instances[0].y + SIZE_PLAYER_HALF;
-
-	// rays
-	data->rays = mlx_new_image(data->mlx, data->map_img->width, data->map_img->height);
-	if (data->rays == NULL)
-		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->rays, 0, 0) == -1)
-		return (mlx_delete_image(data->mlx, data->rays), mlx_perror_exit(data));
 }

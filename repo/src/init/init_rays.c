@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:12:42 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/23 15:31:06 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/10/23 15:31:40 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 
-int	main(void)
+void	init_rays(t_data *data)
 {
-	t_data	data;
-
-	init(&data);
-	mlx_key_hook(data.mlx, esc_hook, &data);
-	mlx_loop_hook(data.mlx, map_hook, &data);
-	mlx_loop(data.mlx);
-	free_all(&data);
-	return (0);
+	data->rays = mlx_new_image(data->mlx, data->map_img->width, data->map_img->height);
+	if (data->rays == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->rays, 0, 0) == -1)
+		return (mlx_delete_image(data->mlx, data->rays), mlx_perror_exit(data));
 }

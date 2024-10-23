@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 14:35:45 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:11:22 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define WIDTH 1920 // la largeur de la fenêtre
-# define HEIGHT 1080 // hauteur de la fenêtre
+# define WIDTH 3500 // la largeur de la fenêtre
+# define HEIGHT 1500 // hauteur de la fenêtre
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
@@ -37,6 +37,22 @@ typedef struct s_point
 	double	y;
 }	t_point;
 
+// typedef struct s_points
+// {
+// 	double	a_x;
+// 	double	a_y;
+// 	double	b_x;
+// 	double	b_y;
+// }	t_points;
+
+typedef struct s_u_points
+{
+	unsigned int	a_x;
+	unsigned int	a_y;
+	unsigned int	b_x;
+	unsigned int	b_y;
+}	t_u_points;
+
 typedef struct s_data
 {
 	char		**map;
@@ -44,9 +60,9 @@ typedef struct s_data
 	mlx_image_t	*background;
 	mlx_image_t	*map_img;
 	mlx_image_t	*player;
+	mlx_image_t *rays;
 	t_point		position;
 	double		angle;
-	mlx_image_t *rays;
 }	t_data;
 
 /* free.c */
@@ -54,21 +70,8 @@ void		free_all(t_data *data);
 void		perror_exit(char *s, t_data *data);
 void		mlx_perror_exit(t_data *data);
 
-/* init.c */
-void		init(t_data *data);
-
-/* load_map.c */
-void	load_map(t_data *data);
-
-/* init_map.c */
-void		init_map(t_data *data);
-int			get_row_size(char *row);
-
 /* esc_hook.c */
 void		esc_hook(mlx_key_data_t keydata, void *param);
-
-/* print_map.c */
-void		print_map(t_data *data);
 
 /* map_hook.c */
 void		map_hook(void *param);

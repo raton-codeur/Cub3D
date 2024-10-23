@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/19 16:51:42 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/19 16:52:04 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/23 15:27:45 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/10/23 15:28:11 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "init.h"
 
 static int	count_lines(t_data *data)
 {

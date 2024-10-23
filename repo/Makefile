@@ -1,6 +1,6 @@
 NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -g3 -Wunreachable-code -Ofast -fsanitize=address
-INCLUDES = -I libft -I MLX42/include -I .
+INCLUDES = -I libft -I MLX42/include -I inc
 LDFLAGS = -ldl -lglfw -pthread -lm
 LIBFT = libft/libft.a
 MLX = MLX42/build/libmlx42.a
