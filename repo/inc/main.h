@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:29:26 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:37:20 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,9 @@ void		esc_hook(mlx_key_data_t keydata, void *param);
 
 /* map_hook.c */
 void		map_hook(void *param);
+
+/* fill_image.c */
+void		fill_image(mlx_image_t *image, unsigned int color);
+void		fill_zone(mlx_image_t *img, t_u_points limits, unsigned int color);
 
 #endif
