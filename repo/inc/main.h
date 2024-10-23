@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:11:22 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:29:26 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,18 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define WIDTH 3500 // la largeur de la fenêtre
-# define HEIGHT 1500 // hauteur de la fenêtre
+# define W_WIDTH 3500 // la largeur de la fenêtre
+# define W_HEIGHT 1500 // hauteur de la fenêtre
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
-# define SIZE_BOX ((double)50) // la taille d'une case de la minimap
-# define SIZE_PLAYER ((double)25) // la taille du joueur
+# define SIZE_BOX 50 // la largeur d'une case de la minimap en pixels
+# define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
 # define SIZE_PLAYER_HALF (SIZE_PLAYER / 2)
-# define STEP ((double)3) // le nombre de pixels qu'on parcourt sur la minimap à chaque coup
-# define R_START 2 // la ligne de départ du joueur
-# define C_START 2 // la colonne de départ du joueur
-# define O_START 0 // l'orientation de départ du joueur
+# define STEP 3 // le nombre de pixels qu'on parcourt sur la minimap à chaque coup
+# define ROW_START 2 // l'indice de la ligne de départ du joueur
+# define COL_START 2 // l'indice de la colonne de départ du joueur
+# define ANGLE_START 0 // l'orientation de départ du joueur en radians
 # define ANGLE_VIEW 1.04719755 // l'angle de vue en radians
 
 typedef struct s_point
@@ -60,7 +60,7 @@ typedef struct s_data
 	mlx_image_t	*background;
 	mlx_image_t	*map_img;
 	mlx_image_t	*player;
-	mlx_image_t *rays;
+	mlx_image_t	*rays;
 	t_point		position;
 	double		angle;
 }	t_data;

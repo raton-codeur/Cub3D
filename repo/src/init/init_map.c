@@ -6,13 +6,13 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:12:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:31:38 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init.h"
 
-static unsigned int	get_row_size(char *row)
+static int	get_row_size(char *row)
 {
 	int	i;
 
@@ -24,10 +24,10 @@ static unsigned int	get_row_size(char *row)
 	return (i);
 }
 
-static unsigned int	get_nb_columns(char **map)
+static int	get_nb_columns(char **map)
 {
-	unsigned int	i;
-	unsigned int	max;
+	int	i;
+	int	max;
 
 	if (!map)
 		return (0);
@@ -42,7 +42,7 @@ static unsigned int	get_nb_columns(char **map)
 	return (max);
 }
 
-static void	print_box(t_data *data, int x_start, int y_start, int color)
+static void	print_box(t_data *data, int x_start, int y_start, uint32_t color)
 {
 	int	x;
 	int	y;
@@ -65,9 +65,9 @@ static void	print_box(t_data *data, int x_start, int y_start, int color)
 
 void	print_map(t_data *data)
 {
-	unsigned int	x;
-	unsigned int	y;
-	unsigned int	color;
+	int			x;
+	int			y;
+	uint32_t	color;
 
 	y = 0;
 	while (data->map[y])
@@ -86,7 +86,7 @@ void	print_map(t_data *data)
 	}
 }
 
-void init_map(t_data *data)
+void	init_map(t_data *data)
 {
 	int	nb_rows;
 	int	nb_columns;

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 14:20:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:34:27 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,8 @@ void	map_hook(void *param)
 		data->position.x += STEP;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-	{
 		data->angle -= 0.05;
-	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-	{
 		data->angle += 0.05;
-	}
 	cast_ray(data);
 }
