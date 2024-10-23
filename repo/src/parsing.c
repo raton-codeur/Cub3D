@@ -6,27 +6,20 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/22 14:04:47 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/23 10:52:50 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static bool	extension_checker(char *path)
+static bool	textures_and_colors(t_data *data)
 {
-	int		len;
-
-	len = ft_strlen(path);
-	if (len < 5)
-	{
-		ft_putendl_fd("Error\nInvalid file extension", 2);
+	if (!find_textures(data, -1, 0))
 		return (false);
-	}
-	if (ft_strncmp(&path[len - 4], ".cub", 4) != 0)
-	{
-		ft_putendl_fd("Error\nInvalid file extension", 2);
+	if (!find_colors(data, -1, 0))
 		return (false);
-	}
+	if (!fill_rgb_colors(data))
+		return (false);
 	return (true);
 }
 
@@ -36,9 +29,7 @@ bool	parser(t_data *data)
 		return (false);
 	if (!load_cub_file(data))
 		return (false);
-	if (!find_textures(data, -1, 0))
-		return (false);
-	if (!find_colors(data, -1, 0))
+	if (!textures_and_colors(data))
 		return (false);
 	return (true);
 }

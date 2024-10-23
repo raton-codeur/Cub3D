@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/22 14:03:57 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/23 11:23:03 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(int argc, char **argv)
 	printf("east_texture: %s", data.east_texture);
 	printf("floor_color: %s", data.floor_color);
 	printf("ceil_color: %s", data.ceil_color);
-	
+	printf("floor_rgb->r,g,b: %d,%d,%d\n", data.floor_rgb->r, data.floor_rgb->g, data.floor_rgb->b);
+	printf("ceil_rgb->r,g,b: %d,%d,%d\n", data.ceil_rgb->r, data.ceil_rgb->g, data.ceil_rgb->b);
 	// mlx_key_hook(data.mlx, esc_hook, &data);
 	// mlx_loop_hook(data.mlx, player_hook, &data);
 	// mlx_loop(data.mlx);

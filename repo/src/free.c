@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/22 14:10:11 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/23 10:53:44 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	free_all(t_data *data)
 	free(data->east_texture);
 	free(data->floor_color);
 	free(data->ceil_color);
+	free(data->floor_rgb);
+	free(data->ceil_rgb);
 	// if (data->mlx)
 	// 	mlx_terminate(data->mlx);
 }

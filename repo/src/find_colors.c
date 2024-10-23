@@ -6,13 +6,13 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:20:39 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/22 15:41:39 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/23 11:43:31 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static bool	check_colors_range(t_data *data)
+static bool	color_range(t_data *data)
 {
 	if (data->floor_rgb->r < 0 || data->floor_rgb->r > 255)
 		return (perror("Invalid floor color"), false);
@@ -37,10 +37,10 @@ static bool	check_split_size(char **split)
 	while (split[i])
 		i++;
 	if (i != 3)
-		return (perror("Invalid color"), false);
+		return (ft_putendl_fd("Error/n Invalid color", 2), false);
 	return (true);
 }
-// segv sur fonction en dessous car allocation a faire dans find colors plutot que dans colors to rgb (si pas de return de la struct allouee)
+
 static bool	colors_to_rgb(t_color *color, char *str)
 {
 	char	**split;
@@ -53,9 +53,12 @@ static bool	colors_to_rgb(t_color *color, char *str)
 		deep_free((void **)split);
 		return (false);
 	}
-	color = ft_calloc(1, sizeof(t_color));
-	if (color == NULL)
-		return (perror("Memory allocation failed"), false);
+	if (!check_split_content(split))
+	{
+		deep_free((void **)split);
+		return (false);
+	}
+	remove_ws_from_split(split);
 	color->r = ft_atoi(split[0]);
 	color->g = ft_atoi(split[1]);
 	color->b = ft_atoi(split[2]);
@@ -79,11 +82,22 @@ bool	find_colors(t_data *data, int i, int j)
 				return (false);
 		}
 	}
+	data->floor_rgb = ft_calloc(1, sizeof(t_color));
+	if (data->floor_rgb == NULL)
+		return (perror("Memory allocation failed"), false);
+	data->ceil_rgb = ft_calloc(1, sizeof(t_color));
+	if (data->ceil_rgb == NULL)
+		return (perror("Memory allocation failed"), false);
+	return (true);
+}
+
+bool	fill_rgb_colors(t_data *data)
+{
 	if (!colors_to_rgb(data->floor_rgb, data->floor_color))
 		return (false);
 	if (!colors_to_rgb(data->ceil_rgb, data->ceil_color))
 		return (false);
-	if (!check_colors_range(data))
+	if (!color_range(data))
 		return (false);
 	return (true);
 }
