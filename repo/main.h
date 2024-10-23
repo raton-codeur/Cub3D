@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 14:12:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 14:35:45 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define STEP ((double)3) // le nombre de pixels qu'on parcourt sur la minimap à chaque coup
 # define R_START 2 // la ligne de départ du joueur
 # define C_START 2 // la colonne de départ du joueur
-// # define O_START 'N' // l'orientation de départ du joueur
+# define O_START 0 // l'orientation de départ du joueur
+# define ANGLE_VIEW 1.04719755 // l'angle de vue en radians
 
 typedef struct s_point
 {
