@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 18:18:33 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:37:54 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,17 @@ void	map_hook(void *param)
 	fill_image(data->walls, 0x00000000);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S)) // down
 	{
-		data->player->instances[0].y += STEP;
-		data->position.y += STEP;
+		data->player->instances[0].x -= STEP * cos(data->angle);
+		data->player->instances[0].y -= STEP * sin(data->angle);
+		data->position.x -= (int)(STEP * cos(data->angle));
+		data->position.y -= (int)(STEP * sin(data->angle));
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W)) // up
 	{
-		data->player->instances[0].y -= STEP;
-		data->position.y -= STEP;
+		data->player->instances[0].x += STEP * cos(data->angle);
+		data->player->instances[0].y += STEP * sin(data->angle);
+		data->position.x += (int)(STEP * cos(data->angle));
+		data->position.y += (int)(STEP * sin(data->angle));
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A)) // left
 	{

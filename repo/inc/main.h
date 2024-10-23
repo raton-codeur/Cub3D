@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 18:09:34 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:38:48 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
+	unsigned int	x;
+	unsigned int	y;
 }	t_point;
 
 // typedef struct s_points
