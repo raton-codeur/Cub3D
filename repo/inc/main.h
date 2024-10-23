@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:37:20 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:47:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_data
 	mlx_image_t	*map_img;
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
+	mlx_image_t *walls;
 	t_point		position;
 	double		angle;
 }	t_data;

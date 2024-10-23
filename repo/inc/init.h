@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:37:31 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 16:51:20 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,8 @@ void	init_rays(t_data *data);
 
 /* init_player.c*/
 void	init_player(t_data *data);
+
+/* init_walls.c */
+void	init_walls(t_data *data);
 
 #endif

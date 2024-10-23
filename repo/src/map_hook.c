@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 16:45:27 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 17:20:54 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_wall(t_data *data, double x, double y)
 	return (data->map[(int)(y / SIZE_BOX)][(int)(x / SIZE_BOX)] == '1');
 }
 
-void	cast_ray(t_data *data, double angle)
+int	cast_ray(t_data *data, double angle)
 {
 	int	i;
 	int	next_x;
@@ -33,6 +33,7 @@ void	cast_ray(t_data *data, double angle)
 		next_y = data->position.y + i * sin(angle);
 		i++;
 	}
+	return (i);
 }
 
 void	cast_rays(t_data *data)
@@ -47,12 +48,28 @@ void	cast_rays(t_data *data)
 	}
 }
 
+
+
+void	cast_ray_draw_wall(t_data *data, double angle)
+{
+	int length = cast_ray(data, angle);
+	int x = data->walls->width / 2;
+	int y_start = (data->walls->height - length) / 2;
+	int y = 0;
+	while (y < length)
+	{
+		mlx_put_pixel(data->walls, x, y_start + y, 0x00FF00FF);
+		y++;
+	}
+}
+
 void	map_hook(void *param)
 {
 	t_data	*data;
 
 	data = param;
 	fill_image(data->rays, 0x00000000);
+	fill_image(data->walls, 0x00000000);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S)) // down
 	{
 		data->player->instances[0].y += STEP;
@@ -77,5 +94,5 @@ void	map_hook(void *param)
 		data->angle -= 0.05;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		data->angle += 0.05;
-	cast_rays(data); 
+	cast_ray_draw_wall(data, data->angle);
 }
