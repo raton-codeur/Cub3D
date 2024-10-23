@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 18:17:35 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/23 18:18:33 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_wall(t_data *data, double x, double y)
 	return (data->map[(int)(y / SIZE_BOX)][(int)(x / SIZE_BOX)] == '1');
 }
 
-int	cast_ray(t_data *data, double angle)
+int	cast_ray_in_map(t_data *data, double angle)
 {
 	int	i;
 	int	next_x;
@@ -36,34 +36,37 @@ int	cast_ray(t_data *data, double angle)
 	return (i);
 }
 
-void	cast_rays(t_data *data)
-{
-	double angle;
-
-	angle = data->angle - ANGLE_VIEW / 2;
-	while (angle < data->angle + ANGLE_VIEW / 2)
-	{
-		cast_ray(data, angle);
-		angle += 0.01;
-	}
-}
 
 
-int convert_length(int length_in_map)
+int get_length_in_wall(int length_in_map)
 {
 	return (W_HEIGHT - 20 - ((length_in_map * W_HEIGHT)/(W_WIDTH / 2)));
 }
 
-void	cast_ray_draw_wall(t_data *data, double angle)
+void	cast_ray(t_data *data, double angle)
 {
-	int length_in_map = cast_ray(data, angle);
-	int x = data->walls->width / 2;
-	int y_start = (W_HEIGHT - convert_length(length_in_map)) / 2;
+	int length_in_map = cast_ray_in_map(data, angle);
+	int x = (angle - (data->angle - ANGLE_VIEW / 2)) * (W_WIDTH / 2) / ANGLE_VIEW;
+	int y_start = (W_HEIGHT - get_length_in_wall(length_in_map)) / 2;
 	int y = 0;
-	while (y < convert_length(length_in_map))
+	while (y < get_length_in_wall(length_in_map))
 	{
 		mlx_put_pixel(data->walls, x, y_start + y, 0x00FF00FF);
 		y++;
+	}
+}
+
+void	cast_rays(t_data *data)
+{
+	double angle;
+	double step;
+
+	angle = data->angle - ANGLE_VIEW / 2;
+	step = ANGLE_VIEW / NB_RAYS;
+	while (angle < data->angle + ANGLE_VIEW / 2)
+	{
+		cast_ray(data, angle);
+		angle += step;
 	}
 }
 
@@ -98,5 +101,5 @@ void	map_hook(void *param)
 		data->angle -= 0.05;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		data->angle += 0.05;
-	cast_ray_draw_wall(data, data->angle);
+	cast_rays(data);
 }
