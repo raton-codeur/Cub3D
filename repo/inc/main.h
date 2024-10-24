@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 16:34:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 16:47:21 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PATH_MAP "maps/simple.cub"
 # define SIZE_BOX 50.0 // la largeur d'une case de la minimap en pixels
 # define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
-# define STEP_MOVE 5 // le pas de déplacement du joueur en pixels
+# define STEP_MOVE 5.0 // le pas de déplacement du joueur en pixels
 # define STEP_VIEW 0.05 // le pas de déplacement de l'angle de vue en radians
 # define ROW_START 2 // l'indice de la ligne de départ du joueur
 # define COL_START 2 // l'indice de la colonne de départ du joueur
