@@ -95,27 +95,39 @@ void	draw_wall(t_data *data, uint32_t x, uint32_t length)
 	}
 }
 
+void draw_walls(t_data *data, uint32_t *wall_heights)
+{
+	uint32_t i;
+	uint32_t wall_x_position;
+
+	i = 0;
+	while (i < NB_RAYS)
+	{
+		wall_x_position = get_wall_x_position(data, i);
+		draw_wall(data, wall_x_position, wall_heights[i]);
+		i++;
+	}
+}
+
 void	cast_rays(t_data *data)
 {
 	double	 angle;
 	double	 step;
 	uint32_t i;
 	double	 ray_length;
-	uint32_t wall_x_position;
-	uint32_t wall_height;
+	uint32_t wall_heights[NB_RAYS];
 
 	angle = data->angle - ANGLE_VIEW / 2;
 	step = ANGLE_VIEW / NB_RAYS;
 	i = 0;
 	while (i < NB_RAYS)
 	{
-		wall_x_position = get_wall_x_position(data, i);
 		ray_length = cast_ray(data, angle);
-		wall_height = get_wall_height(ray_length);
-		draw_wall(data, wall_x_position, wall_height);
+		wall_heights[i] = get_wall_height(ray_length);
 		angle += step;
 		i++;
 	}
+	draw_walls(data, wall_heights);
 }
 
 void	main_hook(void *param)
