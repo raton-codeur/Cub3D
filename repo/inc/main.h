@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 16:47:21 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 17:06:36 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,6 @@
 # define ANGLE_VIEW (M_PI / 3) // l'angle de vue en radians
 # define NB_RAYS 1000 // le nombre de rayons lancés
 
-// typedef struct s_point
-// {
-// 	unsigned int	x;
-// 	unsigned int	y;
-// }	t_point;
-
-// typedef struct s_points
-// {
-// 	double	a_x;
-// 	double	a_y;
-// 	double	b_x;
-// 	double	b_y;
-// }	t_points;
-
-// typedef struct s_u_points
-// {
-// 	unsigned int	a_x;
-// 	unsigned int	a_y;
-// 	unsigned int	b_x;
-// 	unsigned int	b_y;
-// }	t_u_points;
-
 typedef struct s_data
 {
 	char		**map;
@@ -63,9 +41,9 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
-	double		x;
-	double		y;
-	double		angle;
+	double		x; // la position en x du player 
+	double		y; // la position en y du player
+	double		angle; // l'angle de vue du player
 }	t_data;
 
 /* free.c */
