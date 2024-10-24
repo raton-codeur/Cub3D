@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 16:49:18 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 16:58:32 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,30 +90,25 @@ void	main_hook(void *param)
 	data = param;
 	fill_image(data->rays, 0);
 	fill_image(data->walls, 0);
-	// if (mlx_is_key_down(data->mlx, MLX_KEY_S)) // down
-	// {
-	// 	data->player->instances[0].y += STEP_MOVE;
-	// 	data->y += STEP_MOVE;
-	// }
-	// if (mlx_is_key_down(data->mlx, MLX_KEY_W)) // up
-	// {
-	// 	data->player->instances[0].y -= STEP_MOVE;
-	// 	data->y -= STEP_MOVE;
-	// }
-	// if (mlx_is_key_down(data->mlx, MLX_KEY_A)) // left
-	// {
-	// 	data->player->instances[0].x -= STEP_MOVE;
-	// 	data->x -= STEP_MOVE;
-	// }
-	// if (mlx_is_key_down(data->mlx, MLX_KEY_D)) // right
-	// {
-	// 	data->player->instances[0].x += STEP_MOVE;
-	// 	data->x += STEP_MOVE;
-	// }
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W)) // up
 	{
 		data->x = data->x + STEP_MOVE * cos(data->angle);
 		data->y = data->y + STEP_MOVE * sin(data->angle);
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S)) // down
+	{
+		data->x = data->x - STEP_MOVE * cos(data->angle);
+		data->y = data->y - STEP_MOVE * sin(data->angle);
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A)) // left
+	{
+		data->x = data->x + STEP_MOVE * cos(data->angle - M_PI_2);
+		data->y = data->y + STEP_MOVE * sin(data->angle - M_PI_2);
+	}
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D)) // right
+	{
+		data->x = data->x + STEP_MOVE * cos(data->angle + M_PI_2);
+		data->y = data->y + STEP_MOVE * sin(data->angle + M_PI_2);
 	}
 	data->player->instances[0].x = data->x - SIZE_PLAYER / 2;
 	data->player->instances[0].y = data->y - SIZE_PLAYER / 2;
