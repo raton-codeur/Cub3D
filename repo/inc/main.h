@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 14:23:26 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 16:34:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
-# define SIZE_BOX 50 // la largeur d'une case de la minimap en pixels
+# define SIZE_BOX 50.0 // la largeur d'une case de la minimap en pixels
 # define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
-# define STEP 3 // le pas de déplacement du joueur en pixels
+# define STEP_MOVE 5 // le pas de déplacement du joueur en pixels
+# define STEP_VIEW 0.05 // le pas de déplacement de l'angle de vue en radians
 # define ROW_START 2 // l'indice de la ligne de départ du joueur
 # define COL_START 2 // l'indice de la colonne de départ du joueur
 # define ANGLE_START 0 // l'orientation de départ du joueur en radians
 # define ANGLE_VIEW (M_PI / 3) // l'angle de vue en radians
-# define NB_RAYS 5000 // le nombre de rayons lancés
+# define NB_RAYS 1000 // le nombre de rayons lancés
 
 // typedef struct s_point
 // {
@@ -62,8 +63,8 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
-	int			x;
-	int			y;
+	double		x;
+	double		y;
 	double		angle;
 }	t_data;
 

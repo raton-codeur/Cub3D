@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 15:35:54 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 16:38:25 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int	is_wall(t_data *data, double x, double y)
 	return (data->map[(int)(y / SIZE_BOX)][(int)(x / SIZE_BOX)] == '1');
 }
 
-int	draw_ray_in_map(t_data *data, double angle)
+double	draw_ray_in_map(t_data *data, double angle)
 {
-	int	i;
-	int	x;
-	int	y;
+	double	i;
+	double	x;
+	double	y;
 
 	i = 0;
 	x = data->x + i * cos(angle);
@@ -36,22 +36,22 @@ int	draw_ray_in_map(t_data *data, double angle)
 	return (i);
 }
 
-int	get_length_in_wall(int length_in_map)
+double	get_wall_length(double length_in_map)
 {
-	return (W_HEIGHT - ((length_in_map * W_HEIGHT) / (W_WIDTH / 2)));
+	return (W_HEIGHT - (length_in_map * W_HEIGHT * 2 / W_WIDTH));
 }
 
-int	get_ray_position(int i)
+uint32_t	get_ray_position(t_data *data, uint32_t i)
 {
-	return (i * W_WIDTH / NB_RAYS);
+	return (i * data->walls->width / NB_RAYS);
 }
 
-void	draw_ray_in_wall(t_data *data, int x, int length)
+void	draw_wall(t_data *data, uint32_t x, uint32_t length)
 {
-	int	y_start;
-	int	y;
+	uint32_t	y_start;
+	uint32_t	y;
 
-	y_start = (W_HEIGHT - length) / 2;
+	y_start = (data->walls->height - length) / 2;
 	y = 0;
 	while (y < length)
 	{
@@ -60,25 +60,24 @@ void	draw_ray_in_wall(t_data *data, int x, int length)
 	}
 }
 
-void	cast_ray(t_data *data, double angle, int i)
-{
-	draw_ray_in_wall(data, get_ray_position(i), get_length_in_wall(draw_ray_in_map(data, angle)));
-}
-
 void	cast_rays(t_data *data)
 {
-	double	angle;
-	double	angle_end;
-	double	step;
-	int		i;
+	double	 angle;
+	double	 step;
+	uint32_t i;
+	double	 length_in_map;
+	uint32_t x;
+	uint32_t wall_length;
 
 	angle = data->angle - ANGLE_VIEW / 2;
-	angle_end = angle + ANGLE_VIEW;
 	step = ANGLE_VIEW / NB_RAYS;
 	i = 0;
-	while (angle < angle_end)
+	while (i < NB_RAYS)
 	{
-		cast_ray(data, angle, i);
+		x = get_ray_position(data, i);
+		length_in_map = draw_ray_in_map(data, angle);
+		wall_length = get_wall_length(length_in_map);
+		draw_wall(data, x, wall_length);
 		angle += step;
 		i++;
 	}
@@ -93,35 +92,27 @@ void	main_hook(void *param)
 	fill_image(data->walls, 0);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S)) // down
 	{
-		// data->player->instances[0].x -= STEP * cos(data->angle);
-		// data->player->instances[0].y -= STEP * sin(data->angle);
-		// data->position.x -= (int)(STEP * cos(data->angle));
-		// data->position.y -= (int)(STEP * sin(data->angle));
-		data->player->instances[0].y += STEP;
-		data->y += STEP;
+		data->player->instances[0].y += STEP_MOVE;
+		data->y += STEP_MOVE;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W)) // up
 	{
-		// data->player->instances[0].x += STEP * cos(data->angle);
-		// data->player->instances[0].y += STEP * sin(data->angle);
-		// data->position.x += (int)(STEP * cos(data->angle));
-		// data->position.y += (int)(STEP * sin(data->angle));
-		data->player->instances[0].y -= STEP;
-		data->y -= STEP;
+		data->player->instances[0].y -= STEP_MOVE;
+		data->y -= STEP_MOVE;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A)) // left
 	{
-		data->player->instances[0].x -= STEP;
-		data->x -= STEP;
+		data->player->instances[0].x -= STEP_MOVE;
+		data->x -= STEP_MOVE;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D)) // right
 	{
-		data->player->instances[0].x += STEP;
-		data->x += STEP;
+		data->player->instances[0].x += STEP_MOVE;
+		data->x += STEP_MOVE;
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		data->angle -= 0.05;
+		data->angle -= STEP_VIEW;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		data->angle += 0.05;
+		data->angle += STEP_VIEW;
 	cast_rays(data);
 }
