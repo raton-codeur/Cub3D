@@ -128,7 +128,7 @@ void	cast_rays(t_data *data)
 	i = 0;
 	while (i < NB_RAYS)
 	{
-		ray_length = cast_ray(data, angle);
+		ray_length = cos(angle - data->angle) * cast_ray(data, angle);
 		wall_heights[i] = get_wall_height(ray_length);
 		angle += step;
 		i++;
