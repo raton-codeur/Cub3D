@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 18:38:48 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 14:23:26 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@
 # define PATH_MAP "maps/simple.cub"
 # define SIZE_BOX 50 // la largeur d'une case de la minimap en pixels
 # define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
-# define SIZE_PLAYER_HALF (SIZE_PLAYER / 2)
-# define STEP 3 // le nombre de pixels qu'on parcourt sur la minimap à chaque coup
+# define STEP 3 // le pas de déplacement du joueur en pixels
 # define ROW_START 2 // l'indice de la ligne de départ du joueur
 # define COL_START 2 // l'indice de la colonne de départ du joueur
 # define ANGLE_START 0 // l'orientation de départ du joueur en radians
-# define ANGLE_VIEW 1.04719755 // l'angle de vue en radians
-# define NB_RAYS 1000 // le nombre de rayons lancés
+# define ANGLE_VIEW (M_PI / 3) // l'angle de vue en radians
+# define NB_RAYS 5000 // le nombre de rayons lancés
 
-typedef struct s_point
-{
-	unsigned int	x;
-	unsigned int	y;
-}	t_point;
+// typedef struct s_point
+// {
+// 	unsigned int	x;
+// 	unsigned int	y;
+// }	t_point;
 
 // typedef struct s_points
 // {
@@ -46,13 +45,13 @@ typedef struct s_point
 // 	double	b_y;
 // }	t_points;
 
-typedef struct s_u_points
-{
-	unsigned int	a_x;
-	unsigned int	a_y;
-	unsigned int	b_x;
-	unsigned int	b_y;
-}	t_u_points;
+// typedef struct s_u_points
+// {
+// 	unsigned int	a_x;
+// 	unsigned int	a_y;
+// 	unsigned int	b_x;
+// 	unsigned int	b_y;
+// }	t_u_points;
 
 typedef struct s_data
 {
@@ -62,8 +61,9 @@ typedef struct s_data
 	mlx_image_t	*map_img;
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
-	mlx_image_t *walls;
-	t_point		position;
+	mlx_image_t	*walls;
+	int			x;
+	int			y;
 	double		angle;
 }	t_data;
 
@@ -75,11 +75,10 @@ void		mlx_perror_exit(t_data *data);
 /* esc_hook.c */
 void		esc_hook(mlx_key_data_t keydata, void *param);
 
-/* map_hook.c */
-void		map_hook(void *param);
+/* main_hook.c */
+void		main_hook(void *param);
 
-/* fill_image.c */
-void		fill_image(mlx_image_t *image, unsigned int color);
-void		fill_zone(mlx_image_t *img, t_u_points limits, unsigned int color);
+/* utils.c */
+void	fill_image(mlx_image_t *image, unsigned int color);
 
 #endif

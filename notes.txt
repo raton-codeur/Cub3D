@@ -1,0 +1,3 @@
+angle de vue = FOV
+
+algo de distance perpendiculaire

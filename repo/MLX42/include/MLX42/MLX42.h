@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:29:06 by W2Wizard          #+#    #+#             */
-/*   Updated: 2024/10/20 15:48:27 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 13:40:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -829,7 +829,7 @@ mlx_image_t* mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
  * Sets / puts a pixel onto an image.
  * 
  * NOTE: It is considered undefined behaviour when putting a pixel 
- * beyond the bounds of an image.
+ * beyond the bounds of an image.main_hook
  * 
  * @param[in] image The MLX instance handle.
  * @param[in] x The X coordinate position.
