@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 17:39:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 16:38:25 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/10/24 16:44:05 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ double	draw_ray_in_map(t_data *data, double angle)
 	return (i);
 }
 
-double	get_wall_length(double length_in_map)
+double	get_wall_height(double length_in_map)
 {
 	return (W_HEIGHT - (length_in_map * W_HEIGHT * 2 / W_WIDTH));
 }
 
-uint32_t	get_ray_position(t_data *data, uint32_t i)
+uint32_t	get_wall_x_position(t_data *data, uint32_t i)
 {
 	return (i * data->walls->width / NB_RAYS);
 }
@@ -65,19 +65,19 @@ void	cast_rays(t_data *data)
 	double	 angle;
 	double	 step;
 	uint32_t i;
-	double	 length_in_map;
-	uint32_t x;
-	uint32_t wall_length;
+	double	 ray_length_in_map;
+	uint32_t wall_x_position;
+	uint32_t wall_height;
 
 	angle = data->angle - ANGLE_VIEW / 2;
 	step = ANGLE_VIEW / NB_RAYS;
 	i = 0;
 	while (i < NB_RAYS)
 	{
-		x = get_ray_position(data, i);
-		length_in_map = draw_ray_in_map(data, angle);
-		wall_length = get_wall_length(length_in_map);
-		draw_wall(data, x, wall_length);
+		wall_x_position = get_wall_x_position(data, i);
+		ray_length_in_map = draw_ray_in_map(data, angle);
+		wall_height = get_wall_height(ray_length_in_map);
+		draw_wall(data, wall_x_position, wall_height);
 		angle += step;
 		i++;
 	}
