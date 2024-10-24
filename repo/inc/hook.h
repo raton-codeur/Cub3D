@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 19:24:16 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/24 19:16:37 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/10/24 19:24:30 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
+#ifndef HOOK_H
+# define HOOK_H
 
-int	main(void)
-{
-	t_data	data;
+# include "init.h"
 
-	init(&data);
-	mlx_key_hook(data.mlx, esc_hook, &data);
-	mlx_loop_hook(data.mlx, main_hook, &data);
-	mlx_loop(data.mlx);
-	free_all(&data);
-	return (0);
-}
+/* esc_hook.c */
+void	esc_hook(mlx_key_data_t keydata, void *param);
+
+/* main_hook.c */
+void	main_hook(void *param);
+
+/* check_keys.c */
+void	check_movement_keys(t_data *data);
+void	check_angle_keys(t_data *data);
+
+#endif
