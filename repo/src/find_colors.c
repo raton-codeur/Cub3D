@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:20:39 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/23 11:43:31 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/24 15:05:21 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,53 @@ static bool	check_split_size(char **split)
 	while (split[i])
 		i++;
 	if (i != 3)
-		return (ft_putendl_fd("Error/n Invalid color", 2), false);
+		return (ft_putendl_fd("Error\nInvalid color", 2), false);
 	return (true);
+}
+
+static char	*remove_leading_ws(char *str)
+{
+	int		i;
+	int		start;
+	char	*buff;
+
+	i = 0;
+	while (str[i] && ft_isspace(str[i]))
+		i++;
+	start = i;
+	while (str[i])
+		i++;
+	buff = ft_substr(str, start, i - start);
+	if (!buff)
+	{
+		perror("Memory allocation failed");
+		return (NULL);
+	}
+	return (buff);
 }
 
 static bool	colors_to_rgb(t_color *color, char *str)
 {
 	char	**split;
+	char	*trimmed_str;
 
-	split = ft_split(str, ",");
+	trimmed_str = remove_leading_ws(str);
+	if (trimmed_str == NULL)
+		return (perror("Memory allocation failed"), false);
+	split = ft_split(trimmed_str, ",");
+	free(trimmed_str);
 	if (split == NULL)
 		return (perror("Memory allocation failed"), false);
 	if (!check_split_size(split))
-	{
-		deep_free((void **)split);
-		return (false);
-	}
+		return (deep_free((void **)split), false);
+	trimmed_str = remove_newline(split[2]);
+	if (trimmed_str == NULL)
+		return (deep_free((void **)split), false);
+	split[2] = trimmed_str;
 	if (!check_split_content(split))
-	{
-		deep_free((void **)split);
-		return (false);
-	}
-	remove_ws_from_split(split);
+		return (deep_free((void **)split), false);
+	if (!check_split_content_size(split))
+		return (deep_free((void **)split), false);
 	color->r = ft_atoi(split[0]);
 	color->g = ft_atoi(split[1]);
 	color->b = ft_atoi(split[2]);
@@ -82,6 +107,8 @@ bool	find_colors(t_data *data, int i, int j)
 				return (false);
 		}
 	}
+	if (data->floor_color == NULL || data->ceil_color == NULL)
+		return (ft_putendl_fd("Error\nMissing color", 2), false);
 	data->floor_rgb = ft_calloc(1, sizeof(t_color));
 	if (data->floor_rgb == NULL)
 		return (perror("Memory allocation failed"), false);

@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/23 10:52:50 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/24 12:41:25 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static bool	textures_and_colors(t_data *data)
 {
 	if (!find_textures(data, -1, 0))
+		return (false);
+	if (!check_textures(data))
 		return (false);
 	if (!find_colors(data, -1, 0))
 		return (false);

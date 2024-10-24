@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:12:28 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/23 11:41:24 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/24 12:22:41 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,6 @@ bool	extension_checker(char *path)
 	return (true);
 }
 
-bool	remove_ws_from_split(char **split)
-{
-	int		i;
-	int		j;
-	int		start;
-	char	*buff;
-
-	i = 0;
-	while (split[i])
-	{
-		j = 0;
-		while (ft_isspace(split[i][j]))
-			j++;
-		start = j;
-		while (split[i][j] && !ft_isspace(split[i][j]))
-			j++;
-		if (start > 0 || split[i][j])
-		{
-			buff = ft_substr(split[i], start, j - start);
-			if (!buff)
-				return (perror("Memory allocation failed"), false);
-			free(split[i]);
-			split[i] = buff;
-		}
-		i++;
-	}
-	return (true);
-}
-
 bool	check_split_content(char **split)
 {
 	int		i;
@@ -84,4 +55,36 @@ bool	check_split_content(char **split)
 		i++;
 	}
 	return (true);
+}
+
+bool	check_split_content_size(char **split)
+{
+	if (ft_strlen(split[0]) == 0 || ft_strlen(split[0]) > 3)
+		return (ft_putendl_fd("Error\nInvalid color", 2), false);
+	if (ft_strlen(split[1]) == 0 || ft_strlen(split[1]) > 3)
+		return (ft_putendl_fd("Error\nInvalid color", 2), false);
+	if (ft_strlen(split[2]) == 0 || ft_strlen(split[2]) > 3)
+		return (ft_putendl_fd("Error\nInvalid color", 2), false);
+	return (true);
+}
+
+char	*remove_newline(char *str)
+{
+	int		i;
+	char	*buff;
+
+	i = 0;
+	if (!str)
+		return (ft_putendl_fd("Error\nInvalid color", 2), NULL);
+	while (str[i])
+		i++;
+	if (str[i - 1] == '\n')
+	{
+		buff = ft_substr(str, 0, i - 1);
+		if (!buff)
+			return (perror("Memory allocation failed"), NULL);
+		free(str);
+		return (buff);
+	}
+	return (str);
 }

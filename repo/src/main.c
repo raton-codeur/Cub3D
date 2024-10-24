@@ -6,7 +6,7 @@
 /*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 11:23:03 by jteste           ###   ########.fr       */
+/*   Updated: 2024/10/24 13:01:47 by jteste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	
+
 	init(&data, argc, argv);
 	if (!parser(&data))
 		return (free_all(&data), 1);
 	printf("path_map: %s\n", data.path_map);
-	printf("north_texture: %s", data.north_texture);
-	printf("south_texture: %s", data.south_texture);
-	printf("west_texture: %s", data.west_texture);
-	printf("east_texture: %s", data.east_texture);
-	printf("floor_color: %s", data.floor_color);
-	printf("ceil_color: %s", data.ceil_color);
+	printf("north_texture: %s\n", data.north_texture);
+	printf("south_texture: %s\n", data.south_texture);
+	printf("west_texture: %s\n", data.west_texture);
+	printf("east_texture: %s\n", data.east_texture);
+	printf("floor_color: %s\n", data.floor_color);
+	printf("ceil_color: %s\n", data.ceil_color);
 	printf("floor_rgb->r,g,b: %d,%d,%d\n", data.floor_rgb->r, data.floor_rgb->g, data.floor_rgb->b);
 	printf("ceil_rgb->r,g,b: %d,%d,%d\n", data.ceil_rgb->r, data.ceil_rgb->g, data.ceil_rgb->b);
 	// mlx_key_hook(data.mlx, esc_hook, &data);
