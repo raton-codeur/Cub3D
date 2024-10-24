@@ -81,17 +81,23 @@ uint32_t	get_wall_x_position(t_data *data, uint32_t i)
 	return (i * data->walls->width / NB_RAYS);
 }
 
-void	draw_wall(t_data *data, uint32_t x, uint32_t length)
+void	draw_wall_part(t_data *data, uint32_t x_start, uint32_t length)
 {
 	uint32_t	y_start;
 	uint32_t	y;
+	uint32_t	x;
 
 	y_start = (data->walls->height - length) / 2;
-	y = 0;
-	while (y < length)
+	x = 0;
+	while (x < 4)
 	{
-		mlx_put_pixel(data->walls, x, y_start + y, 0x00FF00FF);
-		y++;
+		y = 0;
+		while (y < length)
+		{
+			mlx_put_pixel(data->walls, x_start + x, y_start + y, 0x00FF00FF);
+			y++;
+		}
+		x++;
 	}
 }
 
@@ -104,7 +110,7 @@ void draw_walls(t_data *data, uint32_t *wall_heights)
 	while (i < NB_RAYS)
 	{
 		wall_x_position = get_wall_x_position(data, i);
-		draw_wall(data, wall_x_position, wall_heights[i]);
+		draw_wall_part(data, wall_x_position, wall_heights[i]);
 		i++;
 	}
 }
