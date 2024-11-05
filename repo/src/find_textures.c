@@ -74,21 +74,25 @@ bool	find_textures(t_data *data, int i, int j)
 		j = skip_spaces(data->cub_file[i], 0, ft_strlen(data->cub_file[i]));
 		if (ft_strncmp(data->cub_file[i] + j, "NO", 2) == 0)
 		{
+			data->north_texture_line = i;
 			if (!copy_texture(data, &data->north_texture, i, j + 2))
 				return (false);
 		}
 		else if (ft_strncmp(data->cub_file[i] + j, "SO", 2) == 0)
 		{
+			data->south_texture_line = i;
 			if (!copy_texture(data, &data->south_texture, i, j + 2))
 				return (false);
 		}
 		else if (ft_strncmp(data->cub_file[i] + j, "WE", 2) == 0)
 		{
+			data->west_texture_line = i;
 			if (!copy_texture(data, &data->west_texture, i, j + 2))
 				return (false);
 		}
 		else if (ft_strncmp(data->cub_file[i] + j, "EA", 2) == 0)
 		{
+			data->east_texture_line = i;
 			if (!copy_texture(data, &data->east_texture, i, j + 2))
 				return (false);
 		}

@@ -98,11 +98,13 @@ bool	find_colors(t_data *data, int i, int j)
 		j = skip_spaces(data->cub_file[i], 0, ft_strlen(data->cub_file[i]));
 		if (ft_strncmp(data->cub_file[i] + j, "F", 1) == 0)
 		{
+			data->floor_color_line = i;
 			if (!copy_texture(data, &data->floor_color, i, j + 1))
 				return (false);
 		}
 		else if (ft_strncmp(data->cub_file[i] + j, "C", 1) == 0)
 		{
+			data->ceil_color_line = i;
 			if (!copy_texture(data, &data->ceil_color, i, j + 1))
 				return (false);
 		}
@@ -127,4 +129,9 @@ bool	fill_rgb_colors(t_data *data)
 	if (!color_range(data))
 		return (false);
 	return (true);
+}
+
+unsigned int	rgb_color_to_hex(t_color *color)
+{
+	return ((color->r << 16) | (color->g << 8) | color->b);
 }

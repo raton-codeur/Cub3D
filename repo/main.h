@@ -26,9 +26,10 @@
 
 typedef struct s_color
 {
-	int		r;
-	int		g;
-	int		b;
+	int				r;
+	int				g;
+	int				b;
+	unsigned int	hex;
 }	t_color;
 
 typedef struct s_data
@@ -36,12 +37,18 @@ typedef struct s_data
 	char		*path_map;
 	char		**cub_file;
 	char		*north_texture;
+	int			north_texture_line;
 	char		*south_texture;
+	int			south_texture_line;
 	char		*west_texture;
+	int			west_texture_line;
 	char		*east_texture;
+	int			east_texture_line;
 	char		*floor_color;
+	int			floor_color_line;
 	t_color		*floor_rgb;
 	char		*ceil_color;
+	int			ceil_color_line;
 	t_color		*ceil_rgb;
 	char		**map;
 	mlx_t		*mlx;
@@ -88,8 +95,9 @@ bool		copy_texture(t_data *data, char **dest, int i, int j);
 bool		check_textures(t_data *data);
 
 /* find_colors.c */
-bool		find_colors(t_data *data, int i, int j);
-bool		fill_rgb_colors(t_data *data);
+bool				find_colors(t_data *data, int i, int j);
+bool				fill_rgb_colors(t_data *data);
+unsigned int		rgb_color_to_hex(t_color *color);
 
 /* parsing_utils.c */
 int			skip_spaces(char *str, int i, int len);
