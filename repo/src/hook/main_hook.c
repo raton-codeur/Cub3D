@@ -136,13 +136,18 @@ void	cast_rays(t_data *data)
 	draw_walls(data, wall_heights);
 }
 
+static void	erase_image(mlx_image_t *image)
+{
+	ft_memset(image->pixels, 0, image->width * image->height * sizeof(uint32_t));
+}
+
 void	main_hook(void *param)
 {
 	t_data	*data;
 
 	data = param;
 	erase_ray(data);
-	fill_image(data->walls, 0);
+	erase_image(data->walls);
 	check_movement_keys(data);
 	check_angle_keys(data);
 	cast_rays(data);
