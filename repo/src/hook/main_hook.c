@@ -63,7 +63,7 @@ int	is_wall(t_data *data, double x, double y)
 }
 
 /* on veut tracer une droite à partir du player */
-void	draw_ray(t_data *data, double dir_x, double dir_y)
+double	draw_ray(t_data *data, double dir_x, double dir_y)
 {
 	double x;
 	double y;
@@ -80,18 +80,44 @@ void	draw_ray(t_data *data, double dir_x, double dir_y)
 		x += step_x;
 		y += step_y;
 	}
+	return (sqrt((x - data->pos_x) * (x - data->pos_x) + (y - data->pos_y) * (y - data->pos_y)));
+}
+double	get_wall_height(double length_ray)
+{
+	return (W_HEIGHT - (length_ray * W_HEIGHT * 2 / W_WIDTH));
 }
 
+void	draw_wall_x(t_data *data, uint32_t x_start, uint32_t length)
+{
+	uint32_t	y_start;
+	uint32_t	y;
+	uint32_t	x;
+
+	y_start = (data->walls->height - length) / 2;
+	x = 0;
+	while (x < 4)
+	{
+		y = 0;
+		while (y < length)
+		{
+			mlx_put_pixel(data->walls, x_start + x, y_start + y, 0x00FF00FF);
+			y++;
+		}
+		x++;
+	}
+}
 
 void cast_rays(t_data *data)
 {
-	double camera_x, ray_dir_x, ray_dir_y;
+	double camera_x, ray_dir_x, ray_dir_y, length_ray, wall_x_height;
 	for (int x = 0; x < (int)data->walls->width; x++)
 	{
 		camera_x = 2 * x / (double)data->walls->width - 1;
 		ray_dir_x = data->dir_x + data->plane_x * camera_x;
 		ray_dir_y = data->dir_y + data->plane_y * camera_x;
-		draw_ray(data, ray_dir_x, ray_dir_y);
+		length_ray = draw_ray(data, ray_dir_x, ray_dir_y);
+		wall_x_height = get_wall_height(length_ray);
+		draw_wall_x(data, x, wall_x_height);
 	}
 }
 
@@ -103,7 +129,5 @@ void	main_hook(void *param)
 	erase_image(data->rays);
 	erase_image(data->walls);
 	check_keys(data);
-	// draw_direction(data);
-
 	cast_rays(data);	
 }
