@@ -12,7 +12,7 @@
 
 #include "hook.h"
 
-void	erase_image(mlx_image_t *image)
+static void	erase_image(mlx_image_t *image)
 {
 	ft_bzero(image->pixels, image->width * image->height * sizeof(uint32_t));
 }
@@ -57,71 +57,68 @@ void	check_keys(t_data *data)
 	data->player->instances[0].y = data->pos_y - SIZE_PLAYER / 2;
 }
 
-void cast_ray(t_data *data)
+int	is_wall(t_data *data, double x, double y)
 {
-	double ray_dir_x;
-	double ray_dir_y;
-	double delta_dist_x;
-	double delta_dist_y;
-	int map_x;
-	int map_y;
-	double side_dist_x;
-	double side_dist_y;
-	double perp_wall_dist;
-	int step_x;
-	int step_y;
-	int hit;
-	int side;
+	return (data->map[(int)(y / SIZE_BOX)][(int)(x / SIZE_BOX)] == '1');
+}
 
-	ray_dir_x = data->dir_x + data->plane_x;
-	ray_dir_y = data->dir_y + data->plane_y;
-	delta_dist_x = fabs(1 / ray_dir_x);
-	delta_dist_y = fabs(1 / ray_dir_y);
-	map_x = data->pos_x / SIZE_BOX;
-	map_y = data->pos_y / SIZE_BOX;
-	if (ray_dir_x < 0)
+/* on veut tracer une droite à partir du player */
+double	draw_ray(t_data *data, double dir_x, double dir_y)
+{
+	double x;
+	double y;
+	double step_x;
+	double step_y;
+
+	x = data->pos_x;
+	y = data->pos_y;
+	step_x = dir_x / 10;
+	step_y = dir_y / 10;
+	while (!is_wall(data, x, y))
 	{
-		step_x = -1;
-		side_dist_x = (data->pos_x - map_x) * delta_dist_x;
+		mlx_put_pixel(data->rays, x, y, 0x00FF00FF);
+		x += step_x;
+		y += step_y;
 	}
-	else
+	return (sqrt((x - data->pos_x) * (x - data->pos_x) + (y - data->pos_y) * (y - data->pos_y)));
+}
+double	get_wall_height(double length_ray)
+{
+	return (W_HEIGHT - (length_ray * W_HEIGHT * 2 / W_WIDTH));
+}
+
+void	draw_wall_x(t_data *data, uint32_t x_start, uint32_t length)
+{
+	uint32_t	y_start;
+	uint32_t	y;
+	uint32_t	x;
+
+	y_start = (data->walls->height - length) / 2;
+	x = 0;
+	while (x < 4)
 	{
-		step_x = 1;
-		side_dist_x = (map_x + 1.0 - data->pos_x) * delta_dist_x;
-	}
-	if (ray_dir_y < 0)
-	{
-		step_y = -1;
-		side_dist_y = (data->pos_y - map_y) * delta_dist_y;
-	}
-	else
-	{
-		step_y = 1;
-		side_dist_y = (map_y + 1.0 - data->pos_y) * delta_dist_y;
-	}
-	hit = 0;
-	while (hit == 0)
-	{
-		if (side_dist_x < side_dist_y)
+		y = 0;
+		while (y < length)
 		{
-			side_dist_x += delta_dist_x;
-			map_x += step_x;
-			side = 0;
+			mlx_put_pixel(data->walls, x_start + x, y_start + y, 0x00FF00FF);
+			y++;
 		}
-		else
-		{
-			side_dist_y += delta_dist_y;
-			map_y += step_y;
-			side = 1;
-		}
-		if (data->map[map_x][map_y] == 1)
-			hit = 1;
+		x++;
 	}
-	if (side == 0)
-		perp_wall_dist = (map_x - data->pos_x + (1 - step_x) / 2) / ray_dir_x;
-	else
-		perp_wall_dist = (map_y - data->pos_y + (1 - step_y) / 2) / ray_dir_y;
-	printf("perp_wall_dist = %f\n", perp_wall_dist);
+}
+
+void cast_rays(t_data *data)
+{
+	double camera_x, ray_dir_x, ray_dir_y, length_ray, wall_x_height;
+	for (int x = 0; x < (int)data->walls->width; x++)
+	{
+		camera_x = 2 * x / (double)data->walls->width - 1;
+		ray_dir_x = data->dir_x + data->plane_x * camera_x;
+		ray_dir_y = data->dir_y + data->plane_y * camera_x;
+		length_ray = draw_ray(data, ray_dir_x, ray_dir_y);
+		wall_x_height = get_wall_height(length_ray);
+		draw_wall_x(data, x, wall_x_height);
+	}
 }
 
 void	main_hook(void *param)
@@ -132,5 +129,5 @@ void	main_hook(void *param)
 	erase_image(data->rays);
 	erase_image(data->walls);
 	check_keys(data);
-	cast_ray(data);	
+	cast_rays(data);	
 }
