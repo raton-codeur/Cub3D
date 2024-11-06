@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 12:48:56 by jteste           ###   ########.fr       */
+/*   Updated: 2024/11/06 12:14:40 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	int			ceil_color_line;
 	t_color		*ceil_rgb;
 	char		**map;
+	int			map_line;
 	mlx_t		*mlx;
 	mlx_image_t	*background;
 	mlx_image_t	*map_img;
@@ -99,11 +100,18 @@ bool				find_colors(t_data *data, int i, int j);
 bool				fill_rgb_colors(t_data *data);
 unsigned int		rgb_color_to_hex(t_color *color);
 
+/* find_map.c */
+bool		find_map(t_data *data);
+bool		remove_newline_from_map(t_data *data);
+
 /* parsing_utils.c */
 int			skip_spaces(char *str, int i, int len);
 bool		extension_checker(char *path);
 bool		check_split_content(char **split);
 bool		check_split_content_size(char **split);
 char		*remove_newline(char *str);
+
+/* parsing_utils_2.c */
+bool		check_cub_order(t_data *data);
 
 #endif

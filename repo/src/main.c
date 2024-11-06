@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 13:01:47 by jteste           ###   ########.fr       */
+/*   Updated: 2024/11/06 11:59:49 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int	main(int argc, char **argv)
 	printf("ceil_rgb->r,g,b: %d,%d,%d\n", data.ceil_rgb->r, data.ceil_rgb->g, data.ceil_rgb->b);
 	printf("floor_rgb->hex: 0x%06X\n", data.floor_rgb->hex);
 	printf("ceil_rgb->hex: 0x%06X\n", data.ceil_rgb->hex);
+	printf("map_line: %d\n", data.map_line);
+	for (size_t i = 0; data.map[i] != NULL ; i++)
+		printf("%s\n", data.map[i]);
 	// mlx_key_hook(data.mlx, esc_hook, &data);
 	// mlx_loop_hook(data.mlx, player_hook, &data);
 	// mlx_loop(data.mlx);
