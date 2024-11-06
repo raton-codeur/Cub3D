@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 19:26:21 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/06 15:18:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 # define W_HEIGHT 1500 // hauteur de la fenêtre
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
-# define PATH_MAP "maps/simple.cub"
+# define PATH_MAP "maps/2.cub"
 # define SIZE_BOX 50.0 // la largeur d'une case de la minimap en pixels
 # define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
-# define STEP_MOVE 5.0 // le pas de déplacement du joueur en pixels
+# define STEP_MOVE 10.0 // le pas de déplacement du joueur en pixels
 # define STEP_VIEW 0.05 // le pas de changement de l'angle de vue en radians
 # define ROW_START 2 // l'indice de la ligne de départ du joueur
 # define COL_START 2 // l'indice de la colonne de départ du joueur
@@ -41,9 +41,12 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
-	double		x;
-	double		y;
-	double		angle;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }	t_data;
 
 /* free.c */
