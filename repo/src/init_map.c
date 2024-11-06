@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:48:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/20 18:41:26 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/06 12:40:15 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	get_nb_columns(char **map)
 	max = 0;
 	while (map[i])
 	{
-		if (get_row_size(map[i]) > max)		
+		if (get_row_size(map[i]) > max)
 			max = get_row_size(map[i]);
 		i++;
 	}

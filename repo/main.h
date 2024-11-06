@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/06 12:32:28 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:57:21 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,11 @@ bool		parser(t_data *data);
 bool		load_cub_file(t_data *data);
 
 /* find_textures.c */
-bool		find_textures(t_data *data, int i, int j);
+bool		find_textures_no_so(t_data *data, int i, int j);
+bool		find_textures_we_ea(t_data *data, int i, int j);
 bool		copy_texture(t_data *data, char **dest, int i, int j);
 bool		check_textures(t_data *data);
+
 
 /* find_colors.c */
 bool				find_colors(t_data *data, int i, int j);

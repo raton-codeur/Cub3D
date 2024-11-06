@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/06 12:35:17 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/06 14:58:17 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static bool	extract_textures_and_colors(t_data *data)
 {
-	if (!find_textures(data, -1, 0))
+	if (!find_textures_no_so(data, -1, 0))
+		return (false);
+	if (!find_textures_we_ea(data, -1, 0))
 		return (false);
 	if (!check_textures(data))
 		return (false);
@@ -27,7 +29,7 @@ static bool	extract_textures_and_colors(t_data *data)
 	return (true);
 }
 
-bool	extract_map(t_data *data)
+static bool	extract_map(t_data *data)
 {
 	if (!find_map(data, 0, 0))
 		return (false);
@@ -38,6 +40,11 @@ bool	extract_map(t_data *data)
 	return (true);
 }
 
+static bool	check_map(t_data *data)
+{
+	(void)data;
+	return (true);
+}
 bool	parser(t_data *data)
 {
 	if (!extension_checker(data->path_map))
@@ -50,8 +57,7 @@ bool	parser(t_data *data)
 		return (false);
 	if (!check_cub_order(data))
 		return (false);
-	// if	(!map_checker(data));
-	// 	return(true);
-	// clean_after_parsing(data);
+	if (!check_map(data))
+		return (false);
 	return (true);
 }

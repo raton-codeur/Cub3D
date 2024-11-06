@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:28:05 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/06 12:35:12 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:20:19 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,27 @@ static int	count_map_lines(t_data *data, int i)
 	int	count;
 
 	count = 0;
-	while (data->cub_file[++i])
+	while (data->cub_file[i])
 	{
 		if (data->cub_file[i][0] == '\0')
 			break ;
 		count++;
+		i++;
 	}
 	return (count);
 }
 
 bool	find_map(t_data *data, int i, int j)
 {
-	data->map = ft_calloc(count_map_lines(data, i) + 1, sizeof(char *));
-	if (data->map == NULL)
-		return (perror("Memory allocation failed"), false);
-	data->map[count_map_lines(data, i)] = NULL;
 	while (data->cub_file[i])
 	{
 		j = skip_spaces(data->cub_file[i], 0, ft_strlen(data->cub_file[i]));
 		if (data->cub_file[i][j] == '1')
 		{
+			data->map = ft_calloc(count_map_lines(data, i) + 1, sizeof(char *));
+			if (data->map == NULL)
+				return (perror("Memory allocation failed"), false);
+			data->map[count_map_lines(data, i)] = NULL;
 			data->map_line = i;
 			j = 0;
 			while (data->cub_file[i])
@@ -54,17 +55,50 @@ bool	find_map(t_data *data, int i, int j)
 	return (true);
 }
 
-bool	remove_newline_from_map(t_data *data)
+static	bool	is_line_empty(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t')
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+static void	remove_empty_line(t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while (data->map[i])
 	{
-		data->map[i] = remove_newline(data->map[i]);
-		if (data->map[i] == NULL)
-			return (perror("Memory allocation failed"), false);
+		if (is_line_empty(data->map[i]))
+		{
+			free(data->map[i]);
+			data->map[i] = NULL;
+		}
 		i++;
 	}
+}
+
+bool	remove_newline_from_map(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->map == NULL)
+		return (ft_putendl_fd("Error\nMissing map", 2), false);
+	while (data->map[i])
+	{
+		data->map[i] = remove_newline(data->map[i]);
+		if (!data->map[i])
+			return (false);
+		i++;
+	}
+	remove_empty_line(data);
 	return (true);
 }

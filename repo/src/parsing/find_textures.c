@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 11:35:11 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/24 13:47:22 by jteste           ###   ########.fr       */
+/*   Updated: 2024/11/06 15:05:54 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ bool	copy_texture(t_data *data, char **dest, int i, int j)
 	return (true);
 }
 
-bool	find_textures(t_data *data, int i, int j)
+bool	find_textures_no_so(t_data *data, int i, int j)
 {
 	while (data->cub_file[++i])
 	{
@@ -84,7 +84,16 @@ bool	find_textures(t_data *data, int i, int j)
 			if (!copy_texture(data, &data->south_texture, i, j + 2))
 				return (false);
 		}
-		else if (ft_strncmp(data->cub_file[i] + j, "WE", 2) == 0)
+	}
+	return (true);
+}
+
+bool	find_textures_we_ea(t_data *data, int i, int j)
+{
+	while (data->cub_file[++i])
+	{
+		j = skip_spaces(data->cub_file[i], 0, ft_strlen(data->cub_file[i]));
+		if (ft_strncmp(data->cub_file[i] + j, "WE", 2) == 0)
 		{
 			data->west_texture_line = i;
 			if (!copy_texture(data, &data->west_texture, i, j + 2))
