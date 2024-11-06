@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:28:05 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/06 12:03:57 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:35:12 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,8 @@ static int	count_map_lines(t_data *data, int i)
 	return (count);
 }
 
-bool	find_map(t_data *data)
+bool	find_map(t_data *data, int i, int j)
 {
-	int	i;
-	int	j;
-
-	i = 0;
 	data->map = ft_calloc(count_map_lines(data, i) + 1, sizeof(char *));
 	if (data->map == NULL)
 		return (perror("Memory allocation failed"), false);
@@ -47,7 +43,7 @@ bool	find_map(t_data *data)
 			{
 				data->map[j] = ft_strdup(data->cub_file[i]);
 				if (data->map[j] == NULL)
-					return (perror("1 Memory allocation failed"), false);
+					return (perror("Memory allocation failed"), false);
 				i++;
 				j++;
 			}

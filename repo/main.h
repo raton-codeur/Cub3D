@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/06 12:14:40 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:32:28 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ bool				fill_rgb_colors(t_data *data);
 unsigned int		rgb_color_to_hex(t_color *color);
 
 /* find_map.c */
-bool		find_map(t_data *data);
+bool		find_map(t_data *data, int i, int j);
 bool		remove_newline_from_map(t_data *data);
 
 /* parsing_utils.c */

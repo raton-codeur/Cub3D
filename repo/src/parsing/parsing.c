@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/06 12:09:52 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/06 12:35:17 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	extract_textures_and_colors(t_data *data)
 
 bool	extract_map(t_data *data)
 {
-	if (!find_map(data))
+	if (!find_map(data, 0, 0))
 		return (false);
 	if (data->map == NULL)
 		return (ft_putendl_fd("Error\nMissing map", 2), false);
