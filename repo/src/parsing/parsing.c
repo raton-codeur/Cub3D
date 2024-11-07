@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/06 14:58:17 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:10:50 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,24 @@ static bool	extract_map(t_data *data)
 		return (ft_putendl_fd("Error\nMissing map", 2), false);
 	if (!remove_newline_from_map(data))
 		return (false);
+	
 	return (true);
 }
 
 static bool	check_map(t_data *data)
 {
-	(void)data;
+	data->map_size = get_map_size(data->map);
+	if(!first_and_last_line(data))
+		return (false);
+	if(!first_and_last_char(data))
+		return (false);
+	if(!check_non_leading_spaces(data))
+		return (false);
+	if(!check_map_lines(data))
+		return (false);
 	return (true);
 }
+
 bool	parser(t_data *data)
 {
 	if (!extension_checker(data->path_map))

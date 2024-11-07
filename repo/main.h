@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/06 14:57:21 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:11:10 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_data
 	int			ceil_color_line;
 	t_color		*ceil_rgb;
 	char		**map;
+	int			map_size;
 	int			map_line;
 	mlx_t		*mlx;
 	mlx_image_t	*background;
@@ -105,6 +106,13 @@ unsigned int		rgb_color_to_hex(t_color *color);
 /* find_map.c */
 bool		find_map(t_data *data, int i, int j);
 bool		remove_newline_from_map(t_data *data);
+
+/* check_map.c */
+int			get_map_size(char **map);
+bool		first_and_last_line(t_data *data);
+bool		first_and_last_char(t_data *data);
+bool		check_non_leading_spaces(t_data *data);
+bool		check_map_lines(t_data *data);
 
 /* parsing_utils.c */
 int			skip_spaces(char *str, int i, int len);
