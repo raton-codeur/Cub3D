@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:28:05 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/06 15:20:19 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:27:33 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,36 @@ static	bool	is_line_empty(char *line)
 static void	remove_empty_line(t_data *data)
 {
 	int	i;
+	int start;
+	int end;
+	bool remains;
 
 	i = 0;
+	remains = false;
 	while (data->map[i])
 	{
 		if (is_line_empty(data->map[i]))
 		{
-			free(data->map[i]);
-			data->map[i] = NULL;
+			start = i;
+			while (data->map[i])
+			{
+				if (!is_line_empty(data->map[i]))
+					return ;
+				i++;
+			}
+			end = i;
 		}
 		i++;
+	}
+	if (remains == false)
+	{
+		i = start;
+		while (start < end)
+		{
+			free(data->map[start]);
+			data->map[start] = NULL;
+			start++;
+		}
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/07 15:10:50 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/08 12:38:22 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static bool	extract_map(t_data *data)
 static bool	check_map(t_data *data)
 {
 	data->map_size = get_map_size(data->map);
+	if(data->map_size < 3)
+		return (ft_putendl_fd("Error\nMap is too small", 2), false);
 	if(!first_and_last_line(data))
 		return (false);
 	if(!first_and_last_char(data))
