@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jteste <jteste@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:12:28 by jteste            #+#    #+#             */
-/*   Updated: 2024/10/24 12:22:41 by jteste           ###   ########.fr       */
+/*   Updated: 2024/11/08 14:20:43 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*remove_newline(char *str)
 		return (ft_putendl_fd("Error\nInvalid color", 2), NULL);
 	while (str[i])
 		i++;
-	if (str[i - 1] == '\n')
+	if (i > 0 && str[i - 1] == '\n')
 	{
 		buff = ft_substr(str, 0, i - 1);
 		if (!buff)

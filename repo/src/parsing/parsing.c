@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/08 12:38:22 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:06:40 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ static bool	check_map(t_data *data)
 		return (false);
 	if(!check_map_lines(data))
 		return (false);
+	if(!check_map_chars(data))
+		return (false);
+	
 	return (true);
 }
 

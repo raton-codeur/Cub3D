@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:57:11 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/08 12:34:07 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:48:05 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,12 @@ bool	check_map_lines(t_data *data)
 		j = 0;
 		while (data->map[i][j])
 		{
-			if (i > 0 && ft_strlen(data->map[i]) > ft_strlen(data->map[i - 1]) && (size_t)j > ft_strlen(data->map[i - 1]))
+			if (i > 0 && ft_strlen(data->map[i]) > ft_strlen(data->map[i - 1]) && (size_t)j >= ft_strlen(data->map[i - 1]))
 			{
 				if (data->map[i][j] != '1')
 					return (ft_putendl_fd("Error\nMap is not closed", 2), false);
 			}
-			if (i < data->map_size - 1 && ft_strlen(data->map[i]) > ft_strlen(data->map[i + 1]) && (size_t)j > ft_strlen(data->map[i + 1]))
+			if (i < data->map_size - 1 && ft_strlen(data->map[i]) > ft_strlen(data->map[i + 1]) && (size_t)j >= ft_strlen(data->map[i + 1]))
 			{
 				if (data->map[i][j] != '1')
 					return (ft_putendl_fd("Error\nMap is not closed", 2), false);

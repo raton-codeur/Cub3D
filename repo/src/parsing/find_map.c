@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:28:05 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/08 12:27:33 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:38:24 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,48 +62,38 @@ static	bool	is_line_empty(char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '\t')
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
-static void	remove_empty_line(t_data *data)
+static void remove_empty_line(t_data *data, int i, int j, int start)
 {
-	int	i;
-	int start;
-	int end;
-	bool remains;
-
-	i = 0;
-	remains = false;
-	while (data->map[i])
+    while (data->map[i])
 	{
-		if (is_line_empty(data->map[i]))
+        if (is_line_empty(data->map[i])) 
 		{
-			start = i;
-			while (data->map[i])
-			{
-				if (!is_line_empty(data->map[i]))
-					return ;
-				i++;
-			}
-			end = i;
-		}
-		i++;
-	}
-	if (remains == false)
+            if (start == -1) 
+                start = i;
+        }
+		else
+            start = -1;
+        i++;
+    }
+	if (start != -1) 
 	{
-		i = start;
-		while (start < end)
+		j = start;
+		while (data->map[j]) 
 		{
-			free(data->map[start]);
-			data->map[start] = NULL;
-			start++;
+			free(data->map[j]);
+			data->map[j] = NULL;
+			j++;
 		}
 	}
 }
+
 
 bool	remove_newline_from_map(t_data *data)
 {
@@ -119,6 +109,6 @@ bool	remove_newline_from_map(t_data *data)
 			return (false);
 		i++;
 	}
-	remove_empty_line(data);
+    remove_empty_line(data, 0, 0, -1);
 	return (true);
 }
