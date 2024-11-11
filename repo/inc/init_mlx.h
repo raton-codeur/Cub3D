@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:45:18 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:09:56 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 
 # include "main.h"
 
-/* init.c */
+/* init_mlx.c */
 void	init_mlx(t_data *data);
-
-/* load_map.c */
-// void	load_map(t_data *data);
 
 /* init_window.c */
 void	init_window(t_data *data);

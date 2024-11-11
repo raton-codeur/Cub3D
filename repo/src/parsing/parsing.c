@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/11 16:40:20 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:13:58 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static bool	extract_map(t_data *data)
 		return (ft_putendl_fd("Error\nMissing map", 2), false);
 	if (!remove_newline_from_map(data))
 		return (false);
-	
 	return (true);
 }
 
@@ -56,19 +55,16 @@ static bool	check_map(t_data *data)
 		return (false);
 	if(!check_map_chars(data))
 		return (false);
-	
 	return (true);
 }
 
 void	parse_map(t_data *data, int argc, char **argv)
 {
-	ft_memset(data, 0, sizeof(t_data));
 	if (argc != 2)
 		return (ft_putendl_fd("Error\nUsage: ./cub3D <map.cub>", 2), exit(1));
 	data->path_map = ft_strdup(argv[1]);
 	if (data->path_map == NULL)
 		return (ft_putendl_fd("Malloc Error", 2), exit(1));
-
 	if (!extension_checker(data->path_map))
 		return (free_all(data), exit(1));
 	if (!load_cub_file(data))

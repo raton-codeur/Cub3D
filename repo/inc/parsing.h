@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:42:58 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:09:42 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ bool		find_textures_no_so(t_data *data, int i, int j);
 bool		find_textures_we_ea(t_data *data, int i, int j);
 bool		copy_texture(t_data *data, char **dest, int i, int j);
 bool		check_textures(t_data *data);
-
 
 /* find_colors.c */
 bool				find_colors(t_data *data, int i, int j);
