@@ -1,28 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   init_mlx.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:16:37 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:30:08 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/11 16:45:18 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#ifndef INIT_H
+# define INIT_H
 
 # include "main.h"
 
-/* esc_hook.c */
-void	esc_hook(mlx_key_data_t keydata, void *param);
+/* init.c */
+void	init_mlx(t_data *data);
 
-/* main_hook.c */
-void	main_hook(void *param);
+/* load_map.c */
+// void	load_map(t_data *data);
 
-/* check_keys.c */
-void	check_movement_keys(t_data *data);
-void	check_angle_keys(t_data *data);
+/* init_window.c */
+void	init_window(t_data *data);
+
+/* init_background.c */
+void	init_background(t_data *data);
+
+/* init_map.c */
+void	init_map(t_data *data);
+
+/* init_rays.c */
+void	init_rays(t_data *data);
+
+/* init_player.c*/
+void	init_player(t_data *data);
+
+/* init_walls.c */
+void	init_walls(t_data *data);
 
 #endif

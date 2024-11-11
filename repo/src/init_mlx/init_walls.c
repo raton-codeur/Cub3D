@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_walls.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 17:36:41 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/23 16:46:49 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/11 16:39:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
 #include "init_mlx.h"
-#include "hook.h"
 
-int	main(int argc, char **argv)
+void	init_walls(t_data *data)
 {
-	t_data	data;
-
-	parse_map(&data, argc, argv);
-	for (int i = 0; data.map[i]; i++)
-		printf("map[%d] = \"%s\"\n", i, data.map[i]);
-	init_mlx(&data);
-	mlx_key_hook(data.mlx, esc_hook, &data);
-	// mlx_loop_hook(data.mlx, main_hook, &data);
-	mlx_loop(data.mlx);
-	free_all(&data);
-	return (0);
+	data->walls = mlx_new_image(data->mlx, data->background->width, data->background->height);
+	if (data->walls == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->walls, data->background->instances[0].x, data->background->instances[0].y) == -1)
+		return (mlx_delete_image(data->mlx, data->walls), mlx_perror_exit(data));
 }

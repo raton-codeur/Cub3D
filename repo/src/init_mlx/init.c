@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:16:37 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:30:08 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/11 17:02:13 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#include "init_mlx.h"
 
-# include "main.h"
-
-/* esc_hook.c */
-void	esc_hook(mlx_key_data_t keydata, void *param);
-
-/* main_hook.c */
-void	main_hook(void *param);
-
-/* check_keys.c */
-void	check_movement_keys(t_data *data);
-void	check_angle_keys(t_data *data);
-
-#endif
+void	init_mlx(t_data *data)
+{
+	// ft_memset(data, 0, sizeof(t_data));
+	// load_map(data);
+	init_window(data);
+	init_background(data);
+	init_map(data);
+	init_rays(data);
+	init_player(data);
+	init_walls(data);
+}

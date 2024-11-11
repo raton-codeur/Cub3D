@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   init_rays.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 19:16:37 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:30:08 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/23 15:31:06 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/11 16:39:15 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-# define HOOK_H
+#include "init_mlx.h"
 
-# include "main.h"
-
-/* esc_hook.c */
-void	esc_hook(mlx_key_data_t keydata, void *param);
-
-/* main_hook.c */
-void	main_hook(void *param);
-
-/* check_keys.c */
-void	check_movement_keys(t_data *data);
-void	check_angle_keys(t_data *data);
-
-#endif
+void	init_rays(t_data *data)
+{
+	data->rays = mlx_new_image(data->mlx, data->map_img->width, data->map_img->height);
+	if (data->rays == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->rays, 0, 0) == -1)
+		return (mlx_delete_image(data->mlx, data->rays), mlx_perror_exit(data));
+}
