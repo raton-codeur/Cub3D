@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:16:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 14:59:07 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/11 16:39:07 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "init_mlx.h"
 
 static void	fill_background(t_data *data)
 {

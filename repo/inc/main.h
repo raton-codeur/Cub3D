@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 19:26:21 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/11 16:41:44 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,34 @@
 # define ANGLE_VIEW (M_PI / 3) // l'angle de vue en radians
 # define NB_RAYS 500 // le nombre de rayons lancés
 
+typedef struct s_color
+{
+	int				r;
+	int				g;
+	int				b;
+	unsigned int	hex;
+}	t_color;
+
 typedef struct s_data
 {
+	char		*path_map;
+	char		**cub_file;
+	char		*north_texture;
+	int			north_texture_line;
+	char		*south_texture;
+	int			south_texture_line;
+	char		*west_texture;
+	int			west_texture_line;
+	char		*east_texture;
+	int			east_texture_line;
+	char		*floor_color;
+	int			floor_color_line;
+	t_color		*floor_rgb;
+	char		*ceil_color;
+	int			ceil_color_line;
+	t_color		*ceil_rgb;
+	int			map_size;
+	int			map_line;
 	char		**map;
 	mlx_t		*mlx;
 	mlx_image_t	*background;

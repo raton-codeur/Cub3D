@@ -6,28 +6,16 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 15:00:30 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/11 16:48:57 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
-
-static int	get_row_size(char *row)
-{
-	int	i;
-
-	if (!row)
-		return (0);
-	i = 0;
-	while (row[i] && row[i] != '\n')
-		i++;
-	return (i);
-}
+#include "init_mlx.h"
 
 static int	get_nb_columns(char **map)
 {
 	int	i;
-	int	max;
+	size_t	max;
 
 	if (!map)
 		return (0);
@@ -35,8 +23,8 @@ static int	get_nb_columns(char **map)
 	max = 0;
 	while (map[i])
 	{
-		if (get_row_size(map[i]) > max)
-			max = get_row_size(map[i]);
+		if (ft_strlen(map[i]) > max)
+			max = ft_strlen(map[i]);
 		i++;
 	}
 	return (max);
@@ -73,7 +61,7 @@ void	print_map(t_data *data)
 	while (data->map[y])
 	{
 		x = 0;
-		while (x < get_row_size(data->map[y]))
+		while (x < (int)ft_strlen(data->map[y]))
 		{
 			if (data->map[y][x] == '1')
 				color = 0x000000FF;
@@ -91,7 +79,7 @@ void	init_map(t_data *data)
 	int	nb_rows;
 	int	nb_columns;
 
-	nb_rows = array_size((void **)data->map);
+	nb_rows = data->map_size;
 	nb_columns = get_nb_columns(data->map);
 	data->map_img = mlx_new_image(data->mlx, nb_columns * SIZE_BOX, nb_rows * SIZE_BOX);
 	if (data->map_img == NULL)
@@ -100,3 +88,17 @@ void	init_map(t_data *data)
 		return (mlx_delete_image(data->mlx, data->map_img), mlx_perror_exit(data));
 	print_map(data);
 }
+// void	init_map(t_data *data)
+// {
+// 	int	nb_rows;
+// 	int	nb_columns;
+
+// 	nb_rows = array_size((void **)data->map);
+// 	nb_columns = get_nb_columns(data->map);
+// 	data->map_img = mlx_new_image(data->mlx, nb_columns * SIZE_BOX, nb_rows * SIZE_BOX);
+// 	if (data->map_img == NULL)
+// 		return (mlx_perror_exit(data));
+// 	if (mlx_image_to_window(data->mlx, data->map_img, 0, 0) == -1)
+// 		return (mlx_delete_image(data->mlx, data->map_img), mlx_perror_exit(data));
+// 	print_map(data);
+// }

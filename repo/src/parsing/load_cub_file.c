@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_map.c                                         :+:      :+:    :+:   */
+/*   load_cub_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 15:27:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/23 15:28:11 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/21 15:51:34 by jteste            #+#    #+#             */
+/*   Updated: 2024/11/11 16:38:10 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "parsing.h"
 
 static int	count_lines(t_data *data)
 {
@@ -18,9 +18,9 @@ static int	count_lines(t_data *data)
 	int		result;
 	char	*line;
 
-	fd = open(PATH_MAP, O_RDONLY);
+	fd = open(data->path_map, O_RDONLY);
 	if (fd == -1)
-		return (perror("Cannot open map"), free_all(data), exit(1), 1);
+		return (perror("Cannot open .cub file"), free_all(data), exit(1), 1);
 	result = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -33,26 +33,29 @@ static int	count_lines(t_data *data)
 	return (result);
 }
 
-void	load_map(t_data *data)
+bool	load_cub_file(t_data *data)
 {
 	int		fd;
 	char	*line;
 	int		nb_lines;
 	int		i;
 
-	nb_lines = count_lines(data);
-	data->map = ft_calloc(nb_lines + 1, sizeof(char *));
-	if (data->map == NULL)
-		perror_exit("Memory allocation failed", data);
-	fd = open(PATH_MAP, O_RDONLY);
-	if (fd == -1)
-		return (perror("Cannot open map"), free_all(data), exit(1));
 	i = 0;
-	line = get_next_line(fd);
-	while (line)
+	nb_lines = count_lines(data);
+	data->cub_file = ft_calloc(nb_lines + 1, sizeof(char *));
+	if (data->cub_file == NULL)
+		return (perror("Memory allocation failed"), false);
+	data->cub_file[nb_lines] = NULL;
+	fd = open(data->path_map, O_RDONLY);
+	if (fd == -1)
+		return (perror("Cannot open .cub file"), false);
+	line = NULL;
+	while (line || i == 0)
 	{
-		data->map[i++] = line;
 		line = get_next_line(fd);
+		data->cub_file[i++] = ft_strdup(line);
+		free(line);
 	}
 	close(fd);
+	return (true);
 }

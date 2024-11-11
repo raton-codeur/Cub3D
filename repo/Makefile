@@ -1,7 +1,7 @@
 NAME = cub3D
 CFLAGS = -Wall -Wextra -Werror -g3 -Wunreachable-code -Ofast -fsanitize=address
-INCLUDES = -I libft -I MLX42/include -I inc
-LDFLAGS = -ldl -lglfw -pthread -lm
+INCLUDES = -I libft -I MLX42/include -I inc -I .
+LDFLAGS = -ldl -lglfw -pthread -lm -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
 LIBFT = libft/libft.a
 MLX = MLX42/build/libmlx42.a
 OBJS = $(patsubst src/%, tmp/%, $(SRCS:.c=.o))
@@ -36,6 +36,6 @@ fclean : clean
 re : fclean all
 
 test : clean all
-	@ ./$(NAME) maps/simple.cub
+	@ ./$(NAME) maps/map_sujet.cub
 
 .PHONY : all clean fclean re bonus test

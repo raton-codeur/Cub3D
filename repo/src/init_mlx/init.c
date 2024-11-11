@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_walls.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 16:46:49 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/10/24 14:58:14 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/11 17:02:13 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init.h"
+#include "init_mlx.h"
 
-void	init_walls(t_data *data)
+void	init_mlx(t_data *data)
 {
-	data->walls = mlx_new_image(data->mlx, data->background->width, data->background->height);
-	if (data->walls == NULL)
-		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->walls, data->background->instances[0].x, data->background->instances[0].y) == -1)
-		return (mlx_delete_image(data->mlx, data->walls), mlx_perror_exit(data));
+	// ft_memset(data, 0, sizeof(t_data));
+	// load_map(data);
+	init_window(data);
+	init_background(data);
+	init_map(data);
+	init_rays(data);
+	init_player(data);
+	init_walls(data);
 }
