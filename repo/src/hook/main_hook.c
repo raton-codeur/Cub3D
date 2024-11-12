@@ -83,7 +83,7 @@ void	draw_ray(t_data *data, double dir_x, double dir_y)
 	data->x = data->pos_x;
 	data->y = data->pos_y;
 	while (!is_wall(data, data->x, data->y))
-	{
+	{ 
 		mlx_put_pixel(data->rays, data->x, data->y, 0x00FF00FF);
 		data->x += step_x;
 		data->y += step_y;
