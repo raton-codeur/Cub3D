@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 13:23:25 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:55:12 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ typedef struct s_data
 	mlx_image_t	*walls;
 	double		pos_x; // coordonnées horizontale du joueur
 	double		pos_y; // coordonnées verticale du joueur
-	int			pos_i; // indice de la ligne de la map qui correspond à pos_y
-	int			pos_j; // indice de la colonne de la map qui correspond à pos_x
 	double		dir_x; // vecteur de direction où regarde le joueur
 	double		dir_y; 
 	double		plane_x; // vecteur du plan de la caméra
 	double		plane_y;
 	double		x; // coordonnée pour le dda
 	double		y; // coordonnée pour le dda
+	int			i; // coordonnée pour le dda
+	int			j; // coordonnée pour le dda
 	double		ray_dir_x; // vecteur de direction du rayon
 	double		ray_dir_y;
 	double		delta_dist_x; // la longueur du rayon entre deux cases horizontales 

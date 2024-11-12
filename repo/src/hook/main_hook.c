@@ -81,42 +81,44 @@ void	draw_ray_basique(t_data *data, double camera_x)
 	}
 }
 
-// void	draw_ray_dda(t_data *data, double camera_x)
-// {
-// 	data->pos_i = get_map_i(data->pos_y);
-// 	data->pos_j = get_map_i(data->pos_x);
-// 	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
-// 	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
-// 	data->delta_dist_x = fabs(1 / data->ray_dir_x);
-// 	data->delta_dist_y = fabs(1 / data->ray_dir_y);
-// 	data->step_j = (data->ray_dir_x < 0) ? -1 : 1;
-// 	data->step_i = (data->ray_dir_y < 0) ? -1 : 1;
-// 	data->side_dist_x = (data->ray_dir_x < 0) ? (data->pos_x - data->pos_j) * data->delta_dist_x : (data->pos_j + 1.0 - data->pos_x) * data->delta_dist_x;
-// 	data->side_dist_y = (data->ray_dir_y < 0) ? (data->pos_y - data->pos_i) * data->delta_dist_y : (data->pos_i + 1.0 - data->pos_y) * data->delta_dist_y;
-// 	data->hit = 0;
-// 	while (!data->hit)
-// 	{
-// 		if (data->side_dist_x < data->side_dist_y)
-// 		{
-// 			data->side_dist_x += data->delta_dist_x;
-// 			data->pos_j += data->step_j;
-// 			data->side = 0;
-// 		}
-// 		else
-// 		{
-// 			data->side_dist_y += data->delta_dist_y;
-// 			data->pos_i += data->step_i;
-// 			data->side = 1;
-// 		}
-// 		if (data->map[data->pos_i][data->pos_j] == '1')
-// 			data->hit = 1;
-// 	}
-// 	if (data->side == 0)
-// 		data->perp_wall_dist = (data->pos_j - data->pos_x + (1 - data->step_j) / 2) / data->ray_dir_x;
-// 	else
-// 		data->perp_wall_dist = (data->pos_i - data->pos_y + (1 - data->step_i) / 2) / data->ray_dir_y;
-// 	printf("perp wall dist : %f\n", data->perp_wall_dist);
-// }
+void	draw_ray_dda(t_data *data, double camera_x)
+{
+	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
+	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
+	data->delta_dist_x = fabs(1 / data->ray_dir_x);
+	data->delta_dist_y = fabs(1 / data->ray_dir_y);
+	data->step_j = (data->ray_dir_x < 0) ? -1 : 1;
+	data->step_i = (data->ray_dir_y < 0) ? -1 : 1;
+	if (data->ray_dir_x < 0)
+		data->side_dist_x = (data->pos_x - data->j) * data->delta_dist_x;
+	else
+		data->side_dist_x = (data->j + 1.0 - data->pos_x) * data->delta_dist_x;
+	if (data->ray_dir_y < 0)
+		data->side_dist_y = (data->pos_y - data->i) * data->delta_dist_y;
+	else
+		data->side_dist_y = (data->i + 1.0 - data->pos_y) * data->delta_dist_y;
+	data->i = (int)data->pos_y;
+	data->j = (int)data->pos_x;
+	data->hit = 0;
+	while (!data->hit)
+	{
+		if (data->side_dist_x < data->side_dist_y)
+		{
+			data->side_dist_x += data->delta_dist_x;
+			data->j += data->step_j;
+			data->side = 0;
+		}
+		else
+		{
+			data->side_dist_y += data->delta_dist_y;
+			data->i += data->step_i;
+			data->side = 1;
+		}
+		if (data->map[data->i][data->j] == '1')
+			data->hit = 1;
+	}
+	printf("mur touché en i = %d, j = %d\n", data->i, data->j);
+}
 
 
 void	main_hook(void *param)
@@ -130,8 +132,4 @@ void	main_hook(void *param)
 	print_position(data);
 	draw_ray_basique(data, 0);
 	draw_ray_dda(data, 0);
-	// double side_dist_x, side_dist_y;
-	// side_dist_x = fabs(1 / data->pos_x);
-	// side_dist_y = fabs(1 / data->pos_y);
-	// printf("side dist x : %f, side dist y : %f\n", side_dist_x, side_dist_y);
 }
