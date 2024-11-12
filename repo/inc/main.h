@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 18:17:27 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 11:04:19 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ typedef struct s_data
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		x;
+	double		y;
+	int			i;
+	int			j;
 }	t_data;
 
 /* free.c */
@@ -82,5 +86,6 @@ void		mlx_perror_exit(t_data *data);
 
 /* utils.c */
 void		fill_image(mlx_image_t *image, unsigned int color);
+void		print_map(t_data *data);
 
 #endif

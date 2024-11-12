@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:17:43 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 18:19:55 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 10:48:36 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,8 @@ void	init_player(t_data *data)
 		return (mlx_delete_image(data->mlx, data->player), mlx_perror_exit(data));
 	data->pos_x = data->player->instances[0].x + (double)SIZE_PLAYER / 2;
 	data->pos_y = data->player->instances[0].y + (double)SIZE_PLAYER / 2;
+	data->dir_x = 0;
+	data->dir_y = -1;
+	data->plane_x = 0;
+	data->plane_y = 0.66;
 }

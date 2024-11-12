@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:48:57 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 10:09:16 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	print_box(t_data *data, int x_start, int y_start, uint32_t color)
 	}
 }
 
-void	print_map(t_data *data)
+void	display_map(t_data *data)
 {
 	int			x;
 	int			y;
@@ -86,19 +86,5 @@ void	init_map(t_data *data)
 		return (mlx_perror_exit(data));
 	if (mlx_image_to_window(data->mlx, data->map_img, 0, 0) == -1)
 		return (mlx_delete_image(data->mlx, data->map_img), mlx_perror_exit(data));
-	print_map(data);
+	display_map(data);
 }
-// void	init_map(t_data *data)
-// {
-// 	int	nb_rows;
-// 	int	nb_columns;
-
-// 	nb_rows = array_size((void **)data->map);
-// 	nb_columns = get_nb_columns(data->map);
-// 	data->map_img = mlx_new_image(data->mlx, nb_columns * SIZE_BOX, nb_rows * SIZE_BOX);
-// 	if (data->map_img == NULL)
-// 		return (mlx_perror_exit(data));
-// 	if (mlx_image_to_window(data->mlx, data->map_img, 0, 0) == -1)
-// 		return (mlx_delete_image(data->mlx, data->map_img), mlx_perror_exit(data));
-// 	print_map(data);
-// }
