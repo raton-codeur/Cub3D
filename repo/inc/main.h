@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 12:23:08 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:23:25 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 # define PATH_MAP "maps/simple.cub"
 # define SIZE_BOX 50.0 // la largeur d'une case de la minimap en pixels
 # define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
-# define STEP_MOVE 5.0 // le pas de déplacement du joueur en pixels
+# define STEP_MOVE 0.2 // le pas de déplacement du joueur en pixels
 # define STEP_VIEW 0.05 // le pas de changement de l'angle de vue en radians
-# define ROW_START 2 // l'indice de la ligne de départ du joueur
-# define COL_START 2 // l'indice de la colonne de départ du joueur
+# define I_START 1 // l'indice de la ligne de map de départ du joueur
+# define J_START 2 // l'indice de la colonne de map de départ du joueur
 # define ANGLE_START 0 // l'orientation de départ du joueur en radians
 # define ANGLE_VIEW (M_PI / 3) // l'angle de vue en radians
 # define NB_RAYS 500 // le nombre de rayons lancés
@@ -77,14 +77,12 @@ typedef struct s_data
 	double		plane_y;
 	double		x; // coordonnée pour le dda
 	double		y; // coordonnée pour le dda
-	int			i; // coordonnée pour le dda
-	int			j; // coordonnée pour le dda
 	double		ray_dir_x; // vecteur de direction du rayon
 	double		ray_dir_y;
 	double		delta_dist_x; // la longueur du rayon entre deux cases horizontales 
 	double		delta_dist_y; // la longueur du rayon entre deux cases verticales
-	double		side_dist_x;
-	double		side_dist_y;
+	double		side_dist_x; // longueur du rayon entre la position du joueur et la prochaine case horizontale
+	double		side_dist_y; // longueur du rayon entre la position du joueur et la prochaine case verticale
 	double		perp_wall_dist; // pour calculer la longueur du rayon
 	int			step_i; // la prochaine case dans laquelle va le rayon. 1 ou -1
 	int			step_j; // la prochaine case dans laquelle va le rayon. 1 ou -1

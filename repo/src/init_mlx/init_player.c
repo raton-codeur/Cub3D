@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:17:43 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 11:31:24 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:18:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ void	init_player(t_data *data)
 	if (data->player == NULL)
 		return (mlx_perror_exit(data));
 	fill_player(data);
-	if (mlx_image_to_window(data->mlx, data->player, COL_START * SIZE_BOX, ROW_START * SIZE_BOX) == -1)
+	data->pos_x = J_START + 0.5;
+	data->pos_y = I_START + 0.5;
+	if (mlx_image_to_window(data->mlx, data->player, 
+	data->pos_x * SIZE_BOX - SIZE_PLAYER / 2, 
+	data->pos_y * SIZE_BOX - SIZE_PLAYER / 2
+	) == -1)
 		return (mlx_delete_image(data->mlx, data->player), mlx_perror_exit(data));
-	data->pos_x = data->player->instances[0].x + (double)SIZE_PLAYER / 2;
-	data->pos_y = data->player->instances[0].y + (double)SIZE_PLAYER / 2;
 	data->dir_x = 0;
 	data->dir_y = -1;
 	data->plane_x = 0;

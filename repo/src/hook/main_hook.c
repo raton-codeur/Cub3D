@@ -53,54 +53,70 @@ void	check_keys(t_data *data)
 		data->plane_x = data->plane_x * cos(-STEP_VIEW) - data->plane_y * sin(-STEP_VIEW);
 		data->plane_y = data->plane_x * sin(-STEP_VIEW) + data->plane_y * cos(-STEP_VIEW);
 	}
-	data->player->instances[0].x = data->pos_x - SIZE_PLAYER / 2;
-	data->player->instances[0].y = data->pos_y - SIZE_PLAYER / 2;
+	data->player->instances[0].x = data->pos_x * SIZE_BOX - SIZE_PLAYER / 2;
+	data->player->instances[0].y = data->pos_y * SIZE_BOX - SIZE_PLAYER / 2;
 }
 
 void print_position(t_data *data)
 {
-	printf("x = %f = %d, y = %f = %d\n", data->pos_x, (int)(data->pos_x / SIZE_BOX), data->pos_y, (int)(data->pos_y / SIZE_BOX));
-}
-
-int get_map_i(double x)
-{
-	return ((int)(x / SIZE_BOX));
+	printf("x = %f, y = %f\n", data->pos_x, data->pos_y);
 }
 
 int	is_wall(t_data *data, double x, double y)
 {
-	return (data->map[get_map_i(y)][get_map_i(x)] == '1');
+	return (data->map[(int)y][(int)x] == '1');
 }
 
-// void	draw_ray(t_data *data, double camera_x)
-// {
-// 	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
-// 	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
-// 	data->ray_x = data->pos_x;
-// 	data->ray_y = data->pos_y;
-// 	while (!is_wall(data, data->ray_x, data->ray_y))
-// 	{ 
-// 		mlx_put_pixel(data->rays, data->ray_x, data->ray_y, 0x00FF00FF);
-// 		data->ray_x += data->ray_dir_x / 10;
-// 		data->ray_y += data->ray_dir_y / 10;
-// 	}
-// }
-
-void	draw_ray(t_data *data, double camera_x)
+void	draw_ray_basique(t_data *data, double camera_x)
 {
 	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
 	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
-	data->delta_dist_x = fabs(1 / data->ray_dir_x);
-	data->delta_dist_y = fabs(1 / data->ray_dir_y);
-	data->ray_i = get_map_i(data->pos_x);
-	data->ray_j = get_map_i(data->pos_y);
+	data->x = data->pos_x;
+	data->y = data->pos_y;
 	while (!is_wall(data, data->x, data->y))
-	{ 
-		mlx_put_pixel(data->rays, data->x, data->y, 0x00FF00FF);
-		data->x += step_x;
-		data->y += step_y;
+	{
+		mlx_put_pixel(data->rays, data->x * SIZE_BOX, data->y * SIZE_BOX, 0x00FF00FF);
+		data->x += data->ray_dir_x * 0.01;
+		data->y += data->ray_dir_y * 0.01;
 	}
 }
+
+// void	draw_ray_dda(t_data *data, double camera_x)
+// {
+// 	data->pos_i = get_map_i(data->pos_y);
+// 	data->pos_j = get_map_i(data->pos_x);
+// 	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
+// 	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
+// 	data->delta_dist_x = fabs(1 / data->ray_dir_x);
+// 	data->delta_dist_y = fabs(1 / data->ray_dir_y);
+// 	data->step_j = (data->ray_dir_x < 0) ? -1 : 1;
+// 	data->step_i = (data->ray_dir_y < 0) ? -1 : 1;
+// 	data->side_dist_x = (data->ray_dir_x < 0) ? (data->pos_x - data->pos_j) * data->delta_dist_x : (data->pos_j + 1.0 - data->pos_x) * data->delta_dist_x;
+// 	data->side_dist_y = (data->ray_dir_y < 0) ? (data->pos_y - data->pos_i) * data->delta_dist_y : (data->pos_i + 1.0 - data->pos_y) * data->delta_dist_y;
+// 	data->hit = 0;
+// 	while (!data->hit)
+// 	{
+// 		if (data->side_dist_x < data->side_dist_y)
+// 		{
+// 			data->side_dist_x += data->delta_dist_x;
+// 			data->pos_j += data->step_j;
+// 			data->side = 0;
+// 		}
+// 		else
+// 		{
+// 			data->side_dist_y += data->delta_dist_y;
+// 			data->pos_i += data->step_i;
+// 			data->side = 1;
+// 		}
+// 		if (data->map[data->pos_i][data->pos_j] == '1')
+// 			data->hit = 1;
+// 	}
+// 	if (data->side == 0)
+// 		data->perp_wall_dist = (data->pos_j - data->pos_x + (1 - data->step_j) / 2) / data->ray_dir_x;
+// 	else
+// 		data->perp_wall_dist = (data->pos_i - data->pos_y + (1 - data->step_i) / 2) / data->ray_dir_y;
+// 	printf("perp wall dist : %f\n", data->perp_wall_dist);
+// }
 
 
 void	main_hook(void *param)
@@ -111,8 +127,9 @@ void	main_hook(void *param)
 	erase_image(data->rays);
 	erase_image(data->walls);
 	check_keys(data);
-	// print_position(data);
-	draw_ray(data, 0);
+	print_position(data);
+	draw_ray_basique(data, 0);
+	draw_ray_dda(data, 0);
 	// double side_dist_x, side_dist_y;
 	// side_dist_x = fabs(1 / data->pos_x);
 	// side_dist_y = fabs(1 / data->pos_y);
