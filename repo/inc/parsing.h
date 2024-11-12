@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 14:21:34 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:52:04 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ void		find_textures_we_ea(t_data *data, int i, int j);
 void		copy_texture(t_data *data, char **dest, int i, int j);
 void		check_textures(t_data *data);
 
-
 /* find_colors.c */
-void				find_colors(t_data *data, int i, int j);
-void				fill_rgb_colors(t_data *data);
-unsigned int		rgb_color_to_hex(t_color *color);
+void		find_colors(t_data *data, int i, int j);
+int			rgb_color_to_hex(t_color *color);
+
+/* find_colors_2.c */
+void		fill_rgb_colors(t_data *data);
 
 /* find_map.c */
 void		find_map(t_data *data, int i, int j);
