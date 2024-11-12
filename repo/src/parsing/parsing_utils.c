@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:12:28 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/11 16:38:16 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:54:35 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,30 @@ int	skip_spaces(char *str, int i, int len)
 	return (i);
 }
 
-bool	extension_checker(char *path)
+void	extension_checker(t_data *data)
 {
+	int		i;
 	int		len;
+	char	*buf;
 
-	len = ft_strlen(path);
+	len = ft_strlen(data->path_map);
 	if (len < 5)
+		perror_exit("Invalid file extension", data);
+	i = 0;
+	i = skip_spaces(data->path_map, i, len);
+	while (data->path_map[i] && !ft_isspace(data->path_map[i]))
+		i++;
+	if (i < len)
 	{
-		ft_putendl_fd("Error\nInvalid file extension", 2);
-		return (false);
+		buf = ft_substr(data->path_map, i, len - i);
+		if (!buf)
+			return (perror_exit("Memory allocation failed", data));
+		free(data->path_map);
+		data->path_map = buf;
+		len = ft_strlen(data->path_map);
 	}
-	if (ft_strncmp(&path[len - 4], ".cub", 4) != 0)
-	{
-		ft_putendl_fd("Error\nInvalid file extension", 2);
-		return (false);
-	}
-	return (true);
+	if (ft_strncmp(&data->path_map[len - 4], ".cub", 4) != 0)
+		perror_exit("Invalid file extension", data);
 }
 
 bool	check_split_content(char **split)
@@ -68,21 +76,19 @@ bool	check_split_content_size(char **split)
 	return (true);
 }
 
-char	*remove_newline(char *str)
+char	*remove_newline(char *str, t_data *data)
 {
 	int		i;
 	char	*buff;
 
 	i = 0;
-	if (!str)
-		return (ft_putendl_fd("Error\nInvalid color", 2), NULL);
 	while (str[i])
 		i++;
 	if (i > 0 && str[i - 1] == '\n')
 	{
 		buff = ft_substr(str, 0, i - 1);
 		if (!buff)
-			return (perror("Memory allocation failed"), NULL);
+			return (perror_exit("Memory allocation failed", data), NULL);
 		free(str);
 		return (buff);
 	}

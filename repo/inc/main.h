@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:41:44 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 12:03:34 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,12 @@ typedef struct s_data
 	int			ceil_color_line;
 	t_color		*ceil_rgb;
 	int			map_size;
+	int			map_max_row;
 	int			map_line;
 	char		**map;
+	char		player_dir;
+	int			i;
+	int			j;
 	mlx_t		*mlx;
 	mlx_image_t	*background;
 	mlx_image_t	*map_img;
