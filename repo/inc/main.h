@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 11:04:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 12:23:08 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,29 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
+	double		pos_x; // coordonnées horizontale du joueur
+	double		pos_y; // coordonnées verticale du joueur
+	int			pos_i; // indice de la ligne de la map qui correspond à pos_y
+	int			pos_j; // indice de la colonne de la map qui correspond à pos_x
+	double		dir_x; // vecteur de direction où regarde le joueur
+	double		dir_y; 
+	double		plane_x; // vecteur du plan de la caméra
 	double		plane_y;
-	double		x;
-	double		y;
-	int			i;
-	int			j;
+	double		x; // coordonnée pour le dda
+	double		y; // coordonnée pour le dda
+	int			i; // coordonnée pour le dda
+	int			j; // coordonnée pour le dda
+	double		ray_dir_x; // vecteur de direction du rayon
+	double		ray_dir_y;
+	double		delta_dist_x; // la longueur du rayon entre deux cases horizontales 
+	double		delta_dist_y; // la longueur du rayon entre deux cases verticales
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perp_wall_dist; // pour calculer la longueur du rayon
+	int			step_i; // la prochaine case dans laquelle va le rayon. 1 ou -1
+	int			step_j; // la prochaine case dans laquelle va le rayon. 1 ou -1
+	int			hit; // 1 si le rayon touche un mur, 0 sinon
+	int			side; // 0 si le rayon touche un mur horizontal, 1 sinon
 }	t_data;
 
 /* free.c */

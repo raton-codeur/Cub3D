@@ -1,7 +1,19 @@
-<img src="note fisheye.png" />
+# <a href="https://lodev.org/cgtutor/raycasting.html" >bon site en anglais</a>
 
-recherches sur l'algo de distance perpendiculaire ?
+# <a href="https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/" >tuto developpez.com</a>
 
-<a href="https://lodev.org/cgtutor/raycasting.html" >bon site en anglais</a>
+# pos
 
-<a href="https://guy-grave.developpez.com/tutoriels/jeux/doom-wolfenstein-raycasting/" >tuto developpez.com</a>
+<img src="pos.png">
+
+# dir_plane
+
+<img src="dir_plane.png">
+
+# pos_dir_plane
+
+<img src="pos_dir_plane.png">
+
+# ray_dir
+
+<img src="ray_dir.png">

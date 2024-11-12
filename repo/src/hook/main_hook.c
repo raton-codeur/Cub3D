@@ -72,16 +72,28 @@ int	is_wall(t_data *data, double x, double y)
 	return (data->map[get_map_i(y)][get_map_i(x)] == '1');
 }
 
+// void	draw_ray(t_data *data, double camera_x)
+// {
+// 	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
+// 	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
+// 	data->ray_x = data->pos_x;
+// 	data->ray_y = data->pos_y;
+// 	while (!is_wall(data, data->ray_x, data->ray_y))
+// 	{ 
+// 		mlx_put_pixel(data->rays, data->ray_x, data->ray_y, 0x00FF00FF);
+// 		data->ray_x += data->ray_dir_x / 10;
+// 		data->ray_y += data->ray_dir_y / 10;
+// 	}
+// }
 
-/* on veut tracer une droite à partir du player */
-void	draw_ray(t_data *data, double dir_x, double dir_y)
+void	draw_ray(t_data *data, double camera_x)
 {
-	double step_x, step_y;
-
-	step_x = dir_x / 10;
-	step_y = dir_y / 10;
-	data->x = data->pos_x;
-	data->y = data->pos_y;
+	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
+	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
+	data->delta_dist_x = fabs(1 / data->ray_dir_x);
+	data->delta_dist_y = fabs(1 / data->ray_dir_y);
+	data->ray_i = get_map_i(data->pos_x);
+	data->ray_j = get_map_i(data->pos_y);
 	while (!is_wall(data, data->x, data->y))
 	{ 
 		mlx_put_pixel(data->rays, data->x, data->y, 0x00FF00FF);
@@ -100,5 +112,9 @@ void	main_hook(void *param)
 	erase_image(data->walls);
 	check_keys(data);
 	// print_position(data);
-	draw_ray(data, data->dir_x, data->dir_y);
+	draw_ray(data, 0);
+	// double side_dist_x, side_dist_y;
+	// side_dist_x = fabs(1 / data->pos_x);
+	// side_dist_y = fabs(1 / data->pos_y);
+	// printf("side dist x : %f, side dist y : %f\n", side_dist_x, side_dist_y);
 }
