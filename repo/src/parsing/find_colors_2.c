@@ -6,11 +6,12 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:47:43 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/12 14:51:35 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:57:47 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
 static void	color_range(t_data *data)
 {
 	if (data->floor_rgb->r < 0 || data->floor_rgb->r > 255)
