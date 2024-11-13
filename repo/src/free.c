@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:24:57 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:00:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ void	perror_exit(char *s, t_data *data)
 void	mlx_perror_exit(t_data *data)
 {
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+	free_all(data);
+	exit(1);
+}
+
+void	print_error(int code)
+{
+	if (code == MALLOC)
+		ft_putstr_fd("Error\nmalloc failed\n", 2);
+}
+
+void	error_exit(int code, t_data *data)
+{
+	print_error(code);
 	free_all(data);
 	exit(1);
 }

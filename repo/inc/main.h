@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 13:55:12 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:11:05 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@
 # define ANGLE_START 0 // l'orientation de départ du joueur en radians
 # define ANGLE_VIEW (M_PI / 3) // l'angle de vue en radians
 # define NB_RAYS 500 // le nombre de rayons lancés
+
+enum e_error
+{
+	DEFAULT,
+	MALLOC
+};
 
 typedef struct s_color
 {
@@ -94,6 +100,8 @@ typedef struct s_data
 void		free_all(t_data *data);
 void		perror_exit(char *s, t_data *data);
 void		mlx_perror_exit(t_data *data);
+void		print_error(int code);
+void		error_exit(int code, t_data *data);
 
 /* utils.c */
 void		fill_image(mlx_image_t *image, unsigned int color);
