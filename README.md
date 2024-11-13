@@ -21,3 +21,15 @@
 # comment calculer delta dist x et delta dist y
 
 <img src="calculer_delta_dist.png"/>
+
+# pour initialiser les sides dist
+
+<img src=""/>
+
+exemple pour comprendre d'où sort le delta dist :
+
+quand le rayon avance de delta dist x, il avance de 1 case suivant x
+
+donc on a le produit en croix :
+
+<img src=""/>
