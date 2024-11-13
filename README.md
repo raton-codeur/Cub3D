@@ -4,27 +4,27 @@
 
 # pos
 
-<img src="pos.png">
+<img src="schémas/pos.png">
 
-# dir_plane
+# dir et plane
 
-<img src="dir_plane.png">
+<img src="schémas/dir_plane.png">
 
-# pos_dir_plane
+# pos + dir + plane
 
-<img src="pos_dir_plane.png">
+<img src="schémas/pos_dir_plane.png">
 
 # ray_dir
 
-<img src="ray_dir.png">
+<img src="schémas/ray_dir.png">
 
 # comment calculer delta dist x et delta dist y
 
-<img src="calculer_delta_dist.png"/>
+<img src="schémas/calculer_delta_dist.png"/>
 
 # pour initialiser les sides dist
 
-<img src="pour_side_dist.png"/>
+<img src="schémas/pour_side_dist.png"/>
 
 exemple pour comprendre d'où sort le delta dist :
 
@@ -32,4 +32,8 @@ quand le rayon avance de delta dist x, il avance de 1 case suivant x
 
 donc on a le produit en croix :
 
-<img src="produit_croix.png"/>
+<img src="schémas/produit_croix.png"/>
+
+# perp wall dist
+
+<img src="schémas/perp_wall_dist.png" />

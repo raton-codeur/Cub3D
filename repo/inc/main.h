@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/13 19:09:49 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/13 22:18:52 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define W_WIDTH 3500 // la largeur de la fenêtre
-# define W_HEIGHT 1500 // hauteur de la fenêtre
+# define W_WIDTH 2500 // 3500 // la largeur de la fenêtre
+# define W_HEIGHT 1500 // 1500 // hauteur de la fenêtre
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
@@ -74,33 +74,38 @@ typedef struct s_data
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
 	
-	double		pos_x; // coordonnées horizontale du joueur
-	double		pos_y; // coordonnées verticale du joueur
+	// (voir schéma)
+	double		pos_x; // coordonnée horizontale du joueur
+	double		pos_y; // coordonnée verticale du joueur
 	double		dir_x; // vecteur de direction où regarde le joueur
 	double		dir_y; 
 	double		plane_x; // vecteur du plan de la caméra. toujours perpendiculaire à dir
 	double		plane_y;
 	
-	// dda
+	// dda :
 
-	// constant pour un rayon
-	double		ray_dir_x; // vecteur de direction du rayon qu'on lance depuis le joueur
+	// constant pour un rayon :
+	double 		camera_x; // pour calculer ray_dir 
+	double		ray_dir_x; // vecteur de direction du rayon qu'on lance depuis le joueur (voir schéma)
 	double		ray_dir_y;
-	int			step_i; // 1 si ray_dir_x est positif, -1 sinon. ça donne le sens de direction du rayon quand il doit avancer horizontalement
-	int			step_j; // 1 si ray_dir_y est positif, -1 sinon. ça donne le sens de direction du rayon quand il doit avancer verticalement
-	double		delta_dist_x; // la longueur du rayon entre deux cases horizontales 
-	double		delta_dist_y; // la longueur du rayon entre deux cases verticales
+	int			step_i; // 1 si ray_dir_x est positif, -1 sinon. ça donne le sens de direction du rayon quand il doit se déplacer horizontalement
+	int			step_j; // pareil que step i mais pour le déplacement vertical
+	double		delta_dist_x; // la longueur du rayon entre deux cases horizontales (à un facteur près car c'est le ratio avec delta_dist y qui compte. ce facteur est la longueur de ray_dir)
+	double		delta_dist_y; // pareil que delta_dist_x mais pour les cases verticales
 
 	// variable 
-	int			i; // coordonnée horizontale
-	int			j; // coordonnée verticale
-	double		side_dist_x; // initialement, c'est la longueur du rayon entre le joueur et le mur horizontal le plus proche (à un facteur près, car c'est le ratio avec side dist y qui compte). si side_dist_x < side_dist_y, le rayon doit avancer horizontalement (selon step i). on l'incrémente alors de delta_dist_x
-	double		side_dist_y; // initialement, c'est la longueur du rayon entre le joueur et le mur vertical le plus proche (à un facteur près, car c'est le ratio avec side dist x qui compte). si side_dist_x > side_dist_y, le rayon doit avancer verticalement (selon step j). on l'incrémente alors de delta_dist_y
+	int			i; // coordonnée horizontale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_x
+	int			j; // coordonnée verticale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_y
+	double		side_dist_x; // initialement, c'est la longueur du rayon entre le joueur et le mur horizontal le plus proche (toujours à un facteur près, car c'est le ratio avec side dist y qui compte. ce facteur est ray_dir). à chaque tour, si side_dist_x < side_dist_y, on sait que le rayon doit avancer horizontalement (selon step i). on incrémente alors side_dist_x de delta_dist_x
+	double		side_dist_y; // pareil que side_dist_x mais pour les murs verticaux
 
 	// fin de boucle 
-	int			hit; // 0 de base. passe à 1 quand on trouve un mur
+	int			hit; // 0 de base. passe à 1 quand on tombe sur un mur
 	int			side; // 0 si le rayon a touché un mur horizontal, 1 si le rayon a touché un mur vertical
-	double		perp_wall_dist; // pour calculer la longueur du rayon...
+	double		perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
+	int			line_height; // la hauteur de la ligne à dessiner sur l'écran
+	int			draw_start; // la coordonnée en y du point de départ de la ligne à dessiner sur l'écran
+	int			draw_end; // la coordonnée en y du point d'arrivée de la ligne à dessiner sur l'écran
 }	t_data;
 
 /* free.c */

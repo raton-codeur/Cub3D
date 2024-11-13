@@ -83,34 +83,24 @@ void	draw_ray_basique(t_data *data, double camera_x)
 	}
 }
 
-void	draw_ray_dda(t_data *data, double camera_x)
+void draw_line(t_data *data, int x)
 {
-	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
-	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
-	data->delta_dist_x = fabs(1 / data->ray_dir_x);
-	data->delta_dist_y = fabs(1 / data->ray_dir_y);
-	data->i = (int)data->pos_x;
-	data->j = (int)data->pos_y;
-	if (data->ray_dir_x < 0)
+	data->draw_start = (data->walls->height - data->line_height) / 2;
+	if (data->draw_start < 0)
+		data->draw_start = 0;
+	data->draw_end = data->draw_start + data->line_height;
+	if (data->draw_end >= (int)data->walls->height)
+		data->draw_end = data->walls->height - 1;
+	int y = data->draw_start;
+	while (y < data->draw_end)
 	{
-		data->step_i = -1;
-		data->side_dist_x = (data->pos_x - data->i) * data->delta_dist_x;
+		mlx_put_pixel(data->walls, x, y, 0x00FF00FF);
+		y++;
 	}
-	else
-	{
-		data->step_i = 1;
-		data->side_dist_x = (data->i + 1.0 - data->pos_x) * data->delta_dist_x;
-	}
-	if (data->ray_dir_y < 0)
-	{
-		data->step_j = -1;
-		data->side_dist_y = (data->pos_y - data->j) * data->delta_dist_y;
-	}
-	else
-	{
-		data->step_j = 1;
-		data->side_dist_y = (data->j + 1.0 - data->pos_y) * data->delta_dist_y;
-	}
+}
+
+void	do_dda(t_data *data)
+{
 	data->hit = 0;
 	while (data->hit == 0)
 	{
@@ -129,7 +119,14 @@ void	draw_ray_dda(t_data *data, double camera_x)
 		if (data->map[data->i][data->j] == '1')
 			data->hit = 1;
 	}
-	printf("mur touché en i = %d, j = %d\n", data->i, data->j);
+	// printf("mur touché en i = %d, j = %d\n", data->i, data->j);
+	if (data->side == 0)
+		data->perp_wall_dist = data->side_dist_x - data->delta_dist_x;
+	else
+		data->perp_wall_dist = data->side_dist_y - data->delta_dist_y;
+	// printf("distance perpendiculaire = %f\n", data->perp_wall_dist);
+	data->line_height = W_HEIGHT / data->perp_wall_dist;
+	// printf("hauteur du mur = %d\n", data->line_height);
 }
 
 void	main_hook(void *param)
@@ -142,5 +139,36 @@ void	main_hook(void *param)
 	check_keys(data);
 	// print_position(data);
 	draw_ray_basique(data, 0);
-	draw_ray_dda(data, 0);
+	for (int x = 0; x < (int)data->walls->width; x++)
+	{
+		data->i = (int)data->pos_x;
+		data->j = (int)data->pos_y;
+		data->camera_x = 2 * x / (double)data->walls->width - 1;
+		data->ray_dir_x = data->dir_x + data->plane_x * data->camera_x;
+		data->ray_dir_y = data->dir_y + data->plane_y * data->camera_x;
+		data->delta_dist_x = fabs(1 / data->ray_dir_x);
+		data->delta_dist_y = fabs(1 / data->ray_dir_y);
+		if (data->ray_dir_x < 0)
+		{
+			data->step_i = -1;
+			data->side_dist_x = (data->pos_x - data->i) * data->delta_dist_x;
+		}
+		else
+		{
+			data->step_i = 1;
+			data->side_dist_x = (data->i + 1.0 - data->pos_x) * data->delta_dist_x;
+		}
+		if (data->ray_dir_y < 0)
+		{
+			data->step_j = -1;
+			data->side_dist_y = (data->pos_y - data->j) * data->delta_dist_y;
+		}
+		else
+		{
+			data->step_j = 1;
+			data->side_dist_y = (data->j + 1.0 - data->pos_y) * data->delta_dist_y;
+		}
+		do_dda(data);
+		draw_line(data, x);
+	}
 }
