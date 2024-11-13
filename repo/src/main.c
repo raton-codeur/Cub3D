@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/13 16:47:09 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/13 16:49:56 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	main(int argc, char **argv)
 	ft_memset(&data, 0, sizeof(t_data));
 	parse_map(&data, argc, argv);
 	print_map(&data);
-	reverse_map(&data);
 	init_mlx(&data);
+	reverse_map(&data);
 	mlx_key_hook(data.mlx, esc_hook, &data);
 	mlx_loop_hook(data.mlx, main_hook, &data);
 	mlx_loop(data.mlx);

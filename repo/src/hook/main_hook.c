@@ -64,7 +64,7 @@ void print_position(t_data *data)
 
 int	is_wall(t_data *data, double x, double y)
 {
-	return (data->map[(int)y][(int)x] == '1');
+	return (data->map[(int)x][(int)y] == '1');
 }
 
 void	draw_ray_basique(t_data *data, double camera_x)
@@ -87,31 +87,41 @@ void	draw_ray_dda(t_data *data, double camera_x)
 	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
 	data->delta_dist_x = fabs(1 / data->ray_dir_x);
 	data->delta_dist_y = fabs(1 / data->ray_dir_y);
-	data->step_j = (data->ray_dir_x < 0) ? -1 : 1;
-	data->step_i = (data->ray_dir_y < 0) ? -1 : 1;
+	data->i = (int)data->pos_x;
+	data->j = (int)data->pos_y;
 	if (data->ray_dir_x < 0)
-		data->side_dist_x = (data->pos_x - data->j) * data->delta_dist_x;
+	{
+		data->step_i = -1;
+		data->side_dist_x = (data->pos_x - data->i) * data->delta_dist_x;
+	}
 	else
-		data->side_dist_x = (data->j + 1.0 - data->pos_x) * data->delta_dist_x;
+	{
+		data->step_i = 1;
+		data->side_dist_x = (data->i + 1.0 - data->pos_x) * data->delta_dist_x;
+	}
 	if (data->ray_dir_y < 0)
-		data->side_dist_y = (data->pos_y - data->i) * data->delta_dist_y;
+	{
+		data->step_j = -1;
+		data->side_dist_y = (data->pos_y - data->j) * data->delta_dist_y;
+	}
 	else
-		data->side_dist_y = (data->i + 1.0 - data->pos_y) * data->delta_dist_y;
-	data->i = (int)data->pos_y;
-	data->j = (int)data->pos_x;
+	{
+		data->step_j = 1;
+		data->side_dist_y = (data->j + 1.0 - data->pos_y) * data->delta_dist_y;
+	}
 	data->hit = 0;
-	while (!data->hit)
+	while (data->hit == 0)
 	{
 		if (data->side_dist_x < data->side_dist_y)
 		{
 			data->side_dist_x += data->delta_dist_x;
-			data->j += data->step_j;
+			data->i += data->step_i;
 			data->side = 0;
 		}
 		else
 		{
 			data->side_dist_y += data->delta_dist_y;
-			data->i += data->step_i;
+			data->j += data->step_j;
 			data->side = 1;
 		}
 		if (data->map[data->i][data->j] == '1')
