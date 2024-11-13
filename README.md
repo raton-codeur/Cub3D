@@ -24,7 +24,7 @@
 
 # pour initialiser les sides dist
 
-<img src=""/>
+<img src="pour_side_dist.png"/>
 
 exemple pour comprendre d'où sort le delta dist :
 
@@ -32,4 +32,4 @@ quand le rayon avance de delta dist x, il avance de 1 case suivant x
 
 donc on a le produit en croix :
 
-<img src=""/>
+<img src="produit_croix.png"/>
