@@ -17,3 +17,6 @@
 # ray_dir
 
 <img src="ray_dir.png">
+
+# comment calculer delta dist x et delta dist y
+

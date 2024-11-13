@@ -120,7 +120,6 @@ void	draw_ray_dda(t_data *data, double camera_x)
 	printf("mur touché en i = %d, j = %d\n", data->i, data->j);
 }
 
-
 void	main_hook(void *param)
 {
 	t_data	*data;
@@ -129,7 +128,7 @@ void	main_hook(void *param)
 	erase_image(data->rays);
 	erase_image(data->walls);
 	check_keys(data);
-	print_position(data);
+	// print_position(data);
 	draw_ray_basique(data, 0);
 	draw_ray_dda(data, 0);
 }
