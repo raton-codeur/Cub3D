@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/13 16:11:05 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:09:49 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,34 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
+	
 	double		pos_x; // coordonnées horizontale du joueur
 	double		pos_y; // coordonnées verticale du joueur
 	double		dir_x; // vecteur de direction où regarde le joueur
 	double		dir_y; 
-	double		plane_x; // vecteur du plan de la caméra
+	double		plane_x; // vecteur du plan de la caméra. toujours perpendiculaire à dir
 	double		plane_y;
-	double		x; // coordonnée pour le dda
-	double		y; // coordonnée pour le dda
-	int			i; // coordonnée pour le dda
-	int			j; // coordonnée pour le dda
-	double		ray_dir_x; // vecteur de direction du rayon
+	
+	// dda
+
+	// constant pour un rayon
+	double		ray_dir_x; // vecteur de direction du rayon qu'on lance depuis le joueur
 	double		ray_dir_y;
+	int			step_i; // 1 si ray_dir_x est positif, -1 sinon. ça donne le sens de direction du rayon quand il doit avancer horizontalement
+	int			step_j; // 1 si ray_dir_y est positif, -1 sinon. ça donne le sens de direction du rayon quand il doit avancer verticalement
 	double		delta_dist_x; // la longueur du rayon entre deux cases horizontales 
 	double		delta_dist_y; // la longueur du rayon entre deux cases verticales
-	double		side_dist_x; // longueur du rayon entre la position du joueur et la prochaine case horizontale
-	double		side_dist_y; // longueur du rayon entre la position du joueur et la prochaine case verticale
-	double		perp_wall_dist; // pour calculer la longueur du rayon
-	int			step_i; // la prochaine case dans laquelle va le rayon. 1 ou -1
-	int			step_j; // la prochaine case dans laquelle va le rayon. 1 ou -1
-	int			hit; // 1 si le rayon touche un mur, 0 sinon
-	int			side; // 0 si le rayon touche un mur horizontal, 1 sinon
+
+	// variable 
+	int			i; // coordonnée horizontale
+	int			j; // coordonnée verticale
+	double		side_dist_x; // initialement, c'est la longueur du rayon entre le joueur et le mur horizontal le plus proche (à un facteur près, car c'est le ratio avec side dist y qui compte). si side_dist_x < side_dist_y, le rayon doit avancer horizontalement (selon step i). on l'incrémente alors de delta_dist_x
+	double		side_dist_y; // initialement, c'est la longueur du rayon entre le joueur et le mur vertical le plus proche (à un facteur près, car c'est le ratio avec side dist x qui compte). si side_dist_x > side_dist_y, le rayon doit avancer verticalement (selon step j). on l'incrémente alors de delta_dist_y
+
+	// fin de boucle 
+	int			hit; // 0 de base. passe à 1 quand on trouve un mur
+	int			side; // 0 si le rayon a touché un mur horizontal, 1 si le rayon a touché un mur vertical
+	double		perp_wall_dist; // pour calculer la longueur du rayon...
 }	t_data;
 
 /* free.c */

@@ -69,15 +69,17 @@ int	is_wall(t_data *data, double x, double y)
 
 void	draw_ray_basique(t_data *data, double camera_x)
 {
+	double x, y;
+
 	data->ray_dir_x = data->dir_x + data->plane_x * camera_x;
 	data->ray_dir_y = data->dir_y + data->plane_y * camera_x;
-	data->x = data->pos_x;
-	data->y = data->pos_y;
-	while (!is_wall(data, data->x, data->y))
+	x = data->pos_x;
+	y = data->pos_y;
+	while (!is_wall(data, x, y))
 	{
-		mlx_put_pixel(data->rays, data->x * SIZE_BOX, data->y * SIZE_BOX, 0x00FF00FF);
-		data->x += data->ray_dir_x * 0.01;
-		data->y += data->ray_dir_y * 0.01;
+		mlx_put_pixel(data->rays, x * SIZE_BOX, y * SIZE_BOX, 0x00FF00FF);
+		x += data->ray_dir_x * 0.01;
+		y += data->ray_dir_y * 0.01;
 	}
 }
 
