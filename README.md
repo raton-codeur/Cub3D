@@ -20,3 +20,4 @@
 
 # comment calculer delta dist x et delta dist y
 
+<img src="calculer_delta_dist.png"/>
