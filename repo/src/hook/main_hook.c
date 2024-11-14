@@ -90,7 +90,7 @@ void draw_wall_line(t_data *data)
 	data->y = data->y_start;
 	while (data->y < data->y_end)
 	{
-		mlx_put_pixel(data->walls, data->x, data->y, 0x00FF00FF);
+		mlx_put_pixel(data->walls, data->x, data->y, data->color);
 		data->y++;
 	}
 }
@@ -158,6 +158,14 @@ void	main_hook(void *param)
 			if (data->map[data->i][data->j] == '1')
 				data->hit = 1;
 		}
+		if (data->side == 0 && data->step_i == -1)
+			data->color = 0xFF0000FF;
+		else if (data->side == 0 && data->step_i == 1)
+			data->color = 0x00FF00FF;
+		else if (data->side == 1 && data->step_j == -1)
+			data->color = 0x0000FFFF;
+		else
+			data->color = 0xFFFF00FF;
 		// printf("mur touché en i = %d, j = %d\n", data->i, data->j);
 		if (data->side == 0)
 			data->perp_wall_dist = data->side_dist_x - data->delta_dist_x;

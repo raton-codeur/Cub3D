@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/14 08:52:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/14 10:03:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 # define W_WIDTH 3500 // la largeur de la fenêtre
 # define W_HEIGHT 1500 // hauteur de la fenêtre
-# define CEIL_COLOR 0x409ec9FF
-# define FLOOR_COLOR 0x8B4513FF
+# define CEIL_COLOR 0x87CEEBFF
+# define FLOOR_COLOR 0x707070FF
 # define PATH_MAP "maps/simple.cub"
 # define SIZE_BOX 50.0 // la largeur d'une case de la minimap en pixels
 # define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
@@ -73,6 +73,7 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
+	mlx_image_t	*wall_img;
 	int			map_width;
 	int			map_height;
 	
@@ -110,6 +111,7 @@ typedef struct s_data
 	uint32_t	y; // pour dessiner la ligne de mur
 	uint32_t	y_start; // la coordonnée du point de départ de la ligne à dessiner sur l'écran
 	uint32_t	y_end; // la coordonnée du point d'arrivée de la ligne à dessiner sur l'écran
+	uint32_t	color; // la couleur de la ligne de mur
 }	t_data;
 
 /* free.c */
