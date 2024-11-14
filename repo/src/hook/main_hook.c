@@ -101,13 +101,13 @@ void	main_hook(void *param)
 
 	data = param;
 	draw_ray(data, -1, 0);
-	draw_ray(data, 0, 0);
+	// draw_ray(data, 0, 0);
 	draw_ray(data, 1, 0);
 	erase_image(data->walls);
 	check_keys(data);
 	// print_position(data);
 	draw_ray(data, -1, 0x00FF00FF);
-	draw_ray(data, 0, 0x00FF00FF);
+	// draw_ray(data, 0, 0x00FF00FF);
 	draw_ray(data, 1, 0x00FF00FF);
 	data->x = 0;
 	while (data->x < data->walls->width)
@@ -163,14 +163,13 @@ void	main_hook(void *param)
 			data->perp_wall_dist = data->side_dist_x - data->delta_dist_x;
 		else
 			data->perp_wall_dist = data->side_dist_y - data->delta_dist_y;
-		printf("distance : %f\n", data->perp_wall_dist);
-		// data->line_height = 1600 - 1600 / 20 * data->perp_wall_dist;
+		// printf("distance : %f\n", data->perp_wall_dist);
 		data->line_height = W_HEIGHT / data->perp_wall_dist;
 		if (data->line_height < 0)
 			data->line_height = 0;
 		if (data->line_height > W_HEIGHT)
 			data->line_height = W_HEIGHT;
-		printf("hauteur du mur = %d\n", data->line_height);
+		// printf("hauteur du mur = %d\n", data->line_height);
 		draw_wall_line(data);
 		data->x++;
 	}
