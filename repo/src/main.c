@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/13 22:16:44 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/14 08:20:05 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,20 @@
 void reverse_map(t_data *data)
 {
 	int i, j;
-	int height, width;
 	char **new_map;
 	
 	j = 0;
 	while (data->map[0][j])
 		j++;
-	width = j;
-	height = array_size((void **)data->map);
-	new_map = ft_calloc(width + 1, sizeof(char *));
+	data->map_width = j;
+	data->map_height = array_size((void **)data->map);
+	new_map = ft_calloc(data->map_width + 1, sizeof(char *));
 	if (new_map == NULL)
 		return (error_exit(MALLOC, data));
 	j = 0;
-	while (j < width)
+	while (j < data->map_width)
 	{
-		new_map[j] = ft_calloc(height + 1, sizeof(char));
+		new_map[j] = ft_calloc(data->map_height + 1, sizeof(char));
 		if (new_map[j] == NULL)
 			return (error_exit(MALLOC, data));
 		j++;

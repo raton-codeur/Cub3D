@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/13 22:18:52 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/14 08:52:03 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define W_WIDTH 2500 // 3500 // la largeur de la fenêtre
-# define W_HEIGHT 1500 // 1500 // hauteur de la fenêtre
+# define W_WIDTH 3500 // la largeur de la fenêtre
+# define W_HEIGHT 1500 // hauteur de la fenêtre
 # define CEIL_COLOR 0x409ec9FF
 # define FLOOR_COLOR 0x8B4513FF
 # define PATH_MAP "maps/simple.cub"
@@ -73,6 +73,8 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
+	int			map_width;
+	int			map_height;
 	
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur
@@ -85,7 +87,8 @@ typedef struct s_data
 	// dda :
 
 	// constant pour un rayon :
-	double 		camera_x; // pour calculer ray_dir 
+	uint32_t	x; // l'indice de la colonne de pixels de l'écran où on dessine la ligne de mur
+	double 		camera_x; // de -1 à 1 selon x. c'est pour calculer ray_dir à partir de dir et plane
 	double		ray_dir_x; // vecteur de direction du rayon qu'on lance depuis le joueur (voir schéma)
 	double		ray_dir_y;
 	int			step_i; // 1 si ray_dir_x est positif, -1 sinon. ça donne le sens de direction du rayon quand il doit se déplacer horizontalement
@@ -103,9 +106,10 @@ typedef struct s_data
 	int			hit; // 0 de base. passe à 1 quand on tombe sur un mur
 	int			side; // 0 si le rayon a touché un mur horizontal, 1 si le rayon a touché un mur vertical
 	double		perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
-	int			line_height; // la hauteur de la ligne à dessiner sur l'écran
-	int			draw_start; // la coordonnée en y du point de départ de la ligne à dessiner sur l'écran
-	int			draw_end; // la coordonnée en y du point d'arrivée de la ligne à dessiner sur l'écran
+	int			line_height; // la hauteur de la ligne de mur à dessiner sur l'écran
+	uint32_t	y; // pour dessiner la ligne de mur
+	uint32_t	y_start; // la coordonnée du point de départ de la ligne à dessiner sur l'écran
+	uint32_t	y_end; // la coordonnée du point d'arrivée de la ligne à dessiner sur l'écran
 }	t_data;
 
 /* free.c */

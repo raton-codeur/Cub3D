@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:17:43 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 13:18:24 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/14 09:01:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	init_player(t_data *data)
 		return (mlx_delete_image(data->mlx, data->player), mlx_perror_exit(data));
 	data->dir_x = 0;
 	data->dir_y = -1;
-	data->plane_x = 0;
-	data->plane_y = 0.66;
+	data->plane_x = 0.66;
+	data->plane_y = 0;
 }
