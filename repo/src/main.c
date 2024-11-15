@@ -6,13 +6,13 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 10:25:21 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/15 11:12:43 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "init_mlx.h"
-#include "hook.h"
+#include "raycasting.h"
 
 void reverse_map(t_data *data)
 {
@@ -55,7 +55,7 @@ void print_map(t_data *data)
 	int i;
 	int j;
 
-	printf("--- map ---\n      ");
+	printf("      ");
 	i = 0;
 	j = 0;
 	while (data->map[i][j])
@@ -116,10 +116,10 @@ int	main(int argc, char **argv)
 	data.j_start = J_START;
 	data.dir_start = 'S';
 	init_dir(&data);
-	// print_map(&data);
+	print_map(&data);
 	reverse_map(&data);
 	init_mlx(&data);
-	mlx_key_hook(data.mlx, other_keys_hook, &data);
+	mlx_key_hook(data.mlx, key_hook, &data);
 	mlx_loop_hook(data.mlx, main_hook, &data);
 	mlx_loop(data.mlx);
 	free_all(&data);

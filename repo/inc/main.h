@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 10:00:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/15 10:46:44 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ void		mlx_perror_exit(t_data *data);
 void		print_error(int code);
 void		error_exit(int code, t_data *data);
 
-/* utils.c */
-void		fill_image(mlx_image_t *image, unsigned int color);
-void		print_map(t_data *data);
+/* hook.c */
+void	key_hook(mlx_key_data_t keydata, void *param);
+void	main_hook(void *param);
 
 #endif
