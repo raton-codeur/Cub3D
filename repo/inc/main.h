@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/14 10:03:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/15 10:00:03 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define W_WIDTH 3500 // la largeur de la fenêtre
-# define W_HEIGHT 1500 // hauteur de la fenêtre
+# define W_WIDTH 2560 // 1920 // la largeur de la fenêtre
+# define W_HEIGHT 1440 // 1080 // hauteur de la fenêtre
 # define CEIL_COLOR 0x87CEEBFF
 # define FLOOR_COLOR 0x707070FF
 # define PATH_MAP "maps/simple.cub"
@@ -26,11 +26,8 @@
 # define SIZE_PLAYER (SIZE_BOX / 2) // la largeur du joueur sur la minimap en pixels
 # define STEP_MOVE 0.2 // le pas de déplacement du joueur en pixels
 # define STEP_VIEW 0.05 // le pas de changement de l'angle de vue en radians
-# define I_START 1 // l'indice de la ligne de map de départ du joueur
-# define J_START 2 // l'indice de la colonne de map de départ du joueur
-# define ANGLE_START 0 // l'orientation de départ du joueur en radians
-# define ANGLE_VIEW (M_PI / 3) // l'angle de vue en radians
-# define NB_RAYS 500 // le nombre de rayons lancés
+# define I_START 2
+# define J_START 3
 
 enum e_error
 {
@@ -58,14 +55,15 @@ typedef struct s_data
 	int			west_texture_line;
 	char		*east_texture;
 	int			east_texture_line;
-	char		*floor_color;
+	char		*floor_color_str;
 	int			floor_color_line;
 	t_color		*floor_rgb;
-	char		*ceil_color;
+	char		*ceil_color_str;
 	int			ceil_color_line;
 	t_color		*ceil_rgb;
 	int			map_size;
 	int			map_line;
+
 	char		**map;
 	mlx_t		*mlx;
 	mlx_image_t	*background;
@@ -73,10 +71,17 @@ typedef struct s_data
 	mlx_image_t	*player;
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
-	mlx_image_t	*wall_img;
+	mlx_image_t	*wall;
 	int			map_width;
 	int			map_height;
-	
+	int			show_map;
+	uint32_t	ceil_color;
+	uint32_t	floor_color;
+	int			box_size;
+	int			i_start;
+	int			j_start;
+	char		dir_start;
+
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur
 	double		pos_y; // coordonnée verticale du joueur

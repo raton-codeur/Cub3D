@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:16:37 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:30:08 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/15 10:22:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "main.h"
 
-/* esc_hook.c */
-void	esc_hook(mlx_key_data_t keydata, void *param);
+/* other_keys_hook.c */
+void	other_keys_hook(mlx_key_data_t keydata, void *param);
 
 /* main_hook.c */
 void	main_hook(void *param);

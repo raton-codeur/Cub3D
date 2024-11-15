@@ -6,85 +6,66 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 10:09:16 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/15 09:38:25 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_mlx.h"
-
-static int	get_nb_columns(char **map)
-{
-	int	i;
-	size_t	max;
-
-	if (!map)
-		return (0);
-	i = 0;
-	max = 0;
-	while (map[i])
-	{
-		if (ft_strlen(map[i]) > max)
-			max = ft_strlen(map[i]);
-		i++;
-	}
-	return (max);
-}
 
 static void	print_box(t_data *data, int x_start, int y_start, uint32_t color)
 {
 	int	x;
 	int	y;
 
-	y = 0;
-	while (y < SIZE_BOX)
+	x = 0;
+	while (x < data->box_size)
 	{
-		x = 0;
-		while (x < SIZE_BOX)
+		y = 0;
+		while (y < data->box_size)
 		{
-			if (y == SIZE_BOX - 1 || x == SIZE_BOX - 1)
+			if (x == 0 || x == SIZE_BOX - 1 || y == 0 || y == data->box_size - 1)
 				mlx_put_pixel(data->map_img, x_start + x, y_start + y, 0x000000FF);
 			else
 				mlx_put_pixel(data->map_img, x_start + x, y_start + y, color);
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 }
 
 void	display_map(t_data *data)
 {
-	int			x;
-	int			y;
+	int			i;
+	int			j;
 	uint32_t	color;
 
-	y = 0;
-	while (data->map[y])
+	i = 0;
+	while (i < data->map_width)
 	{
-		x = 0;
-		while (x < (int)ft_strlen(data->map[y]))
+		j = 0;
+		while (j < data->map_height)
 		{
-			if (data->map[y][x] == '1')
+			if (data->map[i][j] == '1')
 				color = 0x000000FF;
 			else
 				color = 0xFFFFFFFF;
-			print_box(data, x * SIZE_BOX, y * SIZE_BOX, color);
-			x++;
+			print_box(data, i * data->box_size, j * data->box_size, color);
+			j++;
 		}
-		y++;
+		i++;
 	}
 }
 
 void	init_map(t_data *data)
 {
-	int	nb_rows;
-	int	nb_columns;
-
-	nb_rows = data->map_size;
-	nb_columns = get_nb_columns(data->map);
-	data->map_img = mlx_new_image(data->mlx, nb_columns * SIZE_BOX, nb_rows * SIZE_BOX);
+	data->box_size = W_WIDTH / 3 / data->map_width;
+	if (data->box_size * 3 > W_HEIGHT / 2)
+		data->box_size = W_HEIGHT / 3 / data->map_height;
+	data->map_img = mlx_new_image(data->mlx, data->map_width * data->box_size, data->map_height * data->box_size);
 	if (data->map_img == NULL)
 		return (mlx_perror_exit(data));
 	if (mlx_image_to_window(data->mlx, data->map_img, 0, 0) == -1)
 		return (mlx_delete_image(data->mlx, data->map_img), mlx_perror_exit(data));
 	display_map(data);
+	data->show_map = 1;
 }

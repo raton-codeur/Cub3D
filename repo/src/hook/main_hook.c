@@ -53,8 +53,8 @@ void	check_keys(t_data *data)
 		data->plane_x = data->plane_x * cos(-STEP_VIEW) - data->plane_y * sin(-STEP_VIEW);
 		data->plane_y = data->plane_x * sin(-STEP_VIEW) + data->plane_y * cos(-STEP_VIEW);
 	}
-	data->player->instances[0].x = data->pos_x * SIZE_BOX - SIZE_PLAYER / 2;
-	data->player->instances[0].y = data->pos_y * SIZE_BOX - SIZE_PLAYER / 2;
+	data->player->instances[0].x = data->pos_x * data->box_size - data->player->width / 2;
+	data->player->instances[0].y = data->pos_y * data->box_size - data->player->width / 2;
 }
 
 void print_position(t_data *data)
@@ -77,7 +77,7 @@ void	draw_ray(t_data *data, double camera_x, uint32_t color)
 	y = data->pos_y;
 	while (!is_wall(data, x, y))
 	{
-		mlx_put_pixel(data->rays, x * SIZE_BOX, y * SIZE_BOX, color);
+		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, color);
 		x += data->ray_dir_x * 0.01;
 		y += data->ray_dir_y * 0.01;
 	}
@@ -182,4 +182,3 @@ void	main_hook(void *param)
 		data->x++;
 	}
 }
- 

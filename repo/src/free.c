@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/14 09:55:53 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/15 10:00:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	free_all(t_data *data)
 	free(data->south_texture);
 	free(data->west_texture);
 	free(data->east_texture);
-	free(data->floor_color);
-	free(data->ceil_color);
+	free(data->floor_color_str);
+	free(data->ceil_color_str);
 	free(data->floor_rgb);
 	free(data->ceil_rgb);
 	if (data->mlx)
