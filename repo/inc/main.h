@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/16 14:01:46 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/16 14:35:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ typedef struct s_data
 	// variable 
 	int			i; // coordonnée horizontale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_x
 	int			j; // coordonnée verticale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_y
-	double		side_dist_x; // initialement, c'est la longueur du rayon entre le joueur et le mur horizontal le plus proche (toujours à un facteur près, car c'est le ratio avec side dist y qui compte. ce facteur est ray_dir). à chaque tour, si side_dist_x < side_dist_y, on sait que le rayon doit avancer horizontalement (selon step i). on incrémente alors side_dist_x de delta_dist_x
+	double		side_dist_x; // initialement, c'est la longueur du rayon entre le joueur et le mur horizontal le plus proche (toujours à un facteur près, car c'est le ratio avec side dist y qui compte. ce facteur est ray_dir). à chaque tour, si side_dist_x < side_dist_y, le rayon doit avancer horizontalement (selon step i). on incrémente alors side_dist_x de delta_dist_x
 	double		side_dist_y; // pareil que side_dist_x mais pour les murs verticaux
 
 	// fin de boucle 
