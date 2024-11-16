@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/16 14:35:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/16 18:12:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,15 @@ void		error_exit(int code, t_data *data);
 /* hook.c */
 void		key_hook(mlx_key_data_t keydata, void *param);
 void		main_hook(void *param);
+
+/* move.c */
+void		move_up(t_data *data);
+void		move_down(t_data *data);
+void		move_left(t_data *data);
+void		move_right(t_data *data);
+
+/* rotate.c */
+void		rotate_right(t_data *data);
+void		rotate_left(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/16 17:13:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/16 18:14:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,93 +31,29 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 }
 
-void	erase_image(mlx_image_t *image)
+static void	erase_image(mlx_image_t *image)
 {
 	ft_bzero(image->pixels, image->width * image->height * sizeof(uint32_t));
 }
 
-void	check_movement_keys(t_data *data)
+static void	check_movement_keys(t_data *data)
 {
-	double	new;
-
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
-	{
-		new = data->pos_x + STEP_MOVE * data->dir_x;
-		if (data->map[(int)(new)][(int)(data->pos_y)] != '1')
-			data->pos_x = new;
-		data->player->instances[0].x
-			= data->pos_x * data->box_size - data->player->width / 2;
-		new = data->pos_y + STEP_MOVE * data->dir_y;
-		if (data->map[(int)(data->pos_x)][(int)(new)] != '1')
-			data->pos_y = new;
-		data->player->instances[0].y
-			= data->pos_y * data->box_size - data->player->width / 2;
-	}
+		move_up(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
-	{
-		new = data->pos_x - STEP_MOVE * data->dir_x;
-		if (data->map[(int)(new)][(int)(data->pos_y)] != '1')
-			data->pos_x = new;
-		data->player->instances[0].x
-			= data->pos_x * data->box_size - data->player->width / 2;
-		new = data->pos_y - STEP_MOVE * data->dir_y;
-		if (data->map[(int)(data->pos_x)][(int)(new)] != '1')
-			data->pos_y = new;
-		data->player->instances[0].y
-			= data->pos_y * data->box_size - data->player->width / 2;
-	}
+		move_down(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
-	{
-		new = data->pos_x + STEP_MOVE * data->dir_y;
-		if (data->map[(int)(new)][(int)(data->pos_y)] != '1')
-			data->pos_x = new;
-		data->player->instances[0].x
-			= data->pos_x * data->box_size - data->player->width / 2;
-		new = data->pos_y - STEP_MOVE * data->dir_x;
-		if (data->map[(int)(data->pos_x)][(int)(new)] != '1')
-			data->pos_y = new;
-		data->player->instances[0].y
-			= data->pos_y * data->box_size - data->player->width / 2;
-	}
+		move_left(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
-	{
-		new = data->pos_x - STEP_MOVE * data->dir_y;
-		if (data->map[(int)(new)][(int)(data->pos_y)] != '1')
-			data->pos_x = new;
-		data->player->instances[0].x
-			= data->pos_x * data->box_size - data->player->width / 2;
-		new = data->pos_y + STEP_MOVE * data->dir_x;
-		if (data->map[(int)(data->pos_x)][(int)(new)] != '1')
-			data->pos_y = new;
-		data->player->instances[0].y
-			= data->pos_y * data->box_size - data->player->width / 2;
-	}
+		move_right(data);
 }
 
-void	check_rotation_keys(t_data *data)
+static void	check_rotation_keys(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-	{
-		data->dir_x
-			= data->dir_x * cos(STEP_VIEW) - data->dir_y * sin(STEP_VIEW);
-		data->dir_y
-			= data->dir_x * sin(STEP_VIEW) + data->dir_y * cos(STEP_VIEW);
-		data->plane_x
-			= data->plane_x * cos(STEP_VIEW) - data->plane_y * sin(STEP_VIEW);
-		data->plane_y
-			= data->plane_x * sin(STEP_VIEW) + data->plane_y * cos(STEP_VIEW);
-	}
+		rotate_right(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-	{
-		data->dir_x
-			= data->dir_x * cos(-STEP_VIEW) - data->dir_y * sin(-STEP_VIEW);
-		data->dir_y
-			= data->dir_x * sin(-STEP_VIEW) + data->dir_y * cos(-STEP_VIEW);
-		data->plane_x
-			= data->plane_x * cos(-STEP_VIEW) - data->plane_y * sin(-STEP_VIEW);
-		data->plane_y
-			= data->plane_x * sin(-STEP_VIEW) + data->plane_y * cos(-STEP_VIEW);
-	}
+		rotate_left(data);
 }
 
 void	main_hook(void *param)

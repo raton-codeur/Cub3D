@@ -6,6 +6,3 @@
 // tests sur les fichiers (perm)
 
 
-petit à petit je crois que les vecteurs de direction et du plan de caméra devient plus courts
-les déplacements sont donc plus lents
-et le FOV se réduit
