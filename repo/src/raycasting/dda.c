@@ -6,14 +6,14 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 11:14:20 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/16 14:00:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raycasting.h"
 
-void draw_wall_line(t_data *data)
+static void	draw_wall_line(t_data *data)
 {
 	data->y_start = (data->walls->height - data->line_height) / 2;
 	data->y_end = data->y_start + data->line_height;
@@ -95,5 +95,4 @@ void	dda(t_data *data)
 		draw_wall_line(data);
 		data->x++;
 	}
-
 }

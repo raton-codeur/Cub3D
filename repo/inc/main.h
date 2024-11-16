@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 10:46:44 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/16 14:01:46 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,15 @@ typedef struct s_data
 	double		pos_x; // coordonnée horizontale du joueur
 	double		pos_y; // coordonnée verticale du joueur
 	double		dir_x; // vecteur de direction où regarde le joueur
-	double		dir_y; 
+	double		dir_y;
 	double		plane_x; // vecteur du plan de la caméra. toujours perpendiculaire à dir
 	double		plane_y;
-	
+
 	// dda :
 
 	// constant pour un rayon :
 	uint32_t	x; // l'indice de la colonne de pixels de l'écran où on dessine la ligne de mur
-	double 		camera_x; // de -1 à 1 selon x. c'est pour calculer ray_dir à partir de dir et plane
+	double		camera_x; // de -1 à 1 selon x. c'est pour calculer ray_dir à partir de dir et plane
 	double		ray_dir_x; // vecteur de direction du rayon qu'on lance depuis le joueur (voir schéma)
 	double		ray_dir_y;
 	int			step_i; // 1 si ray_dir_x est positif, -1 sinon. ça donne le sens de direction du rayon quand il doit se déplacer horizontalement
@@ -127,7 +127,7 @@ void		print_error(int code);
 void		error_exit(int code, t_data *data);
 
 /* hook.c */
-void	key_hook(mlx_key_data_t keydata, void *param);
-void	main_hook(void *param);
+void		key_hook(mlx_key_data_t keydata, void *param);
+void		main_hook(void *param);
 
 #endif

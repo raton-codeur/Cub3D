@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 09:38:25 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/16 14:26:19 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ static void	print_box(t_data *data, int x_start, int y_start, uint32_t color)
 		y = 0;
 		while (y < data->box_size)
 		{
-			if (x == 0 || x == SIZE_BOX - 1 || y == 0 || y == data->box_size - 1)
-				mlx_put_pixel(data->map_img, x_start + x, y_start + y, 0x000000FF);
+			if (x == 0 || x == data->box_size - 1
+				|| y == 0 || y == data->box_size - 1)
+				mlx_put_pixel(\
+					data->map_img, x_start + x, y_start + y, 0x000000FF);
 			else
-				mlx_put_pixel(data->map_img, x_start + x, y_start + y, color);
+				mlx_put_pixel(\
+					data->map_img, x_start + x, y_start + y, color);
 			y++;
 		}
 		x++;
@@ -58,14 +61,20 @@ void	display_map(t_data *data)
 
 void	init_map(t_data *data)
 {
-	data->box_size = W_WIDTH / 3 / data->map_width;
-	if (data->box_size * 3 > W_HEIGHT / 2)
+	if (data->map_width > data->map_height)
+		data->box_size = W_WIDTH / 3 / data->map_width;
+	else
 		data->box_size = W_HEIGHT / 3 / data->map_height;
-	data->map_img = mlx_new_image(data->mlx, data->map_width * data->box_size, data->map_height * data->box_size);
+	data->map_img = mlx_new_image(data->mlx, \
+		data->map_width * data->box_size, \
+		data->map_height * data->box_size);
 	if (data->map_img == NULL)
 		return (mlx_perror_exit(data));
 	if (mlx_image_to_window(data->mlx, data->map_img, 0, 0) == -1)
-		return (mlx_delete_image(data->mlx, data->map_img), mlx_perror_exit(data));
+	{
+		mlx_delete_image(data->mlx, data->map_img);
+		return (mlx_perror_exit(data));
+	}
 	display_map(data);
 	data->show_map = 1;
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:53:16 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 11:04:34 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/16 13:56:12 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->mlx);
 	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 	{
-		mlx_set_instance_depth(&data->map_img->instances[0], -data->map_img->instances[0].z);
-		mlx_set_instance_depth(&data->rays->instances[0], -data->rays->instances[0].z);
-		mlx_set_instance_depth(&data->player->instances[0], -data->player->instances[0].z);
+		mlx_set_instance_depth(&data->map_img->instances[0], \
+			-data->map_img->instances[0].z);
+		mlx_set_instance_depth(&data->rays->instances[0], \
+			-data->rays->instances[0].z);
+		mlx_set_instance_depth(&data->player->instances[0], \
+			-data->player->instances[0].z);
 	}
 }
 
@@ -55,25 +58,35 @@ static void	check_movement_keys(t_data *data)
 		data->pos_x -= STEP_MOVE * data->dir_y;
 		data->pos_y += STEP_MOVE * data->dir_x;
 	}
-	data->player->instances[0].x = data->pos_x * data->box_size - data->player->width / 2;
-	data->player->instances[0].y = data->pos_y * data->box_size - data->player->width / 2;
+	data->player->instances[0].x
+		= data->pos_x * data->box_size - data->player->width / 2;
+	data->player->instances[0].y
+		= data->pos_y * data->box_size - data->player->width / 2;
 }
 
 static void	check_rotation_keys(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 	{
-		data->dir_x = data->dir_x * cos(STEP_VIEW) - data->dir_y * sin(STEP_VIEW);
-		data->dir_y = data->dir_x * sin(STEP_VIEW) + data->dir_y * cos(STEP_VIEW);
-		data->plane_x = data->plane_x * cos(STEP_VIEW) - data->plane_y * sin(STEP_VIEW);
-		data->plane_y = data->plane_x * sin(STEP_VIEW) + data->plane_y * cos(STEP_VIEW);
+		data->dir_x
+			= data->dir_x * cos(STEP_VIEW) - data->dir_y * sin(STEP_VIEW);
+		data->dir_y
+			= data->dir_x * sin(STEP_VIEW) + data->dir_y * cos(STEP_VIEW);
+		data->plane_x
+			= data->plane_x * cos(STEP_VIEW) - data->plane_y * sin(STEP_VIEW);
+		data->plane_y
+			= data->plane_x * sin(STEP_VIEW) + data->plane_y * cos(STEP_VIEW);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 	{
-		data->dir_x = data->dir_x * cos(-STEP_VIEW) - data->dir_y * sin(-STEP_VIEW);
-		data->dir_y = data->dir_x * sin(-STEP_VIEW) + data->dir_y * cos(-STEP_VIEW);
-		data->plane_x = data->plane_x * cos(-STEP_VIEW) - data->plane_y * sin(-STEP_VIEW);
-		data->plane_y = data->plane_x * sin(-STEP_VIEW) + data->plane_y * cos(-STEP_VIEW);
+		data->dir_x
+			= data->dir_x * cos(-STEP_VIEW) - data->dir_y * sin(-STEP_VIEW);
+		data->dir_y
+			= data->dir_x * sin(-STEP_VIEW) + data->dir_y * cos(-STEP_VIEW);
+		data->plane_x
+			= data->plane_x * cos(-STEP_VIEW) - data->plane_y * sin(-STEP_VIEW);
+		data->plane_y
+			= data->plane_x * sin(-STEP_VIEW) + data->plane_y * cos(-STEP_VIEW);
 	}
 }
 
