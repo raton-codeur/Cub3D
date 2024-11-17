@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:12:28 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/12 13:54:35 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:02:11 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool	check_split_content(char **split)
 		while (split[i][j])
 		{
 			if (!ft_isdigit(split[i][j]) && !ft_isspace(split[i][j]))
-				return (ft_putendl_fd("Error\nInvalid color", 2), false);
+				return (false);
 			j++;
 		}
 		i++;
@@ -68,11 +68,11 @@ bool	check_split_content(char **split)
 bool	check_split_content_size(char **split)
 {
 	if (ft_strlen(split[0]) == 0 || ft_strlen(split[0]) > 3)
-		return (ft_putendl_fd("Error\nInvalid color", 2), false);
+		return (false);
 	if (ft_strlen(split[1]) == 0 || ft_strlen(split[1]) > 3)
-		return (ft_putendl_fd("Error\nInvalid color", 2), false);
+		return (false);
 	if (ft_strlen(split[2]) == 0 || ft_strlen(split[2]) > 3)
-		return (ft_putendl_fd("Error\nInvalid color", 2), false);
+		return (false);
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 14:52:04 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:36:35 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,18 @@ void		get_map_size(t_data *data);
 void		first_and_last_char(t_data *data);
 void		check_non_leading_spaces(t_data *data, int i, int j);
 void		check_map_lines(t_data *data, int i, int j);
+void		check_zero(t_data *data, int i, int j);
 
 /* check_map_2.c */
 void		check_map_chars(t_data *data);
 void		find_player(t_data *data);
+void		fill_spaces(t_data *data);
+
+/* check_map_3.c */
+void		first_and_last_line(t_data *data);
+
+/* clean_map.c */
+void		normalize_map_rows(t_data *data, int max_len);
 
 /* parsing_utils.c */
 int			skip_spaces(char *str, int i, int len);

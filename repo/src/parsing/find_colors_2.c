@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:47:43 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/12 14:57:47 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/14 13:04:03 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static bool	check_split_size(char **split)
 	while (split[i])
 		i++;
 	if (i != 3)
-		return (ft_putendl_fd("Error\nInvalid color", 2), false);
+		return (false);
 	return (true);
 }
 
@@ -69,7 +69,7 @@ static void	colors_to_rgb(t_data *data, t_color *color, char *str, char **spt)
 		return (perror_exit("Memory allocation failed", data));
 	if (!check_split_size(spt))
 		return (deep_free((void **)spt),
-			perror_exit("Memory allocation failed", data));
+			perror_exit("Invalid color", data));
 	s2 = remove_newline(spt[2], data);
 	if (s2 == NULL)
 		return (deep_free((void **)spt),
@@ -77,10 +77,10 @@ static void	colors_to_rgb(t_data *data, t_color *color, char *str, char **spt)
 	spt[2] = s2;
 	if (!check_split_content(spt))
 		return (deep_free((void **)spt),
-			perror_exit("Memory allocation failed", data));
+			perror_exit("Invalid color", data));
 	if (!check_split_content_size(spt))
 		return (deep_free((void **)spt),
-			perror_exit("Memory allocation failed", data));
+			perror_exit("Invalid color", data));
 	color->r = ft_atoi(spt[0]);
 	color->g = ft_atoi(spt[1]);
 	color->b = ft_atoi(spt[2]);

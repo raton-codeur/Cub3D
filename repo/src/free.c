@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/11 16:24:57 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 23:12:15 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ void	mlx_perror_exit(t_data *data)
 	free_all(data);
 	exit(1);
 }
-

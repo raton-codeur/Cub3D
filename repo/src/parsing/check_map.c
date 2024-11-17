@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:57:11 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/12 12:41:02 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:36:10 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,33 @@ void	check_map_lines(t_data *data, int i, int j)
 				&& (size_t)j >= ft_strlen(data->map[i + 1]))
 			{
 				if (data->map[i][j] != '1' && data->map[i][j] != ' ')
+					return (perror_exit("Map is not closed", data));
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	check_zero(t_data *data, int i, int j)
+{
+	while (data->map[i])
+	{
+		j = skip_spaces(data->map[i], 0, ft_strlen(data->map[i]));
+		while (data->map[i][j] != '\0')
+		{
+			if (data->map[i][j] == '0')
+			{
+				if (j > 0 && data->map[i][j - 1] == ' ')
+					return (perror_exit("Map is not closed", data));
+				if (data->map[i][j + 1] != '\0'
+				&& data->map[i][j + 1] == ' ')
+					return (perror_exit("Map is not closed", data));
+				if (i > 0 && (size_t)j < ft_strlen(data->map[i - 1])
+					&& data->map[i - 1][j] == ' ')
+					return (perror_exit("Map is not closed", data));
+				if (data->map[i + 1] && (size_t)j < ft_strlen(data->map[i + 1])
+					&& data->map[i + 1][j] == ' ')
 					return (perror_exit("Map is not closed", data));
 			}
 			j++;
