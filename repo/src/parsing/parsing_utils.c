@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:12:28 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/14 13:02:11 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:15:06 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,27 @@ void	extension_checker(t_data *data)
 {
 	int		i;
 	int		len;
+	int		start;
 	char	*buf;
 
 	len = ft_strlen(data->path_map);
 	if (len < 5)
 		perror_exit("Invalid file extension", data);
 	i = 0;
-	i = skip_spaces(data->path_map, i, len);
-	while (data->path_map[i] && !ft_isspace(data->path_map[i]))
+	start = skip_spaces(data->path_map, i, len);
+	i = start;
+	while (data->path_map[i] && ft_isspace(data->path_map[i]) == false)
 		i++;
 	if (i < len)
 	{
-		buf = ft_substr(data->path_map, i, len - i);
+		buf = ft_substr(data->path_map, start, i);
 		if (!buf)
 			return (perror_exit("Memory allocation failed", data));
 		free(data->path_map);
 		data->path_map = buf;
 		len = ft_strlen(data->path_map);
 	}
-	if (ft_strncmp(&data->path_map[len - 4], ".cub", 4) != 0)
+	if (ft_strncmp(&data->path_map[i - 4], ".cub", 4) != 0)
 		perror_exit("Invalid file extension", data);
 }
 

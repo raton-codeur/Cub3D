@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:14:08 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/14 14:58:50 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:41:04 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	first_and_last_line(t_data *data)
 	while (data->map[0][j])
 	{
 		if (data->map[0][j] != '1' && data->map[0][j] != ' ')
-			perror_exit("1 Map is not closed", data);
+			perror_exit("Map is not closed", data);
 		j++;
 	}
 	i = data->map_size - 1;
@@ -30,7 +30,7 @@ void	first_and_last_line(t_data *data)
 	while (data->map[i][j])
 	{
 		if (data->map[i][j] != '1' && data->map[i][j] != ' ')
-			perror_exit("2 Map is not closed", data);
+			perror_exit("Map is not closed", data);
 		j++;
 	}
 }

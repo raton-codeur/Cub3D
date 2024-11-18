@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:47:43 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/14 13:04:03 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:07:38 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ static void	colors_to_rgb(t_data *data, t_color *color, char *str, char **spt)
 
 void	fill_rgb_colors(t_data *data)
 {
+	check_color_string(data, data->floor_color);
+	check_color_string(data, data->ceil_color);
 	colors_to_rgb(data, data->floor_rgb, data->floor_color, NULL);
 	colors_to_rgb(data, data->ceil_rgb, data->ceil_color, NULL);
 	color_range(data);
