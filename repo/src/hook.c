@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 14:49:06 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/19 15:06:56 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,10 @@ void	main_hook(void *param)
 	t_data	*data;
 
 	data = param;
-	// draw_ray(data, -1, 0x00000000);
-	// draw_ray(data, 0, 0x00000000);
-	// draw_ray(data, 1, 0x00000000);
-	draw_vision(data, 0);
+	draw_ray(data, 0, 0x00000000);
 	erase_image(data->walls);
 	check_movement_keys(data);
 	check_rotation_keys(data);
-	draw_vision(data, 0x00FF00FF);
-	// draw_ray(data, -1, 0x00FF00FF);
-	// draw_ray(data, 0, 0x00FF00FF);
-	// draw_ray(data, 1, 0x00FF00FF);
+	draw_ray(data, 0, 0x00FF00FF);
 	dda(data);
 }
