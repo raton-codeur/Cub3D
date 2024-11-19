@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 13:19:06 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/19 13:22:08 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ void	get_dda_results(t_data *data)
 		data->perp_wall_dist = data->side_dist_x - data->delta_dist_x;
 	else
 		data->perp_wall_dist = data->side_dist_y - data->delta_dist_y;
-	data->line_height = W_HEIGHT / data->perp_wall_dist;
+	data->line_height = W_HEIGHT - (data->perp_wall_dist / W_HEIGHT);
+	// data->line_height = W_HEIGHT / data->perp_wall_dist;
 	if (data->line_height < 0)
 		data->line_height = 0;
 	if (data->line_height > W_HEIGHT)
