@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 14:45:39 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/19 15:29:16 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_data
 	mlx_image_t	*rays;
 	mlx_image_t	*walls;
 	mlx_image_t	*wall;
+	mlx_image_t	*fog;
 	int			map_width;
 	int			map_height;
 	int			show_map;

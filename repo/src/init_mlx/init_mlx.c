@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 10:07:26 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/19 16:06:58 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,48 @@ void	init_wall_img(t_data *data)
 		return (mlx_perror_exit(data));
 }
 
+void fill_fog(t_data *data)
+{
+	uint32_t color;
+	int x;
+	int y;
+	double factor;
+
+	y = 0;
+	color = 0x707070FF;
+	while (y < W_HEIGHT / 2)
+	{
+		x = 0;
+		while (x < W_WIDTH)
+		{
+			mlx_put_pixel(data->fog, x, W_HEIGHT / 2 + y, color);
+			mlx_put_pixel(data->fog, x, W_HEIGHT / 2 - y, color);
+			x++;
+		}
+		y++;
+		factor = 1 - (double)y / (W_HEIGHT / 2);
+		color = (color & 0xFFFFFF00) + 255 * factor * factor * factor;
+	}
+}
+
+void init_fog(t_data*data)
+{
+	data->fog = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
+	if (data->fog == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->fog, 0, 0) == -1)
+	{
+		mlx_delete_image(data->mlx, data->fog);
+		return (mlx_perror_exit(data));
+	}
+	fill_fog(data);
+}
+
 void	init_mlx(t_data *data)
 {
 	init_window(data);
 	init_background(data);
+	init_fog(data);
 	init_walls(data);
 	init_wall_img(data);
 	init_map(data);

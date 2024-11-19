@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 14:37:46 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/19 16:25:10 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,28 @@ int	main(int argc, char **argv)
 	print_map(&data);
 	get_map_dimensions(&data);
 	reverse_map(&data);
+	
 	init_mlx(&data);
-	mlx_key_hook(data.mlx, key_hook, &data);
-	mlx_loop_hook(data.mlx, main_hook, &data);
-	mlx_loop(data.mlx);
+	
+	// int alpha_min = 0;
+	// int alpha_max = 255;
+	int y;
+	y = 0;
+	int alpha;
+	while (y < W_HEIGHT / 2)
+	{
+		alpha = y;
+		printf("%d : %d\n", y, alpha);
+		y++;
+	}
+	
+	
+	// mlx_key_hook(data.mlx, key_hook, &data);
+	// mlx_loop_hook(data.mlx, main_hook, &data);
+	// mlx_loop(data.mlx);
 	free_all(&data);
 	return (0);
 }
+
+
+
