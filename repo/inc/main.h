@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/12 12:03:34 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:59:16 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,38 +42,42 @@ typedef struct s_color
 
 typedef struct s_data
 {
-	char		*path_map;
-	char		**cub_file;
-	char		*north_texture;
-	int			north_texture_line;
-	char		*south_texture;
-	int			south_texture_line;
-	char		*west_texture;
-	int			west_texture_line;
-	char		*east_texture;
-	int			east_texture_line;
-	char		*floor_color;
-	int			floor_color_line;
-	t_color		*floor_rgb;
-	char		*ceil_color;
-	int			ceil_color_line;
-	t_color		*ceil_rgb;
-	int			map_size;
-	int			map_max_row;
-	int			map_line;
-	char		**map;
-	char		player_dir;
-	int			i;
-	int			j;
-	mlx_t		*mlx;
-	mlx_image_t	*background;
-	mlx_image_t	*map_img;
-	mlx_image_t	*player;
-	mlx_image_t	*rays;
-	mlx_image_t	*walls;
-	double		x;
-	double		y;
-	double		angle;
+	char			*path_map;
+	char			**cub_file;
+	char			*north_texture;
+	int				north_texture_line;
+	char			*south_texture;
+	int				south_texture_line;
+	char			*west_texture;
+	int				west_texture_line;
+	char			*east_texture;
+	int				east_texture_line;
+	char			*floor_color;
+	int				floor_color_line;
+	t_color			*floor_rgb;
+	char			*ceil_color;
+	int				ceil_color_line;
+	t_color			*ceil_rgb;
+	int				map_size;
+	int				map_max_row;
+	int				map_line;
+	char			**map;
+	char			player_dir;
+	int				i;
+	int				j;
+	mlx_t			*mlx;
+	mlx_image_t		*background;
+	mlx_image_t		*map_img;
+	mlx_image_t		*player;
+	mlx_image_t		*rays;
+	mlx_image_t		*walls;
+	mlx_texture_t	*no_texture;
+	mlx_texture_t	*so_texture;
+	mlx_texture_t	*we_texture;
+	mlx_texture_t	*ea_texture;
+	double			x;
+	double			y;
+	double			angle;
 }	t_data;
 
 /* free.c */

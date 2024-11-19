@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:08:47 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/18 14:01:54 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:42:22 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,11 @@ void	color_count(t_data *data, int i, int j, int count)
 		perror_exit("Missing Color", data);
 	else if (count > 2)
 		perror_exit("Too many Colors", data);
+}
+
+bool	spaces(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (true);
+	return (false);
 }

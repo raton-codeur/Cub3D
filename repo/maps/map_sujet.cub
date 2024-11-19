@@ -1,11 +1,11 @@
 
-                 NO                    ./path_to_the_north_texture.png
+                 NO       ./textures/no.png             
 
 
-                                        SOa.png
-                                WE                                ./path_to_the_west_texture.png                        
+                                        SO ./textures/so.png
+                                WE                                ./textures/we.png                      
 								
-                               EA                      ./path_to_the_east_texture.png
+                               EA                      ./textures/ea.png
 
 F           255,1,13
 					C      					    2,22,223
@@ -24,7 +24,7 @@ F           255,1,13
 11110111111111011100000010001
 11110111111110111010100100111
 110000001101110111000000100011
-10000000W001  10001100000010001
+1000000S001  10001100000010001
 100000000001111011010100100011
 11000001110101011111011110011
 11110111 1110101 101111010001

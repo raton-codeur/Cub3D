@@ -6,11 +6,39 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:52:24 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/18 13:57:25 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:43:00 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+static void	check_player(t_data *data, int i, int j)
+{
+	while (data->map[i])
+	{
+		j = skip_spaces(data->map[i], 0, ft_strlen(data->map[i]));
+		while (data->map[i][j] != '\0')
+		{
+			if (data->map[i][j] == 'W' || data->map[i][j] == 'E'
+				|| data->map[i][j] == 'S' || data->map[i][j] == 'N')
+			{
+				if (j > 0 && ft_isspace(data->map[i][j - 1]) == 1)
+					return (perror_exit("Map is not closed", data));
+				if (data->map[i][j + 1] != '\0'
+				&& ft_isspace(data->map[i][j + 1]) == 1)
+					return (perror_exit("Map is not closed", data));
+				if (i > 0 && (size_t)j < ft_strlen(data->map[i - 1])
+					&& ft_isspace(data->map[i - 1][j]) == 1)
+					return (perror_exit("Map is not closed", data));
+				if (data->map[i + 1] && (size_t)j < ft_strlen(data->map[i + 1])
+					&& ft_isspace(data->map[i + 1][j]) == 1)
+					return (perror_exit("Map is not closed", data));
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 static	bool	is_player(char c)
 {
@@ -45,6 +73,7 @@ void	find_player(t_data *data)
 	}
 	if (data->i == -1 || data->j == -1)
 		perror_exit("No player start in map", data);
+	check_player(data, 0, 0);
 }
 
 static bool	is_char_in_set(char c)
