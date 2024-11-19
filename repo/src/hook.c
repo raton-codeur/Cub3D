@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/16 18:14:39 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/19 14:41:13 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 }
 
-static void	erase_image(mlx_image_t *image)
+void	erase_image(mlx_image_t *image)
 {
 	ft_bzero(image->pixels, image->width * image->height * sizeof(uint32_t));
 }
 
-static void	check_movement_keys(t_data *data)
+void	check_movement_keys(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		move_up(data);
@@ -48,7 +48,7 @@ static void	check_movement_keys(t_data *data)
 		move_right(data);
 }
 
-static void	check_rotation_keys(t_data *data)
+void	check_rotation_keys(t_data *data)
 {
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data);
@@ -62,11 +62,13 @@ void	main_hook(void *param)
 
 	data = param;
 	draw_ray(data, -1, 0x00000000);
+	draw_ray(data, 0, 0x00000000);
 	draw_ray(data, 1, 0x00000000);
 	erase_image(data->walls);
 	check_movement_keys(data);
 	check_rotation_keys(data);
 	draw_ray(data, -1, 0x00FF00FF);
+	draw_ray(data, 0, 0x00FF00FF);
 	draw_ray(data, 1, 0x00FF00FF);
 	dda(data);
 }

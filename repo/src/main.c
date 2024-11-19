@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/16 14:30:01 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/19 14:37:46 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,12 +128,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	ft_bzero(&data, sizeof(t_data));
-	parse_map(&data, argc, argv);
-	data.ceil_color = CEIL_COLOR;
-	data.floor_color = FLOOR_COLOR;
-	data.i_start = I_START;
-	data.j_start = J_START;
-	data.dir_start = 'S';
+	parsing(&data, argc, argv);
+	data.ceil_color = data.ceil_rgb->hex;
+	data.floor_color = data.floor_rgb->hex;
 	init_dir(&data);
 	print_map(&data);
 	get_map_dimensions(&data);

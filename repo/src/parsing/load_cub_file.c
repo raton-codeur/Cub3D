@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_cub_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:51:34 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/11 16:38:10 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/12 12:57:02 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	count_lines(t_data *data)
 	return (result);
 }
 
-bool	load_cub_file(t_data *data)
+void	load_cub_file(t_data *data)
 {
 	int		fd;
 	char	*line;
@@ -44,11 +44,11 @@ bool	load_cub_file(t_data *data)
 	nb_lines = count_lines(data);
 	data->cub_file = ft_calloc(nb_lines + 1, sizeof(char *));
 	if (data->cub_file == NULL)
-		return (perror("Memory allocation failed"), false);
+		return (perror_exit("Memory allocation failed", data));
 	data->cub_file[nb_lines] = NULL;
 	fd = open(data->path_map, O_RDONLY);
 	if (fd == -1)
-		return (perror("Cannot open .cub file"), false);
+		return (perror_exit("Cannot open .cub file", data));
 	line = NULL;
 	while (line || i == 0)
 	{
@@ -57,5 +57,4 @@ bool	load_cub_file(t_data *data)
 		free(line);
 	}
 	close(fd);
-	return (true);
 }
