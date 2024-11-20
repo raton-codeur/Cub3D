@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 15:29:16 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/20 12:14:33 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,27 @@ typedef struct s_data
 	int				map_max_row;
 	int				map_line;
 	char			**map;
-	mlx_t		*mlx;
-	mlx_image_t	*background;
-	mlx_image_t	*map_img;
-	mlx_image_t	*player;
-	mlx_image_t	*rays;
-	mlx_image_t	*walls;
-	mlx_image_t	*wall;
+	mlx_t			*mlx;
+	mlx_image_t		*background;
+	mlx_image_t		*map_img;
+	mlx_image_t		*player;
+	mlx_image_t		*rays;
+	mlx_image_t		*walls;
+	mlx_image_t		*wall;
 	mlx_image_t	*fog;
-	int			map_width;
-	int			map_height;
-	int			show_map;
-	uint32_t	ceil_color;
-	uint32_t	floor_color;
-	int			box_size;
-	int			i_start;
-	int			j_start;
-	char		dir_start;
+	mlx_image_t		*wall_no;
+	mlx_image_t		*wall_so;
+	mlx_image_t		*wall_we;
+	mlx_image_t		*wall_ea;
+	int				map_width;
+	int				map_height;
+	int				show_map;
+	uint32_t		ceil_color;
+	uint32_t		floor_color;
+	int				box_size;
+	int				i_start;
+	int				j_start;
+	char			dir_start;
 
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur

@@ -3,3 +3,4 @@ repo/MLX42/build/
 **/*.a
 **/cub3D
 **/.vscode/
+**/.DS_Store
