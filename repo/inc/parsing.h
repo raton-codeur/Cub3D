@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/21 12:21:45 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:19:43 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "main.h"
 # include "init_mlx.h"
 
-# define FILLER '^'
+# define FILLER '1'
 
 /* parsing.c */
 void		parsing(t_data *data, int argc, char **argv);

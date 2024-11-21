@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:57:11 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/19 13:46:39 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:16:42 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	get_map_size(t_data *data)
 	i = 0;
 	while (data->map[i] != NULL)
 		i++;
-	data->map_size = i;
-	if (data->map_size < 3)
+	data->map_height = i;
+	if (data->map_height < 3)
 		return (perror_exit("Map is too small", data));
 }
 
@@ -85,7 +85,7 @@ void	check_map_lines(t_data *data, int i, int j)
 				if (data->map[i][j] != '1' && ft_isspace(data->map[i][j]) == 0)
 					return (perror_exit("Map is not closed", data));
 			}
-			if (i < data->map_size - 1 && ft_strlen(data->map[i])
+			if (i < data->map_height - 1 && ft_strlen(data->map[i])
 				> ft_strlen(data->map[i + 1])
 				&& (size_t)j >= ft_strlen(data->map[i + 1]))
 			{
