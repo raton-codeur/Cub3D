@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 09:11:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 09:12:36 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static	void	init_after_parsing(t_data *data)
 	// 	|| data->wall_we == NULL || data->wall_ea == NULL)
 	// 	perror_exit("Error\nCannot load textures", data);
 }
-
+ 
 void	clean_parsing(t_data *data)
 {
 	init_after_parsing(data);
