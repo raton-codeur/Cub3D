@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 16:32:07 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 09:09:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	ft_bzero(&data, sizeof(t_data));
 	parsing(&data, argc, argv);
 	init_mlx(&data);
 	mlx_key_hook(data.mlx, key_hook, &data);

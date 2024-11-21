@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/20 12:11:03 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/21 09:11:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ static	void	init_after_parsing(t_data *data)
 	data->mlx = mlx_init(W_WIDTH, W_HEIGHT, "Cub3D", false);
 	if (data->mlx == NULL)
 		mlx_perror_exit(data);
-	data->wall_no = get_img_from_png(data, data->north_texture);
-	data->wall_so = get_img_from_png(data, data->south_texture);
-	data->wall_we = get_img_from_png(data, data->west_texture);
-	data->wall_ea = get_img_from_png(data, data->east_texture);
-	if (data->wall_no == NULL || data->wall_so == NULL
-		|| data->wall_we == NULL || data->wall_ea == NULL)
-		perror_exit("Error\nCannot load textures", data);
+	// data->wall_no = get_img_from_png(data, data->north_texture);
+	// data->wall_so = get_img_from_png(data, data->south_texture);
+	// data->wall_we = get_img_from_png(data, data->west_texture);
+	// data->wall_ea = get_img_from_png(data, data->east_texture);
+	// if (data->wall_no == NULL || data->wall_so == NULL
+	// 	|| data->wall_we == NULL || data->wall_ea == NULL)
+	// 	perror_exit("Error\nCannot load textures", data);
 }
 
 void	clean_parsing(t_data *data)
