@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/20 11:45:22 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:21:45 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		check_textures(t_data *data);
 
 /* find_colors.c */
 void		find_colors(t_data *data, int i, int j);
-int			rgb_color_to_hex(t_color *color);
 
 /* find_colors_2.c */
 void		fill_rgb_colors(t_data *data);
@@ -82,5 +81,8 @@ void		clean_parsing(t_data *data);
 void		reverse_map(t_data *data);
 void		get_map_dimensions(t_data *data);
 void		print_map(t_data *data);
+
+/* split_parsing.c */
+char		**split_parsing(char const *s, char c, t_data *data);
 
 #endif

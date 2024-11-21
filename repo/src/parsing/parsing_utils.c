@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:12:28 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/18 14:15:06 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:33:16 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ bool	check_split_content(char **split)
 	while (split[i])
 	{
 		j = 0;
+		j = skip_spaces(split[i], j, ft_strlen(split[i]));
 		while (split[i][j])
 		{
-			if (!ft_isdigit(split[i][j]) && !ft_isspace(split[i][j]))
+			if (!ft_isdigit(split[i][j]))
 				return (false);
 			j++;
 		}

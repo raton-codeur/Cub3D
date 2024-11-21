@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/21 09:11:15 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:53:46 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	extract_textures_and_colors(t_data *data)
 	check_textures(data);
 	find_colors(data, -1, 0);
 	fill_rgb_colors(data);
-	data->ceil_rgb->hex = rgb_color_to_hex(data->ceil_rgb);
-	data->floor_rgb->hex = rgb_color_to_hex(data->floor_rgb);
 }
 
 static void	extract_map(t_data *data)

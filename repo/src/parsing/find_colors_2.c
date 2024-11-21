@@ -3,95 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   find_colors_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:47:43 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/19 14:00:31 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:22:18 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void	color_range(t_data *data)
+static void	color_range(t_data *data, int r, int g, int b)
 {
-	if (data->floor_rgb->r < 0 || data->floor_rgb->r > 255)
-		perror_exit("Invalid floor color", data);
-	if (data->floor_rgb->g < 0 || data->floor_rgb->g > 255)
-		perror_exit("Invalid floor color", data);
-	if (data->floor_rgb->b < 0 || data->floor_rgb->b > 255)
-		perror_exit("Invalid floor color", data);
-	if (data->ceil_rgb->r < 0 || data->ceil_rgb->r > 255)
-		perror_exit("Invalid ceil color", data);
-	if (data->ceil_rgb->g < 0 || data->ceil_rgb->g > 255)
-		perror_exit("Invalid ceil color", data);
-	if (data->ceil_rgb->b < 0 || data->ceil_rgb->b > 255)
-		perror_exit("Invalid ceil color", data);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		perror_exit("Invalid color range", data);
 }
 
-static bool	check_split_size(char **split)
+static uint32_t	colors_to_rgb(t_data *data, char *str)
 {
-	int	i;
+	char	**spt;
+	int		r;
+	int		g;
+	int		b;
 
-	i = 0;
-	while (split[i])
-		i++;
-	if (i != 3)
-		return (false);
-	return (true);
-}
-
-static char	*remove_leading_ws(char *str, t_data *data)
-{
-	int		i;
-	int		start;
-	char	*buff;
-
-	i = 0;
-	while (str[i] && ft_isspace(str[i]))
-		i++;
-	start = i;
-	while (str[i])
-		i++;
-	buff = ft_substr(str, start, i - start);
-	if (!buff)
-		perror_exit("Memory allocation failed", data);
-	return (buff);
-}
-
-static void	colors_to_rgb(t_data *data, t_color *color, char *str, char **spt)
-{
-	char	*s2;
-
-	s2 = remove_leading_ws(str, data);
-	spt = ft_split(s2, ",");
-	free(s2);
+	spt = split_parsing(str, ',', data);
 	if (spt == NULL)
-		return (perror_exit("Memory allocation failed", data));
-	if (!check_split_size(spt))
-		return (deep_free((void **)spt),
-			perror_exit("Invalid color", data));
-	s2 = remove_newline(spt[2], data);
-	if (s2 == NULL)
-		return (deep_free((void **)spt),
-			perror_exit("Memory allocation failed", data));
-	spt[2] = s2;
+		return (perror_exit("Memory allocation failed", data), 0);
 	if (!check_split_content(spt))
 		return (deep_free((void **)spt),
-			perror_exit("Invalid color", data));
-	if (!check_split_content_size(spt))
+			perror_exit("Invalid color", data), 0);
+	if (array_size((void **)spt) != 3)
 		return (deep_free((void **)spt),
-			perror_exit("Invalid color", data));
-	color->r = ft_atoi(spt[0]);
-	color->g = ft_atoi(spt[1]);
-	color->b = ft_atoi(spt[2]);
+			perror_exit("Invalid color", data), 0);
+	r = ft_atoi(spt[0]);
+	g = ft_atoi(spt[1]);
+	b = ft_atoi(spt[2]);
+	color_range(data, r, g, b);
 	deep_free((void **)spt);
+	return ((r << 24) | (g << 16) | b << 8 | 0xFF);
 }
 
 void	fill_rgb_colors(t_data *data)
 {
 	check_color_string(data, data->floor_color_str);
 	check_color_string(data, data->ceil_color_str);
-	colors_to_rgb(data, data->floor_rgb, data->floor_color_str, NULL);
-	colors_to_rgb(data, data->ceil_rgb, data->ceil_color_str, NULL);
-	color_range(data);
+	data->floor_color = colors_to_rgb(data, data->floor_color_str);
+	data->ceil_color = colors_to_rgb(data, data->ceil_color_str);
 }

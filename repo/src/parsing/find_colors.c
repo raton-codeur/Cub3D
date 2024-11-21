@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   find_colors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:20:39 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/19 14:22:26 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 11:57:38 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-int	rgb_color_to_hex(t_color *color)
-{
-	return ((color->r << 24) | (color->g << 16) | color->b << 8 | 0xFF);
-}
 
 void	find_colors(t_data *data, int i, int j)
 {
@@ -35,10 +30,4 @@ void	find_colors(t_data *data, int i, int j)
 	}
 	if (data->floor_color_str == NULL || data->ceil_color_str == NULL)
 		return (perror_exit("Missing color", data));
-	data->floor_rgb = ft_calloc(1, sizeof(t_color));
-	if (data->floor_rgb == NULL)
-		return (perror_exit("Memory allocation failed", data));
-	data->ceil_rgb = ft_calloc(1, sizeof(t_color));
-	if (data->ceil_rgb == NULL)
-		return (perror_exit("Memory allocation failed", data));
 }

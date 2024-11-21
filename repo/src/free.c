@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/15 10:00:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:38:52 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void	free_all(t_data *data)
 	free(data->east_texture);
 	free(data->floor_color_str);
 	free(data->ceil_color_str);
-	free(data->floor_rgb);
-	free(data->ceil_rgb);
 	if (data->mlx)
 		mlx_terminate(data->mlx);
 }
@@ -40,6 +38,7 @@ void	perror_exit(char *s, t_data *data)
 
 void	mlx_perror_exit(t_data *data)
 {
+	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
 	free_all(data);
 	exit(1);

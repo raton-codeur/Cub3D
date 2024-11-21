@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 09:12:36 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 12:52:42 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,33 +54,37 @@ static void	free_parsing(t_data *data)
 	data->east_texture = NULL;
 	free(data->floor_color_str);
 	data->floor_color_str = NULL;
-	free(data->floor_rgb);
-	data->floor_rgb = NULL;
 	free(data->ceil_color_str);
 	data->ceil_color_str = NULL;
-	free(data->ceil_rgb);
-	data->ceil_rgb = NULL;
 }
+
+// static void	load_walls(t_data *data)
+// {
+// 	data->wall_no = get_img_from_png(data, data->north_texture);
+// 	if (data->wall_no == NULL)
+// 		mlx_perror_exit(data);
+// 	data->wall_so = get_img_from_png(data, data->south_texture);
+// 	if (data->wall_so == NULL)
+// 		mlx_perror_exit(data);
+// 	data->wall_we = get_img_from_png(data, data->west_texture);
+// 	if (data->wall_we == NULL)
+// 		mlx_perror_exit(data);
+// 	data->wall_ea = get_img_from_png(data, data->east_texture);
+// 	if (data->wall_ea == NULL)
+// 		mlx_perror_exit(data);
+// }
 
 static	void	init_after_parsing(t_data *data)
 {
-	data->ceil_color = data->ceil_rgb->hex;
-	data->floor_color = data->floor_rgb->hex;
 	init_dir(data);
 	get_map_dimensions(data);
 	reverse_map(data);
 	data->mlx = mlx_init(W_WIDTH, W_HEIGHT, "Cub3D", false);
 	if (data->mlx == NULL)
 		mlx_perror_exit(data);
-	// data->wall_no = get_img_from_png(data, data->north_texture);
-	// data->wall_so = get_img_from_png(data, data->south_texture);
-	// data->wall_we = get_img_from_png(data, data->west_texture);
-	// data->wall_ea = get_img_from_png(data, data->east_texture);
-	// if (data->wall_no == NULL || data->wall_so == NULL
-	// 	|| data->wall_we == NULL || data->wall_ea == NULL)
-	// 	perror_exit("Error\nCannot load textures", data);
+	// load_walls(data);
 }
- 
+
 void	clean_parsing(t_data *data)
 {
 	init_after_parsing(data);

@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/20 12:14:33 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/21 12:44:10 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,6 @@ enum e_error
 	MALLOC
 };
 
-typedef struct s_color
-{
-	int				r;
-	int				g;
-	int				b;
-	uint32_t		hex;
-}	t_color;
-
 typedef struct s_data
 {
 	char			*path_map;
@@ -57,10 +49,8 @@ typedef struct s_data
 	int				east_texture_line;
 	char			*floor_color_str;
 	int				floor_color_line;
-	t_color			*floor_rgb;
 	char			*ceil_color_str;
 	int				ceil_color_line;
-	t_color			*ceil_rgb;
 	int				map_size;
 	int				map_max_row;
 	int				map_line;
@@ -72,7 +62,7 @@ typedef struct s_data
 	mlx_image_t		*rays;
 	mlx_image_t		*walls;
 	mlx_image_t		*wall;
-	mlx_image_t	*fog;
+	mlx_image_t		*fog;
 	mlx_image_t		*wall_no;
 	mlx_image_t		*wall_so;
 	mlx_image_t		*wall_we;
