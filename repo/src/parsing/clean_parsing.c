@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 13:54:34 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:13:01 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ static	void	init_after_parsing(t_data *data)
 	if (data->mlx == NULL)
 		mlx_perror_exit(data);
 	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
-	printf("monitor_width = %d\n", monitor_width);
-	printf("monitor_height = %d\n", monitor_height);
-	mlx_set_window_size(data->mlx, monitor_width, monitor_height);
+	// mlx_set_window_size(data->mlx, monitor_width, monitor_height);
 	mlx_set_window_pos(data->mlx, 0, 0);
 	// load_walls(data);
 }
