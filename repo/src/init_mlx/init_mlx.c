@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 16:06:58 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 10:41:47 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,40 +32,83 @@ void	init_wall_img(t_data *data)
 		return (mlx_perror_exit(data));
 }
 
+// void	fill_fog_sides(t_data *data)
+// {
+// 	int x;
+// 	int y;
+// 	uint32_t color;
+// 	double factor;
+
+// 	color = 0x70707000;
+// 	y = 0;
+// 	while (y < (int)data->fog->height / 3)
+// 	{
+// 		x = 0;
+// 		while (x < W_WIDTH)
+// 		{
+// 			factor = pow(1 - (3 * y / (double)data->fog->height), 2);
+// 			mlx_put_pixel(data->fog, x, data->fog->height / 3 - y, color + 255 * factor);
+// 			mlx_put_pixel(data->fog, x, data->fog->height * 2 / 3 + y, color + 255 * factor);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
+
+// void	fill_fog_center(t_data *data)
+// {
+// 	int x;
+// 	int y;
+
+// 	y = 0;
+// 	while (y < (int)data->fog->height / 3)
+// 	{
+// 		x = 0;
+// 		while (x < W_WIDTH)
+// 		{
+// 			mlx_put_pixel(data->fog, x, data->fog->height / 3 + y, 0x707070FF);
+// 			x++;
+// 		}
+// 		y++;
+// 	}
+// }
+
+
 void fill_fog(t_data *data)
 {
+	int x, y;
 	uint32_t color;
-	int x;
-	int y;
 	double factor;
 
+	color = 0x70707000;
 	y = 0;
-	color = 0x707070FF;
-	while (y < W_HEIGHT / 2)
+	while (y < (int)data->fog->height / 2)
 	{
 		x = 0;
 		while (x < W_WIDTH)
 		{
-			mlx_put_pixel(data->fog, x, W_HEIGHT / 2 + y, color);
-			mlx_put_pixel(data->fog, x, W_HEIGHT / 2 - y, color);
+			factor = pow(1 - (2 * y / (double)data->fog->height), 2);
+			mlx_put_pixel(data->fog, x, data->fog->height / 2 - y, color + 255 * factor);
+			mlx_put_pixel(data->fog, x, data->fog->height / 2 + y, color + 255 * factor);
 			x++;
 		}
 		y++;
-		factor = 1 - (double)y / (W_HEIGHT / 2);
-		color = (color & 0xFFFFFF00) + 255 * factor * factor * factor;
 	}
 }
 
-void init_fog(t_data*data)
+
+void	init_fog(t_data*data)
 {
-	data->fog = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
+	data->fog = mlx_new_image(data->mlx, W_WIDTH, (W_HEIGHT * 3) / 5);
 	if (data->fog == NULL)
 		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->fog, 0, 0) == -1)
+	if (mlx_image_to_window(data->mlx, data->fog, 0, W_HEIGHT / 5) == -1)
 	{
 		mlx_delete_image(data->mlx, data->fog);
 		return (mlx_perror_exit(data));
 	}
+	// fill_fog_center(data);
+	// fill_fog_sides(data);
 	fill_fog(data);
 }
 

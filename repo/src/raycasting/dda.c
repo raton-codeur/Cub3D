@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 16:19:20 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/21 10:06:23 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,16 @@ void	get_dda_results(t_data *data)
 		data->line_height = 0;
 	if (data->line_height > W_HEIGHT)
 		data->line_height = W_HEIGHT;
-	// data->color = (data->color & 0xFFFFFF00) + (255 * (log(((data->line_height * 255 / W_HEIGHT / 2) )) ) ) ;
+	
+	double factor, line_height_norm;
+	line_height_norm = (double)data->line_height / W_HEIGHT; // de 0 à 1
+	if (line_height_norm < 0.2)
+		factor = 0; // transparent jusqu'à une hauteur de 20%
+	else if (line_height_norm < (1.6/3)) // 3(x - 0.2) = 1 ssi 3x - 0.6 = 1 ssi x = (1.6/3)
+		factor = 3 * (line_height_norm - 0.2); // on augmente la transparence linéairement avec une pente de 3.
+	else // a partir d'une hauteur de 53.3% on est opaque
+		factor = 1; 
+	data->color = (data->color & 0xFFFFFF00) + (255 * factor);
 }
 
 void	draw_wall_line(t_data *data)
