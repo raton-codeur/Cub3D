@@ -111,7 +111,6 @@ void	get_dda_results(t_data *data)
 		b = b * (1 - factor) + 70 * factor;
 	}
 	// a partir d'une hauteur de 70%, le mur n'est pas gris
-
 	data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
 }
 
@@ -137,8 +136,24 @@ void	draw_wall_line(t_data *data)
 		else
 			factor = 0;
 		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, 0x46464600 + factor * 255);
-		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, 0x48484800 + factor * 255);
+		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, 0x46464600 + factor * 255);
 		data->y++;
+	}
+}
+
+void draw_ray_line(t_data *data)
+{
+	double x_hit, y_hit, x, y;
+
+	x_hit = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
+	y_hit = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
+	x = data->pos_x;
+	y = data->pos_y;
+	while (!(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
+	{
+		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF00FF);
+		x += data->ray_dir_x / 10;
+		y += data->ray_dir_y / 10;
 	}
 }
 
@@ -151,6 +166,7 @@ void	dda(t_data *data)
 		iterate_dda(data);
 		get_dda_results(data);
 		draw_wall_line(data);
+		draw_ray_line(data);
 		data->x++;
 	}
 }
