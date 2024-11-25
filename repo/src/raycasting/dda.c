@@ -91,62 +91,53 @@ void	get_dda_results(t_data *data)
 		data->line_height = 0;
 	if (data->line_height > W_HEIGHT)
 		data->line_height = W_HEIGHT;
-	
-	// double factor, line_height_norm;
-	// line_height_norm = (double)data->line_height / W_HEIGHT; // de 0 à 1
-	// if (line_height_norm < 0.2)
-	// 	factor = 0; // transparent jusqu'à une hauteur de 20%
-	// else if (line_height_norm < (1.6/3)) // 3(x - 0.2) = 1 ssi 3x - 0.6 = 1 ssi x = (1.6/3)
-	// 	factor = 3 * (line_height_norm - 0.2); // on augmente la transparence linéairement avec une pente de 3.
-	// else // a partir d'une hauteur de 53.3% on est opaque
-	// 	factor = 1; 
-	// data->color = (data->color & 0xFFFFFF00) + (255 * factor);
-	
+
 	unsigned long r, g, b;
 	double factor;
 	r = data->color >> 24;
 	g = data->color >> 16 & 0xFF;
 	b = data->color >> 8 & 0xFF;
 	double line_height_norm = (double)data->line_height / W_HEIGHT; // de 0 à 1
-	if (line_height_norm < 0.2) // jusqu'à une hauteur de mur de 20%
-		{r = 70; g = 70; b = 70; } // gris
-	else if (line_height_norm < 0.7) // transition d'une hauteur de mur de 20% à 70%
-	// le niveau de gris diminue de plus en plus
+	if (line_height_norm < 0.2) // jusqu'à une hauteur de mur de 20% de W_HEIGHT, le mur sera gris
+	{
+		r = 70; g = 70; b = 70;
+	}
+	else if (line_height_norm < 0.7) // mur de hauteur entre 20% et 70%
+	// le niveau de gris du mur varie en fonction de line_height_norm
 	{
 		factor = 0.5 + 0.5 * cos(M_PI * 2 * (line_height_norm - 0.2));
 		r = r * (1 - factor) + 70 * factor;
 		g = g * (1 - factor) + 70 * factor;
 		b = b * (1 - factor) + 70 * factor;
 	}
-	else // a partir d'une hauteur de mur de 70% on a la couleur exacte
-		;
-
+	// a partir d'une hauteur de 70%, le mur n'est pas gris
 
 	data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
-	
-	// modifier le rgb du fog à cet endroit
-
-	int y;
-	y = 0;
-	while (y < (int)(data->fog->height / 2))
-	{
-		factor = 2 * y / (double)data->fog->height;
-		factor = 0.5 + 0.5 * cos(M_PI * factor) ;
-		mlx_put_pixel(data->fog, data->x, data->fog->height / 2 - y, (data->color & 0xFFFFFF00) + factor * 255);
-		mlx_put_pixel(data->fog, data->x, data->fog->height / 2 + y, (data->color & 0xFFFFFF00) + factor * 255);
-		y++;
-	}
 }
-
 
 void	draw_wall_line(t_data *data)
 {
-	data->y_start = (data->walls->height - data->line_height) / 2;
-	data->y_end = data->y_start + data->line_height;
-	data->y = data->y_start;
-	while (data->y < data->y_end)
+	double	factor;
+
+	data->line_height /= 2;
+	data->y = 0;
+	while (data->y < data->line_height)
 	{
-		mlx_put_pixel(data->walls, data->x, data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, data->color);
+		data->y++;
+	}
+	while (data->y < data->fog_height)
+	{
+		factor = (double)data->y / data->fog_height;
+		if (factor < 0.3)
+			factor = 1;
+		else if (factor < 0.8)
+			factor = 0.5 + 0.5 * cos(2 * M_PI * (factor - 0.3));
+		else
+			factor = 0;
+		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, 0x46464600 + factor * 255);
+		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, 0x48484800 + factor * 255);
 		data->y++;
 	}
 }

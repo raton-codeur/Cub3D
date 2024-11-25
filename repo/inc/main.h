@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/25 15:52:34 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/25 17:46:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,11 +105,12 @@ typedef struct s_data
 	int			hit; // 0 de base. passe à 1 quand on tombe sur un mur
 	int			side; // 0 si le rayon a touché un mur horizontal, 1 si le rayon a touché un mur vertical
 	double		perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
-	int			line_height; // la hauteur de la ligne de mur à dessiner sur l'écran
-	uint32_t	y; // pour dessiner la ligne de mur
-	uint32_t	y_start; // la coordonnée du point de départ de la ligne à dessiner sur l'écran
-	uint32_t	y_end; // la coordonnée du point d'arrivée de la ligne à dessiner sur l'écran
+	uint32_t	line_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	uint32_t	color; // la couleur de la ligne de mur
+	uint32_t	y; // pour dessiner la ligne de mur
+	uint32_t	fog_height;
+	// uint32_t	y_start; // la coordonnée du point de départ de la ligne à dessiner sur l'écran
+	// uint32_t	y_end; // la coordonnée du point d'arrivée de la ligne à dessiner sur l'écran
 }	t_data;
 
 /* free.c */
