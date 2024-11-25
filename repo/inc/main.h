@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/21 13:15:09 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:52:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,5 +132,9 @@ void		move_right(t_data *data);
 /* rotate.c */
 void		rotate_right(t_data *data);
 void		rotate_left(t_data *data);
+
+/* utils.c */
+void fill_image(mlx_image_t *image, uint32_t color);
+
 
 #endif

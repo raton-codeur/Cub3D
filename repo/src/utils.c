@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/25 15:41:46 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/11/25 13:59:02 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/25 14:01:58 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
-#include "init_mlx.h"
-#include "raycasting.h"
+#include "main.h"
 
-int	main(int argc, char **argv)
+void fill_image(mlx_image_t *image, uint32_t color)
 {
-	t_data	data;
+	uint32_t i;
+	uint32_t j;
 
-	parsing(&data, argc, argv);
-	init_mlx(&data);
-	mlx_key_hook(data.mlx, key_hook, &data);
-	mlx_loop_hook(data.mlx, main_hook, &data);
-	mlx_loop(data.mlx);
-	free_all(&data);
-	return (0);
+	i = 0;
+	while (i < image->width)
+	{
+		j = 0;
+		while (j < image->height)
+		{
+			mlx_put_pixel(image, i, j, color);
+			j++;
+		}
+		i++;
+	}
 }
-
-
-

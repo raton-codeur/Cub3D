@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 14:13:01 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/25 13:31:51 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ static	void	init_after_parsing(t_data *data)
 		mlx_perror_exit(data);
 	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
 	// mlx_set_window_size(data->mlx, monitor_width, monitor_height);
-	mlx_set_window_pos(data->mlx, 0, 0);
+	mlx_set_window_pos(data->mlx, \
+		(monitor_width - W_WIDTH) / 2, (monitor_height - W_HEIGHT) / 2);
 	// load_walls(data);
 }
 
