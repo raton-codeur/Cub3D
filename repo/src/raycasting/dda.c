@@ -144,16 +144,23 @@ void	draw_wall_line(t_data *data)
 void draw_ray_line(t_data *data)
 {
 	double x_hit, y_hit, x, y;
+	int count;
+	double count_norm;
+	uint32_t color;
 
 	x_hit = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
 	y_hit = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
 	x = data->pos_x;
 	y = data->pos_y;
-	while (!(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
+	count = 0;
+	color = 0x00FF00FF;
+	while (count < 400 && !(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
 	{
-		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF00FF);
-		x += data->ray_dir_x / 10;
-		y += data->ray_dir_y / 10;
+		count_norm = 1 - (double)count / 400;
+		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF0000 + 255 * count_norm);
+		x += data->ray_dir_x * 0.01;
+		y += data->ray_dir_y * 0.01;
+		count++;
 	}
 }
 
