@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:10:01 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:25:04 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ typedef struct s_data
 	// mlx_image_t		*wall_ea;
 	int				map_width;
 	int				map_height;
-	int				depth; // 0 pour rien, 1 pour la map, 2 pour la minimap
+	int				config; // 0 pour rien, 1 pour la map, 2 pour la minimap
 	uint32_t		ceil_color;
 	uint32_t		floor_color;
 	int				box_size;

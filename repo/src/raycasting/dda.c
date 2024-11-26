@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:12:07 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:28:11 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,34 +163,34 @@ void draw_map_fog(t_data *data)
 
 void draw_map(t_data *data)
 {
-	if (data->depth == 1)
+	data->ray_x = data->pos_x;
+	data->ray_y = data->pos_y;
+	while (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1)
 	{
-		data->ray_x = data->pos_x;
-		data->ray_y = data->pos_y;
-		while (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1)
-		{
-			mlx_put_pixel(data->rays_map, data->ray_x * data->box_size,
-				data->ray_y * data->box_size, RAY_COLOR);
-			data->ray_x += data->ray_dir_x * 0.1;
-			data->ray_y += data->ray_dir_y * 0.1;
-		}
-		mlx_put_pixel(data->rays_map,
-			(data->hit_x - 0.05 * data->ray_dir_x) * data->box_size,
-			(data->hit_y - 0.05 * data->ray_dir_y) * data->box_size, RAY_COLOR);
+		mlx_put_pixel(data->rays_map, data->ray_x * data->box_size,
+			data->ray_y * data->box_size, RAY_COLOR);
+		data->ray_x += data->ray_dir_x * 0.1;
+		data->ray_y += data->ray_dir_y * 0.1;
 	}
-	else if (data->depth == 2)
-	{
-		
-	}
+	mlx_put_pixel(data->rays_map,
+		(data->hit_x - 0.05 * data->ray_dir_x) * data->box_size,
+		(data->hit_y - 0.05 * data->ray_dir_y) * data->box_size, RAY_COLOR);
+}
+
+void	draw_minimap(t_data *data)
+{
+	(void)data;
 }
 
 void draw_for_x(t_data *data)
 {
 	draw_game(data);
-	if (data->fog_state)
+	if (data->config == 1 && data->fog_state)
 		draw_map_fog(data);
-	else
+	else if (data->config == 1)
 		draw_map(data);
+	else if (data->config == 2)
+		draw_minimap(data);
 }
 
 void	dda(t_data *data)

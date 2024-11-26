@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:15:15 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:31:33 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,34 @@ void depth(mlx_image_t *img, int depth)
 	mlx_set_instance_depth(&img->instances[0], depth);
 }
 
+void check_depth_config(t_data *data)
+{
+	if (data->config == 1)
+	{
+		depth(data->player_map, 4);
+		depth(data->rays_map, 3);
+		depth(data->map_img, 2);
+		depth(data->minimap, -1);
+		depth(data->rays_minimap, -1);
+	}
+	else if (data->config == 2)
+	{
+		depth(data->rays_minimap, 3);
+		depth(data->minimap, 2);
+		depth(data->map_img, -1);
+		depth(data->rays_map, -1);
+		depth(data->player_map, -1);
+	}
+	else
+	{
+		depth(data->player_map, -1);
+		depth(data->map_img, -1);
+		depth(data->minimap, -1);
+		depth(data->rays_map, -1);
+		depth(data->rays_minimap, -1);
+	}
+}
+
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
@@ -27,31 +55,19 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->mlx);
 	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 	{
-		data->depth = (data->depth + 1) % 3;
-		if (data->depth == 0)
-		{
-			depth(data->player_map, -1);
-			depth(data->map_img, -1);
-			depth(data->minimap, -1);
-			depth(data->rays_map, -1);
-			depth(data->rays_minimap, -1);
-		}
-		else if (data->depth == 1)
-		{
-			depth(data->player_map, 4);
-			depth(data->rays_map, 3);
-			depth(data->map_img, 2);
-			depth(data->minimap, -1);
-			depth(data->rays_minimap, -1);
-		}
+		if (data->config == 1)
+			data->config = 0;
 		else
-		{
-			depth(data->rays_minimap, 3);
-			depth(data->minimap, 2);
-			depth(data->map_img, -1);
-			depth(data->rays_map, -1);
-			depth(data->player_map, -1);
-		}
+			data->config = 1;
+		check_depth_config(data);
+	}
+	if (keydata.key == MLX_KEY_N && keydata.action == MLX_PRESS)
+	{
+		if (data->config == 2)
+			data->config = 0;
+		else
+			data->config = 2;
+		check_depth_config(data);
 	}
 	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
 		data->fog_state = !data->fog_state;
