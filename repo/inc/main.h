@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 18:02:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:10:01 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ typedef struct s_data
 	mlx_image_t		*background;
 	mlx_image_t		*map_img;
 	mlx_image_t		*minimap;
-	mlx_image_t		*player;
-	mlx_image_t		*rays;
+	mlx_image_t		*player_map;
+	mlx_image_t		*rays_map;
+	mlx_image_t		*rays_minimap;
 	mlx_image_t		*walls;
 	// mlx_image_t		*wall_no;
 	// mlx_image_t		*wall_so;

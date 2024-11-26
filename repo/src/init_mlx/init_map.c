@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 18:06:26 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:01:16 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	fill_map(t_data *data)
 void	init_map(t_data *data)
 {
 	data->map_img = mlx_new_image(data->mlx,
-		data->map_width * data->box_size,
-		data->map_height * data->box_size);
+			data->map_width * data->box_size,
+			data->map_height * data->box_size);
 	if (data->map_img == NULL)
 		return (mlx_perror_exit(data));
 	if (mlx_image_to_window(data->mlx, data->map_img, 0, 0) == -1)
@@ -72,6 +72,7 @@ void	init_map(t_data *data)
 		return (mlx_perror_exit(data));
 	}
 	fill_map(data);
+	mlx_set_instance_depth(&data->map_img->instances[0], -1);
 }
 
 void fill_minimap(t_data *data)
@@ -117,4 +118,5 @@ void	init_minimap(t_data *data)
 		return (mlx_perror_exit(data));
 	}
 	fill_minimap(data);
+	mlx_set_instance_depth(&data->minimap->instances[0], -1);
 }

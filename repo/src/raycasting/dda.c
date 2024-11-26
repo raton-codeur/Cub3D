@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 18:02:51 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:12:07 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ void draw_map_fog(t_data *data)
 	while (data->d < data->visible_max && (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1))
 	{
 		data->factor = 1 - data->d / data->visible_max;
-		mlx_put_pixel(data->rays, data->ray_x * data->box_size,
+		mlx_put_pixel(data->rays_map, data->ray_x * data->box_size,
 			data->ray_y * data->box_size, (RAY_COLOR & 0xFFFFFF00) + data->factor * 255);
 		data->ray_x += data->ray_dir_x * 0.1;
 		data->ray_y += data->ray_dir_y * 0.1;
@@ -169,18 +169,18 @@ void draw_map(t_data *data)
 		data->ray_y = data->pos_y;
 		while (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1)
 		{
-			mlx_put_pixel(data->rays, data->ray_x * data->box_size,
+			mlx_put_pixel(data->rays_map, data->ray_x * data->box_size,
 				data->ray_y * data->box_size, RAY_COLOR);
 			data->ray_x += data->ray_dir_x * 0.1;
 			data->ray_y += data->ray_dir_y * 0.1;
 		}
-		mlx_put_pixel(data->rays,
+		mlx_put_pixel(data->rays_map,
 			(data->hit_x - 0.05 * data->ray_dir_x) * data->box_size,
 			(data->hit_y - 0.05 * data->ray_dir_y) * data->box_size, RAY_COLOR);
 	}
 	else if (data->depth == 2)
 	{
-		erase_image(data->rays);
+		
 	}
 }
 

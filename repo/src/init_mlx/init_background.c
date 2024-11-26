@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:16:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/25 15:29:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 18:59:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ void	init_background(t_data *data)
 		return (mlx_perror_exit(data));
 	}
 	fill_background(data);
+	mlx_set_instance_depth(&data->background->instances[0], 0);
 }

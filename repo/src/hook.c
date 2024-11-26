@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 17:50:53 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:15:15 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,27 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		data->depth = (data->depth + 1) % 3;
 		if (data->depth == 0)
 		{
-			depth(data->walls, 5);
-			depth(data->background, 4);
-			depth(data->player, 3);
-			depth(data->rays, 2);
-			depth(data->map_img, 1);
-			depth(data->minimap, 0);
+			depth(data->player_map, -1);
+			depth(data->map_img, -1);
+			depth(data->minimap, -1);
+			depth(data->rays_map, -1);
+			depth(data->rays_minimap, -1);
 		}
 		else if (data->depth == 1)
 		{
-			depth(data->player, 5);
-			depth(data->rays, 4);
-			depth(data->map_img, 3);
-			depth(data->walls, 2);
-			depth(data->background, 1);
-			depth(data->minimap, 0);
+			depth(data->player_map, 4);
+			depth(data->rays_map, 3);
+			depth(data->map_img, 2);
+			depth(data->minimap, -1);
+			depth(data->rays_minimap, -1);
 		}
 		else
 		{
-			depth(data->rays, 5);
-			depth(data->minimap, 4);
-			depth(data->walls, 3);
-			depth(data->background, 2);
-			depth(data->player, 1);
-			depth(data->map_img, 0);
+			depth(data->rays_minimap, 3);
+			depth(data->minimap, 2);
+			depth(data->map_img, -1);
+			depth(data->rays_map, -1);
+			depth(data->player_map, -1);
 		}
 	}
 	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
@@ -90,7 +87,7 @@ void	main_hook(void *param)
 	t_data	*data;
 
 	data = param;
-	erase_image(data->rays);
+	erase_image(data->rays_map);
 	erase_image(data->walls);
 	check_movement_keys(data);
 	check_rotation_keys(data);

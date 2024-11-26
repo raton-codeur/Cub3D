@@ -6,13 +6,13 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:06:25 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/19 15:06:37 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 18:42:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
 
-void	draw_ray(t_data *data, double camera_x, uint32_t color)
+void	draw_ray_map(t_data *data, double camera_x, uint32_t color)
 {
 	double	x;
 	double	y;
@@ -23,7 +23,7 @@ void	draw_ray(t_data *data, double camera_x, uint32_t color)
 	y = data->pos_y;
 	while (data->map[(int)x][(int)y] != '1')
 	{
-		mlx_put_pixel(data->rays, \
+		mlx_put_pixel(data->rays_map, \
 			x * data->box_size, y * data->box_size, color);
 		x += data->ray_dir_x / 30;
 		y += data->ray_dir_y / 30;
