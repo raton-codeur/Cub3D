@@ -71,7 +71,6 @@ void	iterate_dda(t_data *data)
 	}
 }
 
-
 void	get_dda_results(t_data *data)
 {
 	if (data->side == 0 && data->step_i == -1)
@@ -86,43 +85,36 @@ void	get_dda_results(t_data *data)
 		data->perp_wall_dist = data->side_dist_x - data->delta_dist_x;
 	else
 		data->perp_wall_dist = data->side_dist_y - data->delta_dist_y;
-	data->line_height = W_HEIGHT / data->perp_wall_dist;
-	if (data->line_height < 0)
-		data->line_height = 0;
-	if (data->line_height > W_HEIGHT)
-		data->line_height = W_HEIGHT;
-
-	unsigned long r, g, b;
-	double factor;
+	data->wall_height = W_HEIGHT / data->perp_wall_dist / 2;
+	if (data->wall_height < 0)
+		data->wall_height = 0;
+	if (data->wall_height > W_HEIGHT / 2)
+		data->wall_height = W_HEIGHT / 2;
+	data->wall_height_norm = 2.0 * data->wall_height / W_HEIGHT;
 	if (data->fog_state)
 	{
-	r = data->color >> 24;
-	g = data->color >> 16 & 0xFF;
-	b = data->color >> 8 & 0xFF;
-	double line_height_norm = (double)data->line_height / W_HEIGHT; // de 0 à 1
-	if (line_height_norm < 0.2) // jusqu'à une hauteur de mur de 20% de W_HEIGHT, le mur sera gris
-		data->color = FOG_COLOR;
-	else if (line_height_norm < 0.7) // mur de hauteur entre 20% et 70%
-	// le niveau de gris du mur varie en fonction de line_height_norm
-	{
-		factor = 0.5 + 0.5 * cos(M_PI * 2 * (line_height_norm - 0.2));
-		r = r * (1 - factor) + 70 * factor;
-		g = g * (1 - factor) + 70 * factor;
-		b = b * (1 - factor) + 70 * factor;
-		data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
-	}
-	// a partir d'une hauteur de 70%, le mur n'est pas gris
-	// data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
+		if (data->wall_height_norm < 0.2) // jusqu'à une hauteur de 20%, le mur est de la couleur du brouillard
+			data->color = FOG_COLOR;
+		else if (data->wall_height_norm < 0.7) // hauteur entre 20% et 70%, la couleur est mélangée avec celle du brouillard
+		{
+			data->factor = 0.5 + 0.5 * cos(2 * M_PI * (data->wall_height_norm - 0.2));
+			unsigned r, g, b;
+			r = (data->color >> 24) & 0xFF;
+			g = (data->color >> 16) & 0xFF;
+			b = (data->color >> 8) & 0xFF;
+			r = r * (1 - data->factor) + (FOG_COLOR >> 24 & 0xFF) * data->factor;
+			g = g * (1 - data->factor) + (FOG_COLOR >> 16 & 0xFF) * data->factor;
+			b = b * (1 - data->factor) + (FOG_COLOR >> 8 & 0xFF) * data->factor;
+			data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
+		}
+		// sinon, a partir d'une hauteur de 70%, le mur a sa couleur normale
 	}
 }
 
-void	draw_wall_line(t_data *data)
+void	draw_game(t_data *data)
 {
-	double	factor;
-
-	data->line_height /= 2;
 	data->y = 0;
-	while (data->y < data->line_height)
+	while (data->y < data->wall_height)
 	{
 		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, data->color);
 		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, data->color);
@@ -130,38 +122,43 @@ void	draw_wall_line(t_data *data)
 	}
 	if (data->fog_state)
 	{
-	while (data->y < data->fog_height)
-	{
-		factor = (double)data->y / data->fog_height;
-		if (factor < 0.3)
-			factor = 1;
-		else if (factor < 0.8)
-			factor = 0.5 + 0.5 * cos(2 * M_PI * (factor - 0.3));
-		else
-			factor = 0;
-		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, 0x46464600 + factor * 255);
-		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, 0x46464600 + factor * 255);
-		data->y++;
-	}
+		while (data->y < data->fog_height)
+		{
+			data->factor = (double)data->y / data->fog_height;
+			if (data->factor < 0.3) // jusqu'à une hauteur de 30%, le brouillard est maximal
+				data->factor = 1;
+			else if (data->factor < 0.8) // entre 30% et 80%, le brouillard est plus ou moins transparent
+				data->factor = 0.5 + 0.5 * cos(2 * M_PI * (data->factor - 0.3));
+			else // au dessus de 80% de la hauteur du brouillard, le brouillard est nul......
+				data->factor = 0;
+			data->color = (FOG_COLOR & 0xFFFFFF00) + data->factor * 255;
+			mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, data->color);
+			mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, data->color);
+			data->y++;
+		}
 	}
 }
 
-void draw_ray_line(t_data *data)
+void draw_map(t_data *data)
 {
 	double x_hit, y_hit, x, y;
-	uint32_t color;
 
 	x_hit = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
 	y_hit = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
 	x = data->pos_x;
 	y = data->pos_y;
-	color = 0x00FF00FF;
 	while (!(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
 	{
-		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF00FF);
+		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, RAY_COLOR);
 		x += data->ray_dir_x * 0.05;
 		y += data->ray_dir_y * 0.05;
 	}
+}
+
+void draw_for_x(t_data *data)
+{
+	draw_game(data);
+	draw_map(data);
 }
 
 // void draw_ray_line(t_data *data)
@@ -195,8 +192,7 @@ void	dda(t_data *data)
 		init_dda_variables(data);
 		iterate_dda(data);
 		get_dda_results(data);
-		draw_wall_line(data);
-		draw_ray_line(data);
+		draw_for_x(data);
 		data->x++;
 	}
 }
