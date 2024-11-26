@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 10:27:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 12:28:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 
 # define W_WIDTH 2560 // 1920 // la largeur de la fenêtre
 # define W_HEIGHT 1440 // 1080 // hauteur de la fenêtre
-# define CEIL_COLOR 0x87CEEBFF
-# define FLOOR_COLOR 0x707070FF
+# define W_HEIGHT_2 (W_HEIGHT / 2)
 # define PATH_MAP "maps/simple.cub"
 # define STEP_MOVE 0.2 // le pas de déplacement du joueur en pixels
 # define STEP_VIEW 0.05 // le pas de changement de l'angle de vue en radians
-# define FOG_COLOR 0x464646FF
+# define FOG_COLOR 0x505050FF
 # define RAY_COLOR 0x00FF00FF
+# define FOG_RATIO 0.3 // ratio de wall_height_norm à partir duquel on commence à appliquer le brouillard
+# define FOG_MAX 0.3 // ratio de FOG_RATIO jusqu'auquel le brouillard est maximal
 
 enum e_error
 {
@@ -75,6 +76,9 @@ typedef struct s_data
 	uint32_t		fog_height; // la hauteur du brouillard
 	int				fog_state;
 	double			factor; // entre 0 et 1 pour faire des dégradés
+	uint32_t		r;
+	uint32_t		g;
+	uint32_t		b;
 
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur

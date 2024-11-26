@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 09:31:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 11:31:57 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ void	init_mlx(t_data *data)
 	init_map(data);
 	init_rays(data);
 	init_player(data);
-	data->fog_height = W_HEIGHT * 0.3;
+	data->fog_height = (W_HEIGHT / 2) * FOG_RATIO;
 	data->fog_state = 1;
 }

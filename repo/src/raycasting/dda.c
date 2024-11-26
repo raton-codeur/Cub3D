@@ -71,6 +71,22 @@ void	iterate_dda(t_data *data)
 	}
 }
 
+void shade_wall(t_data *data)
+{
+	data->factor = data->wall_height_norm / FOG_RATIO;
+	if (data->factor < FOG_MAX)
+		data->factor = 1;
+	else
+		data->factor = 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
+	data->r = (data->color >> 24 & 0xFF) * (1 - data->factor)
+		+ (FOG_COLOR >> 24 & 0xFF) * data->factor;
+	data->g = (data->color >> 16 & 0xFF) * (1 - data->factor)
+		+ (FOG_COLOR >> 16 & 0xFF) * data->factor;
+	data->b = (data->color >> 8 & 0xFF) * (1 - data->factor)
+		+ (FOG_COLOR >> 8 & 0xFF) * data->factor;
+	data->color = (data->r << 24) + (data->g << 16) + (data->b << 8) + 0xFF;
+}
+
 void	get_dda_results(t_data *data)
 {
 	if (data->side == 0 && data->step_i == -1)
@@ -91,24 +107,10 @@ void	get_dda_results(t_data *data)
 	if (data->wall_height > W_HEIGHT / 2)
 		data->wall_height = W_HEIGHT / 2;
 	data->wall_height_norm = 2.0 * data->wall_height / W_HEIGHT;
-	if (data->fog_state)
-	{
-		if (data->wall_height_norm < 0.2) // jusqu'à une hauteur de 20%, le mur est de la couleur du brouillard
-			data->color = FOG_COLOR;
-		else if (data->wall_height_norm < 0.7) // hauteur entre 20% et 70%, la couleur est mélangée avec celle du brouillard
-		{
-			data->factor = 0.5 + 0.5 * cos(2 * M_PI * (data->wall_height_norm - 0.2));
-			unsigned r, g, b;
-			r = (data->color >> 24) & 0xFF;
-			g = (data->color >> 16) & 0xFF;
-			b = (data->color >> 8) & 0xFF;
-			r = r * (1 - data->factor) + (FOG_COLOR >> 24 & 0xFF) * data->factor;
-			g = g * (1 - data->factor) + (FOG_COLOR >> 16 & 0xFF) * data->factor;
-			b = b * (1 - data->factor) + (FOG_COLOR >> 8 & 0xFF) * data->factor;
-			data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
-		}
-		// sinon, a partir d'une hauteur de 70%, le mur a sa couleur normale
-	}
+	if (data->fog_state && data->wall_height_norm < FOG_RATIO)
+		shade_wall(data);
+	// else
+	// 	data->color = 0x000000FF;
 }
 
 void	draw_game(t_data *data)
@@ -116,8 +118,8 @@ void	draw_game(t_data *data)
 	data->y = 0;
 	while (data->y < data->wall_height)
 	{
-		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, data->color);
-		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 + data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 - data->y, data->color);
 		data->y++;
 	}
 	if (data->fog_state)
@@ -125,15 +127,13 @@ void	draw_game(t_data *data)
 		while (data->y < data->fog_height)
 		{
 			data->factor = (double)data->y / data->fog_height;
-			if (data->factor < 0.3) // jusqu'à une hauteur de 30%, le brouillard est maximal
+			if (data->factor < FOG_MAX)
 				data->factor = 1;
-			else if (data->factor < 0.8) // entre 30% et 80%, le brouillard est plus ou moins transparent
-				data->factor = 0.5 + 0.5 * cos(2 * M_PI * (data->factor - 0.3));
-			else // au dessus de 80% de la hauteur du brouillard, le brouillard est nul......
-				data->factor = 0;
+			else
+				data->factor = 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
 			data->color = (FOG_COLOR & 0xFFFFFF00) + data->factor * 255;
-			mlx_put_pixel(data->walls, data->x, data->walls->height / 2 + data->y, data->color);
-			mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, data->color);
+			mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 + data->y, data->color);
+			mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 - data->y, data->color);
 			data->y++;
 		}
 	}
