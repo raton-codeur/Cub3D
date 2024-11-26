@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/25 15:00:200:25 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 15:59:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,21 +146,17 @@ void	draw_game(t_data *data)
 
 void draw_map_fog(t_data *data)
 {
-	double d;
-	double d_max;
-
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
-	d_max = 1 / (FOG_RATIO * FOG_MAX * FOG_RATIO * FOG_MAX);
-	d = 0;
-	while (d < d_max && (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1))
+	data->d = 0;
+	while (data->d < data->visible_max && (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1))
 	{
-		data->factor = 1 - d / d_max;
+		data->factor = 1 - data->d / data->visible_max;
 		mlx_put_pixel(data->rays, data->ray_x * data->box_size,
 			data->ray_y * data->box_size, (RAY_COLOR & 0xFFFFFF00) + data->factor * 255);
 		data->ray_x += data->ray_dir_x * 0.1;
 		data->ray_y += data->ray_dir_y * 0.1;
-		d = (data->ray_x - data->pos_x) * (data->ray_x - data->pos_x)
+		data->d = (data->ray_x - data->pos_x) * (data->ray_x - data->pos_x)
 			+ (data->ray_y - data->pos_y) * (data->ray_y - data->pos_y);
 	}
 }
@@ -189,29 +185,6 @@ void draw_for_x(t_data *data)
 	else
 		draw_map(data);
 }
-
-// void draw_ray_line(t_data *data)
-// {
-// 	double x_hit, y_hit, x, y;
-// 	int count;
-// 	double count_norm;
-// 	uint32_t color;
-
-// 	x_hit = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
-// 	y_hit = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
-// 	x = data->pos_x;
-// 	y = data->pos_y;
-// 	count = 0;
-// 	color = 0x00FF00FF;
-// 	while (count < 400 && !(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
-// 	{
-// 		count_norm = 1 - (double)count / 400;
-// 		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF0000 + 255 * count_norm);
-// 		x += data->ray_dir_x * 0.01;
-// 		y += data->ray_dir_y * 0.01;
-// 		count++;
-// 	}
-// }
 
 void	dda(t_data *data)
 {

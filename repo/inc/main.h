@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 15:31:34 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 15:46:02 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,14 @@ typedef struct s_data
 	uint32_t		fog_height; // la hauteur du brouillard
 	int				fog_state;
 	double			factor; // entre 0 et 1 pour faire des dégradés
+	uint32_t		y; // pour dessiner la ligne de mur
 	uint32_t		r;
 	uint32_t		g;
 	uint32_t		b;
 	double			ray_x; // pour dessiner le rayon sur la minimap
 	double			ray_y; // pour dessiner le rayon sur la minimap
+	double			visible_max; // la distance maximale de visibilité selon le brouillard (au carré)
+	double			d; // pour la distance (au carré) du rayon dans la minimap
 
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur
@@ -118,7 +121,6 @@ typedef struct s_data
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
 	uint32_t	color; // la couleur de la ligne de mur
-	uint32_t	y; // pour dessiner la ligne de mur
 }	t_data;
 
 /* free.c */
