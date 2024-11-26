@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:28:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 19:34:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void draw_map_fog(t_data *data)
 			+ (data->ray_y - data->pos_y) * (data->ray_y - data->pos_y);
 	}
 }
-
+ 
 void draw_map(t_data *data)
 {
 	data->ray_x = data->pos_x;
