@@ -34,6 +34,14 @@ donc on a le produit en croix :
 
 <img src="schémas/produit_croix.png"/>
 
+# initialisation de delta dist et side dist
+
+<img src="schémas/dda_init.png" />
+
 # perp wall dist
 
 <img src="schémas/perp_wall_dist.png" />
+
+# gradient de brouillard en fonction de wall height
+
+<img src="schémas/fog_ratio_et_max.png" />
