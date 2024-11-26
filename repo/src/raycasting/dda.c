@@ -94,14 +94,14 @@ void	get_dda_results(t_data *data)
 
 	unsigned long r, g, b;
 	double factor;
+	if (data->fog_state)
+	{
 	r = data->color >> 24;
 	g = data->color >> 16 & 0xFF;
 	b = data->color >> 8 & 0xFF;
 	double line_height_norm = (double)data->line_height / W_HEIGHT; // de 0 à 1
 	if (line_height_norm < 0.2) // jusqu'à une hauteur de mur de 20% de W_HEIGHT, le mur sera gris
-	{
-		r = 70; g = 70; b = 70;
-	}
+		data->color = FOG_COLOR;
 	else if (line_height_norm < 0.7) // mur de hauteur entre 20% et 70%
 	// le niveau de gris du mur varie en fonction de line_height_norm
 	{
@@ -109,9 +109,11 @@ void	get_dda_results(t_data *data)
 		r = r * (1 - factor) + 70 * factor;
 		g = g * (1 - factor) + 70 * factor;
 		b = b * (1 - factor) + 70 * factor;
+		data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
 	}
 	// a partir d'une hauteur de 70%, le mur n'est pas gris
-	data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
+	// data->color = (r << 24) + (g << 16) + (b << 8) + 0xFF;
+	}
 }
 
 void	draw_wall_line(t_data *data)
@@ -126,6 +128,8 @@ void	draw_wall_line(t_data *data)
 		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, data->color);
 		data->y++;
 	}
+	if (data->fog_state)
+	{
 	while (data->y < data->fog_height)
 	{
 		factor = (double)data->y / data->fog_height;
@@ -139,30 +143,49 @@ void	draw_wall_line(t_data *data)
 		mlx_put_pixel(data->walls, data->x, data->walls->height / 2 - data->y, 0x46464600 + factor * 255);
 		data->y++;
 	}
+	}
 }
 
 void draw_ray_line(t_data *data)
 {
 	double x_hit, y_hit, x, y;
-	int count;
-	double count_norm;
 	uint32_t color;
 
 	x_hit = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
 	y_hit = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
 	x = data->pos_x;
 	y = data->pos_y;
-	count = 0;
 	color = 0x00FF00FF;
-	while (count < 400 && !(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
+	while (!(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
 	{
-		count_norm = 1 - (double)count / 400;
-		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF0000 + 255 * count_norm);
-		x += data->ray_dir_x * 0.01;
-		y += data->ray_dir_y * 0.01;
-		count++;
+		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF00FF);
+		x += data->ray_dir_x * 0.05;
+		y += data->ray_dir_y * 0.05;
 	}
 }
+
+// void draw_ray_line(t_data *data)
+// {
+// 	double x_hit, y_hit, x, y;
+// 	int count;
+// 	double count_norm;
+// 	uint32_t color;
+
+// 	x_hit = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
+// 	y_hit = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
+// 	x = data->pos_x;
+// 	y = data->pos_y;
+// 	count = 0;
+// 	color = 0x00FF00FF;
+// 	while (count < 400 && !(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
+// 	{
+// 		count_norm = 1 - (double)count / 400;
+// 		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, 0x00FF0000 + 255 * count_norm);
+// 		x += data->ray_dir_x * 0.01;
+// 		y += data->ray_dir_y * 0.01;
+// 		count++;
+// 	}
+// }
 
 void	dda(t_data *data)
 {

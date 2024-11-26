@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/25 17:46:59 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 09:32:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define STEP_VIEW 0.05 // le pas de changement de l'angle de vue en radians
 # define I_START 2
 # define J_START 3
+# define FOG_COLOR 0x464646FF
 
 enum e_error
 {
@@ -74,6 +75,7 @@ typedef struct s_data
 	int				i_start;
 	int				j_start;
 	char			dir_start;
+	int				fog_state;
 
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur

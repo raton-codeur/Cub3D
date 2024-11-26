@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/25 20:35:21 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 09:15:12 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 			-data->rays->instances[0].z);
 		mlx_set_instance_depth(&data->player->instances[0], \
 			-data->player->instances[0].z);
+	}
+	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
+	{
+		data->fog_state = !data->fog_state;
 	}
 }
 
