@@ -6,12 +6,17 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 09:15:12 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 17:50:53 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raycasting.h"
+
+void depth(mlx_image_t *img, int depth)
+{
+	mlx_set_instance_depth(&img->instances[0], depth);
+}
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -22,17 +27,37 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->mlx);
 	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 	{
-		mlx_set_instance_depth(&data->map_img->instances[0], \
-			-data->map_img->instances[0].z);
-		mlx_set_instance_depth(&data->rays->instances[0], \
-			-data->rays->instances[0].z);
-		mlx_set_instance_depth(&data->player->instances[0], \
-			-data->player->instances[0].z);
+		data->depth = (data->depth + 1) % 3;
+		if (data->depth == 0)
+		{
+			depth(data->walls, 5);
+			depth(data->background, 4);
+			depth(data->player, 3);
+			depth(data->rays, 2);
+			depth(data->map_img, 1);
+			depth(data->minimap, 0);
+		}
+		else if (data->depth == 1)
+		{
+			depth(data->player, 5);
+			depth(data->rays, 4);
+			depth(data->map_img, 3);
+			depth(data->walls, 2);
+			depth(data->background, 1);
+			depth(data->minimap, 0);
+		}
+		else
+		{
+			depth(data->rays, 5);
+			depth(data->minimap, 4);
+			depth(data->walls, 3);
+			depth(data->background, 2);
+			depth(data->player, 1);
+			depth(data->map_img, 0);
+		}
 	}
 	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
-	{
 		data->fog_state = !data->fog_state;
-	}
 }
 
 void	erase_image(mlx_image_t *image)

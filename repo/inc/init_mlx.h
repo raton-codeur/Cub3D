@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/20 11:48:59 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:25:02 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void		init_background(t_data *data);
 
 /* init_map.c */
 void		init_map(t_data *data);
+void		init_minimap(t_data *data);
 
 /* init_rays.c */
 void		init_rays(t_data *data);

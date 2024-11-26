@@ -6,13 +6,13 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/16 14:26:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 18:06:26 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_mlx.h"
 
-static void	print_box(t_data *data, int x_start, int y_start, uint32_t color)
+static void	fill_map_box(t_data *data, int x_start, int y_start, uint32_t color)
 {
 	int	x;
 	int	y;
@@ -36,7 +36,7 @@ static void	print_box(t_data *data, int x_start, int y_start, uint32_t color)
 	}
 }
 
-void	display_map(t_data *data)
+void	fill_map(t_data *data)
 {
 	int			i;
 	int			j;
@@ -52,7 +52,7 @@ void	display_map(t_data *data)
 				color = 0x000000FF;
 			else
 				color = 0xFFFFFFFF;
-			print_box(data, i * data->box_size, j * data->box_size, color);
+			fill_map_box(data, i * data->box_size, j * data->box_size, color);
 			j++;
 		}
 		i++;
@@ -61,12 +61,8 @@ void	display_map(t_data *data)
 
 void	init_map(t_data *data)
 {
-	if (data->map_width > data->map_height)
-		data->box_size = W_WIDTH / 3 / data->map_width;
-	else
-		data->box_size = W_HEIGHT / 3 / data->map_height;
-	data->map_img = mlx_new_image(data->mlx, \
-		data->map_width * data->box_size, \
+	data->map_img = mlx_new_image(data->mlx,
+		data->map_width * data->box_size,
 		data->map_height * data->box_size);
 	if (data->map_img == NULL)
 		return (mlx_perror_exit(data));
@@ -75,6 +71,50 @@ void	init_map(t_data *data)
 		mlx_delete_image(data->mlx, data->map_img);
 		return (mlx_perror_exit(data));
 	}
-	display_map(data);
-	data->show_map = 1;
+	fill_map(data);
+}
+
+void fill_minimap(t_data *data)
+{
+	int	x;
+	int	y;
+	int	radius_2;
+	int	radius;
+	int	player_radius_2;
+	int d;
+
+	radius = data->minimap->width / 2;
+	radius_2 = radius * radius;
+	player_radius_2 = data->box_size * data->box_size / 16;
+	x = 0;
+	while (x < (int)data->minimap->width)
+	{
+		y = 0;
+		while (y < (int)data->minimap->height)
+		{
+			d = (radius - x) * (radius - x) + (radius - y) * (radius - y);
+			if (d <= radius_2)
+			{
+				if (d <= player_radius_2)
+					mlx_put_pixel(data->minimap, x, y, 0xFF0000FF);
+				else
+					mlx_put_pixel(data->minimap, x, y, 0xFFFFFFFF);
+			}
+			y++;
+		}
+		x++;
+	}
+}
+
+void	init_minimap(t_data *data)
+{
+	data->minimap = mlx_new_image(data->mlx, 10 * data->box_size, 10 * data->box_size);
+	if (data->minimap == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->minimap, data->box_size, data->box_size) == -1)
+	{
+		mlx_delete_image(data->mlx, data->minimap);
+		return (mlx_perror_exit(data));
+	}
+	fill_minimap(data);
 }

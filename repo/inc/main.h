@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 15:46:02 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 18:02:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,17 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*background;
 	mlx_image_t		*map_img;
+	mlx_image_t		*minimap;
 	mlx_image_t		*player;
 	mlx_image_t		*rays;
 	mlx_image_t		*walls;
-	mlx_image_t		*wall;
-	mlx_image_t		*fog;
-	mlx_image_t		*wall_no;
-	mlx_image_t		*wall_so;
-	mlx_image_t		*wall_we;
-	mlx_image_t		*wall_ea;
+	// mlx_image_t		*wall_no;
+	// mlx_image_t		*wall_so;
+	// mlx_image_t		*wall_we;
+	// mlx_image_t		*wall_ea;
 	int				map_width;
 	int				map_height;
-	int				show_map;
+	int				depth; // 0 pour rien, 1 pour la map, 2 pour la minimap
 	uint32_t		ceil_color;
 	uint32_t		floor_color;
 	int				box_size;
@@ -133,6 +132,7 @@ void		error_exit(int code, t_data *data);
 /* hook.c */
 void		key_hook(mlx_key_data_t keydata, void *param);
 void		main_hook(void *param);
+void		erase_image(mlx_image_t *image);
 
 /* move.c */
 void		move_up(t_data *data);
