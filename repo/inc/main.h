@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 12:28:59 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/26 15:31:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define FOG_COLOR 0x505050FF
 # define RAY_COLOR 0x00FF00FF
 # define FOG_RATIO 0.3 // ratio de wall_height_norm à partir duquel on commence à appliquer le brouillard
-# define FOG_MAX 0.3 // ratio de FOG_RATIO jusqu'auquel le brouillard est maximal
+# define FOG_MAX 0.2 // ratio de FOG_RATIO jusqu'auquel le brouillard est maximal
+# define STEP_MAP 0.1
 
 enum e_error
 {
@@ -79,6 +80,8 @@ typedef struct s_data
 	uint32_t		r;
 	uint32_t		g;
 	uint32_t		b;
+	double			ray_x; // pour dessiner le rayon sur la minimap
+	double			ray_y; // pour dessiner le rayon sur la minimap
 
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur
@@ -108,6 +111,8 @@ typedef struct s_data
 
 	// fin de boucle 
 	int			hit; // 0 de base. passe à 1 quand on tombe sur un mur
+	double		hit_x; // la coordonnée horizontale du point de la case où le rayon a touché un mur
+	double		hit_y; // la coordonnée verticale du point de la case où le rayon a touché un mur
 	int			side; // 0 si le rayon a touché un mur horizontal, 1 si le rayon a touché un mur vertical
 	double		perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran

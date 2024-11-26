@@ -71,13 +71,14 @@ void	iterate_dda(t_data *data)
 	}
 }
 
-void shade_wall(t_data *data)
+void	shade_wall(t_data *data)
 {
 	data->factor = data->wall_height_norm / FOG_RATIO;
 	if (data->factor < FOG_MAX)
 		data->factor = 1;
 	else
-		data->factor = 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
+		data->factor
+			= 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
 	data->r = (data->color >> 24 & 0xFF) * (1 - data->factor)
 		+ (FOG_COLOR >> 24 & 0xFF) * data->factor;
 	data->g = (data->color >> 16 & 0xFF) * (1 - data->factor)
@@ -101,6 +102,8 @@ void	get_dda_results(t_data *data)
 		data->perp_wall_dist = data->side_dist_x - data->delta_dist_x;
 	else
 		data->perp_wall_dist = data->side_dist_y - data->delta_dist_y;
+	data->hit_x = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
+	data->hit_y = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
 	data->wall_height = W_HEIGHT / data->perp_wall_dist / 2;
 	if (data->wall_height < 0)
 		data->wall_height = 0;
@@ -109,8 +112,23 @@ void	get_dda_results(t_data *data)
 	data->wall_height_norm = 2.0 * data->wall_height / W_HEIGHT;
 	if (data->fog_state && data->wall_height_norm < FOG_RATIO)
 		shade_wall(data);
-	// else
-	// 	data->color = 0x000000FF;
+}
+
+void	shade_background(t_data *data)
+{
+	while (data->y < data->fog_height)
+	{
+		data->factor = (double)data->y / data->fog_height;
+		if (data->factor < FOG_MAX)
+			data->factor = 1;
+		else
+			data->factor
+				= 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
+		data->color = (FOG_COLOR & 0xFFFFFF00) + data->factor * 255;
+		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 + data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 - data->y, data->color);
+		data->y++;
+	}
 }
 
 void	draw_game(t_data *data)
@@ -123,42 +141,53 @@ void	draw_game(t_data *data)
 		data->y++;
 	}
 	if (data->fog_state)
+		shade_background(data);
+}
+
+void draw_map_fog(t_data *data)
+{
+	double d;
+	double d_max;
+
+	data->ray_x = data->pos_x;
+	data->ray_y = data->pos_y;
+	d_max = 1 / (FOG_RATIO * FOG_MAX * FOG_RATIO * FOG_MAX);
+	d = 0;
+	while (d < d_max && (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1))
 	{
-		while (data->y < data->fog_height)
-		{
-			data->factor = (double)data->y / data->fog_height;
-			if (data->factor < FOG_MAX)
-				data->factor = 1;
-			else
-				data->factor = 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
-			data->color = (FOG_COLOR & 0xFFFFFF00) + data->factor * 255;
-			mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 + data->y, data->color);
-			mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 - data->y, data->color);
-			data->y++;
-		}
+		data->factor = 1 - d / d_max;
+		mlx_put_pixel(data->rays, data->ray_x * data->box_size,
+			data->ray_y * data->box_size, (RAY_COLOR & 0xFFFFFF00) + data->factor * 255);
+		data->ray_x += data->ray_dir_x * 0.1;
+		data->ray_y += data->ray_dir_y * 0.1;
+		d = (data->ray_x - data->pos_x) * (data->ray_x - data->pos_x)
+			+ (data->ray_y - data->pos_y) * (data->ray_y - data->pos_y);
 	}
 }
 
 void draw_map(t_data *data)
 {
-	double x_hit, y_hit, x, y;
-
-	x_hit = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
-	y_hit = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
-	x = data->pos_x;
-	y = data->pos_y;
-	while (!(fabs(x - x_hit) < 0.1 && fabs(y - y_hit) < 0.1))
+	data->ray_x = data->pos_x;
+	data->ray_y = data->pos_y;
+	while (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1)
 	{
-		mlx_put_pixel(data->rays, x * data->box_size, y * data->box_size, RAY_COLOR);
-		x += data->ray_dir_x * 0.05;
-		y += data->ray_dir_y * 0.05;
+		mlx_put_pixel(data->rays, data->ray_x * data->box_size,
+			data->ray_y * data->box_size, RAY_COLOR);
+		data->ray_x += data->ray_dir_x * 0.1;
+		data->ray_y += data->ray_dir_y * 0.1;
 	}
+	mlx_put_pixel(data->rays,
+		(data->hit_x - 0.05 * data->ray_dir_x) * data->box_size,
+		(data->hit_y - 0.05 * data->ray_dir_y) * data->box_size, RAY_COLOR);
 }
 
 void draw_for_x(t_data *data)
 {
 	draw_game(data);
-	draw_map(data);
+	if (data->fog_state)
+		draw_map_fog(data);
+	else
+		draw_map(data);
 }
 
 // void draw_ray_line(t_data *data)
