@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 11:37:25 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 23:21:21 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,28 @@ void	init_mlx(t_data *data)
 	data->fog_height = (data->height / 2) * FOG_RATIO;
 	data->visible_max = 1 / (FOG_RATIO * FOG_MAX * FOG_RATIO * FOG_MAX);
 	data->step_ray_map = 3.0 / data->box_size;
+
+	data->test = mlx_new_image(data->mlx, 10, 10);
+	if (data->test == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->test, 0, 0) == -1)
+	{
+		mlx_delete_image(data->mlx, data->test);
+		return (mlx_perror_exit(data));
+	}
+	fill_image(data->test, 0x01FF1005);
+	int x, y;
+	uint32_t color;
+	y = 0;
+	while (y < 10)
+	{
+		x = 0;
+		while (x < 10 * 4)
+		{
+			ft_memcpy(&color, &data->test->pixels[10*4*y + x], 4);
+			printf("pixel : %8x\n", color);
+			x += 4;
+		}
+		y++;
+	}
 }
