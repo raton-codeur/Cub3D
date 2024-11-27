@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/26 18:52:09 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:45:18 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,4 @@ void	parsing(t_data *data, int argc, char **argv)
 	check_cub_order(data);
 	check_map(data);
 	clean_parsing(data);
-	// print_map(data);
 }

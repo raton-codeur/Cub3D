@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:31:45 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:01:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ typedef struct s_data
 	mlx_image_t		*player_map;
 	mlx_image_t		*rays_map;
 	mlx_image_t		*rays_minimap;
-	mlx_image_t		*walls;
+	mlx_image_t		*game;
 	// mlx_image_t		*wall_no;
 	// mlx_image_t		*wall_so;
 	// mlx_image_t		*wall_we;
 	// mlx_image_t		*wall_ea;
 	int				map_width;
 	int				map_height;
-	int				config; // 0 pour rien, 1 pour la map, 2 pour la minimap
+	int				depth_config; // 0 pour rien, 1 pour la map, 2 pour la minimap
 	uint32_t		ceil_color;
 	uint32_t		floor_color;
 	int				box_size;
@@ -156,8 +156,13 @@ void		move_right(t_data *data);
 void		rotate_right(t_data *data);
 void		rotate_left(t_data *data);
 
+/* check_depth_config.c */
+void		check_depth_config(t_data *data);
+
 /* utils.c */
 void		fill_image(mlx_image_t *image, uint32_t color);
-
+void		erase_image(mlx_image_t *image);
+void		print_map(t_data *data);
+mlx_image_t	*get_img_from_png(t_data *data, const char *file);
 
 #endif

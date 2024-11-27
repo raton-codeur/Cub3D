@@ -6,45 +6,12 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:39:14 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:58:51 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raycasting.h"
-
-void depth(mlx_image_t *img, int depth)
-{
-	mlx_set_instance_depth(&img->instances[0], depth);
-}
-
-void check_depth_config(t_data *data)
-{
-	if (data->config == 1)
-	{
-		depth(data->player_map, 4);
-		depth(data->rays_map, 3);
-		depth(data->map_img, 2);
-		depth(data->minimap, -1);
-		depth(data->rays_minimap, -1);
-	}
-	else if (data->config == 2)
-	{
-		depth(data->rays_minimap, 3);
-		depth(data->minimap, 2);
-		depth(data->map_img, -1);
-		depth(data->rays_map, -1);
-		depth(data->player_map, -1);
-	}
-	else
-	{
-		depth(data->player_map, -1);
-		depth(data->map_img, -1);
-		depth(data->minimap, -1);
-		depth(data->rays_map, -1);
-		depth(data->rays_minimap, -1);
-	}
-}
 
 void	key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -55,27 +22,22 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 		mlx_close_window(data->mlx);
 	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 	{
-		if (data->config == 1)
-			data->config = 0;
+		if (data->depth_config == 1)
+			data->depth_config = 0;
 		else
-			data->config = 1;
+			data->depth_config = 1;
 		check_depth_config(data);
 	}
 	if (keydata.key == MLX_KEY_N && keydata.action == MLX_PRESS)
 	{
-		if (data->config == 2)
-			data->config = 0;
+		if (data->depth_config == 2)
+			data->depth_config = 0;
 		else
-			data->config = 2;
+			data->depth_config = 2;
 		check_depth_config(data);
 	}
 	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
 		data->fog_state = !data->fog_state;
-}
-
-void	erase_image(mlx_image_t *image)
-{
-	ft_bzero(image->pixels, image->width * image->height * sizeof(uint32_t));
 }
 
 void	check_movement_keys(t_data *data)
@@ -104,9 +66,8 @@ void	main_hook(void *param)
 
 	data = param;
 	erase_image(data->rays_map);
-	erase_image(data->walls);
+	erase_image(data->game);
 	check_movement_keys(data);
 	check_rotation_keys(data);
 	dda(data);
-	printf("minimap profondeur : %d\n", data->minimap->instances[0].z);
 }

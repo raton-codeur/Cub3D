@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:27:14 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/19 15:30:05 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:44:32 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,3 @@ void	reverse_map(t_data *data)
 	data->map = new_map;
 }
 
-void	print_map(t_data *data)
-{
-	int	i;
-	int	j;
-
-	printf("      ");
-	i = 0;
-	j = 0;
-	while (data->map[i][j])
-	{
-		printf("%3d", j);
-		j++;
-	}
-	printf("\n");
-	while (data->map[i])
-	{
-		printf("%3d : ", i);
-		j = 0;
-		while (data->map[i][j])
-		{
-			printf("%3c", data->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}

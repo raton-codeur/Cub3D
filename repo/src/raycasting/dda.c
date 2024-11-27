@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:19:15 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:58:50 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	init_dda_variables(t_data *data)
 {
 	data->i = (int)data->pos_x;
 	data->j = (int)data->pos_y;
-	data->camera_x = 2 * data->x / (double)data->walls->width - 1;
+	data->camera_x = 2 * data->x / (double)data->game->width - 1;
 	data->ray_dir_x = data->dir_x + data->plane_x * data->camera_x;
 	data->ray_dir_y = data->dir_y + data->plane_y * data->camera_x;
 	data->delta_dist_x = fabs(1 / data->ray_dir_x);
@@ -125,8 +125,8 @@ void	shade_background(t_data *data)
 			data->factor
 				= 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
 		data->color = (FOG_COLOR & 0xFFFFFF00) + data->factor * 255;
-		mlx_put_pixel(data->walls, data->x, data->height_2 + data->y, data->color);
-		mlx_put_pixel(data->walls, data->x, data->height_2 - data->y, data->color);
+		mlx_put_pixel(data->game, data->x, data->height_2 + data->y, data->color);
+		mlx_put_pixel(data->game, data->x, data->height_2 - data->y, data->color);
 		data->y++;
 	}
 }
@@ -136,15 +136,15 @@ void	draw_game(t_data *data)
 	data->y = 0;
 	while (data->y < data->wall_height)
 	{
-		mlx_put_pixel(data->walls, data->x, data->height_2 + data->y, data->color);
-		mlx_put_pixel(data->walls, data->x, data->height_2 - data->y, data->color);
+		mlx_put_pixel(data->game, data->x, data->height_2 + data->y, data->color);
+		mlx_put_pixel(data->game, data->x, data->height_2 - data->y, data->color);
 		data->y++;
 	}
 	if (data->fog_state)
 		shade_background(data);
 }
 
-void draw_map_fog(t_data *data)
+void	draw_map_fog(t_data *data)
 {
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
@@ -152,16 +152,15 @@ void draw_map_fog(t_data *data)
 	while (data->d < data->visible_max && (fabs(data->ray_x - data->hit_x) > data->step_ray_map || fabs(data->ray_y - data->hit_y) > data->step_ray_map))
 	{
 		data->factor = 1 - data->d / data->visible_max;
-		mlx_put_pixel(data->rays_map, data->ray_x * data->box_size,
-			data->ray_y * data->box_size, (RAY_COLOR & 0xFFFFFF00) + data->factor * 255);
+		mlx_put_pixel(data->rays_map, data->ray_x * data->box_size, data->ray_y * data->box_size, (RAY_COLOR & 0xFFFFFF00) + data->factor * 255);
 		data->ray_x += data->ray_dir_x * data->step_ray_map;
 		data->ray_y += data->ray_dir_y * data->step_ray_map;
 		data->d = (data->ray_x - data->pos_x) * (data->ray_x - data->pos_x)
 			+ (data->ray_y - data->pos_y) * (data->ray_y - data->pos_y);
 	}
 }
- 
-void draw_map(t_data *data)
+
+void	draw_map(t_data *data)
 {
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
@@ -185,18 +184,18 @@ void	draw_minimap(t_data *data)
 void draw_for_x(t_data *data)
 {
 	draw_game(data);
-	if (data->config == 1 && data->fog_state)
+	if (data->depth_config == 1 && data->fog_state)
 		draw_map_fog(data);
-	else if (data->config == 1)
+	else if (data->depth_config == 1)
 		draw_map(data);
-	else if (data->config == 2)
+	else if (data->depth_config == 2)
 		draw_minimap(data);
 }
 
 void	dda(t_data *data)
 {
 	data->x = 0;
-	while (data->x < data->walls->width)
+	while (data->x < data->game->width)
 	{
 		init_dda_variables(data);
 		iterate_dda(data);

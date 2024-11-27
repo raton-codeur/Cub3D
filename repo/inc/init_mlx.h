@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:09:23 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:59:51 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_rays_minimap(t_data *data);
 /* init_player.c*/
 void	init_player_map(t_data *data);
 
-/* init_walls.c */
-void		init_walls(t_data *data);
+/* init_game.c */
+void		init_game(t_data *data);
 
 #endif

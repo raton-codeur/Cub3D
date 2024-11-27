@@ -6,13 +6,13 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:16:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:18:36 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:50:58 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_mlx.h"
 
-void	fill_background(t_data *data)
+static void	fill_background(t_data *data)
 {
 	int	x;
 	int	y;

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:22:40 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:43:11 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ void fill_minimap(t_data *data)
 				else
 					mlx_put_pixel(data->minimap, x, y, MINIMAP_COLOR);
 			}
-			mlx_put_pixel(data->minimap, x, y, 0);
+			else
+				mlx_put_pixel(data->minimap, x, y, 0);
 			y++;
 		}
 		x++;

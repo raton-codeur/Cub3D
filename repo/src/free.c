@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/21 12:38:52 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/27 10:50:38 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	print_error(int code)
 {
 	if (code == MALLOC)
 		ft_putstr_fd("Error\nmalloc failed\n", 2);
+	else if (code == SIZE)
+		ft_putstr_fd("Error\nMap too big\n", 2);
 }
 
 void	error_exit(int code, t_data *data)
