@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 11:01:39 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:42:35 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define W_WIDTH 2560 // 1920 // la largeur de la fenêtre
-# define W_HEIGHT 1440 // 1080 // hauteur de la fenêtre
-# define W_HEIGHT_2 (W_HEIGHT / 2)
-# define STEP_MOVE 0.5 // le ratio de dir utilisé pour déplacer le joueur
-# define STEP_VIEW 0.10 // l'angle (en radians) utilisé pour changer l'angle de vue
+# define STEP_MOVE 0.2 // le ratio de dir utilisé pour déplacer le joueur
+# define STEP_VIEW 0.05 // l'angle (en radians) utilisé pour changer l'angle de vue
 # define FOG_RATIO 0.3 // ratio de wall_height_norm à partir duquel on commence à appliquer le brouillard
 # define FOG_MAX 0.2 // ratio de FOG_RATIO jusqu'auquel le brouillard est maximal
 # define PLAYER_COLOR 0xFF0000FF
