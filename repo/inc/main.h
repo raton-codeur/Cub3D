@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 23:21:44 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 00:28:10 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,8 @@
 # define WALL_COLOR_S 0xFFFF00FF
 # define WALL_COLOR_W 0xFF0000FF
 # define WALL_COLOR_E 0x00FF00FF
-# define WALL_COLOR_MAP 0x000000FF
-# define MAP_COLOR 0xFFFFFFFF
-# define MINIMAP_COLOR 0xFFFFFFFF
+# define MAP_COLOR_WALL 0x000000FF
+# define MAP_COLOR_BG 0xFFFFFFFF
 
 enum e_error
 {
@@ -66,10 +65,10 @@ typedef struct s_data
 	mlx_image_t		*map_img;
 	mlx_image_t		*minimap;
 	mlx_image_t		*player_map;
+	mlx_image_t		*player_minimap;
 	mlx_image_t		*rays_map;
 	mlx_image_t		*rays_minimap;
 	mlx_image_t		*game;
-	mlx_image_t		*test;
 	// mlx_image_t		*wall_no;
 	// mlx_image_t		*wall_so;
 	// mlx_image_t		*wall_we;
@@ -159,8 +158,10 @@ void		check_depth_config(t_data *data);
 
 /* utils.c */
 void		fill_image(mlx_image_t *image, uint32_t color);
+void		fill_image_circle(mlx_image_t *image, uint32_t color);
 void		erase_image(mlx_image_t *image);
 void		print_map(t_data *data);
 mlx_image_t	*get_img_from_png(t_data *data, const char *file);
+uint32_t	get_pixel(mlx_image_t *img, uint32_t x, uint32_t y);
 
 #endif

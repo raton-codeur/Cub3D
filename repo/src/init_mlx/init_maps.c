@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 11:35:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 00:34:02 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void	fill_map(t_data *data)
 		while (j < data->map_height)
 		{
 			if (data->map[i][j] == '1')
-				color = WALL_COLOR_MAP;
+				color = MAP_COLOR_WALL;
 			else
-				color = MAP_COLOR;
+				color = MAP_COLOR_BG;
 			fill_map_box(data, i * data->box_size, j * data->box_size, color);
 			j++;
 		}
@@ -75,36 +75,6 @@ void	init_map(t_data *data)
 	mlx_set_instance_depth(&data->map_img->instances[0], -1);
 }
 
-
-static void	fill_minimap(t_data *data)
-{
-	int			x;
-	int			y;
-	int			r;
-
-	r = data->minimap->width / 2;
-	x = 0;
-	while (x < (int)data->minimap->width)
-	{
-		y = 0;
-		while (y < (int)data->minimap->height)
-		{
-			if ((r - x) * (r - x) + (r - y) * (r - y) <= r * r)
-			{
-				if ((r - x) * (r - x) + (r - y) * (r - y) \
-					<= data->box_size * data->box_size / 16)
-					mlx_put_pixel(data->minimap, x, y, PLAYER_COLOR);
-				else
-					mlx_put_pixel(data->minimap, x, y, MINIMAP_COLOR);
-			}
-			else
-				mlx_put_pixel(data->minimap, x, y, 0);
-			y++;
-		}
-		x++;
-	}
-}
-
 void	init_minimap(t_data *data)
 {
 	data->minimap
@@ -117,6 +87,6 @@ void	init_minimap(t_data *data)
 		mlx_delete_image(data->mlx, data->minimap);
 		return (mlx_perror_exit(data));
 	}
-	fill_minimap(data);
+	fill_image_circle(data->minimap, MAP_COLOR_BG);
 	mlx_set_instance_depth(&data->minimap->instances[0], -1);
 }

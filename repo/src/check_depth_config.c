@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:49:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:49:32 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 00:17:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void	check_depth_config(t_data *data)
 		set_depth(data->map_img, 2);
 		set_depth(data->minimap, -1);
 		set_depth(data->rays_minimap, -1);
+		set_depth(data->player_minimap, -1);
 	}
 	else if (data->depth_config == 2)
 	{
+		set_depth(data->player_minimap, 4);
 		set_depth(data->rays_minimap, 3);
 		set_depth(data->minimap, 2);
 		set_depth(data->map_img, -1);
@@ -37,9 +39,10 @@ void	check_depth_config(t_data *data)
 	}
 	else
 	{
-		set_depth(data->player_map, -1);
 		set_depth(data->map_img, -1);
 		set_depth(data->minimap, -1);
+		set_depth(data->player_map, -1);
+		set_depth(data->player_minimap, -1);
 		set_depth(data->rays_map, -1);
 		set_depth(data->rays_minimap, -1);
 	}

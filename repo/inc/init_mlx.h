@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 11:36:45 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 00:20:31 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 /* init_mlx.c */
 void		init_mlx(t_data *data);
 mlx_image_t	*get_img_from_png(t_data *data, const char *file);
+
+/* init_dimensions.c */
+void		init_dimensions(t_data *data);
 
 /* init_window.c */
 void		init_window(t_data *data);
@@ -35,7 +38,8 @@ void		init_rays_map(t_data *data);
 void		init_rays_minimap(t_data *data);
 
 /* init_player.c*/
-void		init_player(t_data *data);
+void		init_player_map(t_data *data);
+void		init_player_minimap(t_data *data);
 
 /* init_game.c */
 void		init_game(t_data *data);
