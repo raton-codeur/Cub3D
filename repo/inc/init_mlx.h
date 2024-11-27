@@ -6,13 +6,13 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:59:51 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:36:45 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_H
+#ifndef INIT_MLX_H
 
-# define INIT_H
+# define INIT_MLX_H
 
 # include "main.h"
 
@@ -26,17 +26,16 @@ void		init_window(t_data *data);
 /* init_background.c */
 void		init_background(t_data *data);
 
-/* init_map.c */
+/* init_maps.c */
 void		init_map(t_data *data);
 void		init_minimap(t_data *data);
 
 /* init_rays.c */
-void	init_rays_map(t_data *data);
-void	init_rays_minimap(t_data *data);
-
+void		init_rays_map(t_data *data);
+void		init_rays_minimap(t_data *data);
 
 /* init_player.c*/
-void	init_player_map(t_data *data);
+void		init_player(t_data *data);
 
 /* init_game.c */
 void		init_game(t_data *data);

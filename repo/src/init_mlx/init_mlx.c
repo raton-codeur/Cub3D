@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 11:14:00 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:37:25 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	init_dimensions(t_data *data)
 
 	data->mlx = mlx_init(1, 1, "Cub3D", false);
 	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
-	printf("monitor_width = %d\n", monitor_width);
-	printf("monitor_height = %d\n", monitor_height);
 	data->width = monitor_width * 2 / 3;
 	data->height = monitor_height * 2 / 3;
 	data->height_2 = data->height / 2;
@@ -44,7 +42,7 @@ void	init_mlx(t_data *data)
 	init_game(data);
 	init_map(data);
 	init_minimap(data);
-	init_player_map(data);
+	init_player(data);
 	init_rays_map(data);
 	init_rays_minimap(data);
 	data->fog_height = (data->height / 2) * FOG_RATIO;

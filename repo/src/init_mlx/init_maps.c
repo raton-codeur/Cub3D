@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   init_maps.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:43:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:35:11 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	fill_map_box(t_data *data, int x_start, int y_start, uint32_t color)
 	}
 }
 
-void	fill_map(t_data *data)
+static void	fill_map(t_data *data)
 {
 	int			i;
 	int			j;
@@ -75,28 +75,24 @@ void	init_map(t_data *data)
 	mlx_set_instance_depth(&data->map_img->instances[0], -1);
 }
 
-void fill_minimap(t_data *data)
-{
-	int	x;
-	int	y;
-	int	radius_2;
-	int	radius;
-	int	player_radius_2;
-	int d;
 
-	radius = data->minimap->width / 2;
-	radius_2 = radius * radius;
-	player_radius_2 = data->box_size * data->box_size / 16;
+static void	fill_minimap(t_data *data)
+{
+	int			x;
+	int			y;
+	int			r;
+
+	r = data->minimap->width / 2;
 	x = 0;
 	while (x < (int)data->minimap->width)
 	{
 		y = 0;
 		while (y < (int)data->minimap->height)
 		{
-			d = (radius - x) * (radius - x) + (radius - y) * (radius - y);
-			if (d <= radius_2)
+			if ((r - x) * (r - x) + (r - y) * (r - y) <= r * r)
 			{
-				if (d <= player_radius_2)
+				if ((r - x) * (r - x) + (r - y) * (r - y) \
+					<= data->box_size * data->box_size / 16)
 					mlx_put_pixel(data->minimap, x, y, PLAYER_COLOR);
 				else
 					mlx_put_pixel(data->minimap, x, y, MINIMAP_COLOR);
@@ -111,10 +107,12 @@ void fill_minimap(t_data *data)
 
 void	init_minimap(t_data *data)
 {
-	data->minimap = mlx_new_image(data->mlx, 10 * data->box_size, 10 * data->box_size);
+	data->minimap
+		= mlx_new_image(data->mlx, 10 * data->box_size, 10 * data->box_size);
 	if (data->minimap == NULL)
 		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->minimap, data->box_size, data->box_size) == -1)
+	if (mlx_image_to_window(data->mlx, \
+		data->minimap, data->box_size, data->box_size) == -1)
 	{
 		mlx_delete_image(data->mlx, data->minimap);
 		return (mlx_perror_exit(data));

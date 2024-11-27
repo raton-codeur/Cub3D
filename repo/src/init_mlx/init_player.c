@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:17:43 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:42:31 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 11:35:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	fill_player(t_data *data)
 {
 	int	x;
 	int	y;
-	int	radius_2;
 	int	radius;
+	int	radius_2;
 
 	radius = data->player_map->width / 2;
 	radius_2 = radius * radius;
@@ -36,7 +36,7 @@ static void	fill_player(t_data *data)
 	}
 }
 
-void	init_player_map(t_data *data)
+void	init_player(t_data *data)
 {
 	data->player_map = mlx_new_image(data->mlx, \
 		data->box_size / 2, data->box_size / 2);
