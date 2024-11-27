@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/25 13:31:51 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:27:46 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,10 @@ static void	free_parsing(t_data *data)
 
 static	void	init_after_parsing(t_data *data)
 {
-	int	monitor_width;
-	int	monitor_height;
 
 	init_dir(data);
 	get_map_dimensions(data);
 	reverse_map(data);
-	data->mlx = mlx_init(W_WIDTH, W_HEIGHT, "Cub3D", false);
-	if (data->mlx == NULL)
-		mlx_perror_exit(data);
-	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
-	// mlx_set_window_size(data->mlx, monitor_width, monitor_height);
-	mlx_set_window_pos(data->mlx, \
-		(monitor_width - W_WIDTH) / 2, (monitor_height - W_HEIGHT) / 2);
-	// load_walls(data);
 }
 
 void	clean_parsing(t_data *data)

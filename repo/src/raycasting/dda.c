@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:34:34 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:19:15 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,25 +91,25 @@ void	shade_wall(t_data *data)
 void	get_dda_results(t_data *data)
 {
 	if (data->side == 0 && data->step_i == -1)
-		data->color = 0xFF0000FF;
+		data->color = WALL_COLOR_W;
 	else if (data->side == 0 && data->step_i == 1)
-		data->color = 0x00FF00FF;
+		data->color = WALL_COLOR_E;
 	else if (data->side == 1 && data->step_j == -1)
-		data->color = 0x0000FFFF;
+		data->color = WALL_COLOR_N;
 	else
-		data->color = 0xFFFF00FF;
+		data->color = WALL_COLOR_S;
 	if (data->side == 0)
 		data->perp_wall_dist = data->side_dist_x - data->delta_dist_x;
 	else
 		data->perp_wall_dist = data->side_dist_y - data->delta_dist_y;
 	data->hit_x = data->pos_x + data->ray_dir_x * data->perp_wall_dist;
 	data->hit_y = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
-	data->wall_height = W_HEIGHT / data->perp_wall_dist / 2;
+	data->wall_height = data->height_2 / data->perp_wall_dist;
 	if (data->wall_height < 0)
 		data->wall_height = 0;
-	if (data->wall_height > W_HEIGHT / 2)
-		data->wall_height = W_HEIGHT / 2;
-	data->wall_height_norm = 2.0 * data->wall_height / W_HEIGHT;
+	if (data->wall_height > data->height_2)
+		data->wall_height = data->height_2;
+	data->wall_height_norm = 2.0 * data->wall_height / data->height;
 	if (data->fog_state && data->wall_height_norm < FOG_RATIO)
 		shade_wall(data);
 }
@@ -125,8 +125,8 @@ void	shade_background(t_data *data)
 			data->factor
 				= 0.5 - 0.5 * cos(M_PI / (1 - FOG_MAX) * (data->factor - 1));
 		data->color = (FOG_COLOR & 0xFFFFFF00) + data->factor * 255;
-		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 + data->y, data->color);
-		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 - data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, data->height_2 + data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, data->height_2 - data->y, data->color);
 		data->y++;
 	}
 }
@@ -136,8 +136,8 @@ void	draw_game(t_data *data)
 	data->y = 0;
 	while (data->y < data->wall_height)
 	{
-		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 + data->y, data->color);
-		mlx_put_pixel(data->walls, data->x, W_HEIGHT_2 - data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, data->height_2 + data->y, data->color);
+		mlx_put_pixel(data->walls, data->x, data->height_2 - data->y, data->color);
 		data->y++;
 	}
 	if (data->fog_state)
@@ -149,13 +149,13 @@ void draw_map_fog(t_data *data)
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
 	data->d = 0;
-	while (data->d < data->visible_max && (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1))
+	while (data->d < data->visible_max && (fabs(data->ray_x - data->hit_x) > data->step_ray_map || fabs(data->ray_y - data->hit_y) > data->step_ray_map))
 	{
 		data->factor = 1 - data->d / data->visible_max;
 		mlx_put_pixel(data->rays_map, data->ray_x * data->box_size,
 			data->ray_y * data->box_size, (RAY_COLOR & 0xFFFFFF00) + data->factor * 255);
-		data->ray_x += data->ray_dir_x * 0.1;
-		data->ray_y += data->ray_dir_y * 0.1;
+		data->ray_x += data->ray_dir_x * data->step_ray_map;
+		data->ray_y += data->ray_dir_y * data->step_ray_map;
 		data->d = (data->ray_x - data->pos_x) * (data->ray_x - data->pos_x)
 			+ (data->ray_y - data->pos_y) * (data->ray_y - data->pos_y);
 	}
@@ -165,12 +165,12 @@ void draw_map(t_data *data)
 {
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
-	while (fabs(data->ray_x - data->hit_x) > 0.1 || fabs(data->ray_y - data->hit_y) > 0.1)
+	while (fabs(data->ray_x - data->hit_x) > data->step_ray_map || fabs(data->ray_y - data->hit_y) > data->step_ray_map)
 	{
 		mlx_put_pixel(data->rays_map, data->ray_x * data->box_size,
 			data->ray_y * data->box_size, RAY_COLOR);
-		data->ray_x += data->ray_dir_x * 0.1;
-		data->ray_y += data->ray_dir_y * 0.1;
+		data->ray_x += data->ray_dir_x * data->step_ray_map;
+		data->ray_y += data->ray_dir_y * data->step_ray_map;
 	}
 	mlx_put_pixel(data->rays_map,
 		(data->hit_x - 0.05 * data->ray_dir_x) * data->box_size,

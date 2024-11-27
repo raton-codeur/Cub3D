@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:31:33 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:39:14 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ void	main_hook(void *param)
 	check_movement_keys(data);
 	check_rotation_keys(data);
 	dda(data);
+	printf("minimap profondeur : %d\n", data->minimap->instances[0].z);
 }

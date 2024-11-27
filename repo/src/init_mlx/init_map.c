@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:01:16 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:22:40 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	fill_map(t_data *data)
 		while (j < data->map_height)
 		{
 			if (data->map[i][j] == '1')
-				color = 0x000000FF;
+				color = WALL_COLOR_MAP;
 			else
-				color = 0xFFFFFFFF;
+				color = MAP_COLOR;
 			fill_map_box(data, i * data->box_size, j * data->box_size, color);
 			j++;
 		}
@@ -97,10 +97,11 @@ void fill_minimap(t_data *data)
 			if (d <= radius_2)
 			{
 				if (d <= player_radius_2)
-					mlx_put_pixel(data->minimap, x, y, 0xFF0000FF);
+					mlx_put_pixel(data->minimap, x, y, PLAYER_COLOR);
 				else
-					mlx_put_pixel(data->minimap, x, y, 0xFFFFFFFF);
+					mlx_put_pixel(data->minimap, x, y, MINIMAP_COLOR);
 			}
+			mlx_put_pixel(data->minimap, x, y, 0);
 			y++;
 		}
 		x++;

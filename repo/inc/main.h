@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 19:25:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:31:45 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,34 @@
 # define W_WIDTH 2560 // 1920 // la largeur de la fenêtre
 # define W_HEIGHT 1440 // 1080 // hauteur de la fenêtre
 # define W_HEIGHT_2 (W_HEIGHT / 2)
-# define PATH_MAP "maps/simple.cub"
-# define STEP_MOVE 0.2 // le pas de déplacement du joueur en pixels
-# define STEP_VIEW 0.05 // le pas de changement de l'angle de vue en radians
-# define FOG_COLOR 0x505050FF
-# define RAY_COLOR 0x00FF00FF
+# define STEP_MOVE 0.5 // le ratio de dir utilisé pour déplacer le joueur
+# define STEP_VIEW 0.10 // l'angle (en radians) utilisé pour changer l'angle de vue
 # define FOG_RATIO 0.3 // ratio de wall_height_norm à partir duquel on commence à appliquer le brouillard
 # define FOG_MAX 0.2 // ratio de FOG_RATIO jusqu'auquel le brouillard est maximal
-# define STEP_MAP 0.1
+# define PLAYER_COLOR 0xFF0000FF
+# define FOG_COLOR 0x505050FF
+# define RAY_COLOR 0x00FF00FF
+# define WALL_COLOR_N 0x0000FFFF
+# define WALL_COLOR_S 0xFFFF00FF
+# define WALL_COLOR_W 0xFF0000FF
+# define WALL_COLOR_E 0x00FF00FF
+# define WALL_COLOR_MAP 0x000000FF
+# define MAP_COLOR 0xFFFFFFFF
+# define MINIMAP_COLOR 0xFFFFFFFF
 
 enum e_error
 {
 	DEFAULT,
-	MALLOC
+	MALLOC,
+	SIZE
 };
 
 typedef struct s_data
 {
+	uint32_t				width;
+	uint32_t				height;
+	uint32_t				height_2;
+	double			step_ray_map; // le ratio du ray dir utilisé pour avancer le tracer du rayon dans la minimap
 	char			*path_map;
 	char			**cub_file;
 	char			*north_texture;
@@ -146,7 +157,7 @@ void		rotate_right(t_data *data);
 void		rotate_left(t_data *data);
 
 /* utils.c */
-void fill_image(mlx_image_t *image, uint32_t color);
+void		fill_image(mlx_image_t *image, uint32_t color);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:16:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/26 18:59:34 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/27 10:18:36 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	fill_background(t_data *data)
 
 void	init_background(t_data *data)
 {
-	data->background = mlx_new_image(data->mlx, W_WIDTH, W_HEIGHT);
+	data->background = mlx_new_image(data->mlx, data->width, data->height);
 	if (data->background == NULL)
 		return (mlx_perror_exit(data));
 	if (mlx_image_to_window(data->mlx, data->background, 0, 0) == -1)
