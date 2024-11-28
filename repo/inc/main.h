@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/28 02:03:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 02:40:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,72 +41,70 @@ enum e_error
 
 typedef struct s_data
 {
-	uint32_t				width;
-	uint32_t				height;
-	uint32_t				height_2;
-	double			step_ray_map; // le ratio du ray dir utilisé pour avancer le tracer du rayon dans la minimap
-	char			*path_map;
-	char			**cub_file;
-	char			*north_texture;
-	int				north_texture_line;
-	char			*south_texture;
-	int				south_texture_line;
-	char			*west_texture;
-	int				west_texture_line;
-	char			*east_texture;
-	int				east_texture_line;
-	char			*floor_color_str;
-	int				floor_color_line;
-	char			*ceil_color_str;
-	int				ceil_color_line;
-	int				map_line;
-	char			**map;
-	mlx_t			*mlx;
-	mlx_image_t		*background;
-	mlx_image_t		*map_img;
-	mlx_image_t		*minimap;
-	mlx_image_t		*player_map;
-	mlx_image_t		*player_minimap;
-	mlx_image_t		*rays_map;
-	mlx_image_t		*rays_minimap;
-	mlx_image_t		*game;
-	// mlx_image_t		*wall_no;
-	// mlx_image_t		*wall_so;
-	// mlx_image_t		*wall_we;
-	// mlx_image_t		*wall_ea;
-	uint32_t		map_width;
-	uint32_t		map_height;
-	int				depth_config; // 0 pour rien, 1 pour la map, 2 pour la minimap
-	uint32_t		ceil_color;
-	uint32_t		floor_color;
-	uint32_t		box_size;
-	int				i_start;
-	int				j_start;
-	char			dir_start;
-	uint32_t		fog_height; // la hauteur du brouillard
-	int				fog_state;
-	double			factor; // entre 0 et 1 pour faire des dégradés
-	uint32_t		y; // pour dessiner la ligne de mur
-	uint32_t		r;
-	uint32_t		g;
-	uint32_t		b;
-	double			ray_x; // pour dessiner le rayon sur la minimap
-	double			ray_y; // pour dessiner le rayon sur la minimap
-	double			visible_max; // la distance maximale de visibilité selon le brouillard (au carré)
-	double			d; // pour la distance (au carré) du rayon dans la minimap
-	long long		start_time;
+	//constantes
+	uint32_t	width;
+	uint32_t	height;
+	uint32_t	height_2;
+	double		step_ray_map; // le ratio du ray dir utilisé pour avancer le tracer du rayon dans la minimap.
+	long long	start_time;
+	double		visible_max; // la distance maximale de visibilité (selon FOG_RATIO et FOG_MAX) (au carré)
+	uint32_t	fog_height; // la hauteur du brouillard
+	char		**map;
+	uint32_t	map_width;
+	uint32_t	map_height;
+	uint32_t	ceil_color;
+	uint32_t	box_size;
+	uint32_t	floor_color;
+	int			i_start;
+	int			j_start;
+	char		dir_start;
+	
+	// mlx
+	mlx_t		*mlx;
+	mlx_image_t	*background;
+	mlx_image_t	*map_img;
+	mlx_image_t	*minimap;
+	mlx_image_t	*player_map;
+	mlx_image_t	*player_minimap;
+	mlx_image_t	*rays_map;
+	mlx_image_t	*rays_minimap;
+	mlx_image_t	*game;
+	
+	// pour le parsing
+	char		*path_map;
+	char		**cub_file;
+	char		*north_texture;
+	int			north_texture_line;
+	char		*south_texture;
+	int			south_texture_line;
+	char		*west_texture;
+	int			west_texture_line;
+	char		*east_texture;
+	int			east_texture_line;
+	char		*floor_color_str;
+	int			floor_color_line;
+	char		*ceil_color_str;
+	int			ceil_color_line;
+	int			map_line;
 
-	// (voir schéma)
+	// variables
+	int			depth_config; // 0 pour rien, 1 pour la map, 2 pour la minimap
+	int			fog_state;
+	double		factor; // entre 0 et 1 pour faire des dégradés
+	uint32_t	y; // pour dessiner la ligne de mur
+	uint8_t		r;
+	uint8_t		g;
+	uint8_t		b;
+	uint32_t	color;
+	double		ray_x; // pour dessiner le rayon sur la minimap
+	double		ray_y; // pour dessiner le rayon sur la minimap
+	double		d; // pour la distance (au carré) du rayon dans la minimap
 	double		pos_x; // coordonnée horizontale du joueur
 	double		pos_y; // coordonnée verticale du joueur
 	double		dir_x; // vecteur de direction où regarde le joueur
 	double		dir_y;
 	double		plane_x; // vecteur du plan de la caméra. toujours perpendiculaire à dir
 	double		plane_y;
-
-	// dda :
-
-	// constant pour un rayon :
 	uint32_t	x; // l'indice de la colonne de pixels de l'écran où on dessine la ligne de mur
 	double		camera_x; // de -1 à 1 selon x. c'est pour calculer ray_dir à partir de dir et plane
 	double		ray_dir_x; // vecteur de direction du rayon qu'on lance depuis le joueur (voir schéma)
@@ -115,14 +113,10 @@ typedef struct s_data
 	int			step_j; // pareil que step i mais pour le déplacement vertical
 	double		delta_dist_x; // la longueur du rayon entre deux cases horizontales (à un facteur près car c'est le ratio avec delta_dist y qui compte. ce facteur est la longueur de ray_dir)
 	double		delta_dist_y; // pareil que delta_dist_x mais pour les cases verticales
-
-	// variable 
-	int			i; // coordonnée horizontale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_x
-	int			j; // coordonnée verticale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_y
+	uint32_t	i; // coordonnée horizontale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_x
+	uint32_t	j; // coordonnée verticale de la case couramment visitée par le rayon. on commence évidemment par la case de pos_y
 	double		side_dist_x; // initialement, c'est la longueur du rayon entre le joueur et le mur horizontal le plus proche (toujours à un facteur près, car c'est le ratio avec side dist y qui compte. ce facteur est ray_dir). à chaque tour, si side_dist_x < side_dist_y, le rayon doit avancer horizontalement (selon step i). on incrémente alors side_dist_x de delta_dist_x
 	double		side_dist_y; // pareil que side_dist_x mais pour les murs verticaux
-
-	// fin de boucle 
 	int			hit; // 0 de base. passe à 1 quand on tombe sur un mur
 	double		hit_x; // la coordonnée horizontale du point de la case où le rayon a touché un mur
 	double		hit_y; // la coordonnée verticale du point de la case où le rayon a touché un mur
@@ -130,7 +124,6 @@ typedef struct s_data
 	double		perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
-	uint32_t	color; // la couleur de la ligne de mur
 }	t_data;
 
 /* free.c */
@@ -167,5 +160,8 @@ mlx_image_t	*get_img_from_png(t_data *data, const char *file);
 uint32_t	get_pixel(mlx_image_t *img, uint32_t x, uint32_t y);
 long long	get_absolute_timestamp(void);
 long long	get_timestamp(t_data *data);
+uint32_t	get_rgb(mlx_image_t *img, uint32_t x, uint32_t y);
+void		mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb);
+uint32_t	get_color(t_data *data, uint32_t x, uint32_t y);
 
 #endif

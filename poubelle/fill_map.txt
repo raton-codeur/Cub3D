@@ -1,0 +1,46 @@
+// static void	fill_map_box(t_data *data, int x_start, int y_start, uint32_t color)
+// {
+// 	int	x;
+// 	int	y;
+
+// 	x = 0;
+// 	while (x < data->box_size)
+// 	{
+// 		y = 0;
+// 		while (y < data->box_size)
+// 		{
+// 			if (x == 0 || x == data->box_size - 1
+// 				|| y == 0 || y == data->box_size - 1)
+// 				mlx_put_pixel(\
+// 					data->map_img, x_start + x, y_start + y, 0x000000FF);
+// 			else
+// 				mlx_put_pixel(\
+// 					data->map_img, x_start + x, y_start + y, color);
+// 			y++;
+// 		}
+// 		x++;
+// 	}
+// }
+
+// static void	fill_map(t_data *data)
+// {
+// 	int			i;
+// 	int			j;
+// 	uint32_t	color;
+
+// 	i = 0;
+// 	while (i < data->map_width)
+// 	{
+// 		j = 0;
+// 		while (j < data->map_height)
+// 		{
+// 			if (data->map[i][j] == '1')
+// 				color = MAP_COLOR_WALL;
+// 			else
+// 				color = MAP_COLOR_BG;
+// 			fill_map_box(data, i * data->box_size, j * data->box_size, color);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }

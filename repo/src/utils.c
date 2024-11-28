@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:59:02 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/28 01:08:48 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 02:40:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,20 @@ uint32_t	get_pixel(mlx_image_t *img, uint32_t x, uint32_t y)
 	return (r << 24 | g << 16 | b << 8 | a);
 }
 
+uint32_t get_rgb(mlx_image_t *img, uint32_t x, uint32_t y)
+{
+	uint8_t r, g, b;
+	r = img->pixels[y * img->width * 4 + x * 4];
+	g = img->pixels[y * img->width * 4 + x * 4 + 1];
+	b = img->pixels[y * img->width * 4 + x * 4 + 2];
+	return (r << 24 | g << 16 | b << 8);
+}
+
+void mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb)
+{
+	mlx_put_pixel(img, x, y, rgb | img->pixels[y * img->width * 4 + x * 4 + 3]);
+}
+
 long long	get_absolute_timestamp(void)
 {
 	struct timeval	tv;
@@ -126,4 +140,15 @@ long long	get_absolute_timestamp(void)
 long long	get_timestamp(t_data *data)
 {
 	return (get_absolute_timestamp() - data->start_time);
+}
+
+uint32_t	get_color(t_data *data, uint32_t x, uint32_t y)
+{
+	if (x % data->box_size == 0 || x % data->box_size == data->box_size - 1
+		|| y % data->box_size == 0 || y % data->box_size == data->box_size - 1)
+		return (0x000000FF);
+	else if (data->map[x / data->box_size][y / data->box_size] == '1')
+		return (MAP_COLOR_WALL);
+	else
+		return (MAP_COLOR_BG);
 }
