@@ -45,3 +45,7 @@ donc on a le produit en croix :
 # gradient de brouillard en fonction de wall height
 
 <img src="schémas/fog_ratio_et_max.png" />
+
+# generation de labyrinthe
+
+<img src="schémas/maze_generation.png" />
