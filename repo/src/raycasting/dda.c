@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/28 01:21:24 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 01:37:36 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,8 +201,14 @@ void draw_minimap(t_data *data)
 		y = 0;
 		while (y < data->minimap->height)
 		{
-			color = get_rgb(data->map_img, start_x + x, start_y + y);
-			mlx_put_pixel_rgb(data->minimap, x, y, color);
+			if (start_x + x >= 0 && start_x + x < data->map_img->width
+				&& start_y + y >= 0 && start_y + y < data->map_img->height)
+			{
+				color = get_rgb(data->map_img, start_x + x, start_y + y);
+				mlx_put_pixel_rgb(data->minimap, x, y, color);
+			}
+			else 
+				mlx_put_pixel_rgb(data->minimap, x, y, 0xFFFFFF00);
 			y++;
 		}
 		x++;
