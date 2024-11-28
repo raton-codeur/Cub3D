@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:59:02 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/28 00:33:01 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 01:08:48 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,22 @@ uint32_t	get_pixel(mlx_image_t *img, uint32_t x, uint32_t y)
 	b = img->pixels[y * img->width * 4 + x * 4 + 2];
 	a = img->pixels[y * img->width * 4 + x * 4 + 3];
 	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+long long	get_absolute_timestamp(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL) == -1)
+	{
+		write(2, "gettimeofday: error\n", 20);
+		return (-1);
+	}
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+/* renvoie le timestamp depuis init_mlx en millisecondes */
+long long	get_timestamp(t_data *data)
+{
+	return (get_absolute_timestamp() - data->start_time);
 }

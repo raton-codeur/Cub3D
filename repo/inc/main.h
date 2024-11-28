@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/28 00:28:10 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 01:10:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "MLX42/MLX42.h"
 # include <math.h>
+# include <sys/time.h>
 
 # define STEP_MOVE 0.2 // le ratio de dir utilisé pour déplacer le joueur
 # define STEP_VIEW 0.05 // l'angle (en radians) utilisé pour changer l'angle de vue
@@ -93,6 +94,7 @@ typedef struct s_data
 	double			ray_y; // pour dessiner le rayon sur la minimap
 	double			visible_max; // la distance maximale de visibilité selon le brouillard (au carré)
 	double			d; // pour la distance (au carré) du rayon dans la minimap
+	long long		start_time;
 
 	// (voir schéma)
 	double		pos_x; // coordonnée horizontale du joueur
@@ -163,5 +165,7 @@ void		erase_image(mlx_image_t *image);
 void		print_map(t_data *data);
 mlx_image_t	*get_img_from_png(t_data *data, const char *file);
 uint32_t	get_pixel(mlx_image_t *img, uint32_t x, uint32_t y);
+long long	get_absolute_timestamp(void);
+long long	get_timestamp(t_data *data);
 
 #endif

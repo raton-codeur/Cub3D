@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:58:50 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 01:21:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,9 +176,37 @@ void	draw_map(t_data *data)
 		(data->hit_y - 0.05 * data->ray_dir_y) * data->box_size, RAY_COLOR);
 }
 
-void	draw_minimap(t_data *data)
+uint32_t get_rgb(mlx_image_t *img, uint32_t x, uint32_t y)
 {
-	(void)data;
+	uint8_t r, g, b;
+	r = img->pixels[y * img->width * 4 + x * 4];
+	g = img->pixels[y * img->width * 4 + x * 4 + 1];
+	b = img->pixels[y * img->width * 4 + x * 4 + 2];
+	return (r << 24 | g << 16 | b << 8);
+}
+
+void mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb)
+{
+	mlx_put_pixel(img, x, y, rgb | img->pixels[y * img->width * 4 + x * 4 + 3]);
+}
+
+void draw_minimap(t_data *data)
+{
+	uint32_t start_x, start_y, x, y, color;
+	start_x = (data->pos_x - 5) * data->box_size;
+	start_y = (data->pos_y - 5) * data->box_size;
+	x = 0;
+	while (x < data->minimap->width)
+	{
+		y = 0;
+		while (y < data->minimap->height)
+		{
+			color = get_rgb(data->map_img, start_x + x, start_y + y);
+			mlx_put_pixel_rgb(data->minimap, x, y, color);
+			y++;
+		}
+		x++;
+	}
 }
 
 void draw_for_x(t_data *data)
@@ -188,7 +216,8 @@ void draw_for_x(t_data *data)
 		draw_map_fog(data);
 	else if (data->depth_config == 1)
 		draw_map(data);
-	else if (data->depth_config == 2)
+	// if (data->depth_config == 2 && get_timestamp(data) % 2000 < 1000)
+	if (data->depth_config == 2 && rand() % 10 == 0)
 		draw_minimap(data);
 }
 
