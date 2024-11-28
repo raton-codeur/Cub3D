@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:27:14 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/27 10:44:32 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 02:04:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_map_dimensions(t_data *data)
 static char	**init_new_map(t_data *data)
 {
 	char	**new_map;
-	int		j;
+	uint32_t	j;
 
 	new_map = ft_calloc(data->map_width + 1, sizeof(char *));
 	if (new_map == NULL)

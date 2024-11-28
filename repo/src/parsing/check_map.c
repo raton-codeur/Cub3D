@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:57:11 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 13:16:42 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/28 02:03:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	first_and_last_char(t_data *data)
 	}
 }
 
-void	check_map_lines(t_data *data, int i, int j)
+void	check_map_lines(t_data *data, uint32_t i, uint32_t j)
 {
 	while (data->map[i])
 	{

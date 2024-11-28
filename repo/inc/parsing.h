@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:44:53 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 02:04:23 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		remove_newline_from_map(t_data *data);
 void		get_map_size(t_data *data);
 void		first_and_last_char(t_data *data);
 void		check_non_leading_spaces(t_data *data, int i, int j);
-void		check_map_lines(t_data *data, int i, int j);
+void		check_map_lines(t_data *data, uint32_t i, uint32_t j);
 void		check_zero(t_data *data, int i, int j);
 
 /* check_map_2.c */
