@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/28 01:10:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/28 01:29:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <math.h>
 # include <sys/time.h>
 
-# define STEP_MOVE 0.2 // le ratio de dir utilisé pour déplacer le joueur
-# define STEP_VIEW 0.05 // l'angle (en radians) utilisé pour changer l'angle de vue
+# define STEP_MOVE 0.5 // 0.2 // le ratio de dir utilisé pour déplacer le joueur
+# define STEP_VIEW 0.2 // 0.05 // l'angle (en radians) utilisé pour changer l'angle de vue
 # define FOG_RATIO 0.3 // ratio de wall_height_norm à partir duquel on commence à appliquer le brouillard
 # define FOG_MAX 0.2 // ratio de FOG_RATIO jusqu'auquel le brouillard est maximal
 # define PLAYER_COLOR 0xFF0000FF
