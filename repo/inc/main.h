@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/28 02:40:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/29 10:42:41 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@
 # define WALL_COLOR_E 0x00FF00FF
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
+# define INIT_CUB "NO ./path_to_the_north_texture.png\nSO ./path_to_the_south_texture.png\nWE ./path_to_the_west_texture.png\nEA ./path_to_the_east_texture.png\nF 40,40,40\nC 135,206,235\n\n"
 
 enum e_error
 {
 	DEFAULT,
 	MALLOC,
-	SIZE
+	SIZE,
+	MAZE
 };
 
 typedef struct s_data

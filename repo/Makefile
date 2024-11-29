@@ -38,6 +38,7 @@ re : fclean all
 test : clean all
 # @ ./$(NAME) maps/map_sujet.cub
 # @ ./$(NAME) maps/simple.cub
-	@ ./$(NAME) maps/simple2.cub
+# @ ./$(NAME) maps/simple2.cub
+	@ ./$(NAME) maps/maze.cub
 
 .PHONY : all clean fclean re bonus test
