@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/30 13:25:50 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/30 20:44:11 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 void	free_all(t_data *data)
 {
-	deep_free((void **)data->maze);
 	deep_free((void **)data->cub_file);
 	deep_free((void **)data->map);
+	deep_free((void **)data->maze_path);
+	deep_free((void **)data->maze);
 	free(data->path_map);
 	free(data->north_texture);
 	free(data->south_texture);

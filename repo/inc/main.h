@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/30 18:03:16 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/30 21:08:19 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
 # define INIT_CUB "NO ./path_to_the_north_texture.png\nSO ./path_to_the_south_texture.png\nWE ./path_to_the_west_texture.png\nEA ./path_to_the_east_texture.png\nF 40,40,40\nC 135,206,235\n\n"
-# define MAZE_PATH_WIDTH 10
-# define MAZE_PATH_HEIGHT 10
+# define MAZE_PATH_WIDTH 7
+# define MAZE_START_I (MAZE_PATH_WIDTH / 2)
+# define MAZE_PATH_HEIGHT 3
+# define MAZE_START_J (MAZE_PATH_HEIGHT / 2)
 # define MAZE_WIDTH (3 + 2 * (MAZE_PATH_WIDTH - 1))
 # define MAZE_HEIGHT (3 + 2 * (MAZE_PATH_HEIGHT - 1))
 
@@ -140,7 +142,8 @@ typedef struct s_data
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
 
-	t_maze_cell	**maze;
+	t_maze_cell	**maze_path;
+	char		**maze;
 }	t_data;
 
 /* free.c */

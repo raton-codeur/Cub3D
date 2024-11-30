@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/30 13:40:25 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/30 20:56:49 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, char **argv)
 	create_maze_file(&data);
 	parsing(&data, argc, argv);
 	init_mlx(&data);
-	mlx_key_hook(data.mlx, key_hook, &data);
-	mlx_loop_hook(data.mlx, main_hook, &data);
-	mlx_loop(data.mlx);
+	// mlx_key_hook(data.mlx, key_hook, &data);
+	// mlx_loop_hook(data.mlx, main_hook, &data);
+	// mlx_loop(data.mlx);
 	free_all(&data);
 	return (0);
 }
