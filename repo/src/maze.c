@@ -1,0 +1,109 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   maze.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/30 13:40:00 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/11/30 13:41:01 by qhauuy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "main.h"
+
+void fill_maze(t_data *data)
+{
+	int i, j;
+
+	i = 0;
+	while (i < MAZE_WIDTH)
+	{
+		j = 0;
+		while (j < MAZE_HEIGHT)
+		{
+			if (i == 0 || i == MAZE_WIDTH - 1 || j == 0 || j == MAZE_HEIGHT - 1)
+				data->maze[i][j] = '1';
+			else
+				data->maze[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
+	data->maze[MAZE_WIDTH / 2][MAZE_HEIGHT / 2] = 'N';
+}
+
+void init_maze(t_data *data)
+{
+	int	i;
+
+	data->maze = ft_calloc(MAZE_WIDTH + 1, sizeof(char *));
+	if (data->maze == NULL)
+		error_exit(MALLOC, data);
+	i = 0;
+	while (i < MAZE_WIDTH)
+	{
+		data->maze[i] = ft_calloc(MAZE_HEIGHT + 1, sizeof(char));
+		if (data->maze[i] == NULL)
+			error_exit(MALLOC, data);
+		i++;
+	}
+}
+
+static void	append_char_to_s(t_data *data, char **s, char c)
+{
+	char	*tmp;
+	char	*next_str;
+
+	next_str = ft_calloc(2, sizeof(char));
+	next_str[0] = c;
+	if (next_str == NULL)
+	{
+		free(*s);
+		error_exit(MALLOC, data);
+	}
+	tmp = ft_strjoin(*s, next_str);
+	free(*s);
+	free(next_str);
+	if (tmp == NULL)
+		error_exit(MALLOC, data);
+	*s = tmp;
+}
+
+void append_maze_to_s(t_data *data, char **s)
+{
+	int i, j;
+
+	i = 0;
+	while (i < MAZE_HEIGHT)
+	{
+		j = 0;
+		while (j < MAZE_WIDTH)
+		{
+			append_char_to_s(data, s, data->maze[j][i]);
+			j++;
+		}
+		append_char_to_s(data, s, '\n');
+		i++;
+	}
+}
+
+void	create_maze_file(t_data *data)
+{
+	int		fd;
+	char	*s;
+
+	init_maze(data);
+	fill_maze(data);
+	s = ft_strdup(INIT_CUB);
+	if (s == NULL)
+		error_exit(MALLOC, data);
+	append_maze_to_s(data, &s);
+	fd = open("maps/maze.cub", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+		error_exit(MAZE, data);
+	if (write(fd, s, ft_strlen(s)) == -1)
+		error_exit(DEFAULT, data);
+	free(s);
+	close(fd);
+}

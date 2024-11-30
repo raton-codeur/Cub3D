@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/27 10:45:18 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/30 13:29:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static void	check_map(t_data *data)
 
 static	void	parsing_init(t_data *data)
 {
-	ft_memset(data, 0, sizeof(t_data));
 	data->i_start = -1;
 	data->j_start = -1;
 }

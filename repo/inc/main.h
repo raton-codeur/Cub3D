@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/29 10:42:41 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/30 13:40:52 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
 # define INIT_CUB "NO ./path_to_the_north_texture.png\nSO ./path_to_the_south_texture.png\nWE ./path_to_the_west_texture.png\nEA ./path_to_the_east_texture.png\nF 40,40,40\nC 135,206,235\n\n"
+# define MAZE_WIDTH 30
+# define MAZE_HEIGHT 40
 
 enum e_error
 {
@@ -60,7 +62,7 @@ typedef struct s_data
 	int			i_start;
 	int			j_start;
 	char		dir_start;
-	
+
 	// mlx
 	mlx_t		*mlx;
 	mlx_image_t	*background;
@@ -71,7 +73,7 @@ typedef struct s_data
 	mlx_image_t	*rays_map;
 	mlx_image_t	*rays_minimap;
 	mlx_image_t	*game;
-	
+
 	// pour le parsing
 	char		*path_map;
 	char		**cub_file;
@@ -126,6 +128,8 @@ typedef struct s_data
 	double		perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
+
+	char		**maze;
 }	t_data;
 
 /* free.c */
@@ -165,5 +169,8 @@ long long	get_timestamp(t_data *data);
 uint32_t	get_rgb(mlx_image_t *img, uint32_t x, uint32_t y);
 void		mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb);
 uint32_t	get_color(t_data *data, uint32_t x, uint32_t y);
+
+/* maze.c */
+void		create_maze_file(t_data *data);
 
 #endif
