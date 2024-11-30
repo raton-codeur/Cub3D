@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/30 13:40:52 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/11/30 18:03:16 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
 # define INIT_CUB "NO ./path_to_the_north_texture.png\nSO ./path_to_the_south_texture.png\nWE ./path_to_the_west_texture.png\nEA ./path_to_the_east_texture.png\nF 40,40,40\nC 135,206,235\n\n"
-# define MAZE_WIDTH 30
-# define MAZE_HEIGHT 40
+# define MAZE_PATH_WIDTH 10
+# define MAZE_PATH_HEIGHT 10
+# define MAZE_WIDTH (3 + 2 * (MAZE_PATH_WIDTH - 1))
+# define MAZE_HEIGHT (3 + 2 * (MAZE_PATH_HEIGHT - 1))
 
 enum e_error
 {
@@ -42,6 +44,15 @@ enum e_error
 	SIZE,
 	MAZE
 };
+
+typedef struct s_maze_cell
+{
+	int		N; // 1 si il y a un mur au nord de la case, 0 sinon
+	int		S;
+	int		W;
+	int		E;
+	char	c; // 'x' si la case n'a pas été traitée, '0' si c'est un chemin, '1' si c'est un mur
+}	t_maze_cell;
 
 typedef struct s_data
 {
@@ -129,7 +140,7 @@ typedef struct s_data
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
 
-	char		**maze;
+	t_maze_cell	**maze;
 }	t_data;
 
 /* free.c */
