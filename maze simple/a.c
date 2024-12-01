@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define INNER_GRID_WIDTH 40
-#define INNER_GRID_HEIGHT 30
+#define INNER_GRID_WIDTH 4
+#define INNER_GRID_HEIGHT 3
 #define GRID_WIDTH (2 * INNER_GRID_WIDTH + 1)
 #define GRID_HEIGHT (2 * INNER_GRID_HEIGHT + 1)
 #define START_X 1 // coordonnée de départ. doit être impaire et dans la grille

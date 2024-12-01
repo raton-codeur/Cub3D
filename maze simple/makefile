@@ -1,4 +1,4 @@
 test :
-	cc b.c -g -fsanitize=address -fsanitize=undefined
+	cc a.c -g -fsanitize=address
 	./a.out
 	rm a.out
