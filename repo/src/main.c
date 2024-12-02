@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 14:34:53 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:50:24 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,3 @@ int	main(int argc, char **argv)
 	free_all(&data);
 	return (0);
 }
-
-
-

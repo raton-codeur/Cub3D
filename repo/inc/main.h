@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 16:25:11 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:46:14 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ typedef struct s_data
 	mlx_image_t		*minimap;
 	float			mini_center_x;
 	float			mini_center_y;
+	int				src_x;
+	int				src_y;
 	float			rel_x;
 	float			rel_y;
 	float			rotated_x;
@@ -160,5 +162,8 @@ void		fill_image(mlx_image_t *image, uint32_t color);
 /* mini_map.c */
 void		fill_mini_player(t_data *data);
 void		draw_mini_map(t_data *data);
+
+/* rotate_minimap.c */
+void		render_rotated_minimap(t_data *d, uint32_t i, uint32_t j);
 
 #endif
