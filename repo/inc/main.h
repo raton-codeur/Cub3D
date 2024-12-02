@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:41:07 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/02 15:35:58 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	mlx_image_t		*background;
 	mlx_image_t		*map_img;
 	mlx_image_t		*minimap;
+	mlx_image_t		*minimap_bg;
 	mlx_image_t		*player_map;
 	mlx_image_t		*rays_map;
 	mlx_image_t		*rays_minimap;
@@ -146,7 +147,10 @@ void		rotate_right(t_data *data);
 void		rotate_left(t_data *data);
 
 /* utils.c */
-void fill_image(mlx_image_t *image, uint32_t color);
+void		fill_image(mlx_image_t *image, uint32_t color);
 
+/* mini_map.c */
+void		fill_mini_player(t_data *data);
+void		draw_mini_map(t_data *data);
 
 #endif

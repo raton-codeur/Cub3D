@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:41:08 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/02 15:43:33 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,5 @@ void	init_minimap(t_data *data)
 		mlx_delete_image(data->mlx, data->minimap);
 		return (mlx_perror_exit(data));
 	}
-	fill_minimap(data);
 	mlx_set_instance_depth(&data->minimap->instances[0], -1);
 }
