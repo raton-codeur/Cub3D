@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 15:34:23 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:26:28 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void check_depth_config(t_data *data)
 		depth(data->rays_map, 3);
 		depth(data->map_img, 2);
 		depth(data->minimap, -1);
+		depth(data->minimap_bg, -1);
 		depth(data->rays_minimap, -1);
 	}
 	else if (data->config == 2)
 	{
-		depth(data->rays_minimap, 3);
-		depth(data->minimap, 2);
+		depth(data->rays_minimap, 4);
+		depth(data->minimap, 3);
+		depth(data->minimap_bg, 2);
 		depth(data->map_img, -1);
 		depth(data->rays_map, -1);
 		depth(data->player_map, -1);
@@ -41,6 +43,7 @@ void check_depth_config(t_data *data)
 		depth(data->player_map, -1);
 		depth(data->map_img, -1);
 		depth(data->minimap, -1);
+		depth(data->minimap_bg, -1);
 		depth(data->rays_map, -1);
 		depth(data->rays_minimap, -1);
 	}

@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 16:52:43 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:10:23 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	mlx_image_t		*background;
 	mlx_image_t		*map_img;
 	mlx_image_t		*minimap;
+	mlx_image_t		*minimap_bg;
 	float			mini_center_x;
 	float			mini_center_y;
 	int				src_x;

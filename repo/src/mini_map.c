@@ -6,11 +6,29 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 09:10:30 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/02 16:50:07 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:15:58 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+void	fill_mini_bg(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	while (x < (int)data->minimap_bg->width)
+	{
+		y = 0;
+		while (y < (int)data->minimap_bg->height)
+		{
+			mlx_put_pixel(data->minimap_bg, x, y, 0x000000FF);
+			y++;
+		}
+		x++;
+	}
+}
 
 void	fill_mini_player(t_data *data, int x, int y)
 {
@@ -66,7 +84,7 @@ static void	copy_map_area(t_data *d, int start_x, int start_y, uint32_t i)
 	}
 }
 
-static void	apply_alpha_to_minimap(t_data *data)
+static void	apply_alpha_to_minimap(mlx_image_t *minimap)
 {
 	uint32_t	i;
 	uint32_t	j;
@@ -74,20 +92,20 @@ static void	apply_alpha_to_minimap(t_data *data)
 	float		radius;
 	uint32_t	dst_index;
 
-	radius = data->minimap->width / 2;
+	radius = minimap->width / 2;
 	i = 0;
-	while (i < data->minimap->height)
+	while (i < minimap->height)
 	{
 		j = 0;
-		while (j < data->minimap->width)
+		while (j < minimap->width)
 		{
-			dst_index = (i * data->minimap->width + j) * 4;
-			distance = sqrtf((j - data->minimap->width / 2)
-					* (j - data->minimap->width / 2)
-					+ (i - data->minimap->height / 2)
-					* (i - data->minimap->height / 2));
+			dst_index = (i * minimap->width + j) * 4;
+			distance = sqrtf((j - minimap->width / 2)
+					* (j - minimap->width / 2)
+					+ (i - minimap->height / 2)
+					* (i - minimap->height / 2));
 			if (distance > radius)
-				data->minimap->pixels[dst_index + 3] = 0;
+				minimap->pixels[dst_index + 3] = 0;
 			j++;
 		}
 		i++;
@@ -109,5 +127,7 @@ void	draw_mini_map(t_data *data)
 	copy_map_area(data, start_x, start_y, 0);
 	render_rotated_minimap(data, 0, 0);
 	fill_mini_player(data, 0, 0);
-	apply_alpha_to_minimap(data);
+	fill_mini_bg(data);
+	apply_alpha_to_minimap(data->minimap);
+	apply_alpha_to_minimap(data->minimap_bg);
 }
