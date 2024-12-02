@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 16:46:14 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:52:43 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void		rotate_left(t_data *data);
 void		fill_image(mlx_image_t *image, uint32_t color);
 
 /* mini_map.c */
-void		fill_mini_player(t_data *data);
+void		fill_mini_player(t_data *data, int x, int y);
 void		draw_mini_map(t_data *data);
 
 /* rotate_minimap.c */
