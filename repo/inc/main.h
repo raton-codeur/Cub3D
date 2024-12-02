@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 15:35:58 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:25:11 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define W_WIDTH 2560 // 1920 // la largeur de la fenêtre
-# define W_HEIGHT 1440 // 1080 // hauteur de la fenêtre
+# define W_WIDTH 1920 // 2560 // la largeur de la fenêtre
+# define W_HEIGHT 1080 // 1440 // hauteur de la fenêtre
 # define W_HEIGHT_2 (W_HEIGHT / 2)
 # define PATH_MAP "maps/simple.cub"
 # define STEP_MOVE 0.2 // le pas de déplacement du joueur en pixels
@@ -57,7 +57,12 @@ typedef struct s_data
 	mlx_image_t		*background;
 	mlx_image_t		*map_img;
 	mlx_image_t		*minimap;
-	mlx_image_t		*minimap_bg;
+	float			mini_center_x;
+	float			mini_center_y;
+	float			rel_x;
+	float			rel_y;
+	float			rotated_x;
+	float			rotated_y;
 	mlx_image_t		*player_map;
 	mlx_image_t		*rays_map;
 	mlx_image_t		*rays_minimap;
@@ -92,6 +97,9 @@ typedef struct s_data
 	double		pos_y; // coordonnée verticale du joueur
 	double		dir_x; // vecteur de direction où regarde le joueur
 	double		dir_y;
+	float		theta;
+	float		cos_theta;
+	float		sin_theta;
 	double		plane_x; // vecteur du plan de la caméra. toujours perpendiculaire à dir
 	double		plane_y;
 
