@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 09:10:30 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/02 17:15:58 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/04 11:39:52 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	draw_mini_map(t_data *data)
 	int		start_x;
 	int		start_y;
 
-	data->theta = atan2(data->dir_y, data->dir_x);
+	data->theta = atan2(data->dir_y, data->dir_x) + M_PI / 2;
 	data->cos_theta = cos(data->theta);
 	data->sin_theta = sin(data->theta);
 	start_x = data->pos_x * data->box_size - data->minimap->width / 2;
