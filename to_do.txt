@@ -1,8 +1,0 @@
-
-
-
-// Char check + count
-// Dup textures
-// tests sur les fichiers (perm)
-
-

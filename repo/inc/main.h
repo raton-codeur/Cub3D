@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/30 21:08:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/04 15:36:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@
 # define WALL_COLOR_E 0x00FF00FF
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
-# define INIT_CUB "NO ./path_to_the_north_texture.png\nSO ./path_to_the_south_texture.png\nWE ./path_to_the_west_texture.png\nEA ./path_to_the_east_texture.png\nF 40,40,40\nC 135,206,235\n\n"
-# define MAZE_PATH_WIDTH 7
-# define MAZE_START_I (MAZE_PATH_WIDTH / 2)
-# define MAZE_PATH_HEIGHT 3
-# define MAZE_START_J (MAZE_PATH_HEIGHT / 2)
-# define MAZE_WIDTH (3 + 2 * (MAZE_PATH_WIDTH - 1))
-# define MAZE_HEIGHT (3 + 2 * (MAZE_PATH_HEIGHT - 1))
 
 enum e_error
 {
@@ -47,14 +40,13 @@ enum e_error
 	MAZE
 };
 
+// un mur c'est les coordonnées d'une case + une direction
 typedef struct s_maze_cell
 {
-	int		N; // 1 si il y a un mur au nord de la case, 0 sinon
-	int		S;
-	int		W;
-	int		E;
-	char	c; // 'x' si la case n'a pas été traitée, '0' si c'est un chemin, '1' si c'est un mur
-}	t_maze_cell;
+	int	i;
+	int	j;
+	int	d;
+}	t_wall;
 
 typedef struct s_data
 {
@@ -75,6 +67,8 @@ typedef struct s_data
 	int			i_start;
 	int			j_start;
 	char		dir_start;
+	char		**maze;
+	t_wall		*walls;
 
 	// mlx
 	mlx_t		*mlx;
@@ -141,9 +135,7 @@ typedef struct s_data
 	double		perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
-
-	t_maze_cell	**maze_path;
-	char		**maze;
+	int			wall_count; // pour se déplacer dans walls
 }	t_data;
 
 /* free.c */
@@ -183,8 +175,5 @@ long long	get_timestamp(t_data *data);
 uint32_t	get_rgb(mlx_image_t *img, uint32_t x, uint32_t y);
 void		mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb);
 uint32_t	get_color(t_data *data, uint32_t x, uint32_t y);
-
-/* maze.c */
-void		create_maze_file(t_data *data);
 
 #endif
