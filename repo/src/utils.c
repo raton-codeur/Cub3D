@@ -6,11 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:59:02 by qhauuy            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/12/04 15:10:18 by qhauuy           ###   ########.fr       */
-=======
-/*   Updated: 2024/12/04 14:19:08 by qhauuy           ###   ########.fr       */
->>>>>>> b8f9593c9c5add5f7c90777f03bc58420b5cc01d
+/*   Updated: 2024/12/04 16:43:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +61,6 @@ void	erase_image(mlx_image_t *image)
 
 void	print_map(t_data *data)
 {
-<<<<<<< HEAD
 	uint32_t	i;
 	uint32_t	j;
 
@@ -87,32 +82,6 @@ void	print_map(t_data *data)
 		printf("\n");
 		j++;
 	}
-=======
-	int	i;
-	int	j;
-
-	printf("      ");
-	i = 0;
-	j = 0;
-	while (data->map[i][j])
-	{
-		printf("%3d", j);
-		j++;
-	}
-	printf("\n");
-	while (data->map[i])
-	{
-		printf("%3d : ", i);
-		j = 0;
-		while (data->map[i][j])
-		{
-			printf("%3c", data->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
->>>>>>> b8f9593c9c5add5f7c90777f03bc58420b5cc01d
 }
 
 mlx_image_t	*get_img_from_png(t_data *data, const char *file)

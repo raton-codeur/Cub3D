@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/04 15:36:24 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/04 17:47:01 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 # define WALL_COLOR_E 0x00FF00FF
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
+# define MAZE_START_I 1
+# define MAZE_START_J 1
 
 enum e_error
 {
