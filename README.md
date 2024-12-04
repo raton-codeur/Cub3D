@@ -49,3 +49,9 @@ donc on a le produit en croix :
 # generation de labyrinthe
 
 <img src="schémas/maze_generation.png" />
+
+<img src="
+capture_01_12_2024_16_38_27.png
+" />
+
+en sombre : inner grid

@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define INNER_GRID_WIDTH 4
-#define INNER_GRID_HEIGHT 3
+#define INNER_GRID_WIDTH 40
+#define INNER_GRID_HEIGHT 30
 #define GRID_WIDTH (2 * INNER_GRID_WIDTH + 1)
 #define GRID_HEIGHT (2 * INNER_GRID_HEIGHT + 1)
-#define START_X 1 // coordonnée de départ. doit être impaire et dans la grille
-#define START_Y 1
+#define START_X 3 // coordonnée de départ. doit être impaire et dans la grille
+#define START_Y 3
 
 // un mur c'est les coordonnées d'une case + une direction
 typedef struct {int x, y, d;} t_wall;
