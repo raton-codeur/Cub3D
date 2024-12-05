@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/05 14:43:49 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:59:37 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,21 @@ static void	free_parsing(t_data *data)
 	data->ceil_color_str = NULL;
 }
 
-// static void	load_walls(t_data *data)
-// {
-// 	data->wall_no = get_img_from_png(data, data->north_texture);
-// 	if (data->wall_no == NULL)
-// 		mlx_perror_exit(data);
-// 	data->wall_so = get_img_from_png(data, data->south_texture);
-// 	if (data->wall_so == NULL)
-// 		mlx_perror_exit(data);
-// 	data->wall_we = get_img_from_png(data, data->west_texture);
-// 	if (data->wall_we == NULL)
-// 		mlx_perror_exit(data);
-// 	data->wall_ea = get_img_from_png(data, data->east_texture);
-// 	if (data->wall_ea == NULL)
-// 		mlx_perror_exit(data);
-// }
+static void	load_walls(t_data *data)
+{
+	data->wall_no = mlx_load_png(data->north_texture);
+	if (data->wall_no == NULL)
+		mlx_perror_exit(data);
+	data->wall_so = mlx_load_png(data->south_texture);
+	if (data->wall_so == NULL)
+		mlx_perror_exit(data);
+	data->wall_we = mlx_load_png(data->west_texture);
+	if (data->wall_we == NULL)
+		mlx_perror_exit(data);
+	data->wall_ea = mlx_load_png(data->east_texture);
+	if (data->wall_ea == NULL)
+		mlx_perror_exit(data);
+}
 
 static	void	init_after_parsing(t_data *data)
 {
@@ -89,7 +89,7 @@ static	void	init_after_parsing(t_data *data)
 	// mlx_set_window_size(data->mlx, monitor_width, monitor_height);
 	mlx_set_window_pos(data->mlx, \
 		(monitor_width - W_WIDTH) / 2, (monitor_height - W_HEIGHT) / 2);
-	// load_walls(data);
+	load_walls(data);
 }
 
 void	clean_parsing(t_data *data)

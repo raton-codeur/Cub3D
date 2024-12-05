@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/05 14:46:22 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:52:38 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ typedef struct s_data
 	mlx_image_t		*player_map;
 	mlx_image_t		*rays_map;
 	mlx_image_t		*walls;
-	// mlx_image_t		*wall_no;
-	// mlx_image_t		*wall_so;
-	// mlx_image_t		*wall_we;
-	// mlx_image_t		*wall_ea;
+	mlx_texture_t	*wall_no;
+	mlx_texture_t	*wall_so;
+	mlx_texture_t	*wall_we;
+	mlx_texture_t	*wall_ea;
 	int				map_width;
 	int				map_height;
 	int				config; // 0 pour rien, 1 pour la map, 2 pour la minimap
