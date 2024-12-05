@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 09:10:30 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/04 11:39:52 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/05 14:30:07 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include "raycasting.h"
 
 void	fill_mini_bg(t_data *data)
 {
@@ -38,16 +39,16 @@ void	fill_mini_player(t_data *data, int x, int y)
 
 	mini_radius = data->box_size / 4;
 	mini_radius_2 = mini_radius * mini_radius;
-	while (x < (int)data->minimap->width)
+	while (x < (int)data->minimap_player->width)
 	{
 		y = 0;
-		while (y < (int)data->minimap->height)
+		while (y < (int)data->minimap_player->height)
 		{
 			d = (data->mini_center_x - x) * (data->mini_center_x - x)
 				+ (data->mini_center_y - y) * (data->mini_center_y - y);
 			if (d <= mini_radius_2)
 			{
-				mlx_put_pixel(data->minimap, x, y, 0xFF0000FF);
+				mlx_put_pixel(data->minimap_player, x, y, 0xFF0000FF);
 			}
 			y++;
 		}
@@ -117,7 +118,7 @@ void	draw_mini_map(t_data *data)
 	int		start_x;
 	int		start_y;
 
-	data->theta = atan2(data->dir_y, data->dir_x) + M_PI / 2;
+	data->theta = atan2(data->dir_y, data->dir_x) + M_PI / 2 ;
 	data->cos_theta = cos(data->theta);
 	data->sin_theta = sin(data->theta);
 	start_x = data->pos_x * data->box_size - data->minimap->width / 2;
@@ -125,9 +126,12 @@ void	draw_mini_map(t_data *data)
 	data->mini_center_x = data->minimap->width / 2;
 	data->mini_center_y = data->minimap->height / 2;
 	copy_map_area(data, start_x, start_y, 0);
+	copy_map_rays(data, start_x, start_y, 0);
 	render_rotated_minimap(data, 0, 0);
+	render_rotated_rays(data, 0, 0);
 	fill_mini_player(data, 0, 0);
 	fill_mini_bg(data);
 	apply_alpha_to_minimap(data->minimap);
 	apply_alpha_to_minimap(data->minimap_bg);
+	apply_alpha_to_minimap(data->minimap_rays);
 }

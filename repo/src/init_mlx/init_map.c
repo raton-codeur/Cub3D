@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 17:24:16 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/04 14:01:35 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,56 +75,50 @@ void	init_map(t_data *data)
 	mlx_set_instance_depth(&data->map_img->instances[0], -1);
 }
 
-// void fill_minimap(t_data *data)
-// {
-// 	int	x;
-// 	int	y;
-// 	int	radius_2;
-// 	int	radius;
-// 	int	player_radius_2;
-// 	int d;
-
-// 	radius = data->minimap->width / 2;
-// 	radius_2 = radius * radius;
-// 	player_radius_2 = data->box_size * data->box_size / 16;
-// 	x = 0;
-// 	while (x < (int)data->minimap->width)
-// 	{
-// 		y = 0;
-// 		while (y < (int)data->minimap->height)
-// 		{
-// 			d = (radius - x) * (radius - x) + (radius - y) * (radius - y);
-// 			if (d <= radius_2)
-// 			{
-// 				if (d <= player_radius_2)
-// 					mlx_put_pixel(data->minimap, x, y, 0xFF0000FF);
-// 				else
-// 					mlx_put_pixel(data->minimap, x, y, 0xFFFFFFFF);
-// 			}
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }
+void	init_mini_player_and_rays(t_data *data)
+{
+	data->minimap_player = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
+	if (data->minimap_player == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->minimap_player, data->box_size,
+			data->box_size) == -1)
+	{
+		mlx_delete_image(data->mlx, data->minimap_player);
+		return (mlx_perror_exit(data));
+	}
+	data->minimap_rays = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
+	if (data->minimap_rays == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->minimap_rays, data->box_size,
+			data->box_size) == -1)
+	{
+		mlx_delete_image(data->mlx, data->minimap_rays);
+		return (mlx_perror_exit(data));
+	}
+}
 
 void	init_minimap(t_data *data)
 {
-	data->minimap = mlx_new_image(data->mlx, 10 * data->box_size, 10 * data->box_size);
+	data->minimap = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
 	if (data->minimap == NULL)
 		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->minimap, data->box_size, data->box_size) == -1)
+	if (mlx_image_to_window(data->mlx, data->minimap, data->box_size,
+			data->box_size) == -1)
 	{
 		mlx_delete_image(data->mlx, data->minimap);
 		return (mlx_perror_exit(data));
 	}
-	data->minimap_bg = mlx_new_image(data->mlx, 10 * data->box_size, 10 * data->box_size);
+	data->minimap_bg = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
 	if (data->minimap_bg == NULL)
 		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->minimap_bg, data->box_size, data->box_size) == -1)
+	if (mlx_image_to_window(data->mlx, data->minimap_bg, data->box_size,
+			data->box_size) == -1)
 	{
 		mlx_delete_image(data->mlx, data->minimap_bg);
 		return (mlx_perror_exit(data));
 	}
-	mlx_set_instance_depth(&data->minimap->instances[0],-1);
-	mlx_set_instance_depth(&data->minimap_bg->instances[0], -1);
 }

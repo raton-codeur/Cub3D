@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 17:10:23 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:46:22 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_data
 	mlx_image_t		*map_img;
 	mlx_image_t		*minimap;
 	mlx_image_t		*minimap_bg;
+	mlx_image_t		*minimap_player;
+	mlx_image_t		*minimap_rays;
 	float			mini_center_x;
 	float			mini_center_y;
 	int				src_x;
@@ -68,7 +70,6 @@ typedef struct s_data
 	float			rotated_y;
 	mlx_image_t		*player_map;
 	mlx_image_t		*rays_map;
-	mlx_image_t		*rays_minimap;
 	mlx_image_t		*walls;
 	// mlx_image_t		*wall_no;
 	// mlx_image_t		*wall_so;
@@ -163,6 +164,13 @@ void		fill_image(mlx_image_t *image, uint32_t color);
 /* mini_map.c */
 void		fill_mini_player(t_data *data, int x, int y);
 void		draw_mini_map(t_data *data);
+
+/* minimap_rays.c */
+void		copy_map_rays(t_data *d, int start_x, int start_y, uint32_t i);
+void		render_rotated_rays(t_data *d, uint32_t i, uint32_t j);
+
+/* rotate_rays.c */
+void		render_rotated_rays(t_data *d, uint32_t i, uint32_t j);
 
 /* rotate_minimap.c */
 void		render_rotated_minimap(t_data *d, uint32_t i, uint32_t j);

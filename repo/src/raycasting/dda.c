@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/27 10:41:09 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/05 14:44:51 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void draw_map_fog(t_data *data)
 			+ (data->ray_y - data->pos_y) * (data->ray_y - data->pos_y);
 	}
 }
- 
+
 void draw_map(t_data *data)
 {
 	data->ray_x = data->pos_x;
@@ -177,20 +177,11 @@ void draw_map(t_data *data)
 		(data->hit_y - 0.05 * data->ray_dir_y) * data->box_size, RAY_COLOR);
 }
 
-void	draw_minimap(t_data *data)
-{
-	(void)data;
-}
-
 void draw_for_x(t_data *data)
 {
 	draw_game(data);
 	if (data->config == 1 && data->fog_state)
 		draw_map_fog(data);
-	else if (data->config == 1)
-		draw_map(data);
-	else if (data->config == 2)
-		draw_minimap(data);
 }
 
 void	dda(t_data *data)
@@ -202,6 +193,7 @@ void	dda(t_data *data)
 		iterate_dda(data);
 		get_dda_results(data);
 		draw_for_x(data);
+		draw_map(data);
 		data->x++;
 	}
 }

@@ -6,19 +6,19 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/02 17:26:28 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/05 14:46:09 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 #include "raycasting.h"
 
-void depth(mlx_image_t *img, int depth)
+void	depth(mlx_image_t *img, int depth)
 {
 	mlx_set_instance_depth(&img->instances[0], depth);
 }
 
-void check_depth_config(t_data *data)
+void	check_depth_config(t_data *data)
 {
 	if (data->config == 1)
 	{
@@ -27,11 +27,13 @@ void check_depth_config(t_data *data)
 		depth(data->map_img, 2);
 		depth(data->minimap, -1);
 		depth(data->minimap_bg, -1);
-		depth(data->rays_minimap, -1);
+		depth(data->minimap_rays, -1);
+		depth(data->minimap_player, -1);
 	}
 	else if (data->config == 2)
 	{
-		depth(data->rays_minimap, 4);
+		depth(data->minimap_player, 5);
+		depth(data->minimap_rays, 4);
 		depth(data->minimap, 3);
 		depth(data->minimap_bg, 2);
 		depth(data->map_img, -1);
@@ -44,8 +46,9 @@ void check_depth_config(t_data *data)
 		depth(data->map_img, -1);
 		depth(data->minimap, -1);
 		depth(data->minimap_bg, -1);
+		depth(data->minimap_rays, -1);
+		depth(data->minimap_player, -1);
 		depth(data->rays_map, -1);
-		depth(data->rays_minimap, -1);
 	}
 }
 
@@ -110,6 +113,6 @@ void	main_hook(void *param)
 	erase_image(data->walls);
 	check_movement_keys(data);
 	check_rotation_keys(data);
-	draw_mini_map(data);
 	dda(data);
+	draw_mini_map(data);
 }
