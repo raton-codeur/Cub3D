@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/11/21 13:19:43 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/11 20:04:46 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void		check_textures(t_data *data);
 
 /* find_colors.c */
 void		find_colors(t_data *data, int i, int j);
-
-/* find_colors_2.c */
 void		fill_rgb_colors(t_data *data);
+
+/* check_maze.c */
+void		check_maze(t_data *data);
 
 /* check_colors.c */
 void		check_color_string(t_data *data, char *color);

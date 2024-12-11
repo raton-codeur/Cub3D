@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/05 14:52:38 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/11 20:42:46 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,23 @@
 # define FOG_RATIO 0.3 // ratio de wall_height_norm à partir duquel on commence à appliquer le brouillard
 # define FOG_MAX 0.2 // ratio de FOG_RATIO jusqu'auquel le brouillard est maximal
 # define STEP_MAP 0.1
+# define MAZE_MAX 50
+# define MAZE_START_I 1
+# define MAZE_START_J 1
+# define MAZE_DIR_START 'S'
 
 enum e_error
 {
 	DEFAULT,
 	MALLOC
 };
+
+typedef struct s_wall
+{
+	uint32_t	i;
+	uint32_t	j;
+	int			d;
+}	t_wall;
 
 typedef struct s_data
 {
@@ -52,6 +63,8 @@ typedef struct s_data
 	char			*ceil_color_str;
 	int				ceil_color_line;
 	int				map_line;
+	char			*maze_str;
+	int				maze_line;
 	char			**map;
 	mlx_t			*mlx;
 	mlx_image_t		*background;
@@ -134,7 +147,16 @@ typedef struct s_data
 	uint32_t	wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
 	uint32_t	color; // la couleur de la ligne de mur
+
+	// maze
+	t_wall		*walls_maze;
+	int			wall_count;
 }	t_data;
+
+
+
+/* generate_maze.c */
+void	generate_maze(t_data *data);
 
 /* free.c */
 void		free_all(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/12/04 13:52:44 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/11 20:03:58 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	parsing(t_data *data, int argc, char **argv)
 	load_cub_file(data);
 	extract_textures_and_colors(data);
 	extract_map(data);
-	check_cub_order(data);
 	check_map(data);
+	check_maze(data);
+	check_cub_order(data);
 	clean_parsing(data);
 }
