@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/11 20:33:16 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/11 21:00:14 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,10 @@ static	void	init_after_parsing(t_data *data)
 	if (data->maze_line != -1)
 		generate_maze(data);
 	else
+	{
 		get_map_dimensions(data);
-	reverse_map(data);
+		reverse_map(data);
+	}
 	data->mlx = mlx_init(W_WIDTH, W_HEIGHT, "Cub3D", false);
 	if (data->mlx == NULL)
 		mlx_perror_exit(data);
