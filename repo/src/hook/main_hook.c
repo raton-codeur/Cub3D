@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 21:25:53 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:39:00 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,8 +386,8 @@ void	get_pixel_minimap(t_data *data)
 
 void	render_minimap(t_data *data)
 {
-	data->mini_plane_x = -data->dir_y;
-	data->mini_plane_y = data->dir_x;
+	data->mini_dir_x = data->dir_x;
+	data->mini_dir_y = data->dir_y;
 	erase_image(data->minimap);
 	data->x = 0;
 	while (data->x < data->minimap->width)
@@ -396,12 +396,12 @@ void	render_minimap(t_data *data)
 		while (data->y < data->minimap->width)
 		{
 			// Calculer les coordonnées relatives sur la minimap (centrées autour du joueur)
-			double map_x = (data->x - data->minimap->width / 2.0) * data->mini_step;
-			double map_y = (data->y - data->minimap->width / 2.0) * data->mini_step;
+			data->mini_x = (data->x - data->minimap->width / 2.0) * data->mini_step;
+			data->mini_y = (data->y - data->minimap->width / 2.0) * data->mini_step;
 
 			// Appliquer la rotation à ces coordonnées pour obtenir (xd, yd)
-			data->xd = data->pos_x + map_x * data->dir_x + map_y * data->mini_plane_x;
-			data->yd = data->pos_y + map_x * data->dir_y + map_y * data->mini_plane_y;
+			data->xd = data->pos_x + data->mini_x * data->dir_x + data->mini_y * -data->mini_dir_y;
+			data->yd = data->pos_y + data->mini_x * data->dir_y + data->mini_y * data->mini_dir_x;
 
 			get_pixel_minimap(data);
 			mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
