@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 12:04:47 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:20:20 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ static void	init_mini_depth(t_data *data)
 	mlx_set_instance_depth(&data->minimap_rays->instances[0], -1);
 }
 
+static	void	init_walls(t_data *data)
+{
+	data->door = mlx_load_png("textures/ea2.png");
+	if (data->door == NULL)
+		mlx_perror_exit(data);
+}
 
 void	init_game(t_data *data)
 {
@@ -49,6 +55,7 @@ void	init_game(t_data *data)
 	init_map(data);
 	init_player_map(data);
 	init_rays_map(data);
+	init_walls(data);
 	init_minimap(data);
 	init_mini_player_and_rays(data);
 	init_mini_depth(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 15:17:56 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:20:04 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	iterate_dda(t_data *data)
 
 static void	get_texture_infos(t_data *data)
 {
-	if (data->map[][] == 'D')
-		data->t = 
+	if (data->map[data->i][data->j] == 'D')
+		data->t = data->door;
 	else if (data->side == 1 && data->step_j == -1)
 		data->t = data->north;
 	else if (data->side == 1)

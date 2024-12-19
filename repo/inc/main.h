@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 14:08:23 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:05:44 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ typedef struct s_data
 	int				p_y;
 	int				door_to_open_x;
 	int				door_to_open_y;
+	mlx_texture_t	*door;
 
 }	t_data;
 
