@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:18:06 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 16:27:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:44:45 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	render_game_for_x(t_data *data)
 	}
 	while (data->i < data->wall_height && data->y < data->w_height)
 	{
-		data->tex_y = data->t->height * data->i / data->wall_height;
+		data->tex_y = data->tex->height * data->i / data->wall_height;
 		get_pixel_wall(data);
 		mlx_put_pixel(data->game, data->x, data->y, data->pixel);
 		data->i++;

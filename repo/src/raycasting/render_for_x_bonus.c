@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_for_x.c                                     :+:      :+:    :+:   */
+/*   render_for_x_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:18:06 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/18 20:28:02 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:44:45 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	render_game_for_x(t_data *data)
 	}
 	while (data->i < data->wall_height && data->y < data->w_height)
 	{
-		data->tex_y = data->t->height * data->i / data->wall_height;
+		data->tex_y = data->tex->height * data->i / data->wall_height;
 		if (data->fog_state)
 			get_pixel_wall_fog(data);
 		else

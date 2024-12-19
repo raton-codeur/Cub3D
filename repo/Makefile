@@ -18,10 +18,9 @@ SRCS = \
 	src/maze.c \
 	src/init_game/init_game.c \
 	src/init_game/init_game_img.c \
-	src/init_game/init_maps.c \
+	src/init_game/init_map.c \
 	src/init_game/init_players.c \
 	src/init_game/init_dimensions.c \
-	src/init_game/init_rays.c \
 	src/init_game/init_background.c \
 	src/doors.c \
 	src/minimap/minimap_rays.c \
