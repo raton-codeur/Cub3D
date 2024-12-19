@@ -2,5 +2,6 @@ repo/MLX42/build/
 **/*.o
 **/*.a
 **/cub3D
+**/cub3D_bonus
 **/.vscode/
 **/.DS_Store
