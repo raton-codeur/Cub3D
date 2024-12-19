@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 15:02:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:02:57 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ static void	get_texture_infos(t_data *data)
 		data->t = data->east;
 		data->tex_x = data->t->width * (data->hit_y - (int)data->hit_y);
 	}
+	if (data->x == data->w_width / 2) printf("%d %d\n", data->i, data->j);
 }
 
 static void	get_dda_results(t_data *data)
