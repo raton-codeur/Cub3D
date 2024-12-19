@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:50:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:59:25 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_minimap(t_data *data)
 	data->minimap = mlx_new_image(data->mlx, data->w_height / 4, data->w_height / 4);
 	if (data->minimap == NULL)
 		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->minimap, 50, 50) == -1)
+	if (mlx_image_to_window(data->mlx, data->minimap, data->minimap->width / 10, data->minimap->width / 10) == -1)
 	{
 		mlx_delete_image(data->mlx, data->minimap);
 		return (mlx_perror_exit(data));
@@ -32,7 +32,10 @@ void	init_minimap_player(t_data *data)
 	if (data->minimap_player == NULL)
 		return (mlx_perror_exit(data));
 	fill_image_circle(data->minimap_player, PLAYER_COLOR);
-	if (mlx_image_to_window(data->mlx, data->minimap_player, 50, 50) == -1)
+	if (mlx_image_to_window(data->mlx, data->minimap_player, \
+		data->minimap->width / 10 + data->minimap->width / 2 - data->minimap_player->width / 2, \
+		data->minimap->width / 10 + data->minimap->width / 2 - data->minimap_player->width / 2 \
+		) == -1)
 	{
 		mlx_delete_image(data->mlx, data->minimap_player);
 		return (mlx_perror_exit(data));
