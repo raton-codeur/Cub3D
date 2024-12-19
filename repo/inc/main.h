@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 12:33:46 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:08:23 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define WALL_COLOR_E 0x00FF00FF
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
+# define MAP_COLOR_DOOR 0xA9A9A9FF
 # define MAZE_START_I 1
 # define MAZE_START_J 1
 # define MAZE_DIR_START 'S'
