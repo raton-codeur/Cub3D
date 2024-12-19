@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/05 14:44:51 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:20:55 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	iterate_dda(t_data *data)
 			data->j += data->step_j;
 			data->side = 1;
 		}
-		if (data->map[data->i][data->j] == '1')
+		if (data->map[data->i][data->j] == '1' || data->map[data->i][data->j] == 'D')
 			data->hit = 1;
 	}
 }

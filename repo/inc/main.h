@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/11 22:16:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 11:30:03 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,15 +148,20 @@ typedef struct s_data
 	double		wall_height_norm; // wall_height normalisé entre 0 et 1
 	uint32_t	color; // la couleur de la ligne de mur
 
+	// doors
+
+	int			door_to_open_x;
+	int			door_to_open_y;
+	int			p_x;
+	int			p_y;
+
 	// maze
 	t_wall		*walls_maze;
 	int			wall_count;
 }	t_data;
 
-
-
 /* generate_maze.c */
-void	generate_maze(t_data *data);
+void		generate_maze(t_data *data);
 
 /* free.c */
 void		free_all(t_data *data);
@@ -196,5 +201,10 @@ void		render_rotated_rays(t_data *d, uint32_t i, uint32_t j);
 
 /* rotate_minimap.c */
 void		render_rotated_minimap(t_data *d, uint32_t i, uint32_t j);
+
+/* doors.c */
+void		check_doors(t_data *data, int i, int j);
+void		get_closest_door(t_data *d);
+void		open_door(t_data *d, mlx_key_data_t keydata);
 
 #endif
