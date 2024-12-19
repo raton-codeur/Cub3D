@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 22:32:38 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 22:49:59 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	dda(t_data *data)
 	erase_image(data->game);
 	if (data->depth_config == 1)
 		erase_image(data->map_rays);
-	else if (data->depth_config == 2)
-		erase_image(data->minimap);
+	// else if (data->depth_config == 2)
+	// 	erase_image(data->minimap);
 	data->x = 0;
 	while (data->x < data->w_width)
 	{

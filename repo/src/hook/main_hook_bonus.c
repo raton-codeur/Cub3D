@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:17:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 22:50:52 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	main_hook(void *param)
 	t_data	*data;
 
 	data = param;
-	erase_image(data->map_rays);
-	erase_image(data->game);
 	check_movement_keys(data);
 	check_rotation_keys(data);
 	get_closest_door(data);
