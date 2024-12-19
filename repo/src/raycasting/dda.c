@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/18 19:03:59 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 12:38:29 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static void	iterate_dda(t_data *data)
 			data->j += data->step_j;
 			data->side = 1;
 		}
-		if (data->map[data->i][data->j] == '1')
+		if (data->map[data->i][data->j] == '1'
+			|| data->map[data->i][data->j] == 'D')
 			data->hit = 1;
 	}
 }

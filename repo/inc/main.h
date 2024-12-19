@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 11:50:22 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 14:08:23 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define WALL_COLOR_E 0x00FF00FF
 # define MAP_COLOR_WALL 0x000000FF
 # define MAP_COLOR_BG 0xFFFFFFFF
+# define MAP_COLOR_DOOR 0xA9A9A9FF
 # define MAZE_START_I 1
 # define MAZE_START_J 1
 # define MAZE_DIR_START 'S'
@@ -179,11 +180,16 @@ typedef struct s_data
 	float			rotated_y;
 	float			mini_center_x;
 	float			mini_center_y;
-	float		theta;
-	float		cos_theta;
-	float		sin_theta;
+	float			theta;
+	float			cos_theta;
+	float			sin_theta;
 
-
+	// pour les portes
+	
+	int				p_x;
+	int				p_y;
+	int				door_to_open_x;
+	int				door_to_open_y;
 
 }	t_data;
 
