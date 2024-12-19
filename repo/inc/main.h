@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 18:37:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 19:34:30 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,9 @@ typedef struct s_data
 	uint8_t			g;
 	uint8_t			b;
 
+	double minimap_step;
+	double xd;
+	double yd;
 
 
 	int				src_x;
@@ -221,18 +224,18 @@ void		add_walls(t_data *data, uint32_t i, uint32_t j);
 // void		draw_minimap(t_data *data);
 
 /* mini_map.c */
-void		fill_mini_player(t_data *data, int x, int y);
-void		draw_mini_map(t_data *data);
+// void		fill_mini_player(t_data *data, int x, int y);
+// void		draw_mini_map(t_data *data);
 
-/* minimap_rays.c */
-void		copy_map_rays(t_data *d, int start_x, int start_y, uint32_t i);
-void		render_rotated_rays(t_data *d, uint32_t i, uint32_t j);
+// /* minimap_rays.c */
+// void		copy_map_rays(t_data *d, int start_x, int start_y, uint32_t i);
+// void		render_rotated_rays(t_data *d, uint32_t i, uint32_t j);
 
-/* rotate_rays.c */
-void		render_rotated_rays(t_data *d, uint32_t i, uint32_t j);
+// /* rotate_rays.c */
+// void		render_rotated_rays(t_data *d, uint32_t i, uint32_t j);
 
-/* rotate_minimap.c */
-void		render_rotated_minimap(t_data *d, uint32_t i, uint32_t j);
+// /* rotate_minimap.c */
+// void		render_rotated_minimap(t_data *d, uint32_t i, uint32_t j);
 
 /* doors.c */
 void		check_doors(t_data *data, int i, int j);

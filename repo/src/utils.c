@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:59:02 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 14:02:12 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 19:45:55 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,29 +120,17 @@ mlx_image_t	*get_img_from_png(t_data *data, const char *file)
 // 	return (r << 24 | g << 16 | b << 8 | a);
 // }
 
-uint32_t get_rgb(mlx_image_t *img, uint32_t x, uint32_t y)
-{
-	uint8_t r, g, b;
-	r = img->pixels[y * img->width * 4 + x * 4];
-	g = img->pixels[y * img->width * 4 + x * 4 + 1];
-	b = img->pixels[y * img->width * 4 + x * 4 + 2];
-	return (r << 24 | g << 16 | b << 8);
-}
+// uint32_t get_rgb(mlx_image_t *img, uint32_t x, uint32_t y)
+// {
+// 	uint8_t r, g, b;
+// 	r = img->pixels[y * img->width * 4 + x * 4];
+// 	g = img->pixels[y * img->width * 4 + x * 4 + 1];
+// 	b = img->pixels[y * img->width * 4 + x * 4 + 2];
+// 	return (r << 24 | g << 16 | b << 8);
+// }
 
-void mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb)
-{
-	mlx_put_pixel(img, x, y, rgb | img->pixels[y * img->width * 4 + x * 4 + 3]);
-}
+// void mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb)
+// {
+// 	mlx_put_pixel(img, x, y, rgb | img->pixels[y * img->width * 4 + x * 4 + 3]);
+// }
 
-uint32_t	get_color(t_data *data, uint32_t x, uint32_t y)
-{
-	if (x % data->box_size == 0 || x % data->box_size == data->box_size - 1
-		|| y % data->box_size == 0 || y % data->box_size == data->box_size - 1)
-		return (0x000000FF);
-	else if (data->map[x / data->box_size][y / data->box_size] == '1')
-		return (MAP_COLOR_WALL);
-	else if (data->map[x / data->box_size][y / data->box_size] == 'D')
-		return (MAP_COLOR_DOOR);
-	else
-		return (MAP_COLOR_BG);
-}
