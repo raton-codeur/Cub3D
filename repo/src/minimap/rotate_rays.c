@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_rays.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 13:56:09 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/05 14:45:39 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:17:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ static void	copy_rays_pixel(t_data *d, uint32_t dst_index,
 {
 	uint32_t	src_index;
 
-	src_index = (map_y * d->rays_map->width + map_x) * 4;
+	src_index = (map_y * d->map_rays->width + map_x) * 4;
 	ft_memcpy(&d->minimap_rays->pixels[dst_index],
-		&d->rays_map->pixels[src_index], 4);
+		&d->map_rays->pixels[src_index], 4);
 }
 
 static int	within_bounds(t_data *d, int map_x, int map_y)
 {
-	return (map_x >= 0 && map_x < (int)d->rays_map->width
-		&& map_y >= 0 && map_y < (int)d->rays_map->height);
+	return (map_x >= 0 && map_x < (int)d->map_rays->width
+		&& map_y >= 0 && map_y < (int)d->map_rays->height);
 }
 
 static void	rotated_coords(t_data *d, uint32_t i, uint32_t j)

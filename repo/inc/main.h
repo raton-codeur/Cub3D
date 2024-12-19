@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 14:08:23 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:16:14 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,26 +86,23 @@ typedef struct s_data
 
 	// mlx
 	mlx_t			*mlx;
-	mlx_image_t		*background; // l'image de fond
-	mlx_image_t		*map_img; // l'image de la map
+	mlx_image_t		*background;
+	mlx_image_t		*game;
+
+	mlx_image_t		*map_img;
+	mlx_image_t		*map_rays; // l'image des rayons sur la map
+	mlx_image_t		*map_player; // l'image du joueur sur la map
+	
 	mlx_image_t		*minimap; // l'image de la minimap
-	mlx_image_t		*player_map; // l'image du joueur sur la map
-	mlx_image_t		*player_minimap; // l'image du joueur sur la minimap
-	mlx_image_t		*rays_map; // l'image des rayons sur la map
-	// mlx_image_t		*rays_minimap; // l'image des rayons sur la minimap
-	mlx_image_t		*game; // l'image du jeu
-	double			xpos; // la position horizontale de la souris
-	double			ypos; // la position verticale de la souris
+	mlx_image_t		*minimap_player; // l'image du joueur sur la minimap
+
 	mlx_texture_t	*north;
 	mlx_texture_t	*south;
 	mlx_texture_t	*west;
 	mlx_texture_t	*east;
-	mlx_texture_t	*t;
-
-	mlx_image_t		*minimap_bg;
-	mlx_image_t		*minimap_player;
-	mlx_image_t		*minimap_rays;
-
+	mlx_texture_t	*tex;
+	double			xpos; // la position horizontale de la souris
+	double			ypos; // la position verticale de la souris
 
 	// pour le parsing
 	char			*path_map;

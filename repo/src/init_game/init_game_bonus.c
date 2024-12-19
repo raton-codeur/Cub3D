@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   init_game_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 12:04:47 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:18:42 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	init_game(t_data *data)
 	init_background(data);
 	init_game_img(data);
 	init_map(data);
-	init_player_map(data);
-	init_rays_map(data);
+	init_map_player(data);
+	init_map_rays(data);
 	init_minimap(data);
 	init_mini_player_and_rays(data);
 	init_mini_depth(data);
