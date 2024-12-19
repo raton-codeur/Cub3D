@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dda.c                                              :+:      :+:    :+:   */
+/*   dda_bonus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 15:35:00 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 15:34:42 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ static void	get_dda_results(t_data *data)
 	data->hit_y = data->pos_y + data->ray_dir_y * data->perp_wall_dist;
 	get_texture_infos(data);
 	data->wall_height = data->w_height / data->perp_wall_dist;
+	if (data->wall_height < data->fog_max)
+		data->fog_ratio = 1;
+	else if (data->wall_height < data->fog_end)
+		data->fog_ratio = 0.5 + 0.5 * cos(M_PI * \
+		(data->wall_height - data->fog_max) / (data->fog_end - data->fog_max));
+	else
+		data->fog_ratio = 0;
 }
 
 void	dda(t_data *data)
