@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:35:10 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 18:35:23 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:13:27 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	init_minimap(t_data *data)
 		mlx_delete_image(data->mlx, data->minimap);
 		return (mlx_perror_exit(data));
 	}
-	fill_image(data->minimap, 0xffffffff);
 	mlx_set_instance_depth(&data->minimap->instances[0], -1);
 }
 
