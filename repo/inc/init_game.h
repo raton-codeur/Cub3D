@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:26:34 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:35:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		init_map_rays(t_data *data);
 void		init_map_player(t_data *data);
 
 /* init_minimap.c */
-// void		init_minimap(t_data *data);
-// void		init_minimap_player(t_data *data);
+void		init_minimap(t_data *data);
+void		init_minimap_player(t_data *data);
 
 #endif

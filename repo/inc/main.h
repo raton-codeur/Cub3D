@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:16:14 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:37:03 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_data
 	//constantes
 	uint32_t		w_width; // la largeur de la fenetre en pixels
 	uint32_t		w_height; // la hauteur de la fenetre en pixels
-	uint32_t		w_height_2; // w_height / 2 
 	uint32_t		box_size; // la taille (en pixels) d'un côté d'une case de la map
 	double			ray_dir_ratio; // le ratio du ray dir utilisé pour avancer le tracer du rayon dans la minimap
 	char			**map; // la map sous forme d'un tableau de colonnes
@@ -88,13 +87,11 @@ typedef struct s_data
 	mlx_t			*mlx;
 	mlx_image_t		*background;
 	mlx_image_t		*game;
-
 	mlx_image_t		*map_img;
-	mlx_image_t		*map_rays; // l'image des rayons sur la map
-	mlx_image_t		*map_player; // l'image du joueur sur la map
-	
-	mlx_image_t		*minimap; // l'image de la minimap
-	mlx_image_t		*minimap_player; // l'image du joueur sur la minimap
+	mlx_image_t		*map_rays;
+	mlx_image_t		*map_player;
+	mlx_image_t		*minimap;
+	mlx_image_t		*minimap_player;
 
 	mlx_texture_t	*north;
 	mlx_texture_t	*south;

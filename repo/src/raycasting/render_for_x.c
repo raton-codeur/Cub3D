@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:18:06 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:44:45 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:26:41 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	render_game_for_x(t_data *data)
 
 void	render_for_x(t_data *data)
 {
+	erase_image(data->game);
 	render_game_for_x(data);
 	if (data->depth_config)
 		draw_ray_in_map(data);

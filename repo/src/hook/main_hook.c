@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:43:59 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:36:11 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@ static void	check_rotation_keys(t_data *data)
 		rotate_x(data, -STEP_ROTATE_X);
 }
 
+void render_minimap(t_data *data)
+{	
+	erase_image(data->minimap);
+}
+
 void	main_hook(void *param)
 {
 	t_data	*data;
 
 	data = param;
-	erase_image(data->map_rays);
-	erase_image(data->game);
 	check_movement_keys(data);
 	check_rotation_keys(data);
 	dda(data);
-	// if (data->depth_config == 2)
-	// 	draw_mini_map(data);
+	if (data->depth_config == 2)
+		render_minimap(data);
 }
