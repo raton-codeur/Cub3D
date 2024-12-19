@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 21:12:14 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:14:00 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -388,8 +388,6 @@ void	render_minimap(t_data *data)
 {
 	// Taille d'une unité sur la minimap
 	double minimap_step = 10.0 / data->minimap->width;
-
-	
 
 	// Effacer l'image précédente
 	erase_image(data->minimap);
