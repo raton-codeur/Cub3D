@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 23:09:24 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 23:14:22 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,32 @@ void	draw_ray_map(t_data *data)
 
 void	draw_ray_minimap(t_data *data)
 {
-	data->ray_x = -data->pos_y;
-	data->ray_y = data->pos_x;
+	data->mini_dir_x = -data->dir_y;
+	data->mini_dir_y = data->dir_x;
+	data->ray_x = data->pos_x;
+	data->ray_y = data->pos_y;
 	while (fabs(data->ray_x - data->hit_x) > data->ray_dir_ratio
 		|| fabs(data->ray_y - data->hit_y) > data->ray_dir_ratio)
 	{
-		data->mini_ray_x = (data->ray_x - data->pos_x) / data->mini_step + data->minimap->width / 2;
-		data->mini_ray_y = (data->ray_y - data->pos_y) / data->mini_step + data->minimap->width / 2;
-		if (data->mini_ray_x < 0 || data->mini_ray_x >= data->minimap->width
-			|| data->mini_ray_y < 0 || data->mini_ray_y >= data->minimap->height)
+		data->mini_ray_x = (data->ray_x - data->pos_x) * data->mini_dir_x + (data->ray_y - data->pos_y) * -data->mini_dir_y;
+		data->mini_ray_y = (data->ray_x - data->pos_x) * data->mini_dir_y 
+			+ (data->ray_y - data->pos_y) * data->mini_dir_x;
+
+		// Conversion en coordonnées de la minimap
+		double minimap_x = mini_ray_x / data->mini_step + data->minimap->width / 2.0;
+		double minimap_y = mini_ray_y / data->mini_step + data->minimap->width / 2.0;
+
+
+		// Vérification des limites (cercle de la minimap)
+		if ((2 * minimap_x - data->minimap->width) * (2 * minimap_x - data->minimap->width)
+			+ (2 * minimap_y - data->minimap->width) * (2 * minimap_y - data->minimap->width)
+			> data->mini_w_2)
 			break;
-		mlx_put_pixel(data->minimap, data->mini_ray_x, data->mini_ray_y, RAY_COLOR);
+
+		// Dessiner le rayon sur la minimap
+		mlx_put_pixel(data->minimap, minimap_x, minimap_y, RAY_COLOR);
+
+		// Avancer le rayon
 		data->ray_x += data->ray_dir_x * data->ray_dir_ratio;
 		data->ray_y += data->ray_dir_y * data->ray_dir_ratio;
 	}
