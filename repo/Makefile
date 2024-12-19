@@ -63,7 +63,7 @@ SRCS_BONUS = \
 	src/raycasting/init_dda.c \
 	src/maze_utils.c \
 	src/maze.c \
-	src/init_game/init_game.c \
+	src/init_game/init_game_bonus.c \
 	src/init_game/init_game_img.c \
 	src/init_game/init_maps.c \
 	src/init_game/init_players.c \
@@ -136,7 +136,7 @@ re : fclean all
 
 bonus : $(NAME_BONUS)
  
-test : clean all
+test : clean $(NAME)
 # @ ./$(NAME) maps/map_sujet.cub
 	@ ./$(NAME) maps/simple.cub
 

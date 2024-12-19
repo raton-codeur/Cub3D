@@ -4,6 +4,7 @@
 - seulement 6 caractères dans la map, 6 éléments dans .cub
 - key hook pour touches : gauche, droit, w, s, a, d, esc
 
+
 # ajouter pour les bonus
 
 - souris

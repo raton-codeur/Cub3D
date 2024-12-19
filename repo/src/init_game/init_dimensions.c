@@ -6,13 +6,13 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 00:20:43 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/16 17:33:22 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 16:10:47 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_game.h"
 
-// a supp
+// à supp
 void	init_dimensions(t_data *data)
 {
 	int	monitor_width;
@@ -40,7 +40,6 @@ void	init_dimensions(t_data *data)
 	if (data->box_size < 10)
 		error_exit(SIZE, data);
 }
-
 
 // void	init_dimensions(t_data *data)
 // {
