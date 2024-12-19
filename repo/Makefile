@@ -44,7 +44,7 @@ src/parsing/parsing.c \
 src/raycasting/get_pixel.c \
 src/raycasting/init_dda.c \
 src/raycasting/dda.c \
-src/raycasting/draw_ray_in_map.c \
+src/raycasting/draw_ray_map.c \
 src/raycasting/render_for_x.c \
 src/utils.c \
 src/doors.c \
@@ -52,7 +52,7 @@ src/main.c
 SRCS_BONUS = \
 	src/raycasting/get_pixel.c \
 	src/raycasting/dda_bonus.c \
-	src/raycasting/draw_ray_in_map.c \
+	src/raycasting/draw_ray_map_bonus.c \
 	src/raycasting/render_for_x_bonus.c \
 	src/raycasting/init_dda.c \
 	src/maze_utils.c \
