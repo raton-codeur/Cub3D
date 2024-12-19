@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/11 22:15:41 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 11:11:10 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include "parsing.h"
 #include "raycasting.h"
 
 void	depth(mlx_image_t *img, int depth)
@@ -77,6 +78,7 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
 		data->fog_state = !data->fog_state;
+	open_door(data, keydata);
 }
 
 void	erase_image(mlx_image_t *image)
@@ -112,6 +114,7 @@ void	main_hook(void *param)
 	erase_image(data->rays_map);
 	erase_image(data->walls);
 	check_movement_keys(data);
+	get_closest_door(data);
 	check_rotation_keys(data);
 	dda(data);
 	draw_mini_map(data);
