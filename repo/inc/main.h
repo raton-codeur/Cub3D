@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 22:48:45 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 23:42:10 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,8 +172,13 @@ typedef struct s_data
 	double mini_y;
 	double mini_dir_x;
 	double mini_dir_y;
+	double mini_plane_x;
+	double mini_plane_y;
 	uint32_t	mini_ray_x;
 	uint32_t	mini_ray_y;
+	double mini_ray_dir_x;
+	double mini_ray_dir_y;
+	
 
 
 	int				src_x;
