@@ -6,28 +6,11 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 15:20:20 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:32:26 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_game.h"
-
-// void	init_textures(t_data *data)
-// {
-// 	data->north = mlx_load_png(NORTH_PATH);
-// 	if (data->north == NULL)
-// 		mlx_perror_exit(data);
-// 	data->south = mlx_load_png(SOUTH_PATH);
-// 	if (data->south == NULL)
-// 		mlx_perror_exit(data);
-// 	data->west = mlx_load_png(WEST_PATH);
-// 	if (data->west == NULL)
-// 		mlx_perror_exit(data);
-// 	data->east = mlx_load_png(EAST_PATH);
-// 	if (data->east == NULL)
-// 		mlx_perror_exit(data);
-// }
-
 
 static void	init_mini_depth(t_data *data)
 {
@@ -39,7 +22,7 @@ static void	init_mini_depth(t_data *data)
 
 static	void	init_walls(t_data *data)
 {
-	data->door = mlx_load_png("textures/ea2.png");
+	data->door = mlx_load_png("textures/mur.png");
 	if (data->door == NULL)
 		mlx_perror_exit(data);
 }
