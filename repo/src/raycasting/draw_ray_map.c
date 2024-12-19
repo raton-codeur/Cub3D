@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 22:53:02 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 22:53:53 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	draw_ray_map(t_data *data)
 
 void	draw_ray_minimap(t_data *data)
 {
-	
+	if (data->x == data->w_width / 2)
+	{
+		printf("test : %d %d\n", data->hit_x, data->hit_y);
+	}
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
 	while (fabs(data->ray_x - data->hit_x) > data->ray_dir_ratio
