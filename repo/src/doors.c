@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 09:02:35 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/19 12:56:38 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:27:40 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,4 @@ void	open_door(t_data *d, mlx_key_data_t keydata)
 			return ;
 		}
 	}
-}
-
-void	animate_openning(t_data *d)
-{
-	
 }
