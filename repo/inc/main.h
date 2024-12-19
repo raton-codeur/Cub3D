@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 19:34:30 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 19:50:40 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ long long	get_absolute_timestamp(void);
 long long	get_timestamp(t_data *data);
 uint32_t	get_rgb(mlx_image_t *img, uint32_t x, uint32_t y);
 void		mlx_put_pixel_rgb(mlx_image_t *img, uint32_t x, uint32_t y, uint32_t rgb);
-uint32_t	get_color(t_data *data, uint32_t x, uint32_t y);
+// uint32_t	get_color(t_data *data, uint32_t x, uint32_t y);
 
 /* maze.c */
 void		generate_maze(t_data *data);

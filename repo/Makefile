@@ -23,10 +23,6 @@ src/init_game/init_game.c \
 src/init_game/init_minimap.c \
 src/maze.c \
 src/maze_utils.c \
-src/minimap/mini_map.c \
-src/minimap/minimap_rays.c \
-src/minimap/rotate_minimap.c \
-src/minimap/rotate_rays.c \
 src/parsing/check_colors.c \
 src/parsing/check_map.c \
 src/parsing/check_map_3.c \
@@ -135,7 +131,7 @@ re : fclean all
 bonus : $(NAME_BONUS)
  
 test : clean $(NAME)
-# @ ./$(NAME) maps/map_sujet.cub
-	@ ./$(NAME) maps/simple.cub
+	@ ./$(NAME) maps/map_sujet.cub
+#@ ./$(NAME) maps/simple.cub
 
 .PHONY : all clean fclean re bonus test
