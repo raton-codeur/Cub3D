@@ -43,7 +43,7 @@ fclean : clean
 re : fclean all
 
 bonus : $(NAME_BONUS)
-
+ 
 test : clean all
 	@ ./$(NAME) maps/map_sujet.cub
 # @ ./$(NAME) maps/simple.cub
