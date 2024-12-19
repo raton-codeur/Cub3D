@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:58:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 16:24:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/16 16:10:38 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	init_game(&data);
 	mlx_key_hook(data.mlx, key_hook, &data);
 	mlx_loop_hook(data.mlx, main_hook, &data);
+	mlx_mouse_hook(data.mlx, mouse_hook, &data);
+	mlx_cursor_hook(data.mlx, cursor_hook, &data);
 	mlx_loop(data.mlx);
 	free_all(&data);
 	return (0);

@@ -53,13 +53,12 @@ SRCS = \
 	src/hook/move.c \
 	src/hook/key_hook.c \
 	src/hook/main_hook.c \
-	src/hook/mouse_hook.c \
 	src/hook/set_depth.c
 SRCS_BONUS = \
 	src/raycasting/get_pixel.c \
 	src/raycasting/dda_bonus.c \
 	src/raycasting/draw_ray_in_map.c \
-	src/raycasting/render_for_x.c \
+	src/raycasting/render_for_x_bonus.c \
 	src/raycasting/init_dda.c \
 	src/maze_utils.c \
 	src/maze.c \
@@ -76,7 +75,7 @@ SRCS_BONUS = \
 	src/minimap/rotate_rays.c \
 	src/minimap/mini_map.c \
 	src/utils.c \
-	src/main.c \
+	src/main_bonus.c \
 	src/free.c \
 	src/parsing/clean_parsing.c \
 	src/parsing/parsing.c \
@@ -98,9 +97,9 @@ SRCS_BONUS = \
 	src/parsing/load_cub_file.c \
 	src/hook/rotate.c \
 	src/hook/move.c \
-	src/hook/key_hook.c \
-	src/hook/main_hook.c \
-	src/hook/mouse_hook.c \
+	src/hook/key_hook_bonus.c \
+	src/hook/main_hook_bonus.c \
+	src/hook/mouse_hook_bonus.c \
 	src/hook/set_depth.c \
 
 tmp/%.o : src/%.c

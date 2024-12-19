@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 16:25:53 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 12:35:09 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ static void	check_rotation_keys(t_data *data)
 		rotate_x(data, STEP_ROTATE_X);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		rotate_x(data, -STEP_ROTATE_X);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
+		rotate_y(data, STEP_ROTATE_Y);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
+		rotate_y(data, -STEP_ROTATE_Y);
 }
 
 void	main_hook(void *param)
@@ -42,6 +46,7 @@ void	main_hook(void *param)
 	erase_image(data->game);
 	check_movement_keys(data);
 	check_rotation_keys(data);
+	get_closest_door(data);
 	dda(data);
 	if (data->depth_config == 2)
 		draw_mini_map(data);
