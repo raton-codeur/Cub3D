@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 16:18:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:05:18 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,57 @@
 // 	if (data->east == NULL)
 // 		mlx_perror_exit(data);
 // }
+
+
+
+void	init_mini_player_and_rays(t_data *data)
+{
+	data->minimap_player = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
+	if (data->minimap_player == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->minimap_player, data->box_size,
+			data->box_size) == -1)
+	{
+		mlx_delete_image(data->mlx, data->minimap_player);
+		return (mlx_perror_exit(data));
+	}
+	data->minimap_rays = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
+	if (data->minimap_rays == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->minimap_rays, data->box_size,
+			data->box_size) == -1)
+	{
+		mlx_delete_image(data->mlx, data->minimap_rays);
+		return (mlx_perror_exit(data));
+	}
+}
+
+void	init_minimap(t_data *data)
+{
+	data->minimap = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
+	if (data->minimap == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->minimap, data->box_size,
+			data->box_size) == -1)
+	{
+		mlx_delete_image(data->mlx, data->minimap);
+		return (mlx_perror_exit(data));
+	}
+	data->minimap_bg = mlx_new_image(data->mlx, 10 * data->box_size,
+			10 * data->box_size);
+	if (data->minimap_bg == NULL)
+		return (mlx_perror_exit(data));
+	if (mlx_image_to_window(data->mlx, data->minimap_bg, data->box_size,
+			data->box_size) == -1)
+	{
+		mlx_delete_image(data->mlx, data->minimap_bg);
+		return (mlx_perror_exit(data));
+	}
+} 
+
 
 
 static void	init_mini_depth(t_data *data)
