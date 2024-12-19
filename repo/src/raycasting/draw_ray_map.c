@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 23:14:22 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 23:14:49 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	draw_ray_minimap(t_data *data)
 			+ (data->ray_y - data->pos_y) * data->mini_dir_x;
 
 		// Conversion en coordonnées de la minimap
-		double minimap_x = mini_ray_x / data->mini_step + data->minimap->width / 2.0;
-		double minimap_y = mini_ray_y / data->mini_step + data->minimap->width / 2.0;
+		double minimap_x = data->mini_ray_x / data->mini_step + data->minimap->width / 2.0;
+		double minimap_y = data->mini_ray_y / data->mini_step + data->minimap->width / 2.0;
 
 
 		// Vérification des limites (cercle de la minimap)
