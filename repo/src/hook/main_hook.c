@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 20:40:01 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:12:14 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,12 +346,6 @@ static void	check_rotation_keys(t_data *data)
 
 
 
-
-// int estDansCercle(t_data *data)
-// {
-// 	return (;
-// }
-
 void	get_pixel_minimap(t_data *data)
 {
 	if (data->xd < 0 || data->yd < 0 || data->xd >= data->map_width
@@ -365,29 +359,63 @@ void	get_pixel_minimap(t_data *data)
 		data->pixel = MAP_COLOR_BG;
 }
 
+// void	render_minimap(t_data *data)
+// {
+// 	data->minimap_step = 10.0 / data->box_size;
+// 	erase_image(data->minimap);
+// 	data->x = 0;
+// 	data->xd = data->pos_x - 5;
+// 	while (data->x < data->minimap->width)
+// 	{
+// 		data->y = 0;
+// 		data->yd = data->pos_y - 5;
+// 		while (data->y < data->minimap->width)
+// 		{
+// 			if ((2 * data->x - data->minimap->width) * (2 * data->x - data->minimap->width) + (2 * data->y - data->minimap->width) * (2 * data->y - data->minimap->width) <= data->mini_w_2)
+// 			{
+// 				get_pixel_minimap(data);
+// 				mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
+// 			}
+// 			data->y++;
+// 			data->yd += data->minimap_step;
+// 		}
+// 		data->x++;
+// 		data->xd += data->minimap_step;
+// 	}
+// }
+
 void	render_minimap(t_data *data)
 {
+	// Taille d'une unité sur la minimap
+	double minimap_step = 10.0 / data->minimap->width;
+
+	
+
+	// Effacer l'image précédente
 	erase_image(data->minimap);
-	data->x = 0;
-	data->xd = data->pos_x - 5;
-	while (data->x < data->minimap->width)
+
+	// Parcourir les pixels de la minimap
+	for (data->x = 0; data->x < data->minimap->width; data->x++)
 	{
-		data->y = 0;
-		data->yd = data->pos_y - 5;
-		while (data->y < data->minimap->width)
+		for (data->y = 0; data->y < data->minimap->width; data->y++)
 		{
-			if ((2 * data->x - data->minimap->width) * (2 * data->x - data->minimap->width) + (2 * data->y - data->minimap->width) * (2 * data->y - data->minimap->width) <= data->mini_w_2)
-			{
-				get_pixel_minimap(data);
-				mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
-			}
-			data->y++;
-			data->yd += data->minimap_step;
+			// Calculer les coordonnées relatives sur la minimap (centrées autour du joueur)
+			double map_x = (data->x - data->minimap->width / 2.0) * minimap_step;
+			double map_y = (data->y - data->minimap->width / 2.0) * minimap_step;
+
+			// Appliquer la rotation à ces coordonnées pour obtenir (xd, yd)
+			data->xd = data->pos_x + map_x * data->dir_x + map_y * data->plane_x;
+			data->yd = data->pos_y + map_x * data->dir_y + map_y * data->plane_y;
+
+			// Déterminer la couleur du pixel en fonction de (xd, yd)
+			get_pixel_minimap(data);
+
+			// Placer le pixel sur la minimap
+			mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
 		}
-		data->x++;
-		data->xd += data->minimap_step;
 	}
 }
+
 
 void	main_hook(void *param)
 {

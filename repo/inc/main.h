@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 20:16:56 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:09:45 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,10 @@ typedef struct s_data
 	uint8_t			g;
 	uint8_t			b;
 
-	double minimap_step;
 	double xd;
 	double yd;
 	uint32_t mini_w_2;
+	double mini_step;
 
 
 	int				src_x;

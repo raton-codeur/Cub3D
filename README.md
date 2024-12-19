@@ -40,7 +40,7 @@ on initialise start aux coordonnées en pixels du carré qui est autour du joueu
 
 on va copier tout ce carré de pixels dans la minimap
 
-### réfléchis
+### recopier un carré
 
 on veut recopier le carré autour du joueur sur la minimap
 
@@ -54,11 +54,18 @@ on sait que data->minimap->width correspond à une longueur de 10 dans le jeu.
 on divise 10 par data->minimap->width pour avoir la valeur d'incrément de xd.
 on appelle ça minimmap_step, défini une bonne fois pour toute dans le init_game.
 
+### rotation
 
-de combien doit on incrémenter x pour qu'il parcourt les 10 cases en data->minimap->width itération ?
-10 / data->minimap->width !
-pour que x parcourt les 10 cases en data->minimap->width itération, il faut l'incrémenter de 10 / data->minimap->width à chaque fois.
+ce n'est plus juste une incrémentation normale de xd et de yd. il faut utiliser dir_x et dir_y.
 
+on appelle ça mini_step_x et mini_step_y, qui dépendent donc de dir_x et dir_y.
+
+la valeur d'incrémentation de xd dépend de dir_x.
+
+on sait que le vecteur dir correspond à 1 case unité.
+
+on sait que 10 unités correspondent à data->minimap->width
+donc 10 / data->minimap->width unités correspondent à l'incrémentation qu'on fait dans le jeu
 
 
 
