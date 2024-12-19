@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 22:04:35 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 22:05:09 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,6 +359,11 @@ void	get_pixel_minimap(t_data *data)
 	else
 		data->pixel = MAP_COLOR_BG;
 }
+
+/*
+			if ((2 * data->x - data->minimap->width) * (2 * data->x - data->minimap->width) + (2 * data->y - data->minimap->width) * (2 * data->y - data->minimap->width) <= data->mini_w_2)
+
+*/
 
 void	render_minimap(t_data *data)
 {
