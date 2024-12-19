@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 20:38:59 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:40:01 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -394,8 +394,6 @@ void	main_hook(void *param)
 	t_data	*data;
 
 	data = param;
-	if (1 / data->mlx->delta_time > 30)
-		usleep(1000);
 	printf("fps : %f\n", 1 / data->mlx->delta_time);
 	check_movement_keys(data);
 	check_rotation_keys(data);
