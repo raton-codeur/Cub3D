@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 21:14:00 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:18:07 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -389,6 +389,9 @@ void	render_minimap(t_data *data)
 	// Taille d'une unité sur la minimap
 	double minimap_step = 10.0 / data->minimap->width;
 
+	double plane_x = -data->dir_y;
+	double plane_y = data->dir_x;
+
 	// Effacer l'image précédente
 	erase_image(data->minimap);
 
@@ -402,8 +405,8 @@ void	render_minimap(t_data *data)
 			double map_y = (data->y - data->minimap->width / 2.0) * minimap_step;
 
 			// Appliquer la rotation à ces coordonnées pour obtenir (xd, yd)
-			data->xd = data->pos_x + map_x * data->dir_x + map_y * data->plane_x;
-			data->yd = data->pos_y + map_x * data->dir_y + map_y * data->plane_y;
+			data->xd = data->pos_x + map_x * data->dir_x + map_y * plane_x;
+			data->yd = data->pos_y + map_x * data->dir_y + map_y * plane_y;
 
 			// Déterminer la couleur du pixel en fonction de (xd, yd)
 			get_pixel_minimap(data);
