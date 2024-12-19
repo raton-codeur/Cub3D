@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 00:20:43 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 19:24:38 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:24:01 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	init_dimensions(t_data *data)
 	}
 	else
 	{
-		data->w_width = 2560;
-		data->w_height = 1440;
+		data->w_width = 1920;
+		data->w_height = 1080;
 	}
 	mlx_set_window_size(data->mlx, data->w_width, data->w_height);
 	mlx_set_window_pos(data->mlx, \
