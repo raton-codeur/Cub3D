@@ -6,12 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 18:35:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:42:49 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_game.h"
-
 
 void	init_game(t_data *data)
 {

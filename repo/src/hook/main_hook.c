@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 18:36:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 18:45:55 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	check_rotation_keys(t_data *data)
 		rotate_x(data, -STEP_ROTATE_X);
 }
 
-void render_minimap(t_data *data)
-{	
+void	render_minimap(t_data *data)
+{
 	erase_image(data->minimap);
 }
 
