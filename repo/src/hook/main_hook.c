@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 20:14:50 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:20:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -347,12 +347,10 @@ static void	check_rotation_keys(t_data *data)
 
 
 
-int estDansCercle(t_data *data)
-{
-	uint32_t dx = 2 * data->x - data->minimap->width;
-	uint32_t dy = 2 * data->y - data->minimap->width;
-	return dx * dx + dy * dy <= data->minimap->width * data->minimap->width;
-}
+// int estDansCercle(t_data *data)
+// {
+// 	return (;
+// }
 
 void	get_pixel_minimap(t_data *data)
 {
@@ -378,7 +376,7 @@ void	render_minimap(t_data *data)
 		data->yd = data->pos_y - 5;
 		while (data->y < data->minimap->width)
 		{
-			if (estDansCercle(data)) 
+			if ((2 * data->x - data->minimap->width) * (2 * data->x - data->minimap->width) + (2 * data->y - data->minimap->width) * (2 * data->y - data->minimap->width) <= data->mini_w_2)
 			{
 				get_pixel_minimap(data);
 				mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);

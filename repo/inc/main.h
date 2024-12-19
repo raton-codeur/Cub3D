@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 19:50:40 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:16:56 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ typedef struct s_data
 	double minimap_step;
 	double xd;
 	double yd;
+	uint32_t mini_w_2;
 
 
 	int				src_x;
