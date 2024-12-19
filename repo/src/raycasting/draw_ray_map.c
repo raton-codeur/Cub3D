@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 23:02:03 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 23:09:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	draw_ray_map(t_data *data)
 
 void	draw_ray_minimap(t_data *data)
 {
-	data->ray_x = data->pos_x;
-	data->ray_y = data->pos_y;
+	data->ray_x = -data->pos_y;
+	data->ray_y = data->pos_x;
 	while (fabs(data->ray_x - data->hit_x) > data->ray_dir_ratio
 		|| fabs(data->ray_y - data->hit_y) > data->ray_dir_ratio)
 	{
