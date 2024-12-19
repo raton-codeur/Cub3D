@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 22:05:09 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 22:07:00 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -360,11 +360,6 @@ void	get_pixel_minimap(t_data *data)
 		data->pixel = MAP_COLOR_BG;
 }
 
-/*
-			if ((2 * data->x - data->minimap->width) * (2 * data->x - data->minimap->width) + (2 * data->y - data->minimap->width) * (2 * data->y - data->minimap->width) <= data->mini_w_2)
-
-*/
-
 void	render_minimap(t_data *data)
 {
 	data->mini_dir_x = -data->dir_y;
@@ -376,12 +371,15 @@ void	render_minimap(t_data *data)
 		data->y = 0;
 		while (data->y < data->minimap->width)
 		{
-			data->mini_x = (data->x - data->minimap->width / 2.0) * data->mini_step;
-			data->mini_y = (data->y - data->minimap->width / 2.0) * data->mini_step;
-			data->xd = data->pos_x + data->mini_x * data->mini_dir_x + data->mini_y * -data->mini_dir_y;
-			data->yd = data->pos_y + data->mini_x * data->mini_dir_y + data->mini_y * data->mini_dir_x;
-			get_pixel_minimap(data);
-			mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
+			if ((2 * data->x - data->minimap->width) * (2 * data->x - data->minimap->width) + (2 * data->y - data->minimap->width) * (2 * data->y - data->minimap->width) <= data->mini_w_2)
+			{
+				data->mini_x = (data->x - data->minimap->width / 2.0) * data->mini_step;
+				data->mini_y = (data->y - data->minimap->width / 2.0) * data->mini_step;
+				data->xd = data->pos_x + data->mini_x * data->mini_dir_x + data->mini_y * -data->mini_dir_y;
+				data->yd = data->pos_y + data->mini_x * data->mini_dir_y + data->mini_y * data->mini_dir_x;
+				get_pixel_minimap(data);
+				mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
+			}
 			data->y++;
 		}
 		data->x++;
