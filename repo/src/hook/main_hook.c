@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 21:50:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:52:01 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,10 +386,10 @@ void	get_pixel_minimap(t_data *data)
 
 void	render_minimap(t_data *data)
 {
-	data->mini_dir_x = data->dir_x;
-	data->mini_dir_y = data->dir_y;
-	data->mini_plane_x = -data->mini_dir_y;
-	data->mini_plane_y = data->mini_dir_x;
+	data->mini_dir_x = data->dir_y;
+	data->mini_dir_y = -data->dir_x;
+	data->mini_plane_x = data->mini_dir_y;
+	data->mini_plane_y = -data->mini_dir_x;
 	erase_image(data->minimap);
 	data->x = 0;
 	while (data->x < data->minimap->width)
