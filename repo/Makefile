@@ -131,7 +131,7 @@ re : fclean all
 bonus : $(NAME_BONUS)
  
 test : clean $(NAME)
-	@ ./$(NAME) maps/map_sujet.cub
-#@ ./$(NAME) maps/simple.cub
+#@ ./$(NAME) maps/map_sujet.cub
+	@ ./$(NAME) maps/simple.cub
 
 .PHONY : all clean fclean re bonus test
