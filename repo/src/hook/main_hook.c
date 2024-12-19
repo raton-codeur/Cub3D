@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 21:24:05 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:25:53 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -407,7 +407,7 @@ void	render_minimap(t_data *data)
 			mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
 			data->y++;
 		}
-		data->x++
+		data->x++;
 	}
 }
 
