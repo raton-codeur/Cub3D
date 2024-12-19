@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 19:53:24 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:02:37 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -351,6 +351,10 @@ static void	check_rotation_keys(t_data *data)
 
 void	get_pixel_minimap(t_data *data)
 {
+	if (data->xd < 0 || data->yd < 0 || data->xd >= data->map_width
+		|| data->yd >= data->map_height)
+		data->pixel = MAP_COLOR_BG;
+	else
 	if ((data->xd - (int)data->xd) < 0.05 || (data->yd - (int)data->yd) < 0.05)
 		data->pixel = 0x000000FF;
 	else if (data->map[(int)data->xd][(int)data->yd] == '1')
