@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 21:43:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:47:22 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -397,7 +397,7 @@ void	render_minimap(t_data *data)
 		{
 			data->mini_x = (data->x - data->minimap->width / 2.0) * data->mini_step;
 			data->mini_y = (data->y - data->minimap->width / 2.0) * data->mini_step;
-			data->xd = data->pos_x + data->mini_x * data->dir_x + data->mini_y * -data->mini_dir_y;
+			data->xd = data->pos_x + data->mini_x * data->dir_x + data->mini_y * -(data->mini_dir_y);
 			data->yd = data->pos_y + data->mini_x * data->dir_y + data->mini_y * data->mini_dir_x;
 
 			get_pixel_minimap(data);
