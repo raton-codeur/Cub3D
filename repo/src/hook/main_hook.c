@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 20:14:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 20:14:50 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,8 +349,8 @@ static void	check_rotation_keys(t_data *data)
 
 int estDansCercle(t_data *data)
 {
-	int dx = 2 * data->x - data->minimap->width;
-	int dy = 2 * data->y - data->minimap->width;
+	uint32_t dx = 2 * data->x - data->minimap->width;
+	uint32_t dy = 2 * data->y - data->minimap->width;
 	return dx * dx + dy * dy <= data->minimap->width * data->minimap->width;
 }
 
