@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:37:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 17:50:04 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	init_minimap(t_data *data)
 {
-	data->minimap = mlx_new_image(data->mlx, data->w_height / 3, data->w_height / 3);
+	data->minimap = mlx_new_image(data->mlx, data->w_height / 4, data->w_height / 4);
 	if (data->minimap == NULL)
 		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->minimap, 100, 100) == -1)
+	if (mlx_image_to_window(data->mlx, data->minimap, 50, 50) == -1)
 	{
 		mlx_delete_image(data->mlx, data->minimap);
 		return (mlx_perror_exit(data));
 	}
+	fill_image(data->minimap, 0xffffffff);
 	mlx_set_instance_depth(&data->minimap->instances[0], -1);
 }
 
@@ -31,7 +32,7 @@ void	init_minimap_player(t_data *data)
 	if (data->minimap_player == NULL)
 		return (mlx_perror_exit(data));
 	fill_image_circle(data->minimap_player, PLAYER_COLOR);
-	if (mlx_image_to_window(data->mlx, data->minimap_player, 100, 100) == -1)
+	if (mlx_image_to_window(data->mlx, data->minimap_player, 50, 50) == -1)
 	{
 		mlx_delete_image(data->mlx, data->minimap_player);
 		return (mlx_perror_exit(data));
@@ -52,8 +53,8 @@ void	init_game(t_data *data)
 	init_map_rays(data);
 	init_map_player(data);
 
-	// init_minimap(data);
-	// init_minimap_player(data);
+	init_minimap(data);
+	init_minimap_player(data);
 
 	data->ray_dir_ratio = 3.0 / data->box_size;
 	data->horizon = data->w_height / 2;
