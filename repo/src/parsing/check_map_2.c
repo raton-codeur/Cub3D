@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:52:24 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/19 09:06:37 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/11/20 13:02:51 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	find_player(t_data *data)
 static bool	is_char_in_set(char c)
 {
 	if (c != '0' && c != '1' && c != 'N'
-		&& c != 'S' && c != 'W' && c != 'E' && c != ' ' && c != 'D')
+		&& c != 'S' && c != 'W' && c != 'E' && c != ' ')
 		return (false);
 	return (true);
 }

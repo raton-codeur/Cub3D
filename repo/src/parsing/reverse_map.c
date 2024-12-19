@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:27:14 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/19 15:30:05 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:50:53 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	**init_new_map(t_data *data)
 	if (new_map == NULL)
 		return (error_exit(MALLOC, data), NULL);
 	j = 0;
-	while (j < data->map_width)
+	while (j < (int)data->map_width)
 	{
 		new_map[j] = ft_calloc(data->map_height + 1, sizeof(char));
 		if (new_map[j] == NULL)
@@ -62,30 +62,30 @@ void	reverse_map(t_data *data)
 	data->map = new_map;
 }
 
-void	print_map(t_data *data)
-{
-	int	i;
-	int	j;
+// void	print_map(t_data *data)
+// {
+// 	int	i;
+// 	int	j;
 
-	printf("      ");
-	i = 0;
-	j = 0;
-	while (data->map[i][j])
-	{
-		printf("%3d", j);
-		j++;
-	}
-	printf("\n");
-	while (data->map[i])
-	{
-		printf("%3d : ", i);
-		j = 0;
-		while (data->map[i][j])
-		{
-			printf("%3c", data->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
+// 	printf("      ");
+// 	i = 0;
+// 	j = 0;
+// 	while (data->map[i][j])
+// 	{
+// 		printf("%3d", j);
+// 		j++;
+// 	}
+// 	printf("\n");
+// 	while (data->map[i])
+// 	{
+// 		printf("%3d : ", i);
+// 		j = 0;
+// 		while (data->map[i][j])
+// 		{
+// 			printf("%3c", data->map[i][j]);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// }

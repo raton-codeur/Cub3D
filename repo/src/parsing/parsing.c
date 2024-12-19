@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/12/19 10:43:14 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/11 20:03:58 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	check_map(t_data *data)
 	check_map_lines(data, 0, 0);
 	check_map_chars(data);
 	check_zero(data, 0, 0);
-	check_doors(data, 0, 0);
 	find_player(data);
 	fill_spaces(data);
 	normalize_map_rows(data, 0);
@@ -51,10 +50,6 @@ static	void	parsing_init(t_data *data)
 	ft_memset(data, 0, sizeof(t_data));
 	data->i_start = -1;
 	data->j_start = -1;
-	data->p_x = -1;
-	data->p_y = -1;
-	data->door_to_open_x = -1;
-	data->door_to_open_y = -1;
 }
 
 void	parsing(t_data *data, int argc, char **argv)

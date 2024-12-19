@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:57:11 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 13:16:42 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/19 11:13:35 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	check_map_lines(t_data *data, int i, int j)
 				if (data->map[i][j] != '1' && ft_isspace(data->map[i][j]) == 0)
 					return (perror_exit("Map is not closed", data));
 			}
-			if (i < data->map_height - 1 && ft_strlen(data->map[i])
+			if ((uint32_t)i < data->map_height - 1 && ft_strlen(data->map[i])
 				> ft_strlen(data->map[i + 1])
 				&& (size_t)j >= ft_strlen(data->map[i + 1]))
 			{
