@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 21:18:07 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/19 21:20:48 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -386,27 +386,20 @@ void	get_pixel_minimap(t_data *data)
 
 void	render_minimap(t_data *data)
 {
-	// Taille d'une unité sur la minimap
-	double minimap_step = 10.0 / data->minimap->width;
-
-	double plane_x = -data->dir_y;
-	double plane_y = data->dir_x;
-
-	// Effacer l'image précédente
+	data->mini_plane_x = -data->dir_y;
+	data->mini_plane_y = data->dir_x;
 	erase_image(data->minimap);
-
-	// Parcourir les pixels de la minimap
 	for (data->x = 0; data->x < data->minimap->width; data->x++)
 	{
 		for (data->y = 0; data->y < data->minimap->width; data->y++)
 		{
 			// Calculer les coordonnées relatives sur la minimap (centrées autour du joueur)
-			double map_x = (data->x - data->minimap->width / 2.0) * minimap_step;
-			double map_y = (data->y - data->minimap->width / 2.0) * minimap_step;
+			double map_x = (data->x - data->minimap->width / 2.0) * data->mini_step;
+			double map_y = (data->y - data->minimap->width / 2.0) * data->mini_step;
 
 			// Appliquer la rotation à ces coordonnées pour obtenir (xd, yd)
-			data->xd = data->pos_x + map_x * data->dir_x + map_y * plane_x;
-			data->yd = data->pos_y + map_x * data->dir_y + map_y * plane_y;
+			data->xd = data->pos_x + map_x * data->dir_x + map_y * data->mini_plane_x;
+			data->yd = data->pos_y + map_x * data->dir_y + map_y * data->mini_plane_y;
 
 			// Déterminer la couleur du pixel en fonction de (xd, yd)
 			get_pixel_minimap(data);
