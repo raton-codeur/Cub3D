@@ -54,7 +54,7 @@ SRCS = \
 	src/hook/key_hook.c \
 	src/hook/main_hook.c \
 	src/hook/mouse_hook.c \
-	src/hook/set_depth.c \
+	src/hook/set_depth.c
 SRCS_BONUS = \
 	src/raycasting/get_pixel.c \
 	src/raycasting/dda_bonus.c \
@@ -136,7 +136,7 @@ re : fclean all
 
 bonus : $(NAME_BONUS)
  
-test : clean $(NAME)
+test : clean all
 # @ ./$(NAME) maps/map_sujet.cub
 	@ ./$(NAME) maps/simple.cub
 
