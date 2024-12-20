@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 15:05:44 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/20 15:43:28 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,8 +170,6 @@ typedef struct s_data
 	uint8_t			g;
 	uint8_t			b;
 
-
-
 	int				src_x;
 	int				src_y;
 	float			rel_x;
@@ -185,13 +183,21 @@ typedef struct s_data
 	float			sin_theta;
 
 	// pour les portes
-	
 	int				p_x;
 	int				p_y;
 	int				door_to_open_x;
 	int				door_to_open_y;
 	mlx_texture_t	*door;
 
+	// sprites
+	mlx_image_t		*sprite;
+	t_list			*sprite_frames;
+	t_list			*current_frame;
+	int				frame_index;
+	int				total_frames;
+	int				frame_delay;
+	int				last_update;
+	int				animation_active;
 }	t_data;
 
 /* free.c */
@@ -200,6 +206,9 @@ void		perror_exit(char *s, t_data *data);
 void		mlx_perror_exit(t_data *data);
 void		print_error(int code);
 void		error_exit(int code, t_data *data);
+
+/* free2.c */
+void		clear_sprite(t_data *data, t_list **list);
 
 /* utils.c */
 void		fill_image(mlx_image_t *image, uint32_t color);
@@ -246,5 +255,12 @@ void		check_doors(t_data *data, int i, int j);
 void		get_closest_door(t_data *d);
 void		open_door(t_data *d, mlx_key_data_t keydata);
 
+/*sprite.c*/
+void		init_sprite(t_data *data);
+void		shot_with_gun(t_data *data, mlx_key_data_t keydata);
+void		play_animation(t_data *data);
+
+/*sprite2.c*/
+double		get_time_in_ms(void);
 
 #endif

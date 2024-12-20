@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
+/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/16 16:26:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/20 15:33:25 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_all(t_data *data)
 	free(data->floor_color_str);
 	free(data->ceil_color_str);
 	free(data->walls);
+	clear_sprite(data, &data->sprite_frames);
 	if (data->north)
 		mlx_delete_texture(data->north);
 	if (data->south)
@@ -32,6 +33,8 @@ void	free_all(t_data *data)
 		mlx_delete_texture(data->west);
 	if (data->east)
 		mlx_delete_texture(data->east);
+	if (data->door)
+		mlx_delete_texture(data->door);
 	if (data->mlx)
 		mlx_terminate(data->mlx);
 }
@@ -69,4 +72,3 @@ void	error_exit(int code, t_data *data)
 	free_all(data);
 	exit(1);
 }
-

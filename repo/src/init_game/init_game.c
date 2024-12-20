@@ -6,7 +6,7 @@
 /*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 15:32:26 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/20 10:52:15 by hakgyver         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	init_game(t_data *data)
 	data->fog_max = FOG_MAX * data->fog_end;
 	data->visible_max = 1 / (FOG_HEIGHT * FOG_MAX * FOG_HEIGHT * FOG_MAX);
 	data->fog_color = FOG_RED << 24 | FOG_GREEN << 16 | FOG_BLUE << 8;
+	init_sprite(data);
 }
