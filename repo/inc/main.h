@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 17:52:30 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/20 19:33:42 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,8 +171,8 @@ typedef struct s_data
 	double mini_x;
 	double mini_y;
 
-	double mini_dir_x;
-	double mini_dir_y;
+	double mini_base_x;
+	double mini_base_y;
 	double mini_perp_x;
 	double mini_perp_y;
 
