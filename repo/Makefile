@@ -134,4 +134,7 @@ test : clean $(NAME)
 #@ ./$(NAME) maps/map_sujet.cub
 	@ ./$(NAME) maps/simple.cub
 
+ttest : $(NAME)
+	@ ./$(NAME) maps/simple.cub
+
 .PHONY : all clean fclean re bonus test
