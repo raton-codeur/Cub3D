@@ -23,6 +23,8 @@ src/init_game/init_game.c \
 src/init_game/init_minimap.c \
 src/maze.c \
 src/maze_utils.c \
+src/render_map.c \
+src/render_minimap.c \
 src/parsing/check_colors.c \
 src/parsing/check_map.c \
 src/parsing/check_map_3.c \
@@ -57,6 +59,7 @@ SRCS_BONUS = \
 	src/raycasting/init_dda.c \
 	src/maze_utils.c \
 	src/maze.c \
+	src/render_map_bonus.c \
 	src/init_game/init_game_bonus.c \
 	src/init_game/init_game_img.c \
 	src/init_game/init_maps.c \
@@ -91,6 +94,7 @@ SRCS_BONUS = \
 	src/parsing/check_maze.c \
 	src/parsing/load_cub_file.c \
 	src/hook/rotate.c \
+	src/hook/rotate_bonus.c \
 	src/hook/move.c \
 	src/hook/key_hook_bonus.c \
 	src/hook/main_hook_bonus.c \

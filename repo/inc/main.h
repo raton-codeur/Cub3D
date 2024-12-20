@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 23:42:10 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/20 17:52:30 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ typedef struct s_data
 	double			hit_y; // la coordonnée verticale du point de la case où le rayon a touché un mur
 	int				side; // 0 si le rayon a touché un mur horizontal, 1 si le rayon a touché un mur vertical
 	double			perp_wall_dist; // la composante perpendiculaire au plan de la caméra de [ la distance entre le joueur et le point du mur touché ] (voir schéma). 
-	uint32_t		true_wall_height; // la hauteur de la ligne de mur qu'on devrait dessiner sur un écran infini
 	uint32_t		wall_height; // la hauteur de la ligne de mur à dessiner sur l'écran
 	double			fog_ratio; // la proportion de brouillard selon wall_height. entre 0 et 1
 	uint32_t		horizon; // l'indice selon y de l'horizon sur l'écran
@@ -164,16 +163,20 @@ typedef struct s_data
 	uint8_t			g;
 	uint8_t			b;
 
+	uint32_t	mini_box_size;
+	uint32_t	mini_w_2;
+
 	double xd;
 	double yd;
-	uint32_t mini_w_2;
-	double mini_step;
 	double mini_x;
 	double mini_y;
+
 	double mini_dir_x;
 	double mini_dir_y;
-	double mini_plane_x;
-	double mini_plane_y;
+	double mini_perp_x;
+	double mini_perp_y;
+
+	
 	uint32_t	mini_ray_x;
 	uint32_t	mini_ray_y;
 	double mini_ray_dir_x;
@@ -208,6 +211,12 @@ void		perror_exit(char *s, t_data *data);
 void		mlx_perror_exit(t_data *data);
 void		print_error(int code);
 void		error_exit(int code, t_data *data);
+
+/* render_map.c */
+void	render_map(t_data *data);
+
+/* render_minimap.c */
+void	render_minimap(t_data *data);
 
 /* utils.c */
 void		fill_image(mlx_image_t *image, uint32_t color);

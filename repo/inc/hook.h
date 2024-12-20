@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 20:18:34 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/15 20:19:02 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/20 16:16:56 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		main_hook(void *param);
 /* key_hook.c */
 void		key_hook(mlx_key_data_t keydata, void *param);
 
-/* mouse_hook.c */
+/* mouse_hook_bonus.c */
 void		mouse_hook(\
 	mouse_key_t button, action_t action, modifier_key_t mods, void *param);
 void		cursor_hook(double xpos, double ypos, void *param);
@@ -34,6 +34,8 @@ void		move_right(t_data *data);
 
 /* rotate.c */
 void		rotate_x(t_data *data, double step);
+
+/* rotate_bonus.c */
 void		rotate_y(t_data *data, int step);
 
 /* set_depth.c */

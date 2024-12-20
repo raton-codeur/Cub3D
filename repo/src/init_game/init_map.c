@@ -6,42 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 19:46:05 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/20 16:28:38 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "init_game.h"
-
-static uint32_t	get_color(t_data *data, uint32_t x, uint32_t y)
-{
-	if (x % data->box_size == 0 || x % data->box_size == data->box_size - 1
-		|| y % data->box_size == 0 || y % data->box_size == data->box_size - 1)
-		return (0x000000FF);
-	else if (data->map[x / data->box_size][y / data->box_size] == '1')
-		return (MAP_COLOR_WALL);
-	else if (data->map[x / data->box_size][y / data->box_size] == 'D')
-		return (MAP_COLOR_DOOR);
-	else
-		return (MAP_COLOR_BG);
-}
-
-static void	fill_map(t_data *data)
-{
-	uint32_t x;
-	uint32_t y;
-
-	x = 0;
-	while (x < data->map_img->width)
-	{
-		y = 0;
-		while (y < data->map_img->height)
-		{
-			mlx_put_pixel(data->map_img, x, y, get_color(data, x, y));
-			y++;
-		}
-		x++;
-	}
-}
 
 void	init_map(t_data *data)
 {
@@ -55,7 +24,7 @@ void	init_map(t_data *data)
 		mlx_delete_image(data->mlx, data->map_img);
 		return (mlx_perror_exit(data));
 	}
-	fill_map(data);
+	render_map(data);
 	mlx_set_instance_depth(&data->map_img->instances[0], -1);
 }
 
