@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:27:46 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:29:10 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,8 @@ typedef struct s_data
 	double			mini_xd;
 	double			mini_yd;
 	double			new_pos;
+	double old_time;
+	double new_time;
 }	t_data;
 
 /* free.c */
