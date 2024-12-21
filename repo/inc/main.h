@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:29:10 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:33:51 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define STEP_MOVE 0.2
-# define STEP_ROTATE_X 0.1
-# define STEP_ROTATE_Y 100
+# define STEP_MOVE 0.4
+# define STEP_ROTATE_X 0.15
 # define COLOR_MAP 0xFFFFFFFF
 # define COLOR_WALL 0x000000FF
 # define COLOR_PLAYER 0xFF0000FF

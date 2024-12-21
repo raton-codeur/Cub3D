@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:31:58 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:32:30 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	main_hook(void *param)
 
 	data = param;
 	data->new_time = mlx_get_time();
-	if (1 / (data->new_time - data->old_time) > 20)
+	if (1 / (data->new_time - data->old_time) > 30)
 		return ;
 	printf("FPS: %f\n", 1 / (data->new_time - data->old_time));
 	data->old_time = data->new_time;
