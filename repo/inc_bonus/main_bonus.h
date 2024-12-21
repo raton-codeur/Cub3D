@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 18:10:52 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:56:23 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define STEP_MOVE 0.3
 # define STEP_ROTATE_X 0.1
 # define STEP_ROTATE_Y 100
-# define FOG_HEIGHT 0.3
-# define FOG_MAX 0.2
+# define FOG_HEIGHT 0.6//0.3
+# define FOG_MAX 0.5//0.2
 # define COLOR_MAP 0xFFFFFFFF
 # define COLOR_WALL 0x000000FF
 # define COLOR_PLAYER 0xFF0000FF
