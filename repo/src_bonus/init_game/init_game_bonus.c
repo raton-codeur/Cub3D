@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 17:18:42 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:47:00 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init_game.h"
+#include "init_game_bonus.h"
 
 // void	init_textures(t_data *data)
 // {

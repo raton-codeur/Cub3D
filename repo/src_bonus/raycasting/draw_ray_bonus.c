@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:11:58 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:12:19 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:46:43 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "raycasting_bonus.h"
 
 void	draw_ray_in_map_fog(t_data *data)
 {

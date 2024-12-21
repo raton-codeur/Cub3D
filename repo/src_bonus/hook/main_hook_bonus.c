@@ -6,12 +6,12 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 22:50:52 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:47:21 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
-#include "raycasting.h"
+#include "hook_bonus.h"
+#include "raycasting_bonus.h"
 
 static void	check_movement_keys(t_data *data)
 {

@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 20:17:07 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 16:16:44 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 15:47:21 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
+#include "hook_bonus.h"
 
 void	mouse_hook(
 	mouse_key_t button, action_t action, modifier_key_t mods, void *param)
