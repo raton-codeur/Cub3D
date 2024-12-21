@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:48:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 09:57:01 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 10:03:35 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ void	rotate_vector_left_90(double *a, double *b, double c, double d)
 	*b = c;
 }
 
-
 void	render_minimap(t_data *data)
 {
-	rotate_vector_left_90(&data->mini_base_x, &data->mini_base_y, data->dir_x, data->dir_y);
-	rotate_vector_left_90(&data->mini_perp_x, &data->mini_perp_y, data->mini_base_x, data->mini_base_y);
+	data->mini_base_x = -data->dir_y;
+	data->mini_base_y = data->dir_x;
 	data->x = 0;
 	while (data->x < data->minimap->width)
 	{
@@ -47,8 +46,8 @@ void	render_minimap(t_data *data)
 			{
 				data->mini_x = (data->x - (double)data->mini_w_2) / data->mini_box_size;
 				data->mini_y = (data->y - (double)data->mini_w_2) / data->mini_box_size;
-				data->xd = data->pos_x + data->mini_x * data->mini_base_x + data->mini_y * data->mini_perp_x;
-				data->yd = data->pos_y + data->mini_x * data->mini_base_y + data->mini_y * data->mini_perp_y;
+				data->xd = data->pos_x + data->mini_x * data->mini_base_x + data->mini_y * -data->mini_base_y;
+				data->yd = data->pos_y + data->mini_x * data->mini_base_y + data->mini_y * data->mini_base_x;
 				get_pixel_minimap(data);
 				mlx_put_pixel(data->minimap, data->x, data->y, data->pixel);
 			}

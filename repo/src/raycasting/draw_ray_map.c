@@ -6,7 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/12/21 09:59:35 by qhauuy           ###   ########.fr       */
+=======
+/*   Updated: 2024/12/21 10:00:54 by qhauuy           ###   ########.fr       */
+>>>>>>> cdd6d72 (blabla)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +32,6 @@ void	draw_ray_map(t_data *data)
 		(data->hit_x - 0.05 * data->ray_dir_x) * data->box_size,
 		(data->hit_y - 0.05 * data->ray_dir_y) * data->box_size, RAY_COLOR);
 }
-
-
-// void	world_to_minimap(t_data *data, double world_x, double world_y, double *mini_x, double *mini_y)
-// {
-// 	// Décale par rapport à la position du joueur
-// 	double dx = world_x - data->pos_x;
-// 	double dy = world_y - data->pos_y;
-
-// 	// Applique la rotation inverse (rotation vers la droite)
-// 	*mini_x = dx * data->mini_base_x + dy * data->mini_base_y;
-// 	*mini_y = dx * data->mini_perp_x + dy * data->mini_perp_y;
-
-// 	// Convertit en coordonnées de pixels sur la minimap
-// 	*mini_x = *mini_x * data->mini_box_size + data->mini_w_2;
-// 	*mini_y = *mini_y * data->mini_box_size + data->mini_w_2;
-// }
-
 
 void	draw_ray_minimap(t_data *data)
 {
