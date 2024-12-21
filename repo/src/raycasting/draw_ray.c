@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 11:10:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:52:09 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 12:01:18 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	draw_ray_map(t_data *data)
 {
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
-	while (fabs(data->ray_x - data->hit_x) > data->ray_dir_ratio
-		|| fabs(data->ray_y - data->hit_y) > data->ray_dir_ratio)
+	while (fabs(data->ray_x - data->hit_x) >= data->step_ray_map
+		|| fabs(data->ray_y - data->hit_y) >= data->step_ray_map)
 	{
-		data->ray_x += data->ray_dir_x * data->ray_dir_ratio;
-		data->ray_y += data->ray_dir_y * data->ray_dir_ratio;
+		data->ray_x += data->ray_dir_x * data->step_ray_map;
+		data->ray_y += data->ray_dir_y * data->step_ray_map;
 		mlx_put_pixel(data->map_rays, data->ray_x * data->box_size,
 			data->ray_y * data->box_size, COLOR_RAY);
 	}
@@ -38,14 +38,17 @@ static void	get_coordinates(t_data *data)
 		data->mini_base_x;
 	data->mini_xd = data->mini_xd * data->mini_box_size + data->mini_w_2;
 	data->mini_yd = data->mini_yd * data->mini_box_size + data->mini_w_2;
+	if (data->mini_xd < 0 || data->mini_yd < 0 || data->mini_xd >= data->minimap->width
+		|| data->mini_yd >= data->minimap->height)
+	printf("oui\n");
 }
 
 void	draw_ray_minimap(t_data *data)
 {
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
-	while (fabs(data->ray_x - data->hit_x) > data->ray_dir_ratio
-		|| fabs(data->ray_y - data->hit_y) > data->ray_dir_ratio)
+	while (fabs(data->ray_x - data->hit_x) >= data->step_ray_minimap
+		|| fabs(data->ray_y - data->hit_y) >= data->step_ray_minimap)
 	{
 		get_coordinates(data);
 		if ((data->mini_xd - data->mini_w_2) * (data->mini_xd - data->mini_w_2) \
@@ -53,7 +56,7 @@ void	draw_ray_minimap(t_data *data)
 		> data->mini_w_22)
 			return ;
 		mlx_put_pixel(data->minimap, data->mini_xd, data->mini_yd, COLOR_RAY);
-		data->ray_x += data->ray_dir_x * data->ray_dir_ratio;
-		data->ray_y += data->ray_dir_y * data->ray_dir_ratio;
+		data->ray_x += data->ray_dir_x * data->step_ray_minimap;
+		data->ray_y += data->ray_dir_y * data->step_ray_minimap;
 	}
 }
