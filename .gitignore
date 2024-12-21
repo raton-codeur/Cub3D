@@ -5,3 +5,5 @@ repo/MLX42/build/
 **/cub3D_bonus
 **/.vscode/
 **/.DS_Store
+**/tmp/
+**/tmp_bonus/
