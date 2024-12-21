@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:38:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 17:42:55 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ typedef struct s_data
 	uint32_t		j;
 	double			ray_x;
 	double			ray_y;
-	double			ray_length_2;
+	double			ray_length;
 	uint32_t		pixel;
 	uint8_t			r;
 	uint8_t			g;
