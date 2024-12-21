@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_colors.c                                      :+:      :+:    :+:   */
+/*   find_colors_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:20:39 by jteste            #+#    #+#             */
-/*   Updated: 2024/12/11 20:01:31 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:22:58 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 static void	color_range(t_data *data, int r, int g, int b)
 {

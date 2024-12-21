@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_parsing.c                                    :+:      :+:    :+:   */
+/*   split_parsing_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:30:49 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 12:21:16 by hakgyver         ###   ########.fr       */
+/*   Updated: 2024/12/21 18:22:58 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "parsing_bonus.h"
 
 static int	ft_countwords(char const *s, char c)
 {
