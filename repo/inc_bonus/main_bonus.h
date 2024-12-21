@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:23:47 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:38:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_data
 	uint32_t		mini_r_2;
 	uint32_t		mini_ray_limit;
 	double			step_ray_map;
+	double			step_ray_minimap;
 	uint32_t		fog_end;
 	uint32_t		fog_max;
 	uint32_t		fog_color;

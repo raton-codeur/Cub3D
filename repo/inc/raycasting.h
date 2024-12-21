@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 19:16:37 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:11:51 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:58:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ void	draw_ray_minimap(t_data *data);
 
 /* get_pixel.c */
 void	get_pixel_wall(t_data *data);
-void	get_pixel_wall_fog(t_data *data);
-void	get_pixel_fog_extra(t_data *data);
 
 #endif

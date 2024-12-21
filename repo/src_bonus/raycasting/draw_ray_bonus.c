@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 22:11:58 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:03:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:57:43 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 //data->d devient data->ray_length_2
-void	draw_ray_in_map_fog(t_data *data)
+void	draw_ray_map_fog(t_data *data)
 {
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;

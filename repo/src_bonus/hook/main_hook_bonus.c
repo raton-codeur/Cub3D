@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 15:47:21 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:46:03 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,16 @@ void	main_hook(void *param)
 	t_data	*data;
 
 	data = param;
+	if (mlx_get_time() < data->time + 0.033)
+		return ;
+	data->time = mlx_get_time();
 	check_movement_keys(data);
 	check_rotation_keys(data);
-	get_closest_door(data);
-	dda(data);
+	// get_closest_door(data);
+	erase(data->game);
+	if (data->depth_config == 1)
+		erase(data->map_rays);
 	if (data->depth_config == 2)
-		draw_mini_map(data);
+		render_minimap(data);
+	dda(data);
 }

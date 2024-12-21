@@ -1,7 +1,7 @@
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
 CFLAGS = -Wall -Wextra -Werror -g3 -Wunreachable-code -Ofast -fsanitize=address
-INCLUDES = -I libft -I MLX42/include -I inc -I .
+INCLUDES = -I libft -I MLX42/include -I inc -I inc_bonus -I .
 LDFLAGS = -ldl -lglfw -pthread -lm -L"/opt/homebrew/Cellar/glfw/3.4/lib/"
 LIBFT = libft/libft.a
 MLX = MLX42/build/libmlx42.a

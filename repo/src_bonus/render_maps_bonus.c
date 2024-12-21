@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:36:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:22:39 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:50:14 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 static void	get_pixel_map(t_data *data)
 {
-	char	c;
-
 	if (data->x % data->box_size == 0 || data->y % data->box_size == 0)
 		data->pixel = 0x000000FF;
-	c = data->map[data->x / data->box_size][data->y / data->box_size];
-	if (c == '1')
+	data->i = data->map[data->x / data->box_size][data->y / data->box_size];
+	if (data->i == '1')
 		data->pixel = COLOR_WALL;
-	else if (c == 'O')
+	else if (data->i == 'O')
 		data->pixel = COLOR_OPEN;
-	else if (c == 'C')
+	else if (data->i == 'C')
 		data->pixel = COLOR_CLOSE;
 	else
 		data->pixel = COLOR_MAP;
@@ -47,20 +45,18 @@ void	render_map(t_data *data)
 
 void	get_pixel_minimap(t_data *data)
 {
-	char	c;
-
 	if (data->xd < 0 || data->yd < 0 || data->xd >= data->map_width
 		|| data->yd >= data->map_height)
 		data->pixel = COLOR_MAP;
 	else if ((data->xd - (int)data->xd) < 0.05
 		|| (data->yd - (int)data->yd) < 0.05)
 		data->pixel = 0x000000FF;
-	c = data->map[(int)data->xd][(int)data->yd];
-	if (c == '1')
+	data->i = data->map[(int)data->xd][(int)data->yd];
+	if (data->i == '1')
 		data->pixel = COLOR_WALL;
-	else if (c == 'O')
+	else if (data->i == 'O')
 		data->pixel = COLOR_OPEN;
-	else if (c == 'C')
+	else if (data->i == 'C')
 		data->pixel = COLOR_CLOSE;
 	else
 		data->pixel = COLOR_MAP;
