@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 10:10:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 10:16:24 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ static void	get_coordinates(t_data *data)
 {
 	data->xd = data->ray_x - data->pos_x;
 	data->yd = data->ray_y - data->pos_y;
-	data->mini_x = data->xd * data->mini_base_x + data->yd * data->mini_base_y;
-	data->mini_y = data->xd * -data->mini_base_y + data->yd * data->mini_base_x;
-	data->mini_x = data->mini_x * data->mini_box_size + data->mini_w_2;
-	data->mini_y = data->mini_y * data->mini_box_size + data->mini_w_2;
+	data->mini_xd = data->xd * data->mini_base_x + data->yd * data->mini_base_y;
+	data->mini_yd = data->xd * -data->mini_base_y + data->yd * \
+		data->mini_base_x;
+	data->mini_xd = data->mini_xd * data->mini_box_size + data->mini_w_2;
+	data->mini_yd = data->mini_yd * data->mini_box_size + data->mini_w_2;
 }
 
 void	draw_ray_minimap(t_data *data)
@@ -47,11 +48,11 @@ void	draw_ray_minimap(t_data *data)
 		|| fabs(data->ray_y - data->hit_y) > data->ray_dir_ratio)
 	{
 		get_coordinates(data);
-		if ((data->mini_x - data->mini_w_2) * (data->mini_x - data->mini_w_2) \
-		+ (data->mini_y - data->mini_w_2) * (data->mini_y - data->mini_w_2) \
+		if ((data->mini_xd - data->mini_w_2) * (data->mini_xd - data->mini_w_2) \
+		+ (data->mini_yd - data->mini_w_2) * (data->mini_yd - data->mini_w_2) \
 		> data->mini_w_22)
-			break;
-		mlx_put_pixel(data->minimap, data->mini_x, data->mini_y, RAY_COLOR);
+			break ;
+		mlx_put_pixel(data->minimap, data->mini_xd, data->mini_yd, RAY_COLOR);
 		data->ray_x += data->ray_dir_x * data->ray_dir_ratio;
 		data->ray_y += data->ray_dir_y * data->ray_dir_ratio;
 	}
