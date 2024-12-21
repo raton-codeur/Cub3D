@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:36:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:50:14 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:40:37 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,16 @@ void	get_pixel_minimap(t_data *data)
 {
 	if (data->xd < 0 || data->yd < 0 || data->xd >= data->map_width
 		|| data->yd >= data->map_height)
+	{
 		data->pixel = COLOR_MAP;
+		return ;
+	}
 	else if ((data->xd - (int)data->xd) < 0.05
 		|| (data->yd - (int)data->yd) < 0.05)
+	{
 		data->pixel = 0x000000FF;
+		return ;
+	}
 	data->i = data->map[(int)data->xd][(int)data->yd];
 	if (data->i == '1')
 		data->pixel = COLOR_WALL;
