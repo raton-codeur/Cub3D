@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 19:33:42 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 09:53:46 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ typedef struct s_data
 
 	uint32_t	mini_box_size;
 	uint32_t	mini_w_2;
+	uint32_t	mini_w_22;
 
 	double xd;
 	double yd;
