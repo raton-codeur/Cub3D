@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 13:55:26 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:32:30 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 12:29:00 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ void	main_hook(void *param)
 	t_data	*data;
 
 	data = param;
-	data->new_time = mlx_get_time();
-	if (1 / (data->new_time - data->old_time) > 30)
+	if (mlx_get_time() < data->time + 0.033)
 		return ;
-	printf("FPS: %f\n", 1 / (data->new_time - data->old_time));
-	data->old_time = data->new_time;
+	data->time = mlx_get_time();
 	check_movement_keys(data);
 	check_rotation_keys(data);
 	erase(data->game);

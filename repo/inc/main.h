@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:54:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 12:30:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "MLX42/MLX42.h"
 # include <math.h>
 
-# define STEP_MOVE 0.4
-# define STEP_ROTATE_X 0.15
+# define STEP_MOVE 0.3
+# define STEP_ROTATE_X 0.1
 # define COLOR_MAP 0xFFFFFFFF
 # define COLOR_WALL 0x000000FF
 # define COLOR_PLAYER 0xFF0000FF
@@ -48,8 +48,9 @@ typedef struct s_data
 	int				j_start;
 	char			dir_start;
 	uint32_t		mini_box_size;
-	uint32_t		mini_w_2;
-	uint32_t		mini_w_22;
+	uint32_t		mini_half;
+	uint32_t		mini_r_2;
+	uint32_t		mini_ray_limit;
 
 	mlx_t			*mlx;
 	mlx_image_t		*background;
@@ -122,8 +123,7 @@ typedef struct s_data
 	double			mini_xd;
 	double			mini_yd;
 	double			new_pos;
-	double old_time;
-	double new_time;
+	double			time;
 }	t_data;
 
 /* free.c */

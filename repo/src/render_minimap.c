@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:48:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 10:44:43 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 12:22:21 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	get_pixel_minimap(t_data *data)
 
 static void	get_coordinates(t_data *data)
 {
-	data->mini_xd = (data->x - (double)data->mini_w_2) / data->mini_box_size;
-	data->mini_yd = (data->y - (double)data->mini_w_2) / data->mini_box_size;
+	data->mini_xd = (data->x - (double)data->mini_half) / data->mini_box_size;
+	data->mini_yd = (data->y - (double)data->mini_half) / data->mini_box_size;
 	data->xd = data->pos_x + data->mini_xd * data->mini_base_x + \
 		data->mini_yd * -data->mini_base_y;
 	data->yd = data->pos_y + data->mini_xd * data->mini_base_y + \
@@ -46,9 +46,9 @@ void	render_minimap(t_data *data)
 		data->y = 0;
 		while (data->y < data->minimap->width)
 		{
-			if ((data->x - data->mini_w_2) * (data->x - data->mini_w_2) + \
-			(data->y - data->mini_w_2) * (data->y - data->mini_w_2) \
-			<= data->mini_w_22)
+			if ((data->x - data->mini_half) * (data->x - data->mini_half) + \
+			(data->y - data->mini_half) * (data->y - data->mini_half) \
+			<= data->mini_r_2)
 			{
 				get_coordinates(data);
 				get_pixel_minimap(data);
