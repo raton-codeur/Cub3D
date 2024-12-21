@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.h                                        :+:      :+:    :+:   */
+/*   init_game_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:24:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 18:35:06 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:07:12 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INIT_GAME_H
-# define INIT_GAME_H
+#ifndef INIT_GAME_BONUS_H
+# define INIT_GAME_BONUS_H
 
-# include "main.h"
+# include "main_bonus.h"
 
-/* init_game.c */
+/* init_game_bonus.c */
 void		init_game(t_data *data);
 
 /* init_dimensions.c */

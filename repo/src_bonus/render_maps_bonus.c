@@ -1,27 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_minimap.c                                   :+:      :+:    :+:   */
+/*   render_maps_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 16:48:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 12:22:21 by qhauuy           ###   ########.fr       */
+/*   Created: 2024/12/20 16:36:57 by qhauuy            #+#    #+#             */
+/*   Updated: 2024/12/21 16:22:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "main_bonus.h"
+
+static void	get_pixel_map(t_data *data)
+{
+	char	c;
+
+	if (data->x % data->box_size == 0 || data->y % data->box_size == 0)
+		data->pixel = 0x000000FF;
+	c = data->map[data->x / data->box_size][data->y / data->box_size];
+	if (c == '1')
+		data->pixel = COLOR_WALL;
+	else if (c == 'O')
+		data->pixel = COLOR_OPEN;
+	else if (c == 'C')
+		data->pixel = COLOR_CLOSE;
+	else
+		data->pixel = COLOR_MAP;
+}
+
+void	render_map(t_data *data)
+{
+	data->x = 0;
+	while (data->x < data->map_img->width)
+	{
+		data->y = 0;
+		while (data->y < data->map_img->height)
+		{
+			get_pixel_map(data);
+			mlx_put_pixel(data->map_img, data->x, data->y, data->pixel);
+			data->y++;
+		}
+		data->x++;
+	}
+}
 
 void	get_pixel_minimap(t_data *data)
 {
+	char	c;
+
 	if (data->xd < 0 || data->yd < 0 || data->xd >= data->map_width
 		|| data->yd >= data->map_height)
 		data->pixel = COLOR_MAP;
 	else if ((data->xd - (int)data->xd) < 0.05
 		|| (data->yd - (int)data->yd) < 0.05)
 		data->pixel = 0x000000FF;
-	else if (data->map[(int)data->xd][(int)data->yd] == '1')
+	c = data->map[(int)data->xd][(int)data->yd];
+	if (c == '1')
 		data->pixel = COLOR_WALL;
+	else if (c == 'O')
+		data->pixel = COLOR_OPEN;
+	else if (c == 'C')
+		data->pixel = COLOR_CLOSE;
 	else
 		data->pixel = COLOR_MAP;
 }

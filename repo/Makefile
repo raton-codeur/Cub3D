@@ -43,12 +43,11 @@ fclean : clean
 re : fclean all
 
 bonus : $(NAME_BONUS)
- 
-test : clean $(NAME_BONUS)
-#@ ./$(NAME) maps/map_sujet.cub
-	@ ./$(NAME) maps/simple.cub
 
-ttest : $(NAME)
-	@ ./$(NAME) maps/simple.cub
+test : clean $(NAME)
+	@ ./$(NAME) ../maps/simple.cub
+
+ttest : clean $(NAME_BONUS)
+	@ ./$(NAME_BONUS) ../maps/simple.cub
 
 .PHONY : all clean fclean re bonus test

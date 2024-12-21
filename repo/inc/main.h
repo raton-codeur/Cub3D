@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 12:30:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 16:09:15 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ enum e_error
 
 typedef struct s_data
 {
-	uint32_t		w_width;
-	uint32_t		w_height;
-	uint32_t		box_size;
-	double			step_ray_map;
-	double			step_ray_minimap;
 	char			**map;
 	uint32_t		map_width;
 	uint32_t		map_height;
@@ -47,10 +42,15 @@ typedef struct s_data
 	int				i_start;
 	int				j_start;
 	char			dir_start;
+	uint32_t		w_width;
+	uint32_t		w_height;
+	uint32_t		box_size;
 	uint32_t		mini_box_size;
 	uint32_t		mini_half;
 	uint32_t		mini_r_2;
 	uint32_t		mini_ray_limit;
+	double			step_ray_map;
+	double			step_ray_minimap;
 
 	mlx_t			*mlx;
 	mlx_image_t		*background;
@@ -133,10 +133,8 @@ void		mlx_perror_exit(t_data *data);
 void		print_error(int code);
 void		error_exit(int code, t_data *data);
 
-/* render_map.c */
+/* render_maps.c */
 void		render_map(t_data *data);
-
-/* render_minimap.c */
 void		render_minimap(t_data *data);
 
 /* utils.c */
