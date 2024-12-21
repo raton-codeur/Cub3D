@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 10:05:33 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 10:05:54 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	draw_ray_minimap(t_data *data)
 		if (data->mini_x < 0 || data->mini_x >= data->minimap->width || data->mini_y < 0 || data->mini_y >= data->minimap->width
 		|| (data->mini_x - data->mini_w_2) * (data->mini_x - data->mini_w_2) + (data->mini_y - data->mini_w_2) * (data->mini_y - data->mini_w_2) > data->mini_w_22)
 			break;
-		
 		mlx_put_pixel(data->minimap, data->mini_x, data->mini_y, RAY_COLOR);
 		data->ray_x += data->ray_dir_x * data->ray_dir_ratio;
 		data->ray_y += data->ray_dir_y * data->ray_dir_ratio;

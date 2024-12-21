@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:48:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 10:03:35 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 10:06:27 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ void	get_pixel_minimap(t_data *data)
 		data->pixel = MAP_COLOR_BG;
 }
 
-void	rotate_vector_left_90(double *a, double *b, double c, double d)
-{
-	*a = -d;
-	*b = c;
-}
-
 void	render_minimap(t_data *data)
 {
 	data->mini_base_x = -data->dir_y;
@@ -42,7 +36,9 @@ void	render_minimap(t_data *data)
 		data->y = 0;
 		while (data->y < data->minimap->width)
 		{
-			if ((data->x - data->mini_w_2) * (data->x - data->mini_w_2) + (data->y - data->mini_w_2) * (data->y - data->mini_w_2) <= data->mini_w_22)
+			if ((data->x - data->mini_w_2) * (data->x - data->mini_w_2) + \
+			(data->y - data->mini_w_2) * (data->y - data->mini_w_2) \
+			<= data->mini_w_22)
 			{
 				data->mini_x = (data->x - (double)data->mini_w_2) / data->mini_box_size;
 				data->mini_y = (data->y - (double)data->mini_w_2) / data->mini_box_size;
