@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 11:10:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 19:00:17 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 19:17:08 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,38 +76,5 @@ void	draw_ray_map_fog(t_data *data)
 		data->ray_length = (data->ray_x - data->pos_x) * \
 			(data->ray_x - data->pos_x) + (data->ray_y - data->pos_y) * \
 			(data->ray_y - data->pos_y);
-	}
-}
-
-void	draw_ray_minimap_fog(t_data *data)
-{
-	data->ray_x = data->pos_x;
-	data->ray_y = data->pos_y;
-	data->ray_length = 0;
-	while (data->ray_length < data->visible_max
-		&& (fabs(data->ray_x - data->hit_x) >= data->step_ray_minimap \
-		|| fabs(data->ray_y - data->hit_y) >= data->step_ray_minimap))
-	{
-		get_coordinates(data);
-		if ((data->mini_xd - data->mini_half) * (data->mini_xd - \
-			data->mini_half) + (data->mini_yd - data->mini_half) * \
-			(data->mini_yd - data->mini_half) > data->mini_ray_limit)
-			return ;
-		data->fog_ratio = 1 - data->ray_length / data->visible_max;
-		mlx_put_pixel(data->minimap, data->mini_xd, data->mini_yd, \
-			COLOR_RAY_FOG + data->fog_ratio * 255);
-		data->ray_x += data->ray_dir_x * data->step_ray_minimap;
-		data->ray_y += data->ray_dir_y * data->step_ray_minimap;
-		data->ray_length = (data->ray_x - data->pos_x) * \
-			(data->ray_x - data->pos_x) + (data->ray_y - data->pos_y) * \
-			(data->ray_y - data->pos_y);
-	}
-	if (data->x == data->w_width / 2)
-	{
-		data->r = data->pixel >> 24 & 0xFF;
-		data->g = data->pixel >> 16 & 0xFF;
-		data->b = data->pixel >> 8 & 0xFF;
-
-		printf("%d %d %d %d\n", data->r, data->g, data->b, data->pixel & 0xFF);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:18:06 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 18:55:18 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 19:18:15 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ static void	render_game_for_x(t_data *data)
 void	render_for_x(t_data *data)
 {
 	render_game_for_x(data);
-
-
 	if (data->depth_config == 1)
 	{
 		if (data->fog_state)
@@ -67,11 +65,6 @@ void	render_for_x(t_data *data)
 		else
 			draw_ray_map(data);
 	}
-	else
-	{
-		if (data->fog_state)
-			draw_ray_minimap_fog(data);
-		else
-			draw_ray_minimap(data);
-	}
+	else if (data->depth_config == 2)
+		draw_ray_minimap(data);
 }
