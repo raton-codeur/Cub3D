@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:18:06 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 17:45:45 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:51:55 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,13 @@ void	render_for_x(t_data *data)
 		draw_ray_map_fog(data);
 	else if (data->depth_config)
 		draw_ray_map(data);
+	
+	if (data->depth_config)
+	{
+		if (data->depth_config)
+	if (data->depth_config == 1)
+		draw_ray_map(data);
+	else if (data->depth_config == 2)
+		draw_ray_minimap(data);}
+
 }
