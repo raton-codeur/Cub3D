@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:50:27 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 19:56:59 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 09:40:37 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,11 @@ void	world_to_minimap(t_data *data, double world_x, double world_y, double *mini
 
 void	draw_ray_minimap(t_data *data)
 {
-
-	
 	data->ray_x = data->pos_x;
 	data->ray_y = data->pos_y;
 	while (fabs(data->ray_x - data->hit_x) > data->ray_dir_ratio
 		|| fabs(data->ray_y - data->hit_y) > data->ray_dir_ratio)
 	{
-			// data->mini_x = (data->x - (double)data->mini_w_2) / data->mini_box_size;
-			// data->mini_y = (data->y - (double)data->mini_w_2) / data->mini_box_size;
-			// data->xd = data->pos_x + data->mini_x * data->mini_base_x + data->mini_y * data->mini_perp_x;
-			// data->yd = data->pos_y + data->mini_x * data->mini_base_y + data->mini_y * data->mini_perp_y;
-			
-
-
 		world_to_minimap(data, data->ray_x, data->ray_y, &data->mini_x, &data->mini_y);
 		if (data->mini_x < 0 || data->mini_x >= data->minimap->width || data->mini_y < 0 || data->mini_y >= data->minimap->width)
 			break;

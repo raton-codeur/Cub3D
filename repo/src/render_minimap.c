@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:48:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 19:40:33 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 09:40:10 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,10 @@ void	get_pixel_minimap(t_data *data)
 		data->pixel = MAP_COLOR_BG;
 }
 
-void rotate_vector_left_90(double *a, double *b, double c, double d)
+void	rotate_vector_left_90(double *a, double *b, double c, double d)
 {
 	*a = -d;
 	*b = c;
-}
-void rotate_vector_right_90(double *a, double *b, double c, double d)
-{
-	*a = d;
-	*b = -c;
 }
 
 void	render_minimap(t_data *data)
