@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 20:18:34 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:43:47 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:13:13 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		move_right(t_data *data);
 void		rotate_x(t_data *data, double step);
 void		rotate_y(t_data *data, int step);
 
-/* set_depth.c */
+/* set_depth_bonus.c */
 void		set_depth(t_data *data);
 
 #endif

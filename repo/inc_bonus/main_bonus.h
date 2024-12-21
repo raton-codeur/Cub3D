@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 17:42:55 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:10:52 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void		error_exit(int code, t_data *data);
 void		render_map(t_data *data);
 void		render_minimap(t_data *data);
 
-/* utils.c */
+/* utils_bonus.c */
 void		fill_circle(mlx_image_t *image, uint32_t color);
 void		erase(mlx_image_t *image);
 
