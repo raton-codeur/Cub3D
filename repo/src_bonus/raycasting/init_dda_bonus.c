@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 18:47:51 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 18:15:42 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:33:19 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "raycasting.h"
+#include "raycasting_bonus.h"
 
 static void	init_dda_2(t_data *data)
 {

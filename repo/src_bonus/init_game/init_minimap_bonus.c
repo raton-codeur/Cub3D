@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 18:35:10 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 18:12:01 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:33:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "init_game.h"
+#include "init_game_bonus.h"
 
 void	init_minimap(t_data *data)
 {

@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:49:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 18:13:04 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:32:58 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hook.h"
+#include "hook_bonus.h"
 
 void	set_depth(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:38:50 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:29:32 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_dimensions(t_data *data)
 		data->w_width = 1600;
 		data->w_height = 900;
 	}
-	else 
+	else
 	{
 		data->w_width = 1920;
 		data->w_height = 1080;

@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 13:59:02 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 18:11:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 18:33:34 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "main_bonus.h"
 
 void	fill_circle(mlx_image_t *img, uint32_t color)
 {
