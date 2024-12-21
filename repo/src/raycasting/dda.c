@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 16:48:43 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:05:22 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,6 @@ static void	get_dda_results(t_data *data)
 
 void	dda(t_data *data)
 {
-	erase_image(data->game);
-	if (data->depth_config == 1)
-		erase_image(data->map_rays);
-	if (data->depth_config == 2)
-		render_minimap(data);
 	data->x = 0;
 	while (data->x < data->w_width)
 	{

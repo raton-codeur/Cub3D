@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:27:54 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 16:39:50 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 10:44:43 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	get_pixel_map(t_data *data)
 	if (data->x % data->box_size == 0 || data->y % data->box_size == 0)
 		data->pixel = 0x000000FF;
 	else if (data->map[data->x / data->box_size][data->y / data->box_size] == '1')
-		data->pixel = MAP_COLOR_WALL;
+		data->pixel = COLOR_WALL;
 	else
-		data->pixel = MAP_COLOR_BG;
+		data->pixel = COLOR_MAP;
 }
 
 void	render_map(t_data *data)

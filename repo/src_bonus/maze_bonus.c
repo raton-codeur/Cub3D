@@ -6,11 +6,11 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:18:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/15 20:16:00 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:14:22 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#include "main_bonus.h"
 
 static void	init_maze(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:16:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 18:47:11 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 10:51:41 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void	fill_background(t_data *data)
 {
-	int	x;
-	int	y;
+	uint32_t	x;
+	uint32_t	y;
 
 	x = 0;
-	while (x < (int)data->background->width)
+	while (x < data->background->width)
 	{
 		y = 0;
-		while (y < (int)data->background->height)
+		while (y < data->background->height)
 		{
-			if (y < (int)data->background->height / 2)
+			if (y < data->background->height / 2)
 				mlx_put_pixel(data->background, x, y, data->ceil_color);
 			else
 				mlx_put_pixel(data->background, x, y, data->floor_color);
@@ -35,10 +35,12 @@ static void	fill_background(t_data *data)
 
 void	init_background(t_data *data)
 {
-	data->background = mlx_new_image(data->mlx, data->w_width, data->w_height * 2);
+	data->background = mlx_new_image(data->mlx, \
+		data->w_width, data->w_height * 2);
 	if (data->background == NULL)
 		return (mlx_perror_exit(data));
-	if (mlx_image_to_window(data->mlx, data->background, 0, -(data->w_height / 2)) == -1)
+	if (mlx_image_to_window(data->mlx, \
+		data->background, 0, -(data->w_height / 2)) == -1)
 	{
 		mlx_delete_image(data->mlx, data->background);
 		return (mlx_perror_exit(data));

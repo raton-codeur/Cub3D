@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 17:18:06 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 22:32:45 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:09:25 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 static void	render_game_for_x(t_data *data)
 {
-	if (data->horizon < data->wall_height / 2)
+	if (data->wall_height > data->w_height)
 	{
-		data->i = data->wall_height / 2 - data->horizon;
 		data->y = 0;
+		data->i = (data->wall_height - data->w_height) / 2;
 	}
 	else
 	{
-		data->y = data->horizon - data->wall_height / 2;
 		data->i = 0;
+		data->y = (data->w_height - data->wall_height) / 2;
 	}
 	while (data->i < data->wall_height && data->y < data->w_height)
 	{

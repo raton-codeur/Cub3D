@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 18:11:56 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 16:14:15 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:03:07 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ void	rotate_x(t_data *data, double step)
 	data->plane_y
 		= old_plane_x * sin(step) + data->plane_y * cos(step);
 }
-

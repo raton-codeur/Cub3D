@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:21:45 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/20 16:28:38 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:13:57 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_map_player(t_data *data)
 		data->box_size / 2, data->box_size / 2);
 	if (data->map_player == NULL)
 		return (mlx_perror_exit(data));
-	fill_image_circle(data->map_player, PLAYER_COLOR);
+	fill_circle(data->map_player, COLOR_PLAYER);
 	data->pos_x = data->i_start + 0.5;
 	data->pos_y = data->j_start + 0.5;
 	if (mlx_image_to_window(data->mlx, data->map_player, \
