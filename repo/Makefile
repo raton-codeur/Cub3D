@@ -23,7 +23,6 @@ $(NAME) : $(LIBFT) $(MLX) $(OBJS)
 	@ cc $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(OBJS) $(LIBFT) $(MLX) -o $@ && printf "$@ created\n"
 
 $(NAME_BONUS) : $(LIBFT) $(MLX) $(OBJS_BONUS)
-	@ echo $(OBJS_BONUS)
 	@ cc $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) -o $@ && printf "$@ created\n"
 
 $(LIBFT) :
