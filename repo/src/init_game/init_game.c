@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:27:42 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:54:31 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	init_game(t_data *data)
 	data->mini_w_2 = data->minimap->width / 2;
 	data->mini_w_22 = data->mini_w_2 * data->mini_w_2;
 	data->mini_box_size = data->minimap->width / 10;
-	data->ray_dir_ratio = 3.0 / data->box_size;
+	data->step_ray_map = 3.0 / data->box_size;
+	data->step_ray_minimap = 3.0 / data->mini_box_size;
 }

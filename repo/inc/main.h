@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:33:51 by qhauuy           ###   ########.fr       */
+/*   Updated: 2024/12/21 11:54:11 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct s_data
 	uint32_t		w_width;
 	uint32_t		w_height;
 	uint32_t		box_size;
-	double			ray_dir_ratio;
+	double			step_ray_map;
+	double			step_ray_minimap;
 	char			**map;
 	uint32_t		map_width;
 	uint32_t		map_height;
