@@ -27,6 +27,9 @@
 - le message d'erreur pour ça n'est pas très logique :
 ```
 111
-1N1 
+1N1x
 111
 ```
+avec un espace à la place du `x`
+
+
