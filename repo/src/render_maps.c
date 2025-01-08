@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_map.c                                       :+:      :+:    :+:   */
+/*   render_maps.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:27:54 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:08:49 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/08 19:02:36 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 static void	get_pixel_map(t_data *data)
 {
-	if (data->x % data->box_size == 0 || data->y % data->box_size == 0)
+	if (data->x % data->box_size == 0 || data->y % data->box_size == 0
+		|| (data->x + 1) % data->box_size == 0
+		|| (data->y + 1) % data->box_size == 0)
 		data->pixel = 0x000000FF;
 	else if (data->map[data->x / data->box_size][data->y / data->box_size] \
 		== '1')
@@ -41,12 +43,14 @@ void	render_map(t_data *data)
 
 void	get_pixel_minimap(t_data *data)
 {
-	if (data->xd < 0 || data->yd < 0 || data->xd >= data->map_width
-		|| data->yd >= data->map_height)
-		data->pixel = COLOR_MAP;
-	else if ((data->xd - (int)data->xd) < 0.05
-		|| (data->yd - (int)data->yd) < 0.05)
+	if (data->xd - floor(data->xd) < 0.03
+		|| data->xd - floor(data->xd) > 0.97
+		|| data->yd - floor(data->yd) < 0.03
+		|| data->yd - floor(data->yd) > 0.97)
 		data->pixel = 0x000000FF;
+	else if (data->xd < 0 || data->yd < 0
+		|| data->xd >= data->map_width || data->yd >= data->map_height)
+		data->pixel = COLOR_MAP;
 	else if (data->map[(int)data->xd][(int)data->yd] == '1')
 		data->pixel = COLOR_WALL;
 	else

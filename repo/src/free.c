@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:13:40 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:32:51 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,9 @@ void	mlx_perror_exit(t_data *data)
 void	print_error(int code)
 {
 	if (code == MALLOC)
-		ft_putstr_fd("Error\nmalloc failed\n", 2);
+		ft_putstr_fd("Error\nMalloc failed\n", 2);
 	else if (code == SIZE)
 		ft_putstr_fd("Error\nMap too big\n", 2);
-	else if (code == MAZE)
-		ft_putstr_fd("Error\nCannot create maze\n", 2);
 }
 
 void	error_exit(int code, t_data *data)

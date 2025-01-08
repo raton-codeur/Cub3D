@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/19 11:13:12 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:35:52 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "main.h"
 
-# define FILLER '1'
+# define FILLER '0'
 
 /* parsing.c */
 void		parsing(t_data *data, int argc, char **argv);

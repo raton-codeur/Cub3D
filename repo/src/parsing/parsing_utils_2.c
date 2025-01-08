@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 12:08:47 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/21 11:22:31 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:19:27 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	check_cub_order(t_data *data)
 		|| data->map_line < data->east_texture_line
 		|| data->map_line < data->floor_color_line
 		|| data->map_line < data->ceil_color_line)
-		// || data->map_line < data->maze_line)
 		perror_exit("Map must be at the end of the file", data);
 }
 

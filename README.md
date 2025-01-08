@@ -1,17 +1,19 @@
 # à faire dans les bonus
 
-- maze
-- animation porte
+- porte
+- animation
 
 # à faire partout
 
-- revoir la complétion du vide par des murs dans une map en escalier
+- revoir makefile
+- revoir init_game.c + bonus
 - check leaks
+
+# petites amélioration pour le parsing
 
 - erreur non détectée :
 ```
 [0] ~/Documents/42/cub3d/repo % ./cub3D "../maps/simple.cub blabla"
-[0] ~/Documents/42/cub3d/repo % 
 ```
 
 - le message d'erreur est incorrect lorsqu'un caractère invalide est hors de la carte. on a toujours "map is not closed". exemple :
@@ -22,9 +24,9 @@
 ...
 ```
 
-- il faut limiter la box size de la map à celui de la minimap
+il faudrait un message "la map doit être entourée de murs".
 
-- le message d'erreur pour ça n'est pas très logique :
+- de même, on pourra utiliser ce message dans le cas :
 ```
 111
 1N1x
@@ -32,4 +34,27 @@
 ```
 avec un espace à la place du `x`
 
+- message incorrect lorsque la map n'est pas à la fin du fichier
 
+- il manque un message d'erreur lorsque l'identifiant d'un élément fait plus de 2 caractères de long
+
+- les messages "Too many textures" et "Too many colors" sont pas terribles. il faudrait un truc comme "répétition de texture" / "répétition de couleur". je propose de bloquer tous les éléments qui ne sont pas requis par notre code
+
+- je comprends pas le message "Invalid texture file name". "missing texture" ne suffit pas ?
+
+- il manque un "Error\n" dans le cas : `./cub3D "    ../maps/simple.cub"`. Il faut appeler `perror_exit`
+
+- vérifier que les maps ne sont pas discontinues ? par exemple, ceci est pour l'instant correct :
+```
+111 1
+1N1
+111
+```
+alors que ceci est incorrect :
+```
+111
+1N1
+111
+
+1
+```

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 14:53:13 by jteste            #+#    #+#             */
-/*   Updated: 2024/12/21 11:23:44 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/08 17:17:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,17 @@ static void	check_map(t_data *data)
 	check_map_lines(data, 0, 0);
 	check_map_chars(data);
 	check_zero(data, 0, 0);
-	// check_doors(data, 0, 0);
 	find_player(data);
 	fill_spaces(data);
 	normalize_map_rows(data, 0);
-}
-
-static	void	parsing_init(t_data *data)
-{
-	ft_memset(data, 0, sizeof(t_data));
-	data->i_start = -1;
-	data->j_start = -1;
 }
 
 void	parsing(t_data *data, int argc, char **argv)
 {
 	if (argc != 2)
 		return (ft_putendl_fd("Error\nUsage: ./cub3D <map.cub>", 2), exit(1));
-	parsing_init(data);
+	data->i_start = -1;
+	data->j_start = -1;
 	data->path_map = ft_strdup(argv[1]);
 	if (data->path_map == NULL)
 		return (perror_exit("Malloc failed", data));
@@ -66,7 +59,6 @@ void	parsing(t_data *data, int argc, char **argv)
 	extract_textures_and_colors(data);
 	extract_map(data);
 	check_map(data);
-	// check_maze(data);
 	check_cub_order(data);
 	clean_parsing(data);
 }

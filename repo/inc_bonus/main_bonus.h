@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 19:26:54 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/08 19:45:39 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define COLOR_CLOSE 0xFF0000FF
 # define MAZE_START_I 1
 # define MAZE_START_J 1
-# define MAZE_DIR_START 'S'
+# define MAZE_DIR_START 'N'
 # define MAZE_MAX 50
 
 enum e_error

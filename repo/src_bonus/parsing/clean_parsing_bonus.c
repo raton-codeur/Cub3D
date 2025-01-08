@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/21 18:22:58 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/08 19:42:56 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void	free_parsing(t_data *data)
 	data->floor_color_str = NULL;
 	free(data->ceil_color_str);
 	data->ceil_color_str = NULL;
-	// free(data->maze_str);
-	// data->maze_str = NULL;
+	free(data->maze_str);
+	data->maze_str = NULL;
 }
 
 static void	load_walls(t_data *data)
@@ -79,13 +79,13 @@ static void	load_walls(t_data *data)
 static	void	init_after_parsing(t_data *data)
 {
 	init_dir(data);
-	// if (data->maze_line != -1)
-	// 	generate_maze(data);
-	// else
-	// {
+	if (data->maze_line != -1)
+		generate_maze(data);
+	else
+	{
 		get_map_dimensions(data);
 		reverse_map(data);
-	// }
+	}
 	load_walls(data);
 }
 
