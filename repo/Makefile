@@ -1,8 +1,8 @@
 NAME = cub3D
 NAME_BONUS = cub3D_bonus
-CFLAGS = -Wall -Wextra -Werror -g3 -Wunreachable-code -Ofast -fsanitize=address
-INCLUDES = -I libft -I MLX42/include -I . -I inc -I inc_bonus
-LDFLAGS = -ldl -lglfw -pthread -lm -L"/opt/homebrew/Cellar/glfw/3.4/lib/" -w
+CFLAGS = -Wall -Wextra -Werror -g3 -Wunreachable-code -Ofast -fsanitize=address # revoir
+INCLUDES = -I libft -I MLX42/include -I inc -I inc_bonus
+LDFLAGS = -ldl -lglfw -pthread -lm -L"/opt/homebrew/Cellar/glfw/3.4/lib/" -w # revoir
 LIBFT = libft/libft.a
 MLX = MLX42/build/libmlx42.a
 OBJS = $(patsubst src/%, tmp/%, $(SRCS:.c=.o))
@@ -11,13 +11,15 @@ OBJS_BONUS = $(patsubst src_bonus/%, tmp_bonus/%, $(SRCS_BONUS:.c=.o))
 SRCS = $(shell find src -name "*.c")
 SRCS_BONUS = $(shell find src_bonus -name "*.c")
 
+all : $(NAME) $(NAME_BONUS)
+
 tmp/%.o : src/%.c
 	@ mkdir -p $(dir $@)
-	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "compilation for $(NAME) : %d / %d\n" $$(find tmp -type f | wc -l) $(words $(SRCS))
+	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "compilation for $(NAME) : %d / %d\n" $$(find tmp -type f | wc -l) $(words $(SRCS)) # revoir
 
 tmp_bonus/%.o : src_bonus/%.c
 	@ mkdir -p $(dir $@)
-	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "compilation for $(NAME_BONUS) : %d / %d\n" $$(find tmp_bonus -type f | wc -l) $(words $(SRCS_BONUS))
+	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "compilation for $(NAME_BONUS) : %d / %d\n" $$(find tmp_bonus -type f | wc -l) $(words $(SRCS_BONUS)) # revoir
 
 $(NAME) : $(LIBFT) $(MLX) $(OBJS)
 	@ cc $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(OBJS) $(LIBFT) $(MLX) -o $@ && printf "$@ created\n"
@@ -30,8 +32,6 @@ $(LIBFT) :
 
 $(MLX) :
 	@ cmake MLX42 -B MLX42/build && make --no-print-directory -C MLX42/build -j4
-
-all : $(NAME) $(NAME_BONUS)
 
 clean :
 	@ make clean --no-print-directory -C libft
@@ -54,4 +54,4 @@ test : clean $(NAME)
 ttest : clean $(NAME_BONUS)
 	@ ./$(NAME_BONUS) ../maps/simple.cub
 
-.PHONY : all clean fclean re bonus test ttest
+.PHONY : all clean fclean re bonus
