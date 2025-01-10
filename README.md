@@ -7,10 +7,7 @@
 
 - revoir makefile
 - revoir init_game.c + bonus
-
-## check leaks
-
-- maze trop grand
+- check leaks
 
 # amélioration du maze
 
