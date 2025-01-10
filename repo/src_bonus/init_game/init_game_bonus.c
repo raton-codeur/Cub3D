@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/08 19:41:14 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/10 10:11:37 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static void	init_dimensions(t_data *data)
 	mlx_set_window_pos(data->mlx, \
 		(monitor_width - data->w_width) / 2, \
 		(monitor_height - data->w_height) / 2);
-	data->mini_box_size = data->w_height / 40;
+	data->mini_box_size = data->w_height / 4 / 10;
 	if (data->map_width > data->map_height)
-		data->box_size = data->w_width / 2.0 / data->map_width;
-	else
 		data->box_size = data->w_height / 2.0 / data->map_height;
+	else
+		data->box_size = data->w_width / 2.0 / data->map_width;
 	if (data->box_size < 10)
 		error_exit(SIZE, data);
 	if (data->box_size > data->mini_box_size)

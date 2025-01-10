@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:47:15 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 18:15:23 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/10 09:58:20 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "main_bonus.h"
 
-# define FILLER '1'
+# define FILLER '0'
 
 /* parsing_bonus.c */
 void		parsing(t_data *data, int argc, char **argv);
