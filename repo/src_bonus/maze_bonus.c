@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maze.c                                             :+:      :+:    :+:   */
+/*   maze_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:18:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 11:14:22 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/10 09:53:50 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	init_maze(t_data *data)
 	uint32_t	i;
 	uint32_t	j;
 
+	deep_free((void **)data->map);
 	data->map = ft_calloc(data->map_width + 1, sizeof(char *));
 	if (data->map == NULL)
 		error_exit(MALLOC, data);
