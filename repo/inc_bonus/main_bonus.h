@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/08 19:45:39 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/10 10:52:51 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@
 # define FOG_BLUE 0x50
 # define COLOR_WALL 0x000000FF
 # define COLOR_MAP 0xFFFFFFFF
-# define COLOR_OPEN 0x00FF00FF
-# define COLOR_CLOSE 0xFF0000FF
+# define COLOR_DOOR 0x7D7D7DFF
+# define COLOR_END 0xFF0000FF
 # define MAZE_START_I 1
 # define MAZE_START_J 1
 # define MAZE_DIR_START 'N'

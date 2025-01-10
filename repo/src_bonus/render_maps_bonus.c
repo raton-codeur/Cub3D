@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 16:36:57 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/08 19:20:23 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/10 10:52:19 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	get_pixel_map(t_data *data)
 	data->i = data->map[data->x / data->box_size][data->y / data->box_size];
 	if (data->i == '1')
 		data->pixel = COLOR_WALL;
-	else if (data->i == 'O')
-		data->pixel = COLOR_OPEN;
-	else if (data->i == 'C')
-		data->pixel = COLOR_CLOSE;
+	else if (data->i == 'D')
+		data->pixel = COLOR_DOOR;
+	else if (data->i == 'X')
+		data->pixel = COLOR_END;
 	else
 		data->pixel = COLOR_MAP;
 }
@@ -67,10 +67,10 @@ void	get_pixel_minimap(t_data *data)
 	data->i = data->map[(int)data->xd][(int)data->yd];
 	if (data->i == '1')
 		data->pixel = COLOR_WALL;
-	else if (data->i == 'O')
-		data->pixel = COLOR_OPEN;
-	else if (data->i == 'C')
-		data->pixel = COLOR_CLOSE;
+	else if (data->i == 'D')
+		data->pixel = COLOR_DOOR;
+	else if (data->i == 'X')
+		data->pixel = COLOR_END;
 	else
 		data->pixel = COLOR_MAP;
 }

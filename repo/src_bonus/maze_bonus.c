@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 19:18:24 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/10 09:53:50 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/10 10:53:57 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ void	generate_maze(t_data *data)
 			add_walls(data, data->i, data->j);
 		}
 	}
+	data->map[data->map_width - 2][data->map_height - 2] = 'X';
 }
