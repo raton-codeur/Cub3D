@@ -7,14 +7,17 @@
 
 - revoir makefile
 - revoir init_game.c + bonus
-- check leaks
+
+## check leaks
+
+- maze trop grand
+
+# amélioration du maze
+
+- colorier la case d'arriver
+- stop le jeu quand on arrive
 
 # petites amélioration pour le parsing
-
-- erreur non détectée :
-```
-[0] ~/Documents/42/cub3d/repo % ./cub3D "../maps/simple.cub blabla"
-```
 
 - le message d'erreur est incorrect lorsqu'un caractère invalide est hors de la carte. on a toujours "map is not closed". exemple :
 ```
