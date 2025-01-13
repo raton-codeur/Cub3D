@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 13:52:24 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/19 12:42:20 by hakgyver         ###   ########.fr       */
+/*   Updated: 2025/01/13 16:25:21 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	find_player(t_data *data)
 static bool	is_char_in_set(char c)
 {
 	if (c != '0' && c != '1' && c != 'N'
-		&& c != 'S' && c != 'W' && c != 'E' && c != ' ' && c != 'D')
+		&& c != 'S' && c != 'W' && c != 'E' && c != ' ' && c != '\t')
 		return (false);
 	return (true);
 }
@@ -93,9 +93,9 @@ void	check_map_chars(t_data *data)
 	while (data->map[i])
 	{
 		j = 0;
+		j = skip_spaces(data->map[i], j, ft_strlen(data->map[i]));
 		while (data->map[i][j])
 		{
-			j = skip_spaces(data->map[i], j, ft_strlen(data->map[i]));
 			if (!is_char_in_set(data->map[i][j]))
 				return ((perror_exit("Invalid character in map", data)));
 			j++;

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:47:15 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/10 09:58:20 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 17:29:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,6 @@ void		texture_count(t_data *data, int i, int j, int count);
 void		color_count(t_data *data, int i, int j, int count);
 bool		spaces(char c);
 
-/* clean_parsing_bonus.c */
-void		clean_parsing(t_data *data);
-
 /* reverse_map_bonus.c */
 void		reverse_map(t_data *data);
 void		get_map_dimensions(t_data *data);
@@ -84,5 +81,11 @@ void		print_map(t_data *data);
 
 /* split_parsing_bonus.c */
 char		**split_parsing(char const *s, char c, t_data *data);
+
+/* check_keys_bonus.c */
+bool		check_keys(char *line);
+
+/* init_after_parsing_bonus.c */
+void		init_after_parsing(t_data *data);
 
 #endif

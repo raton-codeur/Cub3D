@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_parsing.c                                    :+:      :+:    :+:   */
+/*   init_after_parsing.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 15:11:51 by hakgyver          #+#    #+#             */
-/*   Updated: 2025/01/08 17:18:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 17:47:26 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,11 @@ static void	load_walls(t_data *data)
 		mlx_perror_exit(data);
 }
 
-static	void	init_after_parsing(t_data *data)
+void	init_after_parsing(t_data *data)
 {
+	load_walls(data);
 	init_dir(data);
 	get_map_dimensions(data);
 	reverse_map(data);
-	load_walls(data);
-}
-
-void	clean_parsing(t_data *data)
-{
-	init_after_parsing(data);
 	free_parsing(data);
 }

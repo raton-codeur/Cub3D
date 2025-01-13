@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/10 10:52:51 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:30:28 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,23 @@ typedef struct s_data
 	double			xpos;
 	double			ypos;
 
+	// pour les portes
 	int				p_x;
 	int				p_y;
 	int				door_to_open_x;
 	int				door_to_open_y;
+	mlx_texture_t	*door;
+
+	// sprites
+	mlx_image_t		*sprite;
+	t_list			*sprite_frames;
+	t_list			*current_frame;
+	int				frame_index;
+	int				total_frames;
+	int				frame_delay;
+	int				last_update;
+	int				animation_active;
+
 }	t_data;
 
 /* free_bonus.c */
@@ -178,6 +191,9 @@ void		mlx_perror_exit(t_data *data);
 void		print_error(int code);
 void		error_exit(int code, t_data *data);
 
+/* free2.c */
+void		clear_sprite(t_data *data, t_list **list);
+
 /* render_maps_bonus.c */
 void		render_map(t_data *data);
 void		render_minimap(t_data *data);
@@ -185,6 +201,7 @@ void		render_minimap(t_data *data);
 /* utils_bonus.c */
 void		fill_circle(mlx_image_t *image, uint32_t color);
 void		erase(mlx_image_t *image);
+mlx_image_t	*get_img_from_png(t_data *data, const char *file);
 
 /* maze_bonus.c */
 void		generate_maze(t_data *data);
@@ -199,5 +216,13 @@ void		add_walls(t_data *data, uint32_t i, uint32_t j);
 void		check_doors(t_data *data, int i, int j);
 void		get_closest_door(t_data *d);
 void		open_door(t_data *d, mlx_key_data_t keydata);
+
+/*sprite_bonus.c*/
+void		init_sprite(t_data *data);
+void		shot_with_gun(t_data *data, mlx_key_data_t keydata);
+void		play_animation(t_data *data);
+
+/*sprite2_bonus.c*/
+double		get_time_in_ms(void);
 
 #endif

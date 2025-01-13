@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:51:34 by jteste            #+#    #+#             */
-/*   Updated: 2024/12/21 18:22:58 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:09:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	load_cub_file(t_data *data)
 	while (line || i == 0)
 	{
 		line = get_next_line(fd);
+		if (check_keys(line) == false)
+			return (free(line), perror_exit("Invalid key in .cub file", data));
 		data->cub_file[i++] = ft_strdup(line);
 		free(line);
 	}

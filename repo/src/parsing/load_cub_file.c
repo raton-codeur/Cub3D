@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_cub_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:51:34 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/12 12:57:02 by hakgyver         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:27:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	load_cub_file(t_data *data)
 	while (line || i == 0)
 	{
 		line = get_next_line(fd);
+		if (check_keys(line) == false)
+			return (free(line), perror_exit("Invalid key", data));
 		data->cub_file[i++] = ft_strdup(line);
 		free(line);
 	}

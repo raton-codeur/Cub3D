@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 11:02:39 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 15:46:43 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 17:05:27 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,24 @@ static void	iterate_dda(t_data *data)
 
 static void	get_texture_infos(t_data *data)
 {
-	if (data->side == 1 && data->step_j == -1)
-	{
+	if (data->map[data->i][data->j] == 'D')
+		data->tex = data->door;
+	else if (data->side == 1 && data->step_j == -1)
 		data->tex = data->north;
-		data->tex_x = data->tex->width * (data->hit_x - (int)data->hit_x);
-	}
 	else if (data->side == 1)
-	{
 		data->tex = data->south;
-		data->tex_x = data->tex->width * (1 - (data->hit_x - (int)data->hit_x));
-	}
 	else if (data->side == 0 && data->step_i == -1)
-	{
 		data->tex = data->west;
-		data->tex_x = data->tex->width * (1 - (data->hit_y - (int)data->hit_y));
-	}
 	else
-	{
 		data->tex = data->east;
+	if (data->side == 1 && data->step_j == -1)
+		data->tex_x = data->tex->width * (data->hit_x - (int)data->hit_x);
+	else if (data->side == 1)
+		data->tex_x = data->tex->width * (1 - (data->hit_x - (int)data->hit_x));
+	else if (data->side == 0 && data->step_i == -1)
+		data->tex_x = data->tex->width * (1 - (data->hit_y - (int)data->hit_y));
+	else
 		data->tex_x = data->tex->width * (data->hit_y - (int)data->hit_y);
-	}
 }
 
 static void	get_dda_results(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 15:46:27 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:14:42 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_all(t_data *data)
 	free(data->floor_color_str);
 	free(data->ceil_color_str);
 	free(data->walls);
+	clear_sprite(data, &data->sprite_frames);
 	if (data->north)
 		mlx_delete_texture(data->north);
 	if (data->south)
@@ -32,6 +33,8 @@ void	free_all(t_data *data)
 		mlx_delete_texture(data->west);
 	if (data->east)
 		mlx_delete_texture(data->east);
+	if (data->door)
+		mlx_delete_texture(data->door);
 	if (data->mlx)
 		mlx_terminate(data->mlx);
 }

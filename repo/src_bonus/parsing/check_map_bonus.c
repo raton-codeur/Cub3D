@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:57:11 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/21 18:22:58 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:07:06 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,16 @@ void	first_and_last_char(t_data *data)
 	{
 		j = 0;
 		j = skip_spaces(data->map[i], j, ft_strlen(data->map[i]));
+		if (data->map[i][j] == '\0')
+		{
+			i++;
+			continue ;
+		}
 		if (data->map[i][j] != '1')
 			return (perror_exit("Map is not closed", data));
 		j = ft_strlen(data->map[i]) - 1;
+		while (j > 0 && ft_isspace(data->map[i][j]) == 1)
+			j--;
 		if (data->map[i][j] != '1')
 			return (perror_exit("Map is not closed", data));
 		i++;

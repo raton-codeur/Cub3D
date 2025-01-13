@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:06:17 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/08 17:35:52 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 17:48:05 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,11 @@ void		print_map(t_data *data);
 
 /* split_parsing.c */
 char		**split_parsing(char const *s, char c, t_data *data);
+
+/* check_keys.c */
+bool		check_keys(char *line);
+
+/* init_after_parsing.c */
+void		init_after_parsing(t_data *data);
 
 #endif

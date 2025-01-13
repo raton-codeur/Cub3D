@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 15:12:28 by jteste            #+#    #+#             */
-/*   Updated: 2024/11/20 18:33:16 by hakgyver         ###   ########.fr       */
+/*   Updated: 2025/01/13 15:28:09 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	extension_checker(t_data *data)
 	i = 0;
 	start = skip_spaces(data->path_map, i, len);
 	i = start;
-	while (data->path_map[i] && ft_isspace(data->path_map[i]) == false)
+	while (data->path_map[i])
 		i++;
 	if (i < len)
 	{

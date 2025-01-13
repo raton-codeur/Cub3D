@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 09:02:35 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/12/21 16:24:47 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:14:17 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,23 @@ void	open_door(t_data *d, mlx_key_data_t keydata)
 {
 	if (d->door_to_open_x == -1 || d->door_to_open_y == -1)
 		return ;
+	if (d->map[d->door_to_open_x][d->door_to_open_y] == '0'
+		&& is_player_near_door(d))
+	{
+		if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		{
+			d->map[d->door_to_open_x][d->door_to_open_y] = 'D';
+			return ;
+		}
+	}
+	if ((int)d->i != d->door_to_open_x && (int)d->j != d->door_to_open_y)
+		return ;
 	if (d->map[d->door_to_open_x][d->door_to_open_y] == 'D'
 		&& is_player_near_door(d))
 	{
 		if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		{
 			d->map[d->door_to_open_x][d->door_to_open_y] = '0';
-			return ;
-		}
-	}
-	else if (d->map[d->door_to_open_x][d->door_to_open_y] == '0'
-		&& is_player_near_door(d))
-	{
-		if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-		{
-			d->map[d->door_to_open_x][d->door_to_open_y] = 'D';
 			return ;
 		}
 	}

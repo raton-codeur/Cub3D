@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 20:17:31 by qhauuy            #+#    #+#             */
-/*   Updated: 2024/12/21 16:46:40 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/13 16:43:16 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	}
 	if (keydata.key == MLX_KEY_F && keydata.action == MLX_PRESS)
 		data->fog_state = !data->fog_state;
-	// open_door(data, keydata);
+	open_door(data, keydata);
+	shot_with_gun(data, keydata);
 }
