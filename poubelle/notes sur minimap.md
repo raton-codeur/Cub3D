@@ -1,20 +1,4 @@
 
-# partie obligatoire
-
-# ajouter pour les bonus
-
-- souris
-- touches haut bas
-- fog
-- maze
-- portes
-- animations ?
-- couleurs à la place des murs ?
-
-# à faire
-
-modifier les touches haut et bas pour épouser le haut et bas comme avec la souris
-
 # retour sur la minimap
 
 on init la largeur de la minimap à [ hauteur de la fenêtre / 4 ]

@@ -1,17 +1,10 @@
-# à faire dans les bonus
-
-- porte
-- animation
-
-# à faire partout
-
 - revoir makefile
 - revoir init_game.c + bonus
+- norminette
 - check leaks
 
 # amélioration du maze
 
-- colorier la case d'arriver
 - stop le jeu quand on arrive
 
 # petites amélioration pour le parsing
