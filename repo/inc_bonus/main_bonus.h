@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/13 16:30:28 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 14:26:29 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,14 +165,12 @@ typedef struct s_data
 	double			xpos;
 	double			ypos;
 
-	// pour les portes
 	int				p_x;
 	int				p_y;
 	int				door_to_open_x;
 	int				door_to_open_y;
 	mlx_texture_t	*door;
 
-	// sprites
 	mlx_image_t		*sprite;
 	t_list			*sprite_frames;
 	t_list			*current_frame;
@@ -181,7 +179,6 @@ typedef struct s_data
 	int				frame_delay;
 	int				last_update;
 	int				animation_active;
-
 }	t_data;
 
 /* free_bonus.c */

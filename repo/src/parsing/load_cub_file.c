@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:51:34 by jteste            #+#    #+#             */
-/*   Updated: 2025/01/13 15:27:06 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 14:00:13 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	count_lines(t_data *data)
 
 	fd = open(data->path_map, O_RDONLY);
 	if (fd == -1)
-		return (perror("Cannot open .cub file"), free_all(data), exit(1), 1);
+		perror_exit("Cannot open .cub file", data);
 	result = 0;
 	line = get_next_line(fd);
 	while (line)

@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:23 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/13 17:38:18 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 14:24:19 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,8 @@ static void	init_dimensions(t_data *data)
 	int	monitor_height;
 
 	mlx_get_monitor_size(0, &monitor_width, &monitor_height);
-	if (monitor_width < 2500) // a supp
-	{
-		data->w_width = 1600;
-		data->w_height = 900;
-	}
-	else
-	{
-		data->w_width = 1920;
-		data->w_height = 1080;
-	}
+	data->w_width = 1920;
+	data->w_height = 1080;
 	mlx_set_window_size(data->mlx, data->w_width, data->w_height);
 	mlx_set_window_pos(data->mlx, \
 		(monitor_width - data->w_width) / 2, \

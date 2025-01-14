@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 17:53:22 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/13 16:14:42 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 14:11:50 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	mlx_perror_exit(t_data *data)
 {
 	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd((char *)mlx_strerror(mlx_errno), 2);
+	ft_putchar_fd('\n', 2);
 	free_all(data);
 	exit(1);
 }
