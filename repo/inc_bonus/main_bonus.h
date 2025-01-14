@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 14:20:14 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/14 14:26:29 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 14:57:30 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <time.h>
 # include <sys/time.h>
 
-# define STEP_MOVE 0.3
+# define STEP_MOVE 0.29
 # define STEP_ROTATE_X 0.1
 # define STEP_ROTATE_Y 60
 # define FOG_HEIGHT 0.3
