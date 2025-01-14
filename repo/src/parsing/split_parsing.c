@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:30:49 by hakgyver          #+#    #+#             */
-/*   Updated: 2025/01/14 13:40:26 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 13:52:09 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ static char	**ft_doubletabfree(int i, char **dest)
 	return (NULL);
 }
 
+static int	check_error(const char *s, int start, int i)
+{
+	while (s[start++] != '\0')
+		if (ft_isspace(s[start]) == 1)
+			return (1);
+	if (i != ft_countwords(s, ','))
+		return (1);
+	return (0);
+}
+
 static	char	**ft_filltab(char const *s, char c, char **dest, t_data *data)
 {
 	int	start;
@@ -68,13 +78,9 @@ static	char	**ft_filltab(char const *s, char c, char **dest, t_data *data)
 		i++;
 		start = end;
 	}
-	while (s[start++] != '\0')
-		if (ft_isspace(s[start]) == 1)
-			return (ft_doubletabfree(i, dest),
-				perror_exit("Invalid Color", data), NULL);
-	printf("dest[0] = '%s'\n", dest[0]);
-	printf("dest[1] = '%s'\n", dest[1]);
-	printf("dest[2] = '%s'\n", dest[2]);
+	if (check_error(s, start, i))
+		return (ft_doubletabfree(i, dest),
+			perror_exit("Invalid Color", data), NULL);
 	return (dest);
 }
 
