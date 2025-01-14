@@ -11,21 +11,21 @@ OBJS_BONUS = $(patsubst src_bonus/%, tmp_bonus/%, $(SRCS_BONUS:.c=.o))
 SRCS = $(shell find src -name "*.c")
 SRCS_BONUS = $(shell find src_bonus -name "*.c")
 
-all : $(NAME) $(NAME_BONUS)
+all : $(NAME)
 
 tmp/%.o : src/%.c
 	@ mkdir -p $(dir $@)
-	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "compilation for $(NAME) : %d / %d\n" $$(find tmp -type f | wc -l) $(words $(SRCS)) # revoir
+	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "\rcompilation for $(NAME) : %d / %d" $$(find tmp -type f | wc -l) $(words $(SRCS)) # revoir
 
 tmp_bonus/%.o : src_bonus/%.c
 	@ mkdir -p $(dir $@)
-	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "compilation for $(NAME_BONUS) : %d / %d\n" $$(find tmp_bonus -type f | wc -l) $(words $(SRCS_BONUS)) # revoir
+	@ cc $(CFLAGS) $(INCLUDES) -c $< -o $@ && printf "\rcompilation for $(NAME_BONUS) : %d / %d" $$(find tmp_bonus -type f | wc -l) $(words $(SRCS_BONUS)) # revoir
 
 $(NAME) : $(LIBFT) $(MLX) $(OBJS)
-	@ cc $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(OBJS) $(LIBFT) $(MLX) -o $@ && printf "$@ created\n"
+	@ cc $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(OBJS) $(LIBFT) $(MLX) -o $@ && printf "\n$@ created\n"
 
 $(NAME_BONUS) : $(LIBFT) $(MLX) $(OBJS_BONUS)
-	@ cc $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) -o $@ && printf "$@ created\n"
+	@ cc $(CFLAGS) $(INCLUDES) $(LDFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX) -o $@ && printf "\n$@ created\n"
 
 $(LIBFT) :
 	@ make --no-print-directory -C libft

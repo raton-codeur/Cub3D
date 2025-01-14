@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/21 17:47:15 by qhauuy            #+#    #+#             */
-/*   Updated: 2025/01/13 17:29:06 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 13:26:43 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void		fill_rgb_colors(t_data *data);
 void		check_maze(t_data *data);
 
 /* check_colors_bonus.c */
-void		check_color_string(t_data *data, char *color);
+void		check_color_string(\
+	t_data *data, char *color, int count_number, int count_comma);
 
 /* find_map_bonus.c */
 void		find_map(t_data *data, int i, int j);

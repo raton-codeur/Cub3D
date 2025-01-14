@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hakgyver <hakgyver@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:30:49 by hakgyver          #+#    #+#             */
-/*   Updated: 2024/11/21 12:21:16 by hakgyver         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:39:40 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static	char	**ft_filltab(char const *s, char c, char **dest, t_data *data)
 		if (ft_isspace(s[start]) == 1)
 			return (ft_doubletabfree(i, dest),
 				perror_exit("Invalid Color", data), NULL);
+	
 	return (dest);
 }
 

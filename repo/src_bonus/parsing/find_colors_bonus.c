@@ -6,7 +6,7 @@
 /*   By: qhauuy <qhauuy@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:20:39 by jteste            #+#    #+#             */
-/*   Updated: 2025/01/13 16:08:30 by qhauuy           ###   ########.fr       */
+/*   Updated: 2025/01/14 13:27:32 by qhauuy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static uint32_t	colors_to_rgb(t_data *data, char *str)
 
 void	fill_rgb_colors(t_data *data)
 {
-	check_color_string(data, data->floor_color_str);
-	check_color_string(data, data->ceil_color_str);
+	check_color_string(data, data->floor_color_str, 0, 0);
+	check_color_string(data, data->ceil_color_str, 0, 0);
 	data->floor_color = colors_to_rgb(data, data->floor_color_str);
 	data->ceil_color = colors_to_rgb(data, data->ceil_color_str);
 }
